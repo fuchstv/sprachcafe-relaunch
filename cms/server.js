@@ -102,8 +102,32 @@ app.get('/api/health', (req, res) => {
       type: 'SQLite 3 (Embedded WAL)',
       path: DB_FILE,
       size_bytes: fs.existsSync(DB_FILE) ? fs.statSync(DB_FILE).size : 0
-    }
+    },
+    collections: ['events', 'posts', 'books', 'team', 'pages']
   });
+});
+
+// 1b. Collections Schema API
+app.get('/api/schema', (req, res) => {
+  const schemaDir = path.resolve('collections');
+  const files = ['events.json', 'posts.json', 'books.json', 'team.json', 'pages.json'];
+  const schemas = {};
+
+  for (const f of files) {
+    const filePath = path.join(schemaDir, f);
+    if (fs.existsSync(filePath)) {
+      const collectionName = f.replace('.json', '');
+      schemas[collectionName] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    }
+  }
+
+  res.json({ collections: schemas });
+});
+
+app.get('/api/schema/:collection', (req, res) => {
+  const filePath = path.resolve('collections', `${req.params.collection}.json`);
+  if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Collection schema not found' });
+  res.json(JSON.parse(fs.readFileSync(filePath, 'utf-8')));
 });
 
 // 2. Admin Auth Login -> Returns JWT Token

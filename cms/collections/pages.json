@@ -1,12 +1,68 @@
 {
   "collection": "pages",
-  "name": "Statische Seiten",
+  "name": "Seiten & Flexible Layouts",
+  "i18n": true,
+  "locales": ["de", "pl", "en"],
   "fields": [
     { "name": "id", "type": "uuid", "primaryKey": true },
-    { "name": "title", "type": "string", "required": true },
-    { "name": "slug", "type": "string", "unique": true },
-    { "name": "content", "type": "richtext" },
-    { "name": "seo_title", "type": "string" },
-    { "name": "seo_description", "type": "text" }
+    { "name": "title", "type": "string", "required": true, "i18n": true },
+    { "name": "slug", "type": "string", "unique": true, "required": true },
+    { "name": "seo_title", "type": "string", "i18n": true },
+    { "name": "seo_description", "type": "text", "i18n": true },
+    {
+      "name": "blocks",
+      "type": "array",
+      "items": {
+        "type": "block",
+        "blockTypes": [
+          {
+            "slug": "hero",
+            "name": "Hero Banner",
+            "fields": [
+              { "name": "title", "type": "string", "i18n": true },
+              { "name": "subtitle", "type": "string", "i18n": true },
+              { "name": "cta_text", "type": "string", "i18n": true },
+              { "name": "cta_link", "type": "string" },
+              { "name": "background_image", "type": "media" }
+            ]
+          },
+          {
+            "slug": "text",
+            "name": "Rich-Text Block",
+            "fields": [
+              { "name": "heading", "type": "string", "i18n": true },
+              { "name": "body", "type": "richtext", "i18n": true }
+            ]
+          },
+          {
+            "slug": "cards",
+            "name": "Karten-Grid",
+            "fields": [
+              { "name": "heading", "type": "string", "i18n": true },
+              {
+                "name": "items",
+                "type": "array",
+                "fields": [
+                  { "name": "title", "type": "string", "i18n": true },
+                  { "name": "description", "type": "text", "i18n": true },
+                  { "name": "icon", "type": "string" },
+                  { "name": "link", "type": "string" }
+                ]
+              }
+            ]
+          },
+          {
+            "slug": "call_to_action",
+            "name": "Call to Action Banner",
+            "fields": [
+              { "name": "title", "type": "string", "i18n": true },
+              { "name": "description", "type": "text", "i18n": true },
+              { "name": "button_label", "type": "string", "i18n": true },
+              { "name": "button_url", "type": "string" }
+            ]
+          }
+        ]
+      }
+    }
   ]
 }

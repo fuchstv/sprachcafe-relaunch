@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [CMS Collections & i18n Feldtypisierung](./CMS_COLLECTIONS.md): Schemas für Events, Posts, Books, Team & Pages (flexible Layout-Blöcke).
 - [Headless CMS Setup & SQLite Backups](./CMS_SETUP.md): Node.js CMS Container (Port 3000), SQLite WAL, Token-Auth & Cron-Backups.
 - [Such-Komponente & Performance-Benchmark](./SEARCH_BENCHMARK.md): Pagefind Client-Side Suchkomponente, Filter & Benchmark (< 15 ms Latency).
 - [Pagefind Statische Volltextsuche](./PAGEFIND_SEARCH.md): Integration in Astro-Build (`pagefind --site dist`), `data-pagefind-filter` Attribute.
