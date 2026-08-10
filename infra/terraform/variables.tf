@@ -9,3 +9,9 @@ variable "environment" {
   type        = string
   default     = "prod"
 }
+
+variable "bucket_name" {
+  description = "Name of the S3 Bucket for media storage"
+  type        = string
+  default     = "sprachcafe-media-storage"
+}
