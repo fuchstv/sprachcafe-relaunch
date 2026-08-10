@@ -1,0 +1,90 @@
+---
+import { languages, type LanguageCode } from '../i18n/ui';
+import { getLocalizedPath, useTranslations } from '../i18n/utils';
+
+interface Props {
+  currentLang: LanguageCode;
+}
+
+const { currentLang } = Astro.props;
+const pathname = Astro.url.pathname;
+const t = useTranslations(currentLang);
+---
+
+<nav class="language-switcher" aria-label={t('lang.switch')}>
+  <ul class="lang-list">
+    {Object.entries(languages).map(([code, langInfo]) => {
+      const targetLang = code as LanguageCode;
+      const isActive = targetLang === currentLang;
+      const targetUrl = getLocalizedPath(pathname, targetLang);
+
+      return (
+        <li class="lang-item">
+          <a
+            href={targetUrl}
+            class:list={['lang-link', { active: isActive }]}
+            aria-current={isActive ? 'page' : undefined}
+            title={langInfo.name}
+          >
+            <span class="flag">{langInfo.flag}</span>
+            <span class="code">{langInfo.label}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+<style>
+  .language-switcher {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    padding: 0.25rem 0.5rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .lang-list {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .lang-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .lang-link:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang-link.active {
+    color: #0f172a;
+    background: #38bdf8;
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  }
+
+  .flag {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .code {
+    letter-spacing: 0.05em;
+  }
+</style>

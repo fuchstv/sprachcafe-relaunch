@@ -1,41 +1,166 @@
 ---
+import { type LanguageCode } from '../i18n/ui';
+import { getHreflangLinks, useTranslations } from '../i18n/utils';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
+  lang?: LanguageCode;
 }
 
-const { title, description = "SprachCafé - Ort der Begegnung, Sprache und Gemeinschaft" } = Astro.props;
+const {
+  title,
+  description = "SprachCafé Polnisch - Ort der Begegnung, Sprache und Kultur",
+  lang = "de"
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const siteUrl = Astro.site ? Astro.site.toString() : "https://sprachcafe-polnisch.org";
+const hreflangs = getHreflangLinks(pathname, siteUrl);
+const t = useTranslations(lang);
 ---
 
 <!dnctype html>
-<html lang="de">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Native i18n SEO: Alternate hreflang tags -->
+    {hreflangs.map((link) => (
+      <link rel="alternate" hreflang={link.lang} href={link.url} />
+    ))}
+    <link rel="canonical" href={`${siteUrl.replace(/\/$/, '')}${pathname}`} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-container">
+        <a href={lang === 'de' ? '/' : `/${lang}/`} class="brand-logo">
+          <span class="logo-icon">☕</span>
+          <span class="logo-text">SprachCafé <span class="accent">Polnisch</span></span>
+        </a>
+
+        <nav class="main-nav">
+          <a href={lang === 'de' ? '/' : `/${lang}/`}>{t('nav.home')}</a>
+          <a href="#about">{t('nav.about')}</a>
+          <a href="#events">{t('nav.events')}</a>
+          <a href="#library">{t('nav.library')}</a>
+          <a href="#contact">{t('nav.contact')}</a>
+        </nav>
+
+        <LanguageSwitcher currentLang={lang} />
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; {new Date().getFullYear()} SprachCafé Polnisch e.V. — Wszystkie prawa zastrzeżone / Alle Rechte vorbehalten.</p>
+      </div>
+    </footer>
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		--font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-		--color-bg: #0f172a;
-		--color-text: #f8fafc;
-		--color-primary: #38bdf8;
-	}
-	html {
-		font-family: var(--font-sans);
-		background: var(--color-bg);
-		color: var(--color-text);
-	}
-	body {
-		margin: 0;
-		padding: 0;
-	}
+  :root {
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --color-bg: #0b0f19;
+    --color-surface: #1e293b;
+    --color-text: #f8fafc;
+    --color-text-muted: #94a3b8;
+    --color-primary: #38bdf8;
+    --color-accent: #f43f5e;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .accent {
+    color: var(--color-primary);
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .main-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .main-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .site-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none;
+    }
+  }
 </style>
