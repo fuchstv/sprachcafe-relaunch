@@ -7,50 +7,44 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="SprachCafé Polnisch - Witamy (/pl/)" lang={lang}>
-  <main class="hero-section">
-    <div class="container">
-      <span class="badge">{t('hero.badge')}</span>
-      <h1 class="title">{t('hero.title')}</h1>
-      <p class="subtitle">{t('hero.subtitle')}</p>
-      
-      <div class="info-card">
-        <h2>🇵🇱 Witamy na polskiej stronie SprachCafé</h2>
-        <p>
-          SprachCafé Polnisch wspiera dialog polsko-niemiecki, kursy językowe oraz spotkania kulturalne w Berlinie.
-        </p>
-        <div class="features">
-          <div class="feature-item">
-            <span class="icon">🗣️</span>
-            <h3>Spotkania językowe</h3>
-            <p>Regularne kawiarnie językowe dla języka polskiego i niemieckiego.</p>
-          </div>
-          <div class="feature-item">
-            <span class="icon">📚</span>
-            <h3>Biblioteka domowa</h3>
-            <p>Cyfrowe wypożyczanie literatury polskiej i niemieckiej.</p>
-          </div>
-          <div class="feature-item">
-            <span class="icon">🎉</span>
-            <h3>Wydarzenia kulturalne</h3>
-            <p>Spotkania autorskie, seanse filmowe i warsztaty.</p>
-          </div>
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-sm font-semibold mb-6">
+      <span>{t('hero.badge')}</span>
+    </div>
+    
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+      {t('hero.title')}
+    </h1>
+    
+    <p class="text-lg sm:text-xl text-brand-text-muted max-w-3xl mx-auto mb-12 leading-relaxed">
+      {t('hero.subtitle')}
+    </p>
+
+    <div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 sm:p-10 text-left shadow-2xl">
+      <h2 class="text-2xl font-bold text-brand-primary-light mb-4">🇵🇱 Witamy na polskiej stronie SprachCafé</h2>
+      <p class="text-brand-text-muted leading-relaxed mb-8">
+        SprachCafé Polnisch wspiera dialog polsko-niemiecki, kursy językowe oraz spotkania kulturalne w Berlinie.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
+          <div class="text-3xl mb-3" aria-hidden="true">🗣️</div>
+          <h3 class="text-lg font-bold text-white mb-2">Spotkania językowe</h3>
+          <p class="text-sm text-brand-text-muted">Regularne kawiarnie językowe dla języka polskiego i niemieckiego.</p>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
+          <div class="text-3xl mb-3" aria-hidden="true">📚</div>
+          <h3 class="text-lg font-bold text-white mb-2">Biblioteka domowa</h3>
+          <p class="text-sm text-brand-text-muted">Cyfrowe wypożyczanie literatury polskiej i niemieckiej.</p>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
+          <div class="text-3xl mb-3" aria-hidden="true">🎉</div>
+          <h3 class="text-lg font-bold text-white mb-2">Wydarzenia kulturalne</h3>
+          <p class="text-sm text-brand-text-muted">Spotkania autorskie, seanse filmowe i warsztaty.</p>
         </div>
       </div>
     </div>
-  </main>
+  </section>
 </Layout>
-
-<style>
-  .hero-section { padding: 5rem 1.5rem; text-align: center; }
-  .container { max-width: 900px; margin: 0 auto; }
-  .badge { display: inline-block; padding: 0.35rem 1rem; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 9999px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; }
-  .title { font-size: 3.25rem; font-weight: 800; margin: 0 0 1rem 0; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .subtitle { font-size: 1.25rem; color: #94a3b8; max-width: 650px; margin: 0 auto 3rem auto; line-height: 1.6; }
-  .info-card { background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.25rem; padding: 2.5rem; text-align: left; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); }
-  .info-card h2 { margin-top: 0; color: #38bdf8; }
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-  .feature-item { background: rgba(15, 23, 42, 0.6); padding: 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.05); }
-  .feature-item .icon { font-size: 2rem; }
-  .feature-item h3 { margin: 0.5rem 0; font-size: 1.1rem; }
-  .feature-item p { margin: 0; font-size: 0.9rem; color: #94a3b8; }
-</style>

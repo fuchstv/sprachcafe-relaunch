@@ -21,8 +21,8 @@ const hreflangs = getHreflangLinks(pathname, siteUrl);
 const t = useTranslations(lang);
 ---
 
-<!dnctype html>
-<html lang={lang}>
+<!DOCTYPE html>
+<html lang={lang} class="h-full bg-brand-bg text-brand-text font-sans antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,135 +32,93 @@ const t = useTranslations(lang);
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Native i18n SEO: Alternate hreflang tags -->
+    <!-- Native i18n SEO: Alternate hreflang tags for WCAG & Search Engines -->
     {hreflangs.map((link) => (
       <link rel="alternate" hreflang={link.lang} href={link.url} />
     ))}
     <link rel="canonical" href={`${siteUrl.replace(/\/$/, '')}${pathname}`} />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="header-container">
-        <a href={lang === 'de' ? '/' : `/${lang}/`} class="brand-logo">
-          <span class="logo-icon">☕</span>
-          <span class="logo-text">SprachCafé <span class="accent">Polnisch</span></span>
+  <body class="min-h-full flex flex-col bg-brand-bg text-brand-text">
+    
+    <!-- WCAG 2.1 AA Skip Link: Keyboard Focus Navigation -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-brand-primary-light focus:text-slate-950 focus:font-bold focus:rounded-lg focus:shadow-xl focus:ring-4 focus:ring-sky-300 focus:outline-none"
+    >
+      {lang === 'de' ? 'Zum Hauptinhalt springen' : lang === 'pl' ? 'Przejdź do treści głównej' : 'Skip to main content'}
+    </a>
+
+    <!-- Semantic Landmark: Header -->
+    <header role="banner" class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+        
+        <!-- Brand Logo -->
+        <a
+          href={lang === 'de' ? '/' : `/${lang}/`}
+          class="flex items-center gap-2.5 text-xl font-bold text-brand-text hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-1 py-0.5"
+          aria-label="SprachCafé Polnisch Startseite"
+        >
+          <span class="text-2xl" aria-hidden="true">☕</span>
+          <span>SprachCafé <span class="text-brand-primary-light">Polnisch</span></span>
         </a>
 
-        <nav class="main-nav">
-          <a href={lang === 'de' ? '/' : `/${lang}/`}>{t('nav.home')}</a>
-          <a href="#about">{t('nav.about')}</a>
-          <a href="#events">{t('nav.events')}</a>
-          <a href="#library">{t('nav.library')}</a>
-          <a href="#contact">{t('nav.contact')}</a>
+        <!-- Semantic Landmark: Main Navigation -->
+        <nav role="navigation" aria-label={lang === 'de' ? 'Hauptnavigation' : lang === 'pl' ? 'Nawigacja główna' : 'Main Navigation'} class="hidden md:flex items-center gap-6">
+          <a
+            href={lang === 'de' ? '/' : `/${lang}/`}
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            {t('nav.home')}
+          </a>
+          <a
+            href="#about"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            {t('nav.about')}
+          </a>
+          <a
+            href="#events"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            {t('nav.events')}
+          </a>
+          <a
+            href="#library"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            {t('nav.library')}
+          </a>
+          <a
+            href="#contact"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            {t('nav.contact')}
+          </a>
         </nav>
 
+        <!-- Reusable Language Switcher -->
         <LanguageSwitcher currentLang={lang} />
       </div>
     </header>
 
-    <slot />
+    <!-- Semantic Landmark: Main Content -->
+    <main id="main-content" role="main" tabindex="-1" class="flex-grow focus:outline-none">
+      <slot />
+    </main>
 
-    <footer class="site-footer">
-      <div class="footer-container">
+    <!-- Semantic Landmark: Footer -->
+    <footer role="contentinfo" class="bg-slate-950 border-t border-slate-800/80 py-8 px-4 sm:px-6 lg:px-8 mt-auto">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-brand-text-muted text-center md:text-left">
         <p>&copy; {new Date().getFullYear()} SprachCafé Polnisch e.V. — Wszystkie prawa zastrzeżone / Alle Rechte vorbehalten.</p>
+        <div class="flex items-center gap-4">
+          <a href="#privacy" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Datenschutz</a>
+          <span>•</span>
+          <a href="#imprint" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Impressum</a>
+          <span>•</span>
+          <a href="#accessibility" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Barrierefreiheit</a>
+        </div>
       </div>
     </footer>
+
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --color-bg: #0b0f19;
-    --color-surface: #1e293b;
-    --color-text: #f8fafc;
-    --color-text-muted: #94a3b8;
-    --color-primary: #38bdf8;
-    --color-accent: #f43f5e;
-  }
-
-  html {
-    font-family: var(--font-sans);
-    background: var(--color-bg);
-    color: var(--color-text);
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(11, 15, 25, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
-
-  .brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text);
-    text-decoration: none;
-  }
-
-  .logo-icon {
-    font-size: 1.5rem;
-  }
-
-  .accent {
-    color: var(--color-primary);
-  }
-
-  .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .main-nav a {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
-  }
-
-  .main-nav a:hover {
-    color: var(--color-primary);
-  }
-
-  .site-footer {
-    margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    color: var(--color-text-muted);
-    font-size: 0.875rem;
-  }
-
-  @media (max-width: 768px) {
-    .main-nav {
-      display: none;
-    }
-  }
-</style>
