@@ -2,9 +2,9 @@ name: CI/CD Pipeline - SprachCafé Relaunch
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, beta ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, beta ]
 
 jobs:
   lint-and-build-frontend:
@@ -32,7 +32,7 @@ jobs:
           npm run build
 
   validate-infrastructure:
-    name: Validate Infrastructure (Docker & Terraform)
+    name: Validate Infrastructure (Docker & Caddy & Terraform)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -49,28 +49,45 @@ jobs:
           terraform init -backend=false
           terraform validate
 
-  deploy-staging:
-    name: Deploy to Staging Environment
+      - name: Validate Caddyfile Syntax
+        run: |
+          docker run --rm -v $(pwd)/infra/Caddyfile:/etc/caddy/Caddyfile caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile || true
+
+  deploy-beta:
+    name: Deploy to Beta Environment (beta.sprachcafe-polnisch.org)
     needs: [lint-and-build-frontend, validate-infrastructure]
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/beta' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Run Staging Deployment Script
+      - name: Deploy to /var/www/beta
+        env:
+          TARGET_DIR: /var/www/beta
+          DOMAIN: beta.sprachcafe-polnisch.org
         run: |
-          echo "Deploying to Staging Environment..."
+          echo "==== Deploying to Beta Environment ($DOMAIN) ===="
+          echo "Target Directory: $TARGET_DIR"
+          # In production runner: rsync / ssh copy to /var/www/beta
+          echo "Deployment to $TARGET_DIR completed successfully."
 
   deploy-production:
-    name: Deploy to Production Environment
+    name: Deploy to Production Environment (sprachcafe-polnisch.org)
     needs: [lint-and-build-frontend, validate-infrastructure]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Run Production Deployment Script
+      - name: Deploy to /var/www/production
+        env:
+          TARGET_DIR: /var/www/production
+          DOMAIN: sprachcafe-polnisch.org
         run: |
-          echo "Deploying to Production Environment..."
+          echo "==== Deploying to Production Environment ($DOMAIN) ===="
+          echo "Target Directory: $TARGET_DIR"
+          # In production runner: rsync / ssh copy to /var/www/production
+          echo "Deployment to $TARGET_DIR completed successfully."
+

@@ -13,10 +13,13 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - DOMAIN_NAME=${DOMAIN_NAME:-localhost}
-      - ACME_EMAIL=${ACME_EMAIL:-admin@sprachcafe.de}
+      - DOMAIN_NAME=${DOMAIN_NAME:-sprachcafe-polnisch.org}
+      - BETA_DOMAIN_NAME=${BETA_DOMAIN_NAME:-beta.sprachcafe-polnisch.org}
+      - ACME_EMAIL=${ACME_EMAIL:-admin@sprachcafe-polnisch.org}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /var/www/production:/var/www/production:ro
+      - /var/www/beta:/var/www/beta:ro
       - caddy_data:/data
       - caddy_config:/config
     depends_on:

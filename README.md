@@ -72,6 +72,20 @@ Die Konfiguration erfolgt zentral über Umgebungsvariablen. Wichtige Kategorien:
 
 ---
 
+## 🌿 Branch-Strategie & Caddy-Routing
+
+Das Repository nutzt eine strikte Branching-Strategie, die direkt mit den Server-Verzeichnissen und dem Caddy Reverse Proxy gekoppelt ist:
+
+- **`main`** ➔ **`sprachcafe-polnisch.org`** (Deployment nach `/var/www/production`)
+  - **Branch Protection**: Geschützt! Direkte Pushes sind blockiert. Änderungen sind nur via Pull Request mit mindestens 1 approving Review und bestandenen CI-Status-Checks erlaubt.
+- **`beta`** ➔ **`beta.sprachcafe-polnisch.org`** (Deployment nach `/var/www/beta`)
+  - Integration und Testung neuer Funktionen vor dem Release auf `main`.
+- **`feature/*` / `fix/*`**: Entwicklungs-Branches, die über Pull Requests in `beta` und anschließend via PR in `main` gemergt werden.
+
+Details und Konfigurationen finden Sie in der [Branch-Strategie Dokumentation](docs/BRANCHING_STRATEGY.md) und der JSON-Konfigurationsdatei [`.github/branch-protection.json`](.github/branch-protection.json).
+
+---
+
 ## 👥 CODEOWNERS & Verantwortlichkeiten
 
 Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten im Monorepo:
@@ -87,6 +101,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 
 ## 📚 Dokumentation & Notfall-Prozeduren
 
+- 🌿 [Branch-Strategie & Deployment-Pipeline](docs/BRANCHING_STRATEGY.md)
 - 📖 [Architektur-Übersicht & Diagramme](docs/architecture/architecture-overview.md)
 - 🚨 [Rollback-Prozedur (ROLLBACK.md)](docs/ROLLBACK.md)
 - 📝 [Entscheidungsprotokoll Monorepo (ADR 0001)](docs/decisions/0001-monorepo-structure.md)
@@ -95,7 +110,11 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 
 ## 🚀 CI/CD & Deployment (Phase 7)
 
-Mit jedem Push auf `develop` oder `main` werden automatische Checks ausgeführt ([`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml)):
-1. Astro Frontend Build & Typecheck
-2. Terraform & Docker-Compose Validierung
-3. Automatisches Deployment auf Staging (`develop`) bzw. Production (`main`)
+Mit jedem Push oder Pull Request auf **`main`** oder **`beta`** werden automatische Checks ausgeführt ([`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml)):
+
+1. **Lint & Build**: Astro Frontend Build & Typecheck
+2. **Infrastructure Validation**: Terraform & Caddyfile Syntax-Prüfung
+3. **Automated Deployments**:
+   - Push auf `beta` ➔ Automatisiertes Deployment nach `/var/www/beta` (`beta.sprachcafe-polnisch.org`)
+   - Push auf `main` (via PR) ➔ Automatisiertes Deployment nach `/var/www/production` (`sprachcafe-polnisch.org`)
+

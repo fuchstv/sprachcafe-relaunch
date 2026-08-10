@@ -1,16 +1,20 @@
 # Caddyfile - Reverse Proxy & SSL Configuration for SprachCafé Relaunch
-# Phase 1: Infrastructure
+# Phase 1: Infrastructure & Dual Environment Routing (Production / Beta)
 
-{$DOMAIN_NAME:localhost} {
-    # Compress responses using gzip and zstd
+# ==============================================================================
+# 1. PRODUCTION ENVIRONMENT (sprachcafe-polnisch.org) -> /var/www/production
+# ==============================================================================
+{$DOMAIN_NAME:sprachcafe-polnisch.org} {
+    # File server root pointing to production build directory
+    root * /var/www/production/frontend/dist
     encode zstd gzip
 
-    # Frontend (Astro SSR / Static output)
-    handle_path /* {
-        reverse_proxy frontend:3000
+    # Serve static frontend files with fallback to index.html or reverse_proxy
+    handle {
+        file_server
     }
 
-    # Headless CMS API & Admin Interface
+    # Headless CMS API & Admin Interface (Production)
     handle_path /admin* {
         reverse_proxy cms:8055
     }
@@ -23,7 +27,7 @@
         reverse_proxy cms:8055
     }
 
-    # Security Headers
+    # Security Headers for Production
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         X-Content-Type-Options "nosniff"
@@ -33,7 +37,49 @@
 
     # Logging
     log {
-        output file /var/log/caddy/access.log
+        output file /var/log/caddy/production_access.log
         format json
     }
 }
+
+# ==============================================================================
+# 2. BETA / STAGING ENVIRONMENT (beta.sprachcafe-polnisch.org) -> /var/www/beta
+# ==============================================================================
+{$BETA_DOMAIN_NAME:beta.sprachcafe-polnisch.org} {
+    # File server root pointing to beta build directory
+    root * /var/www/beta/frontend/dist
+    encode zstd gzip
+
+    # Serve static frontend files for Beta environment
+    handle {
+        file_server
+    }
+
+    # Headless CMS API & Admin Interface (Beta)
+    handle_path /admin* {
+        reverse_proxy cms:8055
+    }
+
+    handle_path /items* {
+        reverse_proxy cms:8055
+    }
+
+    handle_path /assets* {
+        reverse_proxy cms:8055
+    }
+
+    # Prevent Search Engines from Indexing Beta Environment
+    header {
+        X-Robots-Tag "noindex, nofollow, noarchive"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    # Logging
+    log {
+        output file /var/log/caddy/beta_access.log
+        format json
+    }
+}
+
