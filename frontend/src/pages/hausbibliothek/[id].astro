@@ -19,7 +19,11 @@ const { book } = Astro.props;
 ---
 
 <Layout title={`${book.title} - Hausbibliothek`} description={`Details und Ausleihe für das Buch ${book.title} von ${book.author}.`}>
-  <article class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+  <article
+    class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+    data-pagefind-body
+    data-pagefind-filter={`type:Book, language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
+  >
     <nav class="mb-8">
       <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary-light hover:underline">
         &larr; Zurück zum Bibliothekskatalog

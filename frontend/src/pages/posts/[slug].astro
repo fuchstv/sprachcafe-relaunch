@@ -19,7 +19,11 @@ const { post } = Astro.props;
 ---
 
 <Layout title={`${post.title} - SprachCafé Polnisch`} description={post.content.slice(0, 160)}>
-  <article class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+  <article
+    class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+    data-pagefind-body
+    data-pagefind-filter={`type:Post, category:${post.category}, location:${post.location_tag || 'Global'}`}
+  >
     <nav class="mb-8">
       <a href="/posts/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary-light hover:underline">
         &larr; Zurück zur Übersicht
