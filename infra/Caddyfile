@@ -1,85 +1,115 @@
-# Caddyfile - Reverse Proxy & SSL Configuration for SprachCafé Relaunch
-# Phase 1: Infrastructure & Dual Environment Routing (Production / Beta)
-
-# ==============================================================================
-# 1. PRODUCTION ENVIRONMENT (sprachcafe-polnisch.org) -> /var/www/production
-# ==============================================================================
-{$DOMAIN_NAME:sprachcafe-polnisch.org} {
-    # File server root pointing to production build directory
-    root * /var/www/production/frontend/dist
-    encode zstd gzip
-
-    # Serve static frontend files with fallback to index.html or reverse_proxy
-    handle {
-        file_server
-    }
-
-    # Headless CMS API & Admin Interface (Production)
-    handle_path /admin* {
-        reverse_proxy cms:8055
-    }
-
-    handle_path /items* {
-        reverse_proxy cms:8055
-    }
-
-    handle_path /assets* {
-        reverse_proxy cms:8055
-    }
-
-    # Security Headers for Production
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        X-Content-Type-Options "nosniff"
-        X-Frame-Options "DENY"
-        Referrer-Policy "strict-origin-when-cross-origin"
-    }
-
-    # Logging
-    log {
-        output file /var/log/caddy/production_access.log
-        format json
-    }
+# Caddyfile - Central Reverse Proxy & Automatic TLS Configuration
+# Automatic TLS via Let's Encrypt / ACME
+{
+	email admin@sprachcafe-polnisch.org
 }
 
 # ==============================================================================
-# 2. BETA / STAGING ENVIRONMENT (beta.sprachcafe-polnisch.org) -> /var/www/beta
+# 1. Haupt-Website (Production): sprachcafe-polnisch.org & www.sprachcafe-polnisch.org
+# -> Statische Dateien aus /var/www/production
 # ==============================================================================
-{$BETA_DOMAIN_NAME:beta.sprachcafe-polnisch.org} {
-    # File server root pointing to beta build directory
-    root * /var/www/beta/frontend/dist
-    encode zstd gzip
+sprachcafe-polnisch.org, www.sprachcafe-polnisch.org {
+	root * /var/www/production
+	encode zstd gzip
 
-    # Serve static frontend files for Beta environment
-    handle {
-        file_server
-    }
+	handle {
+		file_server
+	}
 
-    # Headless CMS API & Admin Interface (Beta)
-    handle_path /admin* {
-        reverse_proxy cms:8055
-    }
+	# Security Headers for Production
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
 
-    handle_path /items* {
-        reverse_proxy cms:8055
-    }
-
-    handle_path /assets* {
-        reverse_proxy cms:8055
-    }
-
-    # Prevent Search Engines from Indexing Beta Environment
-    header {
-        X-Robots-Tag "noindex, nofollow, noarchive"
-        X-Content-Type-Options "nosniff"
-        X-Frame-Options "DENY"
-        Referrer-Policy "strict-origin-when-cross-origin"
-    }
-
-    # Logging
-    log {
-        output file /var/log/caddy/beta_access.log
-        format json
-    }
+	log {
+		output file /var/log/caddy/production_access.log
+		format json
+	}
 }
 
+# ==============================================================================
+# 2. CMS / Admin Interface (Production): admin.sprachcafe-polnisch.org
+# -> Proxy auf Port 3000 (Headless CMS / Admin)
+# ==============================================================================
+admin.sprachcafe-polnisch.org {
+	encode zstd gzip
+
+	reverse_proxy 127.0.0.1:3000 {
+		header_up Host {host}
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {host}
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+
+	log {
+		output file /var/log/caddy/admin_access.log
+		format json
+	}
+}
+
+# ==============================================================================
+# 3. Beta / Staging Environment: beta.sprachcafe-polnisch.org
+# -> Staging-Proxy auf Port 3000 (separater Build-Ordner / Staging)
+# ==============================================================================
+beta.sprachcafe-polnisch.org {
+	encode zstd gzip
+
+	reverse_proxy 127.0.0.1:3000 {
+		header_up Host {host}
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {host}
+	}
+
+	# Roboter-Indizierung für Staging unterbinden
+	header {
+		X-Robots-Tag "noindex, nofollow, noarchive"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+
+	log {
+		output file /var/log/caddy/beta_access.log
+		format json
+	}
+}
+
+# ==============================================================================
+# 4. Hausbibliothek (Dauerhafter Proxy für Bibliotheks-App): hausbibliothek.org
+# -> Proxy auf Port 8080 (Bibliotheks-App mit Nutzerkonten, Ausleihe, Admin-Dashboard)
+# HINWEIS: Explizite Proxy-Header X-Forwarded-Proto, X-Forwarded-For, X-Forwarded-Host
+# für Session-Cookies / CSRF Validation in Phase L.9
+# ==============================================================================
+hausbibliothek.org, www.hausbibliothek.org {
+	encode zstd gzip
+
+	reverse_proxy 127.0.0.1:8080 {
+		header_up Host {host}
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {host}
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+	}
+
+	log {
+		output file /var/log/caddy/hausbibliothek_access.log
+		format json
+	}
+}
