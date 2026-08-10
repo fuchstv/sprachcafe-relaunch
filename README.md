@@ -86,6 +86,20 @@ Details und Konfigurationen finden Sie in der [Branch-Strategie Dokumentation](d
 
 ---
 
+## 🖥️ Lightsail Server-Struktur (`/opt/sprachcafe/`)
+
+Auf der AWS Lightsail-Instanz ist die Anwendung unter **`/opt/sprachcafe/`** strukturiert:
+
+- **`/opt/sprachcafe/infra`**: Docker Compose, Caddyfile, Shell-Skripte (`setup-lightsail.sh`)
+- **`/opt/sprachcafe/production`**: Web-Root für Production (Symlink: `/var/www/production`)
+- **`/opt/sprachcafe/beta`**: Web-Root für Beta/Staging (Symlink: `/var/www/beta`)
+- **`/opt/sprachcafe/cms-data`**: Persistiertes PostgreSQL Datenverzeichnis (`700`, `999:999`)
+- **`/opt/sprachcafe/backups`**: Täglicher Backup-Speicherort (`cms/` & `hausbibliothek/`)
+
+Vollständige Details zu Verzeichnisrechten und Isolierung finden Sie in [docs/LIGHTSAIL_SERVER_SETUP.md](docs/LIGHTSAIL_SERVER_SETUP.md).
+
+---
+
 ## 👥 CODEOWNERS & Verantwortlichkeiten
 
 Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten im Monorepo:
@@ -101,6 +115,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 
 ## 📚 Dokumentation & Notfall-Prozeduren
 
+- 🖥️ [Lightsail Server-Struktur & Rechte-Matrix](docs/LIGHTSAIL_SERVER_SETUP.md)
 - 🌿 [Branch-Strategie & Deployment-Pipeline](docs/BRANCHING_STRATEGY.md)
 - 📖 [Architektur-Übersicht & Diagramme](docs/architecture/architecture-overview.md)
 - 🚨 [Rollback-Prozedur (ROLLBACK.md)](docs/ROLLBACK.md)

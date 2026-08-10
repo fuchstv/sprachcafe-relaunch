@@ -18,6 +18,8 @@ services:
       - ACME_EMAIL=${ACME_EMAIL:-admin@sprachcafe-polnisch.org}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /opt/sprachcafe/production:/opt/sprachcafe/production:ro
+      - /opt/sprachcafe/beta:/opt/sprachcafe/beta:ro
       - /var/www/production:/var/www/production:ro
       - /var/www/beta:/var/www/beta:ro
       - caddy_data:/data
@@ -66,7 +68,7 @@ services:
       POSTGRES_USER: ${DB_USER:-sprachcafe_user}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-sprachcafe_pass}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - /opt/sprachcafe/cms-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-sprachcafe_user} -d ${DB_DATABASE:-sprachcafe_cms}"]
       interval: 10s
@@ -90,4 +92,3 @@ services:
 volumes:
   caddy_data:
   caddy_config:
-  postgres_data:
