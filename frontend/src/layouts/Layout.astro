@@ -26,7 +26,9 @@ const t = useTranslations(lang);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Brand Asset: SVG Favicon Variant -->
+    <link rel="icon" type="image/svg+xml" href="/brand-assets/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
     <title>{title}</title>
@@ -52,14 +54,13 @@ const t = useTranslations(lang);
     <header role="banner" class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
-        <!-- Brand Logo -->
+        <!-- Optimized SVG Brand Logo -->
         <a
           href={lang === 'de' ? '/' : `/${lang}/`}
-          class="flex items-center gap-2.5 text-xl font-bold text-brand-text hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-1 py-0.5"
+          class="flex items-center gap-2.5 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-1"
           aria-label="SprachCafé Polnisch Startseite"
         >
-          <span class="text-2xl" aria-hidden="true">☕</span>
-          <span>SprachCafé <span class="text-brand-primary-light">Polnisch</span></span>
+          <img src="/brand-assets/logo.svg" alt="SprachCafé Polnisch Logo" class="h-10 w-auto" />
         </a>
 
         <!-- Semantic Landmark: Main Navigation -->
@@ -71,28 +72,22 @@ const t = useTranslations(lang);
             {t('nav.home')}
           </a>
           <a
-            href="#about"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
-          >
-            {t('nav.about')}
-          </a>
-          <a
-            href="#events"
+            href="/events/"
             class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
           >
             {t('nav.events')}
           </a>
           <a
-            href="#library"
+            href="/posts/"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            Magazin
+          </a>
+          <a
+            href="/hausbibliothek/"
             class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
           >
             {t('nav.library')}
-          </a>
-          <a
-            href="#contact"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
-          >
-            {t('nav.contact')}
           </a>
         </nav>
 
@@ -106,10 +101,46 @@ const t = useTranslations(lang);
       <slot />
     </main>
 
-    <!-- Semantic Landmark: Footer -->
-    <footer role="contentinfo" class="bg-slate-950 border-t border-slate-800/80 py-8 px-4 sm:px-6 lg:px-8 mt-auto">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-brand-text-muted text-center md:text-left">
-        <p>&copy; {new Date().getFullYear()} SprachCafé Polnisch e.V. — Wszystkie prawa zastrzeżone / Alle Rechte vorbehalten.</p>
+    <!-- Semantic Landmark: Footer with Social & Donation Brand Assets -->
+    <footer role="contentinfo" class="bg-slate-950 border-t border-slate-800/80 py-10 px-4 sm:px-6 lg:px-8 mt-auto">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-brand-text-muted">
+        
+        <div class="flex items-center gap-3">
+          <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-6 h-6" />
+          <p>&copy; {new Date().getFullYear()} SprachCafé Polnisch e.V. — Alle Rechte vorbehalten.</p>
+        </div>
+
+        <!-- Social / Fediverse Icons -->
+        <div class="flex items-center gap-4">
+          <a
+            href="https://fediverse.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            aria-label="Fediverse / Mastodon Kanal"
+          >
+            <img src="/brand-assets/icon-fediverse.svg" alt="Fediverse Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+          </a>
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            aria-label="Facebook Seite"
+          >
+            <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            aria-label="Instagram Profil"
+          >
+            <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+          </a>
+        </div>
+
         <div class="flex items-center gap-4">
           <a href="#privacy" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Datenschutz</a>
           <span>•</span>
@@ -117,6 +148,7 @@ const t = useTranslations(lang);
           <span>•</span>
           <a href="#accessibility" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Barrierefreiheit</a>
         </div>
+
       </div>
     </footer>
 
