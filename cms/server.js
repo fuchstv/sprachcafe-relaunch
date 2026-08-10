@@ -23,6 +23,47 @@ const uploadMemory = multer({
   limits: { fileSize: 25 * 1024 * 1024 } // 25 MB max file size
 });
 
+// GitHub Actions Repository Dispatch Webhook Helper
+async function triggerGitHubRebuildWebhook(collection, action, itemData = {}) {
+  const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER || 'sprachcafe';
+  const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME || 'sprachcafe-relaunch';
+  const GITHUB_PAT_TOKEN = process.env.GITHUB_PAT_TOKEN;
+  const WEBHOOK_DISPATCH_URL = process.env.GITHUB_DISPATCH_URL || `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/dispatches`;
+
+  console.log(`📡 CMS Webhook Trigger: Publishing event for collection '${collection}' (${action})`);
+
+  if (!GITHUB_PAT_TOKEN) {
+    console.log('ℹ️ Notice: GITHUB_PAT_TOKEN not set. Staging Webhook dispatch event locally.');
+    return { status: 'staged_locally', url: WEBHOOK_DISPATCH_URL, collection, action };
+  }
+
+  try {
+    const response = await fetch(WEBHOOK_DISPATCH_URL, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'Authorization': `token ${GITHUB_PAT_TOKEN}`,
+        'User-Agent': 'SprachCafe-CMS-Webhook'
+      },
+      body: JSON.stringify({
+        event_type: 'cms_publish',
+        client_payload: {
+          collection,
+          action,
+          slug: itemData.slug || itemData.id,
+          timestamp: new Date().toISOString()
+        }
+      })
+    });
+
+    console.log(`✓ GitHub repository_dispatch webhook triggered: HTTP ${response.status}`);
+    return { status: 'triggered', http_code: response.status };
+  } catch (err) {
+    console.error(`❌ Webhook trigger error: ${err.message}`);
+    return { status: 'error', error: err.message };
+  }
+}
+
 // Ensure database directory exists
 if (!fs.existsSync(DB_DIR)) {
   fs.mkdirSync(DB_DIR, { recursive: true });
@@ -207,11 +248,14 @@ app.get('/api/events', (req, res) => {
   res.json(rows);
 });
 
-app.post('/api/events', authenticateToken, (req, res) => {
+app.post('/api/events', authenticateToken, async (req, res) => {
   const { id, title, slug, date_start, location, target_group, language, description, image } = req.body;
+  const eventId = id || `evt-${Date.now()}`;
   const stmt = db.prepare('INSERT INTO events (id, title, slug, date_start, location, target_group, language, description, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-  stmt.run(id || `evt-${Date.now()}`, title, slug, date_start, location, target_group, language, description, image);
-  res.status(201).json({ status: 'created' });
+  stmt.run(eventId, title, slug, date_start, location, target_group, language, description, image);
+  
+  const webhookResult = await triggerGitHubRebuildWebhook('events', 'publish', { id: eventId, slug });
+  res.status(201).json({ status: 'created', id: eventId, webhook: webhookResult });
 });
 
 // 5. Posts Collection API
@@ -220,10 +264,38 @@ app.get('/api/posts', (req, res) => {
   res.json(rows);
 });
 
+app.post('/api/posts', authenticateToken, async (req, res) => {
+  const { id, title, slug, date, category, location_tag, content, featured_image, author } = req.body;
+  const postId = id || `post-${Date.now()}`;
+  const stmt = db.prepare('INSERT INTO posts (id, title, slug, date, category, location_tag, content, featured_image, author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+  stmt.run(postId, title, slug, date, category, location_tag, content, featured_image, author);
+  
+  const webhookResult = await triggerGitHubRebuildWebhook('posts', 'publish', { id: postId, slug });
+  res.status(201).json({ status: 'created', id: postId, webhook: webhookResult });
+});
+
 // 6. Books Collection API (Hausbibliothek)
 app.get('/api/books', (req, res) => {
   const rows = db.prepare('SELECT * FROM books ORDER BY title ASC').all();
   res.json(rows);
+});
+
+app.post('/api/books', authenticateToken, async (req, res) => {
+  const { id, title, author, isbn, language, category, location, status, cover } = req.body;
+  const bookId = id || `book-${Date.now()}`;
+  const stmt = db.prepare('INSERT INTO books (id, title, author, isbn, language, category, location, status, cover) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+  stmt.run(bookId, title, author, isbn, language, category, location, status || 'verfuegbar', cover);
+  
+  const webhookResult = await triggerGitHubRebuildWebhook('books', 'publish', { id: bookId, isbn });
+  res.status(201).json({ status: 'created', id: bookId, webhook: webhookResult });
+});
+
+// 7. Manual Webhook Dispatch Test Endpoint
+app.post('/api/webhook/trigger', authenticateToken, async (req, res) => {
+  const collection = req.body.collection || 'events';
+  const action = req.body.action || 'publish';
+  const result = await triggerGitHubRebuildWebhook(collection, action, req.body.data || {});
+  res.json({ status: 'dispatched', webhook: result });
 });
 
 app.listen(PORT, '0.0.0.0', () => {

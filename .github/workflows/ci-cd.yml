@@ -5,6 +5,8 @@ on:
     branches: [ main, beta ]
   pull_request:
     branches: [ main, beta ]
+  repository_dispatch:
+    types: [ cms_publish ]
 
 jobs:
   secret-scan:
