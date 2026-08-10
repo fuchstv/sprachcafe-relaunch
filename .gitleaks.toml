@@ -1,0 +1,42 @@
+# Gitleaks Configuration for SprachCafé Relaunch Monorepo
+# https://github.com/gitleaks/gitleaks
+
+title = "SprachCafé Gitleaks Config"
+
+[allowlist]
+  description = "Global allowlist for example environment templates and test mocks"
+  files = [
+    '''\.env\.example$''',
+    '''docs/.*\.md$''',
+    '''infra/README\.md$'''
+  ]
+
+[[rules]]
+  id = "aws-access-key"
+  description = "Identified AWS Access Key ID"
+  regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+  keywords = ["AKIA", "ASIA", "AWS"]
+
+[[rules]]
+  id = "aws-secret-key"
+  description = "Identified AWS Secret Access Key"
+  regex = '''(?i)aws_(?:secret_access_key|secret_key)\s*[:=]\s*["']?([A-Za-z0-9/+=]{40})["']?'''
+  keywords = ["aws_secret_access_key", "aws_secret_key"]
+
+[[rules]]
+  id = "private-key"
+  description = "Identified Private SSH/RSA/EC Key"
+  regex = '''-----BEGIN (EC|RSA|OPENSSH|DSA|PGP) PRIVATE KEY-----'''
+  keywords = ["PRIVATE KEY"]
+
+[[rules]]
+  id = "power-automate-webhook"
+  description = "Identified Hardcoded Azure Logic Apps / Power Automate Webhook URL with signature"
+  regex = '''https://[a-zA-Z0-9-]+\.(?:azure|logic)\.azure\.com.*sig=[a-zA-Z0-9_-]+'''
+  keywords = ["logic.azure.com", "sig="]
+
+[[rules]]
+  id = "generic-api-key"
+  description = "Identified Generic Hardcoded API Key or Secret"
+  regex = '''(?i)(?:secret|token|password|passwd|api_key)\s*[:=]\s*["'](?![A-Za-z0-9_-]*example)[A-Za-z0-9_=-]{16,}["']'''
+  keywords = ["secret", "token", "password", "api_key"]

@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Secrets Management & Sicherheit](./SECRETS_MANAGEMENT.md): Übersicht aller Secrets, Trennung GitHub Actions vs. Server `.env`, Pre-Commit & Gitleaks.
 - [Lightsail Server-Struktur & Rechte](./LIGHTSAIL_SERVER_SETUP.md): Verzeichnislayout unter `/opt/sprachcafe/`, Rechte-Matrix & Hausbibliothek-Isolierung.
 - [Branch-Strategie & Deployment-Pipeline](./BRANCHING_STRATEGY.md): Definition von `main`/`beta`, Caddy-Routing, Branch Protection & CI/CD Trigger.
 - [System-Architektur & Diagramme](./architecture/architecture-overview.md): Übersicht über Komponenten, Schnittstellen und Datenflüsse.

@@ -7,6 +7,21 @@ on:
     branches: [ main, beta ]
 
 jobs:
+  secret-scan:
+    name: Secret Leak Detection (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: .gitleaks.toml
+
   lint-and-build-frontend:
     name: Build & Test Frontend (Astro)
     runs-on: ubuntu-latest
@@ -55,7 +70,7 @@ jobs:
 
   deploy-beta:
     name: Deploy to Beta Environment (beta.sprachcafe-polnisch.org)
-    needs: [lint-and-build-frontend, validate-infrastructure]
+    needs: [secret-scan, lint-and-build-frontend, validate-infrastructure]
     if: github.ref == 'refs/heads/beta' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -74,7 +89,7 @@ jobs:
 
   deploy-production:
     name: Deploy to Production Environment (sprachcafe-polnisch.org)
-    needs: [lint-and-build-frontend, validate-infrastructure]
+    needs: [secret-scan, lint-and-build-frontend, validate-infrastructure]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -90,4 +105,5 @@ jobs:
           echo "Target Directory: $TARGET_DIR"
           # In production runner: rsync / ssh copy to /var/www/production
           echo "Deployment to $TARGET_DIR completed successfully."
+
 

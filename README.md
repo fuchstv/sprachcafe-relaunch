@@ -115,6 +115,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 
 ## 📚 Dokumentation & Notfall-Prozeduren
 
+- 🔒 [Secrets Management & Sicherheitshandbuch](docs/SECRETS_MANAGEMENT.md)
 - 🖥️ [Lightsail Server-Struktur & Rechte-Matrix](docs/LIGHTSAIL_SERVER_SETUP.md)
 - 🌿 [Branch-Strategie & Deployment-Pipeline](docs/BRANCHING_STRATEGY.md)
 - 📖 [Architektur-Übersicht & Diagramme](docs/architecture/architecture-overview.md)
