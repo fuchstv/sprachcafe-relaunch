@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Anleitung: Power Automate Flow 1 (Mitgliedsanträge)](./M365_POWER_AUTOMATE_SETUP_GUIDE.md): Schritt-für-Schritt Anleitung für Power Automate -> SharePoint -> Teams.
 - [Power Automate Kontakt-Flow & M365 Exchange Relay](./POWER_AUTOMATE_CONTACT_FLOW.md): DSGVO-by-Design Kontaktformular (`ContactForm.astro`), 0 DB-Speicherung.
 - [Power Automate Flow Integration](./POWER_AUTOMATE_FLOW.md): Client-Side Formular (`ApplicationForm.astro`), JSON Webhook -> SharePoint -> MS Teams.
 - [GitHub Actions Webhook Dispatch](./CMS_WEBHOOK_DISPATCH.md): CMS-Webhook Trigger (`repository_dispatch`) für automatische Astro-Rebuilds.
