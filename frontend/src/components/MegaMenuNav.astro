@@ -1,0 +1,71 @@
+---
+import { type LanguageCode } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  currentLang?: LanguageCode;
+}
+
+const { currentLang = 'de' } = Astro.props;
+const t = useTranslations(currentLang);
+---
+
+<nav role="navigation" aria-label="Mega-Menü Navigation" class="relative hidden lg:flex items-center gap-6">
+  
+  <!-- Standorte Mega Dropdown -->
+  <div class="relative group">
+    <button
+      type="button"
+      class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span>📍 Standorte</span>
+      <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-72">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl space-y-3">
+        <a href="#pankow" class="block p-3 rounded-xl hover:bg-slate-800/80 transition-colors">
+          <span class="block font-bold text-white text-sm">📍 Pankow</span>
+          <span class="block text-xs text-brand-text-muted">Schönholzer Str. 13 • Sprachcafés & Kurse</span>
+        </a>
+        <a href="#schoeneberg" class="block p-3 rounded-xl hover:bg-slate-800/80 transition-colors">
+          <span class="block font-bold text-white text-sm">📍 Schöneberg</span>
+          <span class="block text-xs text-brand-text-muted">Hauptstr. 26 • Filmklub & Lesungen</span>
+        </a>
+        <a href="#koepenick" class="block p-3 rounded-xl hover:bg-slate-800/80 transition-colors">
+          <span class="block font-bold text-white text-sm">📍 Köpenick</span>
+          <span class="block text-xs text-brand-text-muted">Bahnhofstr. 8 • Hausbibliothek & KinderTreff</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Veranstaltungen Dropdown -->
+  <a
+    href="/events/"
+    class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+  >
+    {t('nav.events')}
+  </a>
+
+  <!-- Magazin / News -->
+  <a
+    href="/posts/"
+    class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+  >
+    Magazin
+  </a>
+
+  <!-- Hausbibliothek -->
+  <a
+    href="/hausbibliothek/"
+    class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+  >
+    {t('nav.library')}
+  </a>
+
+</nav>

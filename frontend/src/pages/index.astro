@@ -1,50 +1,68 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import LocationOpeningHoursCard from '../components/LocationOpeningHoursCard.astro';
+import TestimonialGrid from '../components/TestimonialGrid.astro';
 import { useTranslations } from '../i18n/utils';
 
 const lang = 'de';
 const t = useTranslations(lang);
 ---
 
-<Layout title="SprachCafé Polnisch - Willkommen" lang={lang}>
-  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-sm font-semibold mb-6">
-      <span>{t('hero.badge')}</span>
+<Layout title="SprachCafé Polnisch - Ort der Begegnung, Sprache und Kultur" lang={lang}>
+  
+  <!-- Hero Section mit Bildcollage -->
+  <HeroSection
+    title="Willkommen im SprachCafé Polnisch"
+    subtitle="Tauche ein in die polnische und deutsche Sprache und Kultur. Lerne, vernetze dich und erlebe Gemeinschaft in Berlin-Pankow, Schöneberg und Köpenick."
+    badge="Offizielle Vereinsplattform"
+    primaryCtaText="Veranstaltungen entdecken"
+    primaryCtaLink="/events/"
+    secondaryCtaText="Hausbibliothek Katalog"
+    secondaryCtaLink="/hausbibliothek/"
+  />
+
+  <!-- Standorte & Öffnungszeiten Grid -->
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="mb-10 text-center">
+      <span class="inline-block px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-xs font-bold uppercase tracking-wider mb-3">
+        Unsere 3 Standorte in Berlin
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Öffnungszeiten & Adressen</h2>
     </div>
-    
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-      {t('hero.title')}
-    </h1>
-    
-    <p class="text-lg sm:text-xl text-brand-text-muted max-w-3xl mx-auto mb-12 leading-relaxed">
-      {t('hero.subtitle')}
-    </p>
 
-    <div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 sm:p-10 text-left shadow-2xl">
-      <h2 class="text-2xl font-bold text-brand-primary-light mb-4">🇩🇪 Willkommen auf der deutschen Startseite</h2>
-      <p class="text-brand-text-muted leading-relaxed mb-8">
-        Das SprachCafé Polnisch fördert den interkulturellen Austausch, Sprachkurse und Begegnungen in Berlin.
-      </p>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
-          <div class="text-3xl mb-3" aria-hidden="true">🗣️</div>
-          <h3 class="text-lg font-bold text-white mb-2">Sprach-Treffen</h3>
-          <p class="text-sm text-brand-text-muted">Regelmäßige Sprachcafés für Polnisch und Deutsch.</p>
-        </div>
-
-        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
-          <div class="text-3xl mb-3" aria-hidden="true">📚</div>
-          <h3 class="text-lg font-bold text-white mb-2">Hausbibliothek</h3>
-          <p class="text-sm text-brand-text-muted">Digitale Ausleihe polnischer und deutscher Literatur.</p>
-        </div>
-
-        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
-          <div class="text-3xl mb-3" aria-hidden="true">🎉</div>
-          <h3 class="text-lg font-bold text-white mb-2">Kulturevents</h3>
-          <p class="text-sm text-brand-text-muted">Lesungen, Filmabende und Workshops.</p>
-        </div>
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <LocationOpeningHoursCard
+        location="Pankow"
+        address="Schönholzer Str. 13, 13187 Berlin"
+        hours={[
+          { day: "Dienstag", time: "18:00 - 20:30 Uhr" },
+          { day: "Donnerstag", time: "16:00 - 19:00 Uhr" }
+        ]}
+        contactEmail="pankow@sprachcafe-polnisch.org"
+      />
+      <LocationOpeningHoursCard
+        location="Schöneberg"
+        address="Hauptstraße 26, 10827 Berlin"
+        hours={[
+          { day: "Mittwoch", time: "17:00 - 20:00 Uhr" },
+          { day: "Freitag", time: "18:30 - 21:30 Uhr" }
+        ]}
+        contactEmail="schoeneberg@sprachcafe-polnisch.org"
+      />
+      <LocationOpeningHoursCard
+        location="Köpenick"
+        address="Bahnhofstraße 8, 12555 Berlin"
+        hours={[
+          { day: "Montag", time: "15:00 - 18:00 Uhr" },
+          { day: "Samstag", time: "11:00 - 15:00 Uhr" }
+        ]}
+        contactEmail="koepenick@sprachcafe-polnisch.org"
+      />
     </div>
   </section>
+
+  <!-- Testimonial Grid Komponente -->
+  <TestimonialGrid />
+
 </Layout>

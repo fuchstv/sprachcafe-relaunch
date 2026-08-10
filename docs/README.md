@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [WordPress zu Astro Komponenten-Mapping](./COMPONENT_MAPPING.md): Zuordnung aller Theme-Sektionen zu wiederverwendbaren Astro/Tailwind-Komponenten.
 - [Marken-Assets & S3 Sync](./BRAND_ASSETS.md): Optimierung & S3-Upload aller Logos, Favicons, Social- & Herz-Icons.
 - [Design-Tokens & WCAG Audit](./DESIGN_TOKENS.md): Benannte Tailwind-Tokens (Farben, Text-Marker, Typografie, Radien) & Kontrast-Matrix.
 - [Visuelles Inventar & Design Audit](./design-audit.md): UI-Inventar der bestehenden Website (Desktop & Mobile) & wiederkehrende Muster.
