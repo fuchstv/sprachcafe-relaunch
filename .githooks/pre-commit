@@ -38,7 +38,7 @@ for FILE in $STAGED_FILES; do
     fi
 
     # 2. Private SSH Key Check
-    if git diff --cached "$FILE" | grep -qE '-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----'; then
+    if git diff --cached "$FILE" | grep -qE -- '-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----'; then
         echo "❌ ERROR: Private Key detected in staged file: $FILE"
         ERRORS=$((ERRORS + 1))
     fi
