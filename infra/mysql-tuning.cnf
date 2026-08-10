@@ -1,0 +1,28 @@
+# MySQL Tuning Configuration for Hausbibliothek RDBMS Container
+# Optimized for 2 GB AWS Lightsail Instance
+
+[mysqld]
+# Explicitly throttle InnoDB Buffer Pool Size (Default in MySQL 8 is 128M-512M+)
+# For Hausbibliothek's low traffic catalog DB, 128M is generous and safe.
+innodb_buffer_pool_size = 128M
+
+# Limit InnoDB log file and buffer sizes to conserve RAM
+innodb_log_buffer_size = 8M
+innodb_buffer_pool_instances = 1
+
+# Limit maximum concurrent connections (Default 151 -> reduced to 30)
+max_connections = 30
+
+# Disable Performance Schema to save ~100MB+ RAM on 2 GB host
+performance_schema = OFF
+
+# Table cache limits
+table_open_cache = 400
+table_definition_cache = 400
+thread_cache_size = 8
+
+# Sort and join buffer limits per connection
+sort_buffer_size = 512K
+read_buffer_size = 256K
+read_rnd_buffer_size = 512K
+join_buffer_size = 512K

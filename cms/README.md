@@ -2,6 +2,12 @@
 
 Verzeichnis für die Headless CMS Konfiguration, Collections-Schemata und Docker-Container-Setup.
 
+## Datenbank-Engine: Embedded SQLite
+
+Aus Ressourcen-Gründen auf der 2 GB Lightsail-Instanz nutzt das Headless CMS eine **eingebettete SQLite-Datenbank** (`DB_CLIENT=sqlite3`).
+- **Dateipfad**: `/opt/sprachcafe/cms-data/cms.db`
+- **Vorteil**: Null RAM-Overhead für einen zweiten RDBMS-Server-Daemon, spart ~250 MB RAM im Vergleich zu PostgreSQL.
+
 ## Struktur
 
 - `collections/`: JSON-Definitionen der Inhaltstypen/Collections (Veranstaltungen, News, Statische Seiten, Hausbibliothek).
