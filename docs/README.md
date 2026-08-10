@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Power Automate Flow Integration](./POWER_AUTOMATE_FLOW.md): Client-Side Formular (`ApplicationForm.astro`), JSON Webhook -> SharePoint -> MS Teams.
 - [GitHub Actions Webhook Dispatch](./CMS_WEBHOOK_DISPATCH.md): CMS-Webhook Trigger (`repository_dispatch`) für automatische Astro-Rebuilds.
 - [Direktes S3 Media-Streaming](./CMS_S3_MEDIA.md): In-Memory Buffer -> S3 Streaming (0 Bytes SSD Cache) & HTTPS URLs.
 - [CMS Collections & i18n Feldtypisierung](./CMS_COLLECTIONS.md): Schemas für Events, Posts, Books, Team & Pages (flexible Layout-Blöcke).
