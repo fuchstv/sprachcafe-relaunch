@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Visuelles Inventar & Design Audit](./design-audit.md): UI-Inventar der bestehenden Website (Desktop & Mobile) & wiederkehrende Muster.
 - [Ressourcen- & Speicher-Optimierung](./RESOURCE_OPTIMIZATION.md): Analyse Hausbibliothek MySQL, SQLite-Wahl für CMS & Memory Budget.
 - [Secrets Management & Sicherheit](./SECRETS_MANAGEMENT.md): Übersicht aller Secrets, Trennung GitHub Actions vs. Server `.env`, Pre-Commit & Gitleaks.
 - [Lightsail Server-Struktur & Rechte](./LIGHTSAIL_SERVER_SETUP.md): Verzeichnislayout unter `/opt/sprachcafe/`, Rechte-Matrix & Hausbibliothek-Isolierung.

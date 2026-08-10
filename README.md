@@ -115,6 +115,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 
 ## 📚 Dokumentation & Notfall-Prozeduren
 
+- 🎨 [Visuelles Inventar & Design Audit](docs/design-audit.md)
 - ⚡ [Ressourcen- & Speicher-Optimierung (2 GB RAM Host)](docs/RESOURCE_OPTIMIZATION.md)
 - 🔒 [Secrets Management & Sicherheitshandbuch](docs/SECRETS_MANAGEMENT.md)
 - 🖥️ [Lightsail Server-Struktur & Rechte-Matrix](docs/LIGHTSAIL_SERVER_SETUP.md)
