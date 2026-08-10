@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Headless CMS Setup & SQLite Backups](./CMS_SETUP.md): Node.js CMS Container (Port 3000), SQLite WAL, Token-Auth & Cron-Backups.
 - [Such-Komponente & Performance-Benchmark](./SEARCH_BENCHMARK.md): Pagefind Client-Side Suchkomponente, Filter & Benchmark (< 15 ms Latency).
 - [Pagefind Statische Volltextsuche](./PAGEFIND_SEARCH.md): Integration in Astro-Build (`pagefind --site dist`), `data-pagefind-filter` Attribute.
 - [Design-Entscheidungsprotokoll](./design-decisions.md): Bewertung bestehender UI-Muster (Cookie-Banner Entfall, CSS-Scroll-Snap vs. Slider-Plugins).

@@ -34,7 +34,7 @@ services:
       - frontend
       - cms
 
-  # Headless CMS (Directus / Payload / Strapi with Embedded SQLite)
+  # Headless CMS (Node.js + Embedded SQLite 3)
   cms:
     build:
       context: ../cms
@@ -42,22 +42,21 @@ services:
     container_name: sprachcafe_cms
     restart: unless-stopped
     environment:
-      PORT: ${CMS_PORT:-8055}
-      KEY: ${CMS_SECRET:-secret-key-placeholder}
-      SECRET: ${CMS_SECRET:-secret-key-placeholder}
+      PORT: ${CMS_PORT:-3000}
+      CMS_ADMIN_SECRET: ${CMS_ADMIN_SECRET:-sprachcafe-cms-secret-jwt-key-2026}
       DB_CLIENT: ${DB_CLIENT:-sqlite3}
+      DB_DIR: /opt/sprachcafe/cms-data
       DB_FILENAME: ${DB_FILENAME:-/opt/sprachcafe/cms-data/cms.db}
-      ADMIN_EMAIL: ${CMS_ADMIN_EMAIL:-admin@sprachcafe.de}
-      ADMIN_PASSWORD: ${CMS_ADMIN_PASSWORD:-admin12345}
+      ADMIN_EMAIL: ${CMS_ADMIN_EMAIL:-admin@sprachcafe-polnisch.org}
       AWS_REGION: ${AWS_REGION:-eu-central-1}
-      AWS_S3_BUCKET: ${AWS_S3_BUCKET_MEDIA:-sprachcafe-media-assets-prod}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET_MEDIA:-sprachcafe-media-storage}
       POWER_AUTOMATE_MEMBER_WEBHOOK_URL: ${POWER_AUTOMATE_MEMBER_WEBHOOK_URL}
       POWER_AUTOMATE_EVENT_WEBHOOK_URL: ${POWER_AUTOMATE_EVENT_WEBHOOK_URL}
       POWER_AUTOMATE_CONTACT_WEBHOOK_URL: ${POWER_AUTOMATE_CONTACT_WEBHOOK_URL}
     volumes:
       - /opt/sprachcafe/cms-data:/opt/sprachcafe/cms-data
     ports:
-      - "8055:8055"
+      - "3000:3000"
     deploy:
       resources:
         limits:
