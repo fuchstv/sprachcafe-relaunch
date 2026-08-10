@@ -1,0 +1,242 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getBooks } from '../../lib/cms-api';
+
+const books = await getBooks();
+
+// Extract unique filter options for dropdowns
+const categories = Array.from(new Set(books.map(b => b.category)));
+const locations = Array.from(new Set(books.map(b => b.location)));
+const languages = Array.from(new Set(books.map(b => b.language)));
+const statuses = Array.from(new Set(books.map(b => b.status)));
+---
+
+<Layout title="Hausbibliothek Katalog - SprachCafé Polnisch" description="Durchsuchen Sie den digitalen Buchkatalog der Hausbibliothek in Pankow, Schöneberg und Köpenick.">
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <!-- Banner Link to Existing App (Go-Live Link & Phase L2 Info) -->
+    <div class="mb-10 p-6 rounded-2xl bg-gradient-to-r from-sky-950/60 to-slate-900 border border-sky-800/60 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-bold uppercase tracking-wider mb-2">
+          📖 Digitale Ausleihe & Nutzerkonto
+        </div>
+        <h2 class="text-xl font-bold text-white mb-1">Möchten Sie Bücher ausleihen oder Ihr Nutzerkonto verwalten?</h2>
+        <p class="text-sm text-brand-text-muted">
+          Für Reservierungen, Konto-Management und aktive Ausleihen besuchen Sie das Portal hausbibliothek.org.
+        </p>
+      </div>
+      <a
+        href="https://hausbibliothek.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 rounded-xl bg-brand-primary-light text-slate-950 font-bold hover:bg-sky-300 transition-colors shadow-lg whitespace-nowrap"
+      >
+        Zu hausbibliothek.org &rarr;
+      </a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="mb-8 text-center sm:text-left">
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Hausbibliothek Katalog</h1>
+      <p class="mt-3 text-lg text-brand-text-muted max-w-3xl">
+        Stöbern Sie im Literaturbestand unserer Standorte. Nutzen Sie die Filter zur gezielten Suche.
+      </p>
+    </div>
+
+    <!-- Filter UI Elements (Vanilla JS Fallback + Pagefind Ready) -->
+    <div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 mb-10 shadow-xl">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        
+        <!-- Text Search -->
+        <div>
+          <label for="filter-search" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Suche</label>
+          <input
+            type="text"
+            id="filter-search"
+            placeholder="Titel, Autor, ISBN..."
+            class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-focus"
+          />
+        </div>
+
+        <!-- Filter: Language -->
+        <div>
+          <label for="filter-language" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Sprache</label>
+          <select id="filter-language" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-focus">
+            <option value="all">Alle Sprachen</option>
+            {languages.map(lang => (
+              <option value={lang}>{lang === 'PL' ? 'Polnisch (PL)' : lang === 'DE' ? 'Deutsch (DE)' : lang === 'EN' ? 'Englisch (EN)' : 'Ukrainisch (UKR)'}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Filter: Category -->
+        <div>
+          <label for="filter-category" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Kategorie</label>
+          <select id="filter-category" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-focus">
+            <option value="all">Alle Kategorien</option>
+            {categories.map(cat => (
+              <option value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Filter: Location -->
+        <div>
+          <label for="filter-location" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Standort</label>
+          <select id="filter-location" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-focus">
+            <option value="all">Alle Standorte</option>
+            {locations.map(loc => (
+              <option value={loc}>{loc}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Filter: Status -->
+        <div>
+          <label for="filter-status" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Ausleihstatus</label>
+          <select id="filter-status" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-focus">
+            <option value="all">Alle Status</option>
+            {statuses.map(st => (
+              <option value={st}>{st === 'verfuegbar' ? 'Verfügbar' : st === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}</option>
+            ))}
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pagefind Body Area for Client-Side Search Indexing -->
+    <div data-pagefind-body>
+      <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {books.map((book) => (
+          <article
+            class="book-card bg-brand-surface border border-slate-800 rounded-2xl overflow-hidden shadow-lg flex flex-col hover:border-slate-700 transition-all duration-300"
+            data-title={book.title.toLowerCase()}
+            data-author={book.author.toLowerCase()}
+            data-isbn={book.isbn}
+            data-language={book.language}
+            data-category={book.category}
+            data-location={book.location}
+            data-status={book.status}
+            data-pagefind-filter={`language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
+          >
+            {book.cover && (
+              <div class="h-64 w-full overflow-hidden bg-slate-900 flex items-center justify-center p-4">
+                <img
+                  src={book.cover}
+                  alt={`Buchcover: ${book.title}`}
+                  class="h-full object-contain shadow-md hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            <div class="p-5 flex flex-col flex-grow">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-slate-800 text-sky-400 text-xs font-bold">
+                  {book.language}
+                </span>
+                <span class:list={[
+                  'px-2.5 py-0.5 rounded-md text-xs font-bold uppercase',
+                  book.status === 'verfuegbar' ? 'bg-emerald-950/80 border border-emerald-800/60 text-emerald-400' :
+                  book.status === 'ausgeliehen' ? 'bg-rose-950/80 border border-rose-800/60 text-rose-400' :
+                  'bg-amber-950/80 border border-amber-800/60 text-amber-400'
+                ]}>
+                  {book.status === 'verfuegbar' ? 'Verfügbar' : book.status === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}
+                </span>
+              </div>
+
+              <h3 class="text-lg font-bold text-white leading-snug mb-1 hover:text-brand-primary-light transition-colors">
+                <a href={`/hausbibliothek/${book.id}/`}>{book.title}</a>
+              </h3>
+
+              <p class="text-sm text-slate-300 font-medium mb-3">{book.author}</p>
+
+              <div class="mt-auto pt-3 border-t border-slate-800/80 text-xs text-brand-text-muted space-y-1">
+                <div class="flex justify-between">
+                  <span>Kategorie:</span>
+                  <span class="text-slate-200 font-semibold">{book.category}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Standort:</span>
+                  <span class="text-slate-200 font-semibold">📍 {book.location}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>ISBN:</span>
+                  <span class="font-mono text-slate-400">{book.isbn}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Fallback No Results Message -->
+      <div id="no-results" class="hidden text-center py-16 bg-brand-surface border border-slate-800 rounded-2xl">
+        <p class="text-xl font-bold text-white mb-2">Keine Bücher gefunden</p>
+        <p class="text-sm text-brand-text-muted">Bitte passen Sie Ihre Such- und Filterkriterien an.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side Fallback Filter Script (Works before & alongside Pagefind) -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('filter-search');
+      const languageSelect = document.getElementById('filter-language');
+      const categorySelect = document.getElementById('filter-category');
+      const locationSelect = document.getElementById('filter-location');
+      const statusSelect = document.getElementById('filter-status');
+      const bookCards = document.querySelectorAll('.book-card');
+      const noResults = document.getElementById('no-results');
+
+      function filterBooks() {
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const lang = languageSelect ? languageSelect.value : 'all';
+        const cat = categorySelect ? categorySelect.value : 'all';
+        const loc = locationSelect ? locationSelect.value : 'all';
+        const st = statusSelect ? statusSelect.value : 'all';
+
+        let visibleCount = 0;
+
+        bookCards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const author = card.getAttribute('data-author') || '';
+          const isbn = card.getAttribute('data-isbn') || '';
+          const bookLang = card.getAttribute('data-language') || '';
+          const bookCat = card.getAttribute('data-category') || '';
+          const bookLoc = card.getAttribute('data-location') || '';
+          const bookSt = card.getAttribute('data-status') || '';
+
+          const matchesQuery = !query || title.includes(query) || author.includes(query) || isbn.includes(query);
+          const matchesLang = lang === 'all' || bookLang === lang;
+          const matchesCat = cat === 'all' || bookCat === cat;
+          const matchesLoc = loc === 'all' || bookLoc === loc;
+          const matchesSt = st === 'all' || bookSt === st;
+
+          if (matchesQuery && matchesLang && matchesCat && matchesLoc && matchesSt) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (noResults) {
+          if (visibleCount === 0) {
+            noResults.classList.remove('hidden');
+          } else {
+            noResults.classList.add('hidden');
+          }
+        }
+      }
+
+      [searchInput, languageSelect, categorySelect, locationSelect, statusSelect].forEach(element => {
+        if (element) {
+          element.addEventListener('input', filterBooks);
+          element.addEventListener('change', filterBooks);
+        }
+      });
+    });
+  </script>
+</Layout>

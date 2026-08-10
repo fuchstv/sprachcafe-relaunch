@@ -68,6 +68,69 @@ export const mockPosts: PostItem[] = [
   }
 ];
 
+export const mockBooks: BookItem[] = [
+  {
+    id: 'book-1',
+    title: 'Bieguni (Unrast)',
+    author: 'Olga Tokarczuk',
+    isbn: '978-3455002287',
+    language: 'PL',
+    category: 'Belletristik',
+    location: 'Pankow',
+    status: 'verfuegbar',
+    cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop',
+    description: 'Powieść o współczesnych nomadach, podróży i poszukiwaniu sensu we współczesnym świecie.'
+  },
+  {
+    id: 'book-2',
+    title: 'Der Zauberberg',
+    author: 'Thomas Mann',
+    isbn: '978-3596904006',
+    language: 'DE',
+    category: 'Klassiker',
+    location: 'Schöneberg',
+    status: 'verfuegbar',
+    cover: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop',
+    description: 'Klassischer Bildungsroman über Hans Castorp im Sanatorium in den Schweizer Alpen.'
+  },
+  {
+    id: 'book-3',
+    title: 'Solaris',
+    author: 'Stanisław Lem',
+    isbn: '978-8308064436',
+    language: 'PL',
+    category: 'Science Fiction',
+    location: 'Köpenick',
+    status: 'ausgeliehen',
+    cover: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&auto=format&fit=crop',
+    description: 'Słynna powieść fantastycznonaukowa o próbach kontaktu z obcą inteligencją.'
+  },
+  {
+    id: 'book-4',
+    title: 'The Witcher: Last Wish',
+    author: 'Andrzej Sapkowski',
+    isbn: '978-0316029186',
+    language: 'EN',
+    category: 'Fantasy',
+    location: 'Pankow',
+    status: 'reserviert',
+    cover: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=600&auto=format&fit=crop',
+    description: 'Geralt the Witcher encounters monsters and magic in this famous fantasy saga.'
+  },
+  {
+    id: 'book-5',
+    title: 'Kobzar (Кобзар)',
+    author: 'Taras Schewtschenko',
+    isbn: '978-9660378040',
+    language: 'UKR',
+    category: 'Poesie',
+    location: 'Schöneberg',
+    status: 'verfuegbar',
+    cover: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop',
+    description: 'Zbiór poezji Tarasa Szewczenki - klasyka literatury ukraińskiej.'
+  }
+];
+
 export async function getEvents(): Promise<EventItem[]> {
   return mockEvents;
 }
@@ -83,3 +146,12 @@ export async function getPosts(): Promise<PostItem[]> {
 export async function getPostBySlug(slug: string): Promise<PostItem | undefined> {
   return mockPosts.find(p => p.slug === slug);
 }
+
+export async function getBooks(): Promise<BookItem[]> {
+  return mockBooks;
+}
+
+export async function getBookById(id: string): Promise<BookItem | undefined> {
+  return mockBooks.find(b => b.id === id);
+}
+

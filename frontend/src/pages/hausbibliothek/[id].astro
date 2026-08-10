@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getBooks } from '../../lib/cms-api';
+import type { BookItem } from '../../types/cms';
+
+export async function getStaticPaths() {
+  const books = await getBooks();
+  return books.map((book) => ({
+    params: { id: book.id },
+    props: { book },
+  }));
+}
+
+interface Props {
+  book: BookItem;
+}
+
+const { book } = Astro.props;
+---
+
+<Layout title={`${book.title} - Hausbibliothek`} description={`Details und Ausleihe für das Buch ${book.title} von ${book.author}.`}>
+  <article class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <nav class="mb-8">
+      <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary-light hover:underline">
+        &larr; Zurück zum Bibliothekskatalog
+      </a>
+    </nav>
+
+    <div class="bg-brand-surface border border-slate-800 rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Book Cover -->
+        {book.cover && (
+          <div class="bg-slate-900 rounded-2xl p-6 flex items-center justify-center border border-slate-800">
+            <img src={book.cover} alt={`Cover: ${book.title}`} class="max-h-80 object-contain shadow-xl rounded-md" />
+          </div>
+        )}
+
+        <!-- Book Information -->
+        <div class:list={['flex flex-col justify-between', book.cover ? 'md:col-span-2' : 'md:col-span-3']}>
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full bg-slate-800 text-sky-400 text-xs font-bold uppercase">
+                Sprache: {book.language}
+              </span>
+              <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">
+                {book.category}
+              </span>
+              <span class:list={[
+                'px-3 py-1 rounded-full text-xs font-bold uppercase',
+                book.status === 'verfuegbar' ? 'bg-emerald-950/80 border border-emerald-800/60 text-emerald-400' :
+                book.status === 'ausgeliehen' ? 'bg-rose-950/80 border border-rose-800/60 text-rose-400' :
+                'bg-amber-950/80 border border-amber-800/60 text-amber-400'
+              ]}>
+                {book.status === 'verfuegbar' ? 'Verfügbar' : book.status === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}
+              </span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+              {book.title}
+            </h1>
+            
+            <p class="text-xl font-medium text-slate-300 mb-6">
+              Von <span class="text-white font-semibold">{book.author}</span>
+            </p>
+
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-6 mb-6 space-y-2 text-sm text-brand-text-muted">
+              <div class="flex justify-between">
+                <span>Standort:</span>
+                <span class="text-white font-semibold">📍 {book.location}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>ISBN:</span>
+                <span class="font-mono text-slate-300">{book.isbn}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Medium:</span>
+                <span class="text-slate-300">Gedrucktes Buch</span>
+              </div>
+            </div>
+
+            {book.description && (
+              <div class="mb-8">
+                <h2 class="text-lg font-bold text-white mb-2">Beschreibung / Klappentext</h2>
+                <p class="text-brand-text-muted leading-relaxed text-sm">{book.description}</p>
+              </div>
+            )}
+          </div>
+
+          <!-- Reservation / Loan Action -->
+          <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <span class="block text-xs uppercase tracking-wider text-slate-400">Ausleihe & Konto</span>
+              <span class="text-xs text-brand-text-muted">Verwaltung via hausbibliothek.org</span>
+            </div>
+            
+            {book.status === 'verfuegbar' ? (
+              <a
+                href="https://hausbibliothek.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-colors text-center shadow-lg shadow-emerald-500/20"
+              >
+                Jetzt ausleihen / reservieren &rarr;
+              </a>
+            ) : (
+              <a
+                href="https://hausbibliothek.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-colors text-center"
+              >
+                Vormerken auf hausbibliothek.org
+              </a>
+            )}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </article>
+</Layout>
