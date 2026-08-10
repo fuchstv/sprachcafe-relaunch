@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Self-Hosted Schriftarten & Performance](./SELF_HOSTED_FONTS.md): Lokale WOFF2-Einbindung (`font-display: swap`), 0 externe Font-Anfragen, DSGVO & LCP < 1,5s.
 - [WordPress zu Astro Komponenten-Mapping](./COMPONENT_MAPPING.md): Zuordnung aller Theme-Sektionen zu wiederverwendbaren Astro/Tailwind-Komponenten.
 - [Marken-Assets & S3 Sync](./BRAND_ASSETS.md): Optimierung & S3-Upload aller Logos, Favicons, Social- & Herz-Icons.
 - [Design-Tokens & WCAG Audit](./DESIGN_TOKENS.md): Benannte Tailwind-Tokens (Farben, Text-Marker, Typografie, Radien) & Kontrast-Matrix.
