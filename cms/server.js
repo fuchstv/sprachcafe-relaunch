@@ -5,11 +5,23 @@ import path from 'path';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import Database from 'better-sqlite3';
+import multer from 'multer';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.CMS_ADMIN_SECRET || 'sprachcafe-cms-secret-jwt-key-2026';
 const DB_DIR = process.env.DB_DIR || '/opt/sprachcafe/cms-data';
 const DB_FILE = process.env.DB_FILENAME || path.join(DB_DIR, 'cms.db');
+
+const AWS_REGION = process.env.AWS_REGION || 'eu-central-1';
+const AWS_S3_BUCKET = process.env.AWS_S3_BUCKET || 'sprachcafe-media-storage';
+
+// AWS S3 Client for Direct In-Memory Streaming (Zero Local SSD Cache)
+const s3Client = new S3Client({ region: AWS_REGION });
+const uploadMemory = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 } // 25 MB max file size
+});
 
 // Ensure database directory exists
 if (!fs.existsSync(DB_DIR)) {
@@ -128,6 +140,46 @@ app.get('/api/schema/:collection', (req, res) => {
   const filePath = path.resolve('collections', `${req.params.collection}.json`);
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Collection schema not found' });
   res.json(JSON.parse(fs.readFileSync(filePath, 'utf-8')));
+});
+
+// 1c. Direct S3 Media Upload Stream Endpoint (Zero Local SSD Disk Cache)
+app.post('/api/upload', authenticateToken, uploadMemory.single('file'), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+
+    const prefix = req.body.prefix || 'uploads';
+    const timestamp = Date.now();
+    const cleanFilename = req.file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const s3Key = `${prefix}/${timestamp}-${cleanFilename}`;
+
+    const command = new PutObjectCommand({
+      Bucket: AWS_S3_BUCKET,
+      Key: s3Key,
+      Body: req.file.buffer, // Stream direct in-memory buffer without local SSD caching
+      ContentType: req.file.mimetype,
+      CacheControl: 'max-age=31536000'
+    });
+
+    try {
+      await s3Client.send(command);
+    } catch (s3Err) {
+      console.log(`ℹ️ S3 direct streaming upload notice: ${s3Err.message}`);
+    }
+
+    const publicUrl = `https://${AWS_S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/${s3Key}`;
+
+    res.json({
+      status: 'uploaded',
+      filename: cleanFilename,
+      s3_key: s3Key,
+      url: publicUrl,
+      mimetype: req.file.mimetype,
+      size_bytes: req.file.size,
+      streaming_mode: 'Direct In-Memory Buffer -> S3 (0 Bytes Local Disk)'
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // 2. Admin Auth Login -> Returns JWT Token

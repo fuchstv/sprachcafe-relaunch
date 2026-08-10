@@ -4,6 +4,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 
 ## Übersicht der Dokumente
 
+- [Direktes S3 Media-Streaming](./CMS_S3_MEDIA.md): In-Memory Buffer -> S3 Streaming (0 Bytes SSD Cache) & HTTPS URLs.
 - [CMS Collections & i18n Feldtypisierung](./CMS_COLLECTIONS.md): Schemas für Events, Posts, Books, Team & Pages (flexible Layout-Blöcke).
 - [Headless CMS Setup & SQLite Backups](./CMS_SETUP.md): Node.js CMS Container (Port 3000), SQLite WAL, Token-Auth & Cron-Backups.
 - [Such-Komponente & Performance-Benchmark](./SEARCH_BENCHMARK.md): Pagefind Client-Side Suchkomponente, Filter & Benchmark (< 15 ms Latency).
