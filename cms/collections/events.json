@@ -1,0 +1,15 @@
+{
+  "collection": "events",
+  "name": "Veranstaltungen & SprachCafés",
+  "fields": [
+    { "name": "id", "type": "uuid", "primaryKey": true },
+    { "name": "title", "type": "string", "required": true },
+    { "name": "slug", "type": "string", "unique": true },
+    { "name": "date_start", "type": "datetime", "required": true },
+    { "name": "date_end", "type": "datetime" },
+    { "name": "location", "type": "string" },
+    { "name": "description", "type": "text" },
+    { "name": "max_participants", "type": "integer" },
+    { "name": "power_automate_trigger", "type": "boolean", "default": true }
+  ]
+}

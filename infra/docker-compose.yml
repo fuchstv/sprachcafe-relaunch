@@ -1,0 +1,90 @@
+version: '3.8'
+
+# Docker Compose Setup for SprachCafé Relaunch Monorepo
+# Includes Reverse Proxy (Caddy), Headless CMS, Database (PostgreSQL), and Astro Frontend
+
+services:
+  # Reverse Proxy
+  caddy:
+    image: caddy:2-alpine
+    container_name: sprachcafe_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME:-localhost}
+      - ACME_EMAIL=${ACME_EMAIL:-admin@sprachcafe.de}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - cms
+
+  # Headless CMS (Directus / Payload / Strapi)
+  cms:
+    build:
+      context: ../cms
+      dockerfile: Dockerfile
+    container_name: sprachcafe_cms
+    restart: unless-stopped
+    environment:
+      PORT: ${CMS_PORT:-8055}
+      KEY: ${CMS_SECRET:-secret-key-placeholder}
+      SECRET: ${CMS_SECRET:-secret-key-placeholder}
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ${DB_DATABASE:-sprachcafe_cms}
+      DB_USER: ${DB_USER:-sprachcafe_user}
+      DB_PASSWORD: ${DB_PASSWORD:-sprachcafe_pass}
+      ADMIN_EMAIL: ${CMS_ADMIN_EMAIL:-admin@sprachcafe.de}
+      ADMIN_PASSWORD: ${CMS_ADMIN_PASSWORD:-admin12345}
+      AWS_REGION: ${AWS_REGION:-eu-central-1}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET_MEDIA:-sprachcafe-media-assets-prod}
+      POWER_AUTOMATE_MEMBER_WEBHOOK_URL: ${POWER_AUTOMATE_MEMBER_WEBHOOK_URL}
+      POWER_AUTOMATE_EVENT_WEBHOOK_URL: ${POWER_AUTOMATE_EVENT_WEBHOOK_URL}
+      POWER_AUTOMATE_CONTACT_WEBHOOK_URL: ${POWER_AUTOMATE_CONTACT_WEBHOOK_URL}
+    ports:
+      - "8055:8055"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # PostgreSQL Database for Headless CMS
+  postgres:
+    image: postgres:15-alpine
+    container_name: sprachcafe_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-sprachcafe_cms}
+      POSTGRES_USER: ${DB_USER:-sprachcafe_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sprachcafe_pass}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-sprachcafe_user} -d ${DB_DATABASE:-sprachcafe_cms}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Frontend (Astro SSG/SSR)
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: sprachcafe_frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      PUBLIC_CMS_API_URL: ${PUBLIC_CMS_API_URL:-http://localhost:8055}
+    ports:
+      - "3000:3000"
+
+volumes:
+  caddy_data:
+  caddy_config:
+  postgres_data:

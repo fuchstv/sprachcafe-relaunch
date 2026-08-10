@@ -1,0 +1,12 @@
+{
+  "collection": "pages",
+  "name": "Statische Seiten",
+  "fields": [
+    { "name": "id", "type": "uuid", "primaryKey": true },
+    { "name": "title", "type": "string", "required": true },
+    { "name": "slug", "type": "string", "unique": true },
+    { "name": "content", "type": "richtext" },
+    { "name": "seo_title", "type": "string" },
+    { "name": "seo_description", "type": "text" }
+  ]
+}

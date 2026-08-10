@@ -1,0 +1,39 @@
+# Caddyfile - Reverse Proxy & SSL Configuration for SprachCafé Relaunch
+# Phase 1: Infrastructure
+
+{$DOMAIN_NAME:localhost} {
+    # Compress responses using gzip and zstd
+    encode zstd gzip
+
+    # Frontend (Astro SSR / Static output)
+    handle_path /* {
+        reverse_proxy frontend:3000
+    }
+
+    # Headless CMS API & Admin Interface
+    handle_path /admin* {
+        reverse_proxy cms:8055
+    }
+
+    handle_path /items* {
+        reverse_proxy cms:8055
+    }
+
+    handle_path /assets* {
+        reverse_proxy cms:8055
+    }
+
+    # Security Headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    # Logging
+    log {
+        output file /var/log/caddy/access.log
+        format json
+    }
+}

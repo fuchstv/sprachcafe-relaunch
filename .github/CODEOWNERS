@@ -1,0 +1,26 @@
+# CODEOWNERS - SprachCafé Relaunch Monorepo
+# https://docs.github.com/en/repositories/managing-repository-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for all files in the repository
+* @sprachcafe/dev-team
+
+# Phase 1: Infrastructure & Deployment
+/infra/ @sprachcafe/devops-team @sprachcafe/lead-dev
+/infra/Caddyfile @sprachcafe/devops-team
+/infra/docker-compose.yml @sprachcafe/devops-team
+/infra/terraform/ @sprachcafe/devops-team
+
+# Phase 2 & 3: Frontend (Astro) & UI Components
+/frontend/ @sprachcafe/frontend-team
+
+# Phase 4 & 5: Headless CMS Configuration & Collections
+/cms/ @sprachcafe/backend-team @sprachcafe/cms-admin
+
+# Phase 6: Migration Scripts (WordPress & Hausbibliothek)
+/scripts/ @sprachcafe/backend-team
+
+# Phase 7: Workflows & CI/CD
+/.github/workflows/ @sprachcafe/devops-team @sprachcafe/lead-dev
+
+# Documentation & Decision Logs
+/docs/ @sprachcafe/lead-dev @sprachcafe/dev-team

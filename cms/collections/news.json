@@ -1,0 +1,12 @@
+{
+  "collection": "news",
+  "name": "Neuigkeiten & Blog-Beiträge",
+  "fields": [
+    { "name": "id", "type": "uuid", "primaryKey": true },
+    { "name": "title", "type": "string", "required": true },
+    { "name": "slug", "type": "string", "unique": true },
+    { "name": "content", "type": "richtext" },
+    { "name": "published_at", "type": "datetime" },
+    { "name": "featured_image", "type": "image" }
+  ]
+}
