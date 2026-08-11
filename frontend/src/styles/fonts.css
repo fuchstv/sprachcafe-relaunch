@@ -1,4 +1,7 @@
-/* Self-Hosted WOFF2 Fonts for SprachCafé Polnisch (Zero External Requests, DSGVO Compliant) */
+/* Warm Community Narrative Typography: Literata (Serif Headings) & Plus Jakarta Sans (Body) */
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..800;1,7..72,400..800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+/* Self-Hosted WOFF2 Fonts for SprachCafé Polnisch (DSGVO Compliant) */
 
 /* cyrillic-ext */
 @font-face {

@@ -23,7 +23,7 @@ const t = useTranslations(lang);
 ---
 
 <!DOCTYPE html>
-<html lang={lang} class="h-full bg-brand-bg text-brand-text font-sans antialiased">
+<html lang={lang} class="h-full bg-[#FDFBF7] text-[#1d1b1a] font-sans antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,65 +42,65 @@ const t = useTranslations(lang);
     ))}
     <link rel="canonical" href={`${siteUrl.replace(/\/$/, '')}${pathname}`} />
   </head>
-  <body class="min-h-full flex flex-col bg-brand-bg text-brand-text">
+  <body class="min-h-full flex flex-col bg-[#FDFBF7] text-[#1d1b1a]">
     
     <!-- WCAG 2.1 AA Skip Link: Keyboard Focus Navigation -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-brand-primary-light focus:text-slate-950 focus:font-bold focus:rounded-lg focus:shadow-xl focus:ring-4 focus:ring-sky-300 focus:outline-none"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-[#DD3333] focus:text-white focus:font-bold focus:rounded-lg focus:shadow-xl focus:outline-none"
     >
       {lang === 'de' ? 'Zum Hauptinhalt springen' : lang === 'pl' ? 'Przejdź do treści głównej' : 'Skip to main content'}
     </a>
 
     <!-- Semantic Landmark: Header -->
-    <header role="banner" class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shadow-md">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <header role="banner" class="sticky top-0 z-40 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#e7e1df] shadow-sm">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
         <!-- Official Brand Logo -->
         <a
           href={lang === 'de' ? '/' : `/${lang}/`}
-          class="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-1"
+          class="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md p-1"
           aria-label="SprachCafé Polnisch Startseite"
         >
           <img src="/brand-assets/logo.webp" alt="SprachCafé Polnisch Logo" class="h-12 w-auto object-contain rounded-lg shadow-sm" />
-          <span class="font-bold text-lg tracking-tight text-white hidden sm:inline-block">SprachCafé Polnisch e.V.</span>
+          <span class="font-serif font-bold text-xl tracking-tight text-[#1d1b1a] hidden sm:inline-block">SprachCafé Polnisch e.V.</span>
         </a>
 
         <!-- Semantic Landmark: Main Navigation -->
         <nav role="navigation" aria-label={lang === 'de' ? 'Hauptnavigation' : lang === 'pl' ? 'Nawigacja główna' : 'Main Navigation'} class="hidden md:flex items-center gap-6">
           <a
             href={lang === 'de' ? '/' : `/${lang}/`}
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.home')}
           </a>
           <a
             href="/events/"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.events')}
           </a>
           <a
             href="/posts/"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             Blog
           </a>
           <a
             href="/hausbibliothek/"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.library')}
           </a>
           <a
             href="/mitmachen/"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             Mitmachen
           </a>
           <a
             href="/kontakt/"
-            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.contact')}
           </a>
@@ -119,8 +119,8 @@ const t = useTranslations(lang);
     </main>
 
     <!-- Semantic Landmark: Footer with Social & Donation Brand Assets -->
-    <footer role="contentinfo" class="bg-slate-950 border-t border-slate-800/80 py-10 px-4 sm:px-6 lg:px-8 mt-auto">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-brand-text-muted">
+    <footer role="contentinfo" class="bg-[#f8f2f0] border-t border-[#e7e1df] py-10 px-4 sm:px-6 lg:px-8 mt-auto">
+      <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-[#5b403d]">
         
         <div class="flex items-center gap-3">
           <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-6 h-6" />
@@ -133,55 +133,55 @@ const t = useTranslations(lang);
             href="https://www.facebook.com/sprachcafe.polnisch/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="Facebook Seite"
           >
-            <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
           </a>
           <a
             href="https://www.instagram.com/sprachcafepolnisch/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="Instagram Profil"
           >
-            <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
           </a>
           <a
             href="https://www.youtube.com/channel/UCAgdsEs-YX_i6tDGbBtEz-w"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="YouTube Kanal"
           >
-            <img src="/brand-assets/icon-youtube.svg" alt="YouTube Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-youtube.svg" alt="YouTube Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
           </a>
           <a
             href="https://www.linkedin.com/company/sprachcafe-polnisch-ev"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="LinkedIn Firmenseite"
           >
-            <img src="/brand-assets/icon-linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
           </a>
           <a
             href="https://www.tiktok.com/@sprachcafepolnisch?_r=1&_t=ZN-95X7nApX6xC"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="TikTok Profil"
           >
-            <img src="/brand-assets/icon-tiktok.svg" alt="TikTok Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-tiktok.svg" alt="TikTok Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
           </a>
         </div>
 
         <div class="flex items-center gap-4">
-          <a href="#privacy" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Datenschutz</a>
+          <a href="#privacy" class="hover:text-[#DD3333] focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-1">Datenschutz</a>
           <span>•</span>
-          <a href="#imprint" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Impressum</a>
+          <a href="#imprint" class="hover:text-[#DD3333] focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-1">Impressum</a>
           <span>•</span>
-          <a href="#accessibility" class="hover:text-brand-primary-light focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-1">Barrierefreiheit</a>
+          <a href="#accessibility" class="hover:text-[#DD3333] focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-1">Barrierefreiheit</a>
         </div>
 
       </div>
