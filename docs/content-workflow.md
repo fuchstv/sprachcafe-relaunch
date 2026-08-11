@@ -95,3 +95,74 @@ export const i18nString = z.object({
 
 ### Rollback-Prozedur bei Fehlern
 Sollte eine Textänderung versehentlich falsche Informationen enthalten, kann in GitHub unter **Pull Requests ➔ Closed** der jeweilige PR geöffnet und mit einem Klick auf **"Revert"** sofort rückgängig gemacht werden.
+
+---
+
+## 🖼️ 5. Umgang mit Medien & Dateien (Bilder, PDFs & S3 Storage)
+
+### Grundsatz: Keine Binärdateien im Git-Repository
+Um das Git-Repository leichtgewichtig, schnell und wartbar zu halten, werden **keine Bilder, PDFs oder sonstige Binärdateien im Git-Repository eingecheckt**.
+
+Alle Medien werden zentral im AWS S3-Bucket **`sprachcafe-media-storage`** gespeichert. In den Content-Collection-Dateien (`.md` / `.yaml`) wird ausschließlich die resultierende HTTPS-S3-URL hinterlegt.
+
+---
+
+### 📤 3 Wege zum Hochladen von Medien in S3
+
+#### Weg 1: Upload-Skript (Empfohlen für lokale Bearbeitung)
+Im Ordner `scripts/` steht ein einfaches CLI-Tool zur Verfügung:
+
+```bash
+# Bild für ein Event hochladen:
+python3 scripts/upload_media_to_s3.py ./sommerfest.jpg --folder events
+
+# PDF für Downloads hochladen:
+python3 scripts/upload_media_to_s3.py ./satzung.pdf --folder downloads
+```
+
+**Ausgabe des Skripts**:
+Das Skript gibt direkt die fertige S3-URL sowie den passenden YAML-Schnipsel zum Kopieren aus:
+```
+✅ Upload Complete! Resulting S3 URLs:
+
+📄 File: sommerfest.jpg
+🔗 S3 URL: https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sommerfest.jpg
+📋 YAML Snippet:
+  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sommerfest.jpg"
+```
+
+#### Weg 2: AWS CLI
+```bash
+aws s3 cp ./satzung.pdf s3://sprachcafe-media-storage/downloads/satzung.pdf --content-type "application/pdf"
+```
+
+#### Weg 3: AWS Management Console (Browser)
+1. Bei der **AWS Console** anmelden ➔ Dienst **S3** öffnen.
+2. Bucket **`sprachcafe-media-storage`** auswählen.
+3. In den Ziel-Ordner navigieren (z. B. `events/`, `team/`, `downloads/`).
+4. Auf **"Upload"** klicken und Datei hineinziehen.
+5. Nach dem Upload die **Object URL** kopieren (z. B. `https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/...`).
+
+---
+
+### 📝 Referenzieren der S3-URL in Content Collections
+
+In der Markdown-/YAML-Datei wird die kopierte S3-URL im entsprechenden Bild- oder Datei-Feld eingetragen:
+
+```yaml
+# Beispiel Event (frontend/src/content/events/sommerfest.md)
+image:
+  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sommerfest.jpg"
+  alt:
+    de: "Eingangsbereich beim Sommerfest"
+    pl: "Wejście na festyn letni"
+    en: "Entrance at the summer festival"
+
+# Beispiel Download (frontend/src/content/downloads/satzung.md)
+title:
+  de: "Vereinssatzung (PDF)"
+  pl: "Statut stowarzyszenia (PDF)"
+  en: "Association Statutes (PDF)"
+s3FileUrl: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/downloads/satzung.pdf"
+```
+

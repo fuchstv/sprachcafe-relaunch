@@ -41,13 +41,17 @@ curl -X POST http://localhost:3000/api/upload \
 
 ---
 
-## 🧪 3. Verifikationstest (`scripts/test_s3_upload_flow.py`)
+## 🛠️ 4. CLI Upload-Skript für Content Collections (`scripts/upload_media_to_s3.py`)
+
+Für die pflegeleichte Anbindung von Bildern und PDFs an die Astro Content Collections steht das CLI-Skript `scripts/upload_media_to_s3.py` bereit:
 
 ```bash
-python3 scripts/test_s3_upload_flow.py
+# Bild hochladen & S3 URL generieren:
+python3 scripts/upload_media_to_s3.py ./event-bild.jpg --folder events
+
+# PDF hochladen & S3 URL generieren:
+python3 scripts/upload_media_to_s3.py ./broschuere.pdf --folder downloads
 ```
 
-**Testergebnis**:
-- JWT Admin Login: ✅ Erhalten
-- Direct In-Memory Stream: ✅ 0 Bytes temporäre SSD-Lagerung
-- HTTPS URL Format: ✅ `https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/...`
+Das Skript lädt die Datei direkt in den S3-Bucket `sprachcafe-media-storage` hoch und gibt die fertige HTTPS-URL sowie einen vorgefertigten YAML-Code-Schnipsel für Markdown-Content-Dateien aus. Kein Bild/PDF wird im Git-Repository gespeichert.
+
