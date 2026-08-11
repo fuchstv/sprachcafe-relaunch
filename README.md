@@ -121,6 +121,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 - 📝 [Entscheidungsprotokoll CMS verworfen (ADR 0002)](docs/decisions/0002-cms-verworfen.md)
 - 📝 [Entscheidungsprotokoll Redaktions-Workflow (ADR 0003)](docs/decisions/0003-github-ungeeignet-fuer-redaktion.md)
 - 📌 [Offene Content- & Navigations-Gaps (TODO-Liste)](docs/content-gaps.md)
+- 📚 [Content-Inventar der Live-Unterseiten (Phase R4)](docs/content-inventory.md)
 
 ---
 

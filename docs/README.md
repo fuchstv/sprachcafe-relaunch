@@ -34,6 +34,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Entscheidungsprotokoll: Verwerfen des Headless-CMS-Ansatzes (ADR 0002)](./decisions/0002-cms-verworfen.md)
 - [Entscheidungsprotokoll: Eignung von Git/GitHub für redaktionelle Workflows (ADR 0003)](./decisions/0003-github-ungeeignet-fuer-redaktion.md)
 - [Offene Content- & Navigations-Gaps (TODO-Liste)](./content-gaps.md): Übersicht offener Platzhalter & Navigationspunkte für R2/R3/R4.
+- [Vollständiges Content-Inventar (Phase R4 Migration)](./content-inventory.md): Erfassung aller Live-Unterseiten, Texte, Bilder, Übersetzungen & PDFs.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts
