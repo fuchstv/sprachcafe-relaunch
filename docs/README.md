@@ -30,8 +30,9 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Design-Token Übertragung & Alignment (Hausbibliothek App)](./design-tokens-alignment.md): Übertragung von Farben, Typografie & Logoeinbindung auf das Konto-Portal.
 - [Mehrsprachigkeit & Deep-Linking (Astro <-> Hausbibliothek App)](./i18n-library-deep-linking.md): Dokumentation der Sprach-Parameter (?lang=de/pl) & English UI Fallback.
 - [WordPress Bestands-Audit & Strato-Analyse](./wordpress-audit.md): Analyse von WP-CLI Restriktionen, REST API Erreichbarkeit & Polylang Extraktion.
-- [Redaktions-Workflow & Content-Pflege](./content-workflow.md): Anleitung & Evaluierung für Redakteur:innen (GitHub Web vs. Decap CMS).
-- [Entscheidungsprotokoll: Verwerfen von Directus CMS zugunsten von Node.js Express & SQLite (ADR 0003)](./decisions/0003-retire-directus-cms.md): Dokumentation der Architektur-Entscheidung.
+- [Entscheidungsprotokoll: Wahl einer Monorepo-Struktur (ADR 0001)](./decisions/0001-monorepo-structure.md)
+- [Entscheidungsprotokoll: Verwerfen des Headless-CMS-Ansatzes (ADR 0002)](./decisions/0002-cms-verworfen.md)
+- [Entscheidungsprotokoll: Eignung von Git/GitHub für redaktionelle Workflows (ADR 0003)](./decisions/0003-github-ungeeignet-fuer-redaktion.md)
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts
