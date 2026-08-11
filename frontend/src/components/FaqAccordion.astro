@@ -1,0 +1,81 @@
+---
+interface FaqItem {
+  question: { de: string; pl: string; en: string };
+  answer: { de: string; pl: string; en: string };
+  category?: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  lang?: 'de' | 'pl' | 'en';
+}
+
+const { items, lang = 'de' } = Astro.props;
+---
+
+<div class="faq-accordion-wrapper space-y-4 max-w-4xl mx-auto">
+  {items.map((item, index) => {
+    const q = item.question[lang] || item.question.de;
+    const a = item.answer[lang] || item.answer.de;
+    const id = `faq-item-${index}`;
+
+    return (
+      <div class="faq-item bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm transition-all duration-200 hover:border-[#8B263E]/40">
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-controls={id}
+          class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+        >
+          <span>{q}</span>
+          <div class="faq-icon w-8 h-8 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] flex items-center justify-center shrink-0 transition-transform duration-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </button>
+
+        <div
+          id={id}
+          class="faq-content hidden px-6 pb-6 text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed border-t border-transparent"
+        >
+          <p class="pt-2">{a}</p>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.faq-trigger');
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        const contentId = trigger.getAttribute('aria-controls');
+        const content = contentId ? document.getElementById(contentId) : null;
+        const icon = trigger.querySelector('.faq-icon');
+
+        // Close all items
+        triggers.forEach((t) => {
+          t.setAttribute('aria-expanded', 'false');
+          const cId = t.getAttribute('aria-controls');
+          if (cId) {
+            const c = document.getElementById(cId);
+            if (c) c.classList.add('hidden');
+          }
+          const i = t.querySelector('.faq-icon');
+          if (i) i.classList.remove('rotate-180');
+        });
+
+        // Toggle current item if it wasn't expanded
+        if (!isExpanded && content) {
+          trigger.setAttribute('aria-expanded', 'true');
+          content.classList.remove('hidden');
+          if (icon) icon.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
