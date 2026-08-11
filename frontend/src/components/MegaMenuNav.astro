@@ -80,6 +80,38 @@ const t = useTranslations(currentLang);
     </div>
   </div>
 
+  <!-- Entdecken Dropdown -->
+  <div class="relative group">
+    <button
+      type="button"
+      class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span>✨ Entdecken</span>
+      <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-64">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-2xl space-y-1">
+        <a href="/ueber-uns/ausstellungen/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
+          <span class="block font-bold text-white text-sm">🎨 Ausstellungen & Galerie</span>
+          <span class="block text-xs text-brand-text-muted">Fotografie, Kunst & Vernissagen</span>
+        </a>
+        <a href="/hausbibliothek/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
+          <span class="block font-bold text-white text-sm">📚 Hausbibliothek</span>
+          <span class="block text-xs text-brand-text-muted">Zweisprachiges Buchportal</span>
+        </a>
+        <a href="/posts/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
+          <span class="block font-bold text-white text-sm">📰 Blog & Berichte</span>
+          <span class="block text-xs text-brand-text-muted">Aktuelles aus dem SprachCafé</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- Veranstaltungen Dropdown -->
   <a
     href="/events/"
