@@ -1,8 +1,10 @@
 {
   "name": "PowerAutomate_Flow_Shop_Registration",
-  "displayName": "SprachCafé - Redaktion Laden-Artikel (MS Forms zu GitHub PR)",
+  "displayName": "SprachCafé - Redaktion Laden-Artikel (MS Forms zu S3 zu GitHub PR)",
   "formId": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u",
   "targetCollection": "shopItems",
+  "s3Bucket": "sprachcafe-media-storage",
+  "s3Prefix": "shop",
   "definition": {
     "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
     "contentVersion": "1.0.0.0",
@@ -15,6 +17,7 @@
             "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
             "connectionName": "shared_microsoftforms"
           },
+          "parameters": {
             "form_id": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u"
           }
         }
@@ -22,13 +25,42 @@
     },
     "actions": {
       "Get_response_details": {
-        "type": "Extension",
+        "type": "OpenApiConnection",
         "inputs": {
-          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+            "connectionName": "shared_microsoftforms"
+          },
           "parameters": {
             "form_id": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u",
             "response_id": "@triggerBody()?['extraProperties']?['responderId']"
           }
+        }
+      },
+      "Get_Uploaded_File_Content": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness",
+            "connectionName": "shared_onedriveforbusiness"
+          },
+          "method": "get",
+          "path": "/datasets/default/files/@{encodeURIComponent(json(body('Get_response_details')?['r123_image'])?[0]?['id'])}/content"
+        }
+      },
+      "Upload_Image_To_Amazon_S3": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_amazons3",
+            "connectionName": "shared_amazons3"
+          },
+          "method": "put",
+          "path": "/v2/buckets/@{encodeURIComponent('sprachcafe-media-storage')}/objects/@{encodeURIComponent(concat('shop/', utcNow('yyyyMMdd-HHmmss'), '-', json(body('Get_response_details')?['r123_image'])?[0]?['name']))}",
+          "body": "@body('Get_Uploaded_File_Content')"
         }
       },
       "Create_Git_Branch": {
@@ -59,8 +91,8 @@
           "path": "/repos/fuchstv/sprachcafe-relaunch/contents/frontend/src/content/shopItems/@{concat('shop-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))}.md",
           "body": {
             "branch": "@concat('content/shop-', formatDateTime(utcNow(), 'yyyyMMdd-HHmmss'))",
-            "message": "feat(content): add shop item via MS Forms",
-            "content": "@base64(concat('---\nname:\n  de: \"', body('Get_response_details')?['r123_name'], '\"\npriceDisplay:\n  de: \"', body('Get_response_details')?['r123_price'], '\"\n---\n'))"
+            "message": "feat(content): add shop item via MS Forms and S3 media storage",
+            "content": "@base64(concat('---\nname:\n  de: \"', body('Get_response_details')?['r123_name'], '\"\npriceDisplay:\n  de: \"', body('Get_response_details')?['r123_price'], '\"\nimage: \"https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/shop/', utcNow('yyyyMMdd-HHmmss'), '-', json(body('Get_response_details')?['r123_image'])?[0]?['name'], '\"\n---\n'))"
           }
         }
       },
@@ -75,10 +107,10 @@
           "method": "post",
           "path": "/repos/fuchstv/sprachcafe-relaunch/pulls",
           "body": {
-            "title": "[Redaktion] Neuer Laden-Artikel via MS Forms",
+            "title": "[Redaktion] Neuer Laden-Artikel (S3-Foto) via MS Forms",
             "head": "@concat('content/shop-', formatDateTime(utcNow(), 'yyyyMMdd-HHmmss'))",
             "base": "beta",
-            "body": "Automatisch generierter PR aus Microsoft Forms für beta.sprachcafe-polnisch.org"
+            "body": "Automatisch generierter PR aus Microsoft Forms mit S3-Medienspeicher für beta.sprachcafe-polnisch.org"
           }
         }
       }
