@@ -22,31 +22,31 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 ---
 
 <Layout title="Veranstaltungen - SprachCafé Polnisch" description="Übersicht aller kommenden Sprachcafés, Kulturabende und Kinderveranstaltungen in den Live Google-Kalendern des SprachCafé Polnisch e.V.">
-  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
     <div class="mb-10 text-center sm:text-left">
-      <span class="inline-block px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-xs font-semibold uppercase tracking-wider mb-3">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-xs font-bold uppercase tracking-wider mb-3">
         Live-Kalender & Synchronisation
       </span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">Veranstaltungen</h1>
-      <p class="text-lg text-brand-text-muted max-w-3xl">
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-3">Veranstaltungen</h1>
+      <p class="font-sans text-lg text-[#5b403d] dark:text-[#d4c5c2] max-w-3xl">
         Entdecken Sie unsere aktuellen Sprachcafés, Kulturabende, Lesungen und Treffen in den Live-Kalendern unserer Standorte.
       </p>
     </div>
 
     <!-- Interactive Calendar Switcher Tabs -->
     <div class="mb-8" id="calendar-switcher">
-      <div class="flex flex-wrap gap-3 border-b border-slate-800 pb-4">
+      <div class="flex flex-wrap gap-3 border-b border-[#e7e1df] dark:border-[#363230] pb-4">
         <button
           type="button"
           id="tab-main-cal"
-          class="px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20 flex items-center gap-2 cursor-pointer"
+          class="px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#DD3333] text-white shadow-md flex items-center gap-2 cursor-pointer"
         >
           <span>📅 Alle Veranstaltungen & SprachCafés</span>
         </button>
         <button
           type="button"
           id="tab-kids-cal"
-          class="px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center gap-2 cursor-pointer"
+          class="px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#DD3333] flex items-center gap-2 cursor-pointer"
         >
           <span>🎈 SprachCafé für Kinder</span>
         </button>
@@ -54,22 +54,22 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 
       <!-- Main Calendar Container -->
       <div id="container-main-cal" class="mt-6">
-        <div class="bg-brand-surface border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
           <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] flex items-center gap-2">
               <span>📅 Google Kalender:</span>
-              <span class="text-brand-primary-light text-base font-normal">Alle Standorte (Pankow, Schöneberg, Köpenick)</span>
+              <span class="text-[#DD3333] dark:text-[#ff6b6b] text-base font-normal">Alle Standorte (Pankow, Schöneberg, Köpenick)</span>
             </h2>
             <a
               href={mainCalendarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-xs text-sky-400 hover:underline hidden sm:inline-flex items-center gap-1"
+              class="text-xs text-[#DD3333] dark:text-[#ff6b6b] hover:underline hidden sm:inline-flex items-center gap-1 font-semibold"
             >
               In Google Kalender öffnen &nearr;
             </a>
           </div>
-          <div class="w-full aspect-[4/3] sm:aspect-[16/9] min-h-[500px] sm:min-h-[600px] rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
+          <div class="w-full aspect-[4/3] sm:aspect-[16/9] min-h-[500px] sm:min-h-[600px] rounded-xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] bg-[#FDFBF7] dark:bg-[#181615]">
             <iframe
               src={mainCalendarUrl}
               style="border:0;"
@@ -84,22 +84,22 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 
       <!-- Kids Calendar Container -->
       <div id="container-kids-cal" class="mt-6 hidden">
-        <div class="bg-brand-surface border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
           <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] flex items-center gap-2">
               <span>🎈 Google Kalender:</span>
-              <span class="text-brand-primary-light text-base font-normal">SprachCafé für Kinder & Familien</span>
+              <span class="text-[#DD3333] dark:text-[#ff6b6b] text-base font-normal">SprachCafé für Kinder & Familien</span>
             </h2>
             <a
               href={kidsCalendarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-xs text-sky-400 hover:underline hidden sm:inline-flex items-center gap-1"
+              class="text-xs text-[#DD3333] dark:text-[#ff6b6b] hover:underline hidden sm:inline-flex items-center gap-1 font-semibold"
             >
               In Google Kalender öffnen &nearr;
             </a>
           </div>
-          <div class="w-full aspect-[4/3] sm:aspect-[16/9] min-h-[500px] sm:min-h-[600px] rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
+          <div class="w-full aspect-[4/3] sm:aspect-[16/9] min-h-[500px] sm:min-h-[600px] rounded-xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] bg-[#FDFBF7] dark:bg-[#181615]">
             <iframe
               src={kidsCalendarUrl}
               style="border:0;"
@@ -115,13 +115,13 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 
     <!-- Featured Events Grid -->
     {events.length > 0 && (
-      <div class="mt-16 pt-12 border-t border-slate-800/80">
-        <h2 class="text-2xl font-bold text-white mb-6">Highlight-Veranstaltungen</h2>
+      <div class="mt-16 pt-12 border-t border-[#e7e1df] dark:border-[#363230]">
+        <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-6">Highlight-Veranstaltungen</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event) => (
-            <article class="bg-brand-surface border border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col">
+            <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] hover:border-[#DD3333]/50 transition-all duration-300 flex flex-col">
               {event.image && (
-                <div class="aspect-video w-full overflow-hidden bg-slate-900">
+                <div class="aspect-video w-full overflow-hidden bg-[#f8f2f0] dark:bg-[#2a2725]">
                   <img
                     src={event.image}
                     alt={event.title}
@@ -132,39 +132,39 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
               )}
               
               <div class="p-6 flex flex-col flex-grow">
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="px-2.5 py-0.5 rounded-md bg-slate-700/80 text-brand-primary-light text-xs font-semibold">
+                <div class="flex items-center gap-2 mb-3 flex-wrap">
+                  <span class="px-2.5 py-0.5 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#DD3333] dark:text-[#ff6b6b] text-xs font-semibold border border-[#e7e1df] dark:border-[#363230]">
                     📍 {event.location}
                   </span>
-                  <span class="px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 text-xs font-medium">
+                  <span class="px-2.5 py-0.5 rounded-full bg-[#43AD48]/10 text-[#43AD48] dark:text-[#73dd71] text-xs font-medium border border-[#43AD48]/20">
                     🗣️ {event.language}
                   </span>
-                  <span class="px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 text-xs font-medium">
+                  <span class="px-2.5 py-0.5 rounded-full bg-[#F2B705]/15 text-[#b48000] dark:text-[#F2B705] text-xs font-medium border border-[#F2B705]/30">
                     👥 {event.target_group}
                   </span>
                 </div>
 
-                <h3 class="text-xl font-bold text-white mb-2 leading-snug hover:text-brand-primary-light transition-colors">
+                <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2 leading-snug hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors">
                   <a href={`/events/${event.slug}/`}>
                     {event.title}
                   </a>
                 </h3>
 
-                <p class="text-xs text-sky-400 font-semibold mb-3">
+                <p class="font-sans text-xs text-[#DD3333] dark:text-[#ff6b6b] font-semibold mb-3">
                   📅 {new Date(event.date_start).toLocaleDateString('de-DE', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })} Uhr
                 </p>
 
-                <p class="text-sm text-brand-text-muted line-clamp-3 mb-6 flex-grow leading-relaxed">
+                <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] line-clamp-3 mb-6 flex-grow leading-relaxed">
                   {event.description}
                 </p>
 
-                <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <span class="text-xs text-slate-400">
+                <div class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] flex items-center justify-between">
+                  <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">
                     Ohne Anmeldung
                   </span>
                   <a
                     href={`/events/${event.slug}/`}
-                    class="inline-flex items-center gap-1 text-sm font-semibold text-brand-primary-light hover:text-white transition-colors"
+                    class="inline-flex items-center gap-1 text-sm font-bold text-[#DD3333] dark:text-[#ff6b6b] hover:underline transition-colors"
                   >
                     Details &rarr;
                   </a>
@@ -185,15 +185,15 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 
     if (tabMain && tabKids && containerMain && containerKids) {
       tabMain.addEventListener('click', () => {
-        tabMain.className = 'px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20 flex items-center gap-2 cursor-pointer';
-        tabKids.className = 'px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center gap-2 cursor-pointer';
+        tabMain.className = 'px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#DD3333] text-white shadow-md flex items-center gap-2 cursor-pointer';
+        tabKids.className = 'px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#DD3333] flex items-center gap-2 cursor-pointer';
         containerMain.classList.remove('hidden');
         containerKids.classList.add('hidden');
       });
 
       tabKids.addEventListener('click', () => {
-        tabKids.className = 'px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/20 flex items-center gap-2 cursor-pointer';
-        tabMain.className = 'px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center gap-2 cursor-pointer';
+        tabKids.className = 'px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#DD3333] text-white shadow-md flex items-center gap-2 cursor-pointer';
+        tabMain.className = 'px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#DD3333] flex items-center gap-2 cursor-pointer';
         containerKids.classList.remove('hidden');
         containerMain.classList.add('hidden');
       });

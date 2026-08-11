@@ -101,25 +101,22 @@ const content = {
 const current = content[lang] || content.de;
 ---
 
-<section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-  <div class="bg-gradient-to-br from-slate-900 via-sky-950/80 to-slate-900 border border-sky-800/60 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+<section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+  <div class="bg-[#f8f2f0] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12 shadow-[0_4px_20px_rgba(51,49,48,0.05)] relative overflow-hidden transition-colors">
     
-    <!-- Background Glow Effect -->
-    <div class="absolute -top-24 -right-24 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
     <div class="max-w-3xl mb-12">
-      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/20 border border-sky-500/30 text-sky-300 text-xs font-bold uppercase tracking-wider mb-4">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-xs font-bold uppercase tracking-wider mb-4">
         {current.badge}
       </span>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-4">
         {current.title}
       </h2>
-      <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+      <p class="font-sans text-base sm:text-lg text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
         {current.subtitle}
       </p>
 
       {lang === 'en' && (
-        <div class="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium">
+        <div class="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-medium">
           <span>🌐 Note: The library account portal is currently available in German (DE) and Polish (PL).</span>
         </div>
       )}
@@ -128,21 +125,21 @@ const current = content[lang] || content.de;
     <!-- 4 Action Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       {current.cards.map((card) => (
-        <div class="bg-slate-900/90 border border-slate-800/90 rounded-2xl p-6 flex flex-col hover:border-sky-500/50 hover:bg-slate-900 transition-all duration-300 shadow-lg">
+        <div class="bg-white dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 flex flex-col hover:border-[#DD3333]/50 transition-all duration-300 shadow-sm">
           <div class="text-3xl mb-4" aria-hidden="true">{card.icon}</div>
-          <h3 class="text-lg font-bold text-white mb-2">{card.title}</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed flex-grow">{card.desc}</p>
+          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">{card.title}</h3>
+          <p class="font-sans text-xs sm:text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed flex-grow">{card.desc}</p>
         </div>
       ))}
     </div>
 
     <!-- Prominent CTA Banner -->
-    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-inner">
+    <div class="bg-white dark:bg-[#181615] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
       <div class="text-center sm:text-left">
-        <span class="text-xs font-bold uppercase tracking-wider text-sky-400 block mb-1">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#DD3333] dark:text-[#ff6b6b] block mb-1">
           hausbibliothek.org
         </span>
-        <h4 class="text-xl font-bold text-white">
+        <h4 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
           {current.ctaPrimarySub}
         </h4>
       </div>
@@ -151,7 +148,7 @@ const current = content[lang] || content.de;
         href={deepLinkUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-primary-light text-slate-950 font-bold hover:bg-sky-300 transition-colors shadow-lg shadow-sky-500/20 text-center flex items-center justify-center gap-2 group text-base"
+        class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#DD3333] hover:bg-[#b9151e] text-white font-bold transition-all shadow-md text-center flex items-center justify-center gap-2 group text-base"
       >
         <span>{current.ctaPrimary}</span>
         <span class="group-hover:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>

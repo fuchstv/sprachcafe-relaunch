@@ -22,30 +22,30 @@ const testimonials = rawTestimonials.map((t) => ({
 }));
 ---
 
-<section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
   <div class="mb-10 text-center">
-    <span class="inline-block px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-bold uppercase tracking-wider mb-3">
+    <span class="inline-block px-3 py-1 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-xs font-bold uppercase tracking-wider mb-3">
       Stimmen aus der Community
     </span>
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{title}</h2>
-    {subtitle && <p class="mt-2 text-brand-text-muted text-base max-w-2xl mx-auto">{subtitle}</p>}
+    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">{title}</h2>
+    {subtitle && <p class="mt-2 text-[#5b403d] dark:text-[#d4c5c2] text-base max-w-2xl mx-auto">{subtitle}</p>}
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     {testimonials.map((item) => (
-      <figure class="bg-brand-surface border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-all duration-300">
-        <blockquote class="text-brand-text text-base leading-relaxed mb-6 italic relative">
-          <span class="text-4xl text-sky-400 leading-none absolute -top-4 -left-2 opacity-40" aria-hidden="true">&ldquo;</span>
+      <figure class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 sm:p-8 shadow-[0_4px_20px_rgba(51,49,48,0.05)] flex flex-col justify-between hover:border-[#DD3333]/50 transition-all duration-300">
+        <blockquote class="text-[#1d1b1a] dark:text-[#f5f0ee] text-base leading-relaxed mb-6 italic relative">
+          <span class="text-4xl text-[#DD3333] opacity-40 leading-none absolute -top-4 -left-2" aria-hidden="true">&ldquo;</span>
           <p class="pt-2">{item.quote}</p>
         </blockquote>
 
-        <figcaption class="pt-4 border-t border-slate-800/80 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-500 to-rose-500 flex items-center justify-center text-slate-950 font-bold text-sm">
+        <figcaption class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#DD3333] text-white flex items-center justify-center font-bold text-sm">
             {item.name.charAt(0)}
           </div>
           <div>
-            <span class="block font-bold text-white text-sm">{item.name}</span>
-            <span class="block text-xs text-brand-text-muted">
+            <span class="block font-serif font-bold text-[#1d1b1a] dark:text-[#f5f0ee] text-sm">{item.name}</span>
+            <span class="block text-xs text-[#5b403d] dark:text-[#d4c5c2]">
               {item.role}
             </span>
           </div>

@@ -8,42 +8,42 @@ const t = useTranslations(lang);
 ---
 
 <Layout title="SprachCafé Polnisch - Welcome (/en/)" lang={lang}>
-  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-sm font-semibold mb-6">
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-[1200px] mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-sm font-semibold mb-6">
       <span>{t('hero.badge')}</span>
     </div>
     
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+    <h1 class="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-[#1d1b1a] dark:text-[#f5f0ee] mb-6 leading-tight">
       {t('hero.title')}
     </h1>
     
-    <p class="text-lg sm:text-xl text-brand-text-muted max-w-3xl mx-auto mb-12 leading-relaxed">
+    <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] max-w-3xl mx-auto mb-12 leading-relaxed">
       {t('hero.subtitle')}
     </p>
 
-    <div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 sm:p-10 text-left shadow-2xl">
-      <h2 class="text-2xl font-bold text-brand-primary-light mb-4">🇬🇧 Welcome to SprachCafé Polnisch</h2>
-      <p class="text-brand-text-muted leading-relaxed mb-8">
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 sm:p-10 text-left shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+      <h2 class="font-serif text-2xl font-bold text-[#DD3333] dark:text-[#ff6b6b] mb-4">🇬🇧 Welcome to SprachCafé Polnisch</h2>
+      <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-8">
         SprachCafé Polnisch fosters intercultural exchange, language courses, and community events in Berlin.
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-6 rounded-xl border border-[#e7e1df] dark:border-[#363230]">
           <div class="text-3xl mb-3" aria-hidden="true">🗣️</div>
-          <h3 class="text-lg font-bold text-white mb-2">Language Meetups</h3>
-          <p class="text-sm text-brand-text-muted">Regular Sprachcafés for Polish and German practice.</p>
+          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Language Meetups</h3>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">Regular Sprachcafés for Polish and German practice.</p>
         </div>
 
-        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-6 rounded-xl border border-[#e7e1df] dark:border-[#363230]">
           <div class="text-3xl mb-3" aria-hidden="true">📚</div>
-          <h3 class="text-lg font-bold text-white mb-2">House Library</h3>
-          <p class="text-sm text-brand-text-muted">Digital lending library for Polish and German literature.</p>
+          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">House Library</h3>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">Digital lending library for Polish and German literature.</p>
         </div>
 
-        <div class="bg-slate-900/60 p-6 rounded-xl border border-slate-800/60">
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-6 rounded-xl border border-[#e7e1df] dark:border-[#363230]">
           <div class="text-3xl mb-3" aria-hidden="true">🎉</div>
-          <h3 class="text-lg font-bold text-white mb-2">Cultural Events</h3>
-          <p class="text-sm text-brand-text-muted">Readings, film screenings, and creative workshops.</p>
+          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Cultural Events</h3>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">Readings, film screenings, and creative workshops.</p>
         </div>
       </div>
     </div>
@@ -52,4 +52,3 @@ const t = useTranslations(lang);
   <!-- Library Referral Section -->
   <LibraryReferralSection lang={lang} />
 </Layout>
-

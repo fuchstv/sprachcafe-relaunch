@@ -25,43 +25,43 @@ const { post } = Astro.props;
     data-pagefind-filter={`type:Post, category:${post.category}, location:${post.location_tag || 'Global'}`}
   >
     <nav class="mb-8">
-      <a href="/posts/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary-light hover:underline">
+      <a href="/posts/" class="inline-flex items-center gap-2 text-sm font-bold text-[#DD3333] dark:text-[#ff6b6b] hover:underline">
         &larr; Zurück zur Übersicht
       </a>
     </nav>
 
     <header class="mb-8">
-      <div class="flex items-center gap-3 mb-4 text-sm">
-        <span class="px-3 py-1 rounded-full bg-rose-950/80 border border-rose-800/50 text-rose-300 font-bold uppercase text-xs">
+      <div class="flex items-center gap-3 mb-4 text-sm flex-wrap">
+        <span class="px-3 py-1 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] font-bold uppercase text-xs">
           {post.category}
         </span>
         {post.location_tag && (
-          <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">
+          <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230] text-xs font-semibold">
             📍 {post.location_tag}
           </span>
         )}
-        <time datetime={post.date} class="text-slate-400 text-xs font-medium ml-auto">
+        <time datetime={post.date} class="text-[#5b403d] dark:text-[#d4c5c2] text-xs font-medium ml-auto">
           {new Date(post.date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-4">
         {post.title}
       </h1>
 
-      <p class="text-sm text-slate-400">
-        Veröffentlicht von <span class="text-slate-200 font-semibold">{post.author || 'SprachCafé Redaktion'}</span>
+      <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+        Veröffentlicht von <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">{post.author || 'SprachCafé Redaktion'}</span>
       </p>
     </header>
 
     {post.featured_image && (
-      <div class="w-full h-80 sm:h-96 rounded-3xl overflow-hidden bg-slate-900 mb-10 border border-slate-800 shadow-2xl">
+      <div class="w-full h-80 sm:h-96 rounded-3xl overflow-hidden bg-[#f8f2f0] dark:bg-[#2a2725] mb-10 border border-[#e7e1df] dark:border-[#363230] shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
         <img src={post.featured_image} alt={post.title} class="w-full h-full object-cover" />
       </div>
     )}
 
-    <div class="bg-brand-surface border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
-      <div class="prose prose-invert max-w-none text-brand-text-muted text-lg leading-relaxed space-y-6">
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+      <div class="font-sans text-[#1d1b1a] dark:text-[#f5f0ee] text-lg leading-relaxed space-y-6">
         <p>{post.content}</p>
       </div>
     </div>

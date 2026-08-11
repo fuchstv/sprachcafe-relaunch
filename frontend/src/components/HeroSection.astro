@@ -26,22 +26,22 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
     
     <!-- Hero Text Content -->
     <div class="lg:col-span-7 text-center lg:text-left">
       {badge && (
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-sm font-semibold mb-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-sm font-semibold mb-6">
           <span>{badge}</span>
         </div>
       )}
 
-      <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-6">
         {title}
       </h1>
 
-      <p class="text-lg sm:text-xl text-brand-text-muted max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
         {subtitle}
       </p>
 
@@ -49,7 +49,7 @@ const {
         {primaryCtaText && (
           <a
             href={primaryCtaLink}
-            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-primary-light text-slate-950 font-bold hover:bg-sky-300 transition-colors shadow-lg shadow-sky-500/20 text-center"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#DD3333] hover:bg-[#b9151e] text-white font-bold transition-all shadow-md text-center"
           >
             {primaryCtaText} &rarr;
           </a>
@@ -57,7 +57,7 @@ const {
         {secondaryCtaText && (
           <a
             href={secondaryCtaLink}
-            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-white font-semibold hover:bg-slate-700 transition-colors text-center"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold hover:border-[#DD3333] transition-all text-center"
           >
             {secondaryCtaText}
           </a>
@@ -69,15 +69,15 @@ const {
     <div class="lg:col-span-5 relative">
       <div class="grid grid-cols-2 gap-4">
         <div class="space-y-4">
-          <div class="h-48 sm:h-56 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+          <div class="h-48 sm:h-56 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] shadow-md">
             <img src={images[0]} alt="SprachCafé Begegnung 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="h-32 sm:h-40 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+          <div class="h-32 sm:h-40 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] shadow-md">
             <img src={images[1]} alt="SprachCafé Begegnung 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
         </div>
         <div class="pt-8">
-          <div class="h-64 sm:h-72 rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+          <div class="h-64 sm:h-72 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] shadow-md">
             <img src={images[2]} alt="SprachCafé Begegnung 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
         </div>

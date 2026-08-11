@@ -29,23 +29,23 @@ const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lan
     data-pagefind-filter={`type:Book, language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
   >
     <nav class="mb-8 flex items-center justify-between">
-      <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary-light hover:underline">
+      <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-bold text-[#DD3333] dark:text-[#ff6b6b] hover:underline">
         &larr; Zurück zum Bibliothekskatalog
       </a>
       
-      <div class="text-xs text-slate-400 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 flex items-center gap-2">
-        <span>Stand: <strong class="text-slate-200">{buildTime} Uhr</strong></span>
-        <span id="detail-live-status-notice" class="text-slate-400">• 🔄 Live-Check...</span>
+      <div class="text-xs text-[#5b403d] dark:text-[#d4c5c2] bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl px-3 py-1.5 flex items-center gap-2">
+        <span>Stand: <strong class="text-[#1d1b1a] dark:text-[#f5f0ee]">{buildTime} Uhr</strong></span>
+        <span id="detail-live-status-notice" class="text-[#5b403d] dark:text-[#d4c5c2]">• 🔄 Live-Check...</span>
       </div>
     </nav>
 
-    <div class="bg-brand-surface border border-slate-800 rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-10">
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] p-6 sm:p-10">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Book Cover -->
         {book.cover && (
-          <div class="bg-slate-900 rounded-2xl p-6 flex items-center justify-center border border-slate-800">
-            <img src={book.cover} alt={`Cover: ${book.title}`} class="max-h-80 object-contain shadow-xl rounded-md" />
+          <div class="bg-[#f8f2f0] dark:bg-[#2a2725] rounded-2xl p-6 flex items-center justify-center border border-[#e7e1df] dark:border-[#363230]">
+            <img src={book.cover} alt={`Cover: ${book.title}`} class="max-h-80 object-contain shadow-md rounded-md" />
           </div>
         )}
 
@@ -53,10 +53,10 @@ const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lan
         <div class:list={['flex flex-col justify-between', book.cover ? 'md:col-span-2' : 'md:col-span-3']}>
           <div>
             <div class="flex flex-wrap items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full bg-slate-800 text-sky-400 text-xs font-bold uppercase">
+              <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#DD3333] dark:text-[#ff6b6b] border border-[#e7e1df] dark:border-[#363230] text-xs font-bold">
                 Sprache: {book.language}
               </span>
-              <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">
+              <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230] text-xs font-semibold">
                 {book.category}
               </span>
               <span
@@ -64,51 +64,51 @@ const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lan
                 data-book-id={numericBookId}
                 class:list={[
                   'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors',
-                  book.status === 'verfuegbar' ? 'bg-emerald-950/80 border border-emerald-800/60 text-emerald-400' :
-                  book.status === 'ausgeliehen' ? 'bg-rose-950/80 border border-rose-800/60 text-rose-400' :
-                  'bg-amber-950/80 border border-amber-800/60 text-amber-400'
+                  book.status === 'verfuegbar' ? 'bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300' :
+                  book.status === 'ausgeliehen' ? 'bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300' :
+                  'bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300'
                 ]}
               >
                 {book.status === 'verfuegbar' ? 'Verfügbar' : book.status === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}
               </span>
             </div>
 
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-2">
               {book.title}
             </h1>
             
-            <p class="text-xl font-medium text-slate-300 mb-6">
-              Von <span class="text-white font-semibold">{book.author}</span>
+            <p class="font-sans text-xl font-medium text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+              Von <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">{book.author}</span>
             </p>
 
-            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-6 mb-6 space-y-2 text-sm text-brand-text-muted">
+            <div class="bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 mb-6 space-y-2 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
               <div class="flex justify-between">
                 <span>Standort:</span>
-                <span class="text-white font-semibold">📍 {book.location}</span>
+                <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">📍 {book.location}</span>
               </div>
               <div class="flex justify-between">
                 <span>ISBN:</span>
-                <span class="font-mono text-slate-300">{book.isbn}</span>
+                <span class="font-mono text-[#5b403d] dark:text-[#d4c5c2]">{book.isbn}</span>
               </div>
               <div class="flex justify-between">
                 <span>Medium:</span>
-                <span class="text-slate-300">Gedrucktes Buch</span>
+                <span class="text-[#1d1b1a] dark:text-[#f5f0ee]">Gedrucktes Buch</span>
               </div>
             </div>
 
             {book.description && (
               <div class="mb-8">
-                <h2 class="text-lg font-bold text-white mb-2">Beschreibung / Klappentext</h2>
-                <p class="text-brand-text-muted leading-relaxed text-sm">{book.description}</p>
+                <h2 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Beschreibung / Klappentext</h2>
+                <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-sm">{book.description}</p>
               </div>
             )}
           </div>
 
           <!-- Reservation / Loan Action with Deep-Link -->
-          <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="pt-6 border-t border-[#e7e1df] dark:border-[#363230] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <span class="block text-xs uppercase tracking-wider text-slate-400">Ausleihe & Live-Status</span>
-              <span class="text-xs text-brand-text-muted">Verbindliche Reservierung via hausbibliothek.org</span>
+              <span class="block text-xs uppercase tracking-wider text-[#5b403d] dark:text-[#d4c5c2] font-bold">Ausleihe & Live-Status</span>
+              <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">Verbindliche Reservierung via hausbibliothek.org</span>
             </div>
             
             <a
@@ -116,7 +116,7 @@ const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lan
               href={deepLinkBookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-colors text-center shadow-lg shadow-emerald-500/20"
+              class="w-full sm:w-auto px-6 py-3 rounded-full bg-[#43AD48] hover:bg-[#006c1a] text-white font-bold transition-all text-center shadow-md"
             >
               Verbindlichen Live-Status auf hausbibliothek.org prüfen &rarr;
             </a>
@@ -147,21 +147,21 @@ const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lan
           if (match) {
             const liveStatus = match.availability_status || match.status;
             if (liveStatus === 'available' || liveStatus === 'verfuegbar') {
-              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-emerald-950/80 border border-emerald-800/60 text-emerald-400';
+              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300';
               badge.textContent = '🟢 Verfügbar (Live)';
             } else {
-              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-rose-950/80 border border-rose-800/60 text-rose-400';
+              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300';
               badge.textContent = '🔴 Ausgeliehen (Live)';
             }
           }
           if (notice) {
-            notice.innerHTML = '• ✅ <span class="text-emerald-400">Live-Status synchronisiert</span>';
+            notice.innerHTML = '• ✅ <span class="text-emerald-600 dark:text-emerald-400 font-bold">Live-Status synchronisiert</span>';
           }
         })
         .catch(err => {
           console.warn('Live detail status fetch warning:', err.message);
           if (notice) {
-            notice.innerHTML = '• ⚠️ <span class="text-slate-400">Statisch (Live-Check offline)</span>';
+            notice.innerHTML = '• ⚠️ <span class="text-[#5b403d] dark:text-[#d4c5c2]">Statisch (Live-Check offline)</span>';
           }
         });
     });

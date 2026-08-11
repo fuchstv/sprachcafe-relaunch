@@ -23,30 +23,30 @@ const {
 } = Astro.props;
 ---
 
-<div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between hover:border-slate-700 transition-colors">
+<div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-[0_4px_20px_rgba(51,49,48,0.05)] flex flex-col justify-between hover:border-[#DD3333]/50 transition-all">
   <div>
     <div class="flex items-center justify-between mb-4">
-      <span class="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-xs font-bold uppercase">
+      <span class="px-3 py-1 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-xs font-bold uppercase">
         📍 {location}
       </span>
-      <span class="text-xs text-slate-400 font-medium">SprachCafé & Hausbibliothek</span>
+      <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2] font-medium">SprachCafé & Hausbibliothek</span>
     </div>
 
-    <h3 class="text-xl font-bold text-white mb-1">{location}</h3>
-    {subTitle && <p class="text-xs text-sky-400 font-semibold mb-2">{subTitle}</p>}
-    <p class="text-sm text-brand-text-muted mb-6 leading-relaxed whitespace-pre-line">
+    <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">{location}</h3>
+    {subTitle && <p class="text-xs text-[#DD3333] dark:text-[#ff6b6b] font-semibold mb-2">{subTitle}</p>}
+    <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6 leading-relaxed whitespace-pre-line">
       🏢 {address}
     </p>
 
-    <div class="space-y-2 text-sm border-t border-slate-800/80 pt-4">
-      <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">🕒 Öffnungszeiten & Treffen</h4>
+    <div class="space-y-2 text-sm border-t border-[#e7e1df] dark:border-[#363230] pt-4">
+      <h4 class="text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">🕒 Öffnungszeiten & Treffen</h4>
       {openingHours ? (
-        <p class="text-slate-300 whitespace-pre-line leading-relaxed text-sm">{openingHours}</p>
+        <p class="text-[#5b403d] dark:text-[#d4c5c2] whitespace-pre-line leading-relaxed text-sm">{openingHours}</p>
       ) : hours ? (
         hours.map((item) => (
-          <div class="flex justify-between text-slate-300 py-0.5 gap-2">
-            <span class="text-brand-text-muted">{item.day}:</span>
-            <span class="font-semibold text-white text-right">{item.time}</span>
+          <div class="flex justify-between text-[#5b403d] dark:text-[#d4c5c2] py-0.5 gap-2">
+            <span class="text-[#5b403d] dark:text-[#d4c5c2]">{item.day}:</span>
+            <span class="font-semibold text-[#1d1b1a] dark:text-[#f5f0ee] text-right">{item.time}</span>
           </div>
         ))
       ) : null}
