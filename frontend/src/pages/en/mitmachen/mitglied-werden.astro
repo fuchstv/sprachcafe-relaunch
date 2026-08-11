@@ -1,0 +1,388 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const lang = 'en';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  'name': 'SprachCafé Polnisch e.V.',
+  'url': 'https://sprachcafe-polnisch.org/en/',
+  'description': 'Where community and culture find a home — Become a member of SprachCafé Polnisch e.V.',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Membership Tiers',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'name': 'Silver Membership',
+        'price': '50.00',
+        'priceCurrency': 'EUR',
+        'description': 'Annual fee for individuals & supporters'
+      },
+      {
+        '@type': 'Offer',
+        'name': 'Gold Membership',
+        'price': '120.00',
+        'priceCurrency': 'EUR',
+        'description': 'Annual fee for families & committed supporters'
+      },
+      {
+        '@type': 'Offer',
+        'name': 'Platinum Membership',
+        'price': '200.00',
+        'priceCurrency': 'EUR',
+        'description': 'Annual fee for cultural patrons'
+      },
+      {
+        '@type': 'Offer',
+        'name': 'Corporate Membership',
+        'priceSpecification': {
+          '@type': 'PriceSpecification',
+          'description': 'Custom annual contribution for companies and partners'
+        }
+      }
+    ]
+  }
+};
+---
+
+<Layout
+  title="Become a Member — SprachCafé Polnisch e.V."
+  description="Where community and culture find a home: Join SprachCafé Polnisch e.V. Learn about the 4 steps, membership tiers (Silver, Gold, Platinum, Corporate), and bank transfer details."
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <main class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <!-- Hero Header -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
+        <span>❤️ Shape Community & Culture</span>
+      </div>
+      
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-6">
+        Where Community and Culture Find a Home
+      </h1>
+      
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] max-w-3xl mx-auto leading-relaxed">
+        Become part of SprachCafé Polnisch e.V. — Together we promote intercultural exchange, bilingual education, and community engagement in Berlin (Pankow, Schöneberg, Köpenick).
+      </p>
+    </div>
+
+    <!-- 4-Schritte-Erklärung -->
+    <section class="mb-20" id="schritte">
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+          Become a Member in 4 Easy Steps
+        </h2>
+        <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2]">
+          Joining our association is straightforward and transparent.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 relative flex flex-col justify-between shadow-[0_4px_20px_rgba(51,49,48,0.04)] hover:shadow-lg transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-[#8B263E] text-white flex items-center justify-center font-bold text-lg mb-4">
+              1
+            </div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+              Read the Constitution
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+              Read our association constitution (Satzung) to learn about our goals, rights, and principles.
+            </p>
+          </div>
+          <a
+            href="/downloads/Satzung-SCP-12.06.2020.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+          >
+            <span>📄 Download Constitution PDF</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 relative flex flex-col justify-between shadow-[0_4px_20px_rgba(51,49,48,0.04)] hover:shadow-lg transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-[#8B263E] text-white flex items-center justify-center font-bold text-lg mb-4">
+              2
+            </div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+              Support Values
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+              Discover our mission and values for an open, multilingual, and inclusive society.
+            </p>
+          </div>
+          <a
+            href="/ueber-uns/mission/"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+          >
+            <span>🎯 View Mission & Values</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 relative flex flex-col justify-between shadow-[0_4px_20px_rgba(51,49,48,0.04)] hover:shadow-lg transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-[#8B263E] text-white flex items-center justify-center font-bold text-lg mb-4">
+              3
+            </div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+              Membership Type
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+              Choose between active membership (with voting rights) or supporting membership.
+            </p>
+          </div>
+          <span class="text-xs text-[#8B263E] dark:text-[#ff758f] font-medium">Active or Supporting</span>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 relative flex flex-col justify-between shadow-[0_4px_20px_rgba(51,49,48,0.04)] hover:shadow-lg transition-all">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-[#8B263E] text-white flex items-center justify-center font-bold text-lg mb-4">
+              4
+            </div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+              Select Tier
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+              Select your preferred contribution level (Silver, Gold, Platinum, or Corporate).
+            </p>
+          </div>
+          <a href="#stufen" class="inline-flex items-center gap-2 text-sm font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <span>👇 View Tiers</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Membership Tiers -->
+    <section class="mb-20" id="stufen">
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+          Choose Your Membership Tier
+        </h2>
+        <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl mx-auto">
+          Your contribution directly sustains our community spaces, house library, and language workshops for adults and children.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Silver -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
+          <div>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Individuals</span>
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Silver</h3>
+            <div class="mb-6">
+              <span class="font-serif text-4xl font-bold text-[#8B263E] dark:text-[#ff758f]">50 €</span>
+              <span class="text-sm text-[#5b403d] dark:text-[#d4c5c2]"> / year</span>
+            </div>
+            <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Voting rights at General Assembly (active members)
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Free access to House Library (Hausbibliothek)
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> 10% discount on workshops
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Regular association newsletter
+              </li>
+            </ul>
+          </div>
+          <a
+            href="#ueberweisung"
+            class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
+          >
+            Select Silver
+          </a>
+        </div>
+
+        <!-- Gold (Recommended) -->
+        <div class="bg-gradient-to-b from-[#8B263E] to-[#6b1d30] text-white rounded-3xl p-8 flex flex-col justify-between shadow-xl relative transform lg:-translate-y-2 border-2 border-[#ff758f]">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#ff758f] text-[#6b1d30] font-bold text-xs uppercase px-4 py-1 rounded-full tracking-wider shadow-md">
+            Recommended
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider font-semibold text-white/80">Families & Supporters</span>
+            <h3 class="font-serif text-2xl font-bold mt-1 mb-4">Gold</h3>
+            <div class="mb-6">
+              <span class="font-serif text-4xl font-bold text-white">120 €</span>
+              <span class="text-sm text-white/80"> / year</span>
+            </div>
+            <ul class="space-y-3 text-sm text-white/90 mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> All Silver tier benefits
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Free entry to selected cultural events
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Priority book borrowing in library
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Invitations to exclusive member meetups
+              </li>
+            </ul>
+          </div>
+          <a
+            href="#ueberweisung"
+            class="w-full text-center px-4 py-3 rounded-xl bg-white text-[#8B263E] font-bold hover:bg-slate-100 transition-colors shadow-md"
+          >
+            Select Gold
+          </a>
+        </div>
+
+        <!-- Platinum -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
+          <div>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Cultural Patrons</span>
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Platinum</h3>
+            <div class="mb-6">
+              <span class="font-serif text-4xl font-bold text-[#8B263E] dark:text-[#ff758f]">200 €</span>
+              <span class="text-sm text-[#5b403d] dark:text-[#d4c5c2]"> / year</span>
+            </div>
+            <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> All Gold tier benefits
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Priority reservations for children's camps & workshops
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Name listing on Patron Wall (optional)
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Invitation to annual appreciation reception
+              </li>
+            </ul>
+          </div>
+          <a
+            href="#ueberweisung"
+            class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
+          >
+            Select Platinum
+          </a>
+        </div>
+
+        <!-- Corporate Membership -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
+          <div>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Companies & Partners</span>
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Corporate</h3>
+            <div class="mb-6">
+              <span class="font-serif text-3xl font-bold text-[#8B263E] dark:text-[#ff758f]">Custom</span>
+            </div>
+            <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Logo placement on website & at major events
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Sponsorship of bilingual children projects
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Tax-deductible donation receipts (Spendenbescheinigung)
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Customized partnership packages
+              </li>
+            </ul>
+          </div>
+          <a
+            href="/kontakt/"
+            class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bank Transfer Details -->
+    <section class="bg-gradient-to-r from-[#8B263E]/5 to-[#8B263E]/10 dark:from-[#8B263E]/20 dark:to-[#8B263E]/10 border border-[#8B263E]/20 rounded-3xl p-8 sm:p-12 mb-16" id="ueberweisung">
+      <div class="max-w-3xl mx-auto">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 rounded-2xl bg-[#8B263E] text-white flex items-center justify-center text-2xl shadow-md">
+            🏦
+          </div>
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+              Bank Transfer Details for Membership Fee
+            </h2>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+              Please transfer your annual membership contribution to the following account:
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-[#1e1c1a] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2 border-b border-[#e7e1df] dark:border-[#363230]">
+            <span class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Bank Name:</span>
+            <span class="sm:col-span-2 font-mono font-semibold text-[#1d1b1a] dark:text-[#f5f0ee]">Deutsche Skatbank</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2 border-b border-[#e7e1df] dark:border-[#363230]">
+            <span class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2]">IBAN:</span>
+            <span class="sm:col-span-2 font-mono font-bold text-lg text-[#8B263E] dark:text-[#ff758f] select-all">
+              DE79 8306 5408 0004 9743 36
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2 border-b border-[#e7e1df] dark:border-[#363230]">
+            <span class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2]">BIC:</span>
+            <span class="sm:col-span-2 font-mono font-semibold text-[#1d1b1a] dark:text-[#f5f0ee] select-all">
+              GENODEF1SLR
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-2">
+            <span class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Payment Reference:</span>
+            <span class="sm:col-span-2 font-mono text-sm text-[#1d1b1a] dark:text-[#f5f0ee] bg-[#f8f2f0] dark:bg-[#2a2725] p-2 rounded border border-[#e7e1df] dark:border-[#363230]">
+              Mitgliedsbeitrag 2026 - [Firstname Lastname]
+            </span>
+          </div>
+        </div>
+
+        <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-center">
+          SprachCafé Polnisch e.V. is a recognized non-profit organization (gemeinnütziger Verein). Membership fees and donations are tax-deductible in Germany.
+        </p>
+      </div>
+    </section>
+
+    <!-- Links & Downloads Footer Section -->
+    <div class="flex flex-wrap items-center justify-between gap-4 p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">📜</span>
+        <div>
+          <h4 class="font-serif font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">Important Association Documents</h4>
+          <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">Constitution, principles, and mission of SprachCafé</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <a
+          href="/downloads/Satzung-SCP-12.06.2020.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 text-sm font-medium rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] hover:bg-[#8B263E] hover:text-white transition-colors"
+        >
+          Download Constitution (PDF)
+        </a>
+        <a
+          href="/ueber-uns/mission/"
+          class="px-4 py-2 text-sm font-medium rounded-xl bg-[#8B263E] text-white hover:bg-[#6b1d30] transition-colors"
+        >
+          Our Mission
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
