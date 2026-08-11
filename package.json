@@ -1,0 +1,10 @@
+{
+  "name": "sprachcafe-relaunch-monorepo",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "node-ical": "^0.20.1",
+    "rrule": "^2.8.1"
+  }
+}
