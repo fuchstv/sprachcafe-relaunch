@@ -48,14 +48,14 @@ Diese Anleitung richtet sich an Redakteur:innen **ohne Git- oder Programmierkenn
    - 🖼️ **Ausstellungen**: `frontend/src/content/exhibitions/`
    - 🛒 **Shop-Artikel**: `frontend/src/content/shopItems/`
    - 📄 **Seiten & Rechtliches**: `frontend/src/content/pages/`
-3. Klicke auf die Datei, die du bearbeiten möchtest (z. B. `sommerfest-2026.md`).
+3. Klicke auf die Datei, die du bearbeiten möchtest (z. B. `sommerfest-2026.md` oder `regeln.md`).
 
 ### Schritt 2: Bearbeitung starten
 1. Klicke oben rechts über der Dateiansicht auf das **Stiftsymbol 📝 ("Edit this file")**.
 2. Du siehst nun den Text der Datei.
 
 ### Schritt 3: Text anpassen (Mehrsprachigkeit beachten)
-Ppasse die entsprechenden Sprachblöcke an. Beispiel:
+Passe die entsprechenden Sprachblöcke an. Beispiel:
 
 ```yaml
 title:
@@ -107,62 +107,35 @@ Alle Medien werden zentral im AWS S3-Bucket **`sprachcafe-media-storage`** gespe
 
 ---
 
-### 📤 3 Wege zum Hochladen von Medien in S3
+## 🔗 6. Single Source of Truth: Anbindung der Bibliotheks-App (`hausbibliothek.org`)
 
-#### Weg 1: Upload-Skript (Empfohlen für lokale Bearbeitung)
-Im Ordner `scripts/` steht ein einfaches CLI-Tool zur Verfügung:
+Um **Doppelpflege von Rechtstexten und Regeln** (z. B. Impressum, Bibliotheksregeln, Datenschutz) zu vermeiden, greift die bestehende Bibliotheks-App (`hausbibliothek.org`) direkt per REST API auf die Headless-CMS Pages-Collection zu:
 
-```bash
-# Bild für ein Event hochladen:
-python3 scripts/upload_media_to_s3.py ./sommerfest.jpg --folder events
+### 1. Datenquelle (Single Source of Truth)
+- Sämtliche statischen Informationsseiten befinden sich als Markdown-Dateien im Haupt-Repository unter:
+  - `frontend/src/content/pages/regeln.md` (Ausleihbedingungen & Regulamin)
+  - `frontend/src/content/pages/impressum.md` (Impressum & Vorstand)
+  - `frontend/src/content/pages/datenschutz.md` (Datenschutzerklärung)
 
-# PDF für Downloads hochladen:
-python3 scripts/upload_media_to_s3.py ./satzung.pdf --folder downloads
-```
+### 2. Öffentlicher API-Export Endpunkt
+- Die Hauptseite generiert beim SSG-Build automatisch eine öffentliche JSON-Schnittstelle:
+  - URL: `https://beta.sprachcafe-polnisch.org/export/pages.json`
+- Ausgabeformat:
+  ```json
+  [
+    {
+      "slug": "regeln",
+      "title_de": "Bibliotheksregeln",
+      "title_pl": "Regulamin biblioteki",
+      "content_de": "...",
+      "content_pl": "...",
+      "source": "Astro Content Collections (Headless CMS)"
+    }
+  ]
+  ```
 
-**Ausgabe des Skripts**:
-Das Skript gibt direkt die fertige S3-URL sowie den passenden YAML-Schnipsel zum Kopieren aus:
-```
-✅ Upload Complete! Resulting S3 URLs:
-
-📄 File: sommerfest.jpg
-🔗 S3 URL: https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sommerfest.jpg
-📋 YAML Snippet:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sommerfest.jpg"
-```
-
-#### Weg 2: AWS CLI
-```bash
-aws s3 cp ./satzung.pdf s3://sprachcafe-media-storage/downloads/satzung.pdf --content-type "application/pdf"
-```
-
-#### Weg 3: AWS Management Console (Browser)
-1. Bei der **AWS Console** anmelden ➔ Dienst **S3** öffnen.
-2. Bucket **`sprachcafe-media-storage`** auswählen.
-3. In den Ziel-Ordner navigieren (z. B. `events/`, `team/`, `downloads/`).
-4. Auf **"Upload"** klicken und Datei hineinziehen.
-5. Nach dem Upload die **Object URL** kopieren (z. B. `https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/...`).
-
----
-
-### 📝 Referenzieren der S3-URL in Content Collections
-
-In der Markdown-/YAML-Datei wird die kopierte S3-URL im entsprechenden Bild- oder Datei-Feld eingetragen:
-
-```yaml
-# Beispiel Event (frontend/src/content/events/sommerfest.md)
-image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sommerfest.jpg"
-  alt:
-    de: "Eingangsbereich beim Sommerfest"
-    pl: "Wejście na festyn letni"
-    en: "Entrance at the summer festival"
-
-# Beispiel Download (frontend/src/content/downloads/satzung.md)
-title:
-  de: "Vereinssatzung (PDF)"
-  pl: "Statut stowarzyszenia (PDF)"
-  en: "Association Statutes (PDF)"
-s3FileUrl: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/downloads/satzung.pdf"
-```
-
+### 3. Automatische Übernahme in `hausbibliothek.org`
+- Die Bibliotheks-App (`backend/pages.php`) prüft bei Anfragen auf `/api/pages/{slug}` zuerst den Stand aus der Astro Headless-CMS Pages-Collection.
+- Stimmt der Slug überein (z. B. `regeln`, `impressum`, `datenschutz`), gibt das Backend die Inhalte aus dem Headless CMS an das React-Frontend aus.
+- Falls die CMS-Schnittstelle nicht erreichbar ist, greift ein automatischer Fallback auf die lokale MySQL-Datenbanktabelle `pages`.
+- Im React-Admin-Editor der Bibliotheks-App (`DynamicPage.tsx`) wird Redakteur:innen transparent angezeigt, dass die Seite zentral im Headless CMS verwaltet wird.
