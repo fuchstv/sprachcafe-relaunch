@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import MembershipForm from '../../components/MembershipForm.astro';
 
 const lang = 'de';
 
@@ -174,7 +175,7 @@ const jsonLd = {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
         <!-- Silver -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
@@ -200,7 +201,7 @@ const jsonLd = {
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Silver wählen
@@ -235,7 +236,7 @@ const jsonLd = {
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl bg-white text-[#8B263E] font-bold hover:bg-slate-100 transition-colors shadow-md"
           >
             Gold wählen
@@ -267,7 +268,7 @@ const jsonLd = {
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Platinum wählen
@@ -298,13 +299,16 @@ const jsonLd = {
             </ul>
           </div>
           <a
-            href="/kontakt/"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
-            Kontakt aufnehmen
+            Firmen wählen
           </a>
         </div>
       </div>
+
+      <!-- Online Form -->
+      <MembershipForm lang={lang} />
     </section>
 
     <!-- Bank- & Überweisungsdetails -->

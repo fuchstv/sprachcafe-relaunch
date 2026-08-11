@@ -5,6 +5,7 @@
   "scripts": {
     "create:content": "npx tsx scripts/create_content_item.ts",
     "deploy:flows": "npx tsx scripts/deploy_m365_flows.ts",
+    "setup:mitglied-flow": "npx tsx scripts/setup-mitglied-flow.ts",
     "sync:calendars": "npx tsx scripts/sync_google_calendars.ts",
     "sync:library": "npx tsx scripts/sync_hausbibliothek_catalog.ts"
   },

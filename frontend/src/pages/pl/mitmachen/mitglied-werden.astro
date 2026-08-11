@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import MembershipForm from '../../../components/MembershipForm.astro';
 
 const lang = 'pl';
 
@@ -298,13 +299,16 @@ const jsonLd = {
             </ul>
           </div>
           <a
-            href="/kontakt/"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Napisz do nas
           </a>
         </div>
       </div>
+
+      <!-- Online Form -->
+      <MembershipForm lang={lang} />
     </section>
 
     <!-- Bank- & Überweisungsdetails -->

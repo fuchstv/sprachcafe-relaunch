@@ -1,0 +1,23 @@
+{
+  "name": "PowerAutomate_Flow_Membership_Application",
+  "displayName": "SprachCafé - Mitgliedsantrag (HTTP Webhook zu SharePoint zu Teams)",
+  "targetList": "Mitgliedsanträge",
+  "targetSite": "https://sprachcafepolnisch.sharepoint.com/sites/Vorstand",
+  "fields": [
+    "Title",
+    "FirmaName",
+    "Geburtsdatum",
+    "Strasse",
+    "PLZ",
+    "Ort",
+    "Beruf",
+    "EMail",
+    "Telefon",
+    "MitgliedschaftsArt",
+    "MitgliedschaftsStufe",
+    "WieGehoert",
+    "Unterstuetzung",
+    "SatzungGelesen",
+    "DatenschutzAkzeptiert"
+  ]
+}
