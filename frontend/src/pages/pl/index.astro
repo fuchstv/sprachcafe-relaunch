@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import LibraryReferralSection from '../../components/LibraryReferralSection.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const lang = 'pl';
@@ -47,4 +48,8 @@ const t = useTranslations(lang);
       </div>
     </div>
   </section>
+
+  <!-- Sekcja odnośnika do hausbibliothek.org -->
+  <LibraryReferralSection lang={lang} />
 </Layout>
+

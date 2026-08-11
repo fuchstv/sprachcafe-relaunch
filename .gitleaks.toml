@@ -5,7 +5,7 @@ title = "SprachCafé Gitleaks Config"
 
 [allowlist]
   description = "Global allowlist for example environment templates and test mocks"
-  files = [
+  paths = [
     '''\.env\.example$''',
     '''docs/.*\.md$''',
     '''infra/README\.md$'''
@@ -38,5 +38,7 @@ title = "SprachCafé Gitleaks Config"
 [[rules]]
   id = "generic-api-key"
   description = "Identified Generic Hardcoded API Key or Secret"
-  regex = '''(?i)(?:secret|token|password|passwd|api_key)\s*[:=]\s*["'](?![A-Za-z0-9_-]*example)[A-Za-z0-9_=-]{16,}["']'''
+  regex = '''(?i)(?:secret|token|password|passwd|api_key)\s*[:=]\s*["'][A-Za-z0-9_=-]{16,}["']'''
   keywords = ["secret", "token", "password", "api_key"]
+  [rules.allowlist]
+    stopwords = ["example"]

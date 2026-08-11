@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "sync:library": "tsx ../scripts/sync_hausbibliothek_catalog.ts",
+    "sync:library:dry-run": "tsx ../scripts/sync_hausbibliothek_catalog.ts --dry-run",
+    "build": "npx -y tsx ../scripts/sync_hausbibliothek_catalog.ts && astro build && pagefind --site dist",
     "preview": "astro preview",
     "pagefind": "pagefind --site dist",
     "test:a11y": "astro build && pagefind --site dist && node scripts/test-a11y.js",

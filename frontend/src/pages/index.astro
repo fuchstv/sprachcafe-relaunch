@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import LocationOpeningHoursCard from '../components/LocationOpeningHoursCard.astro';
 import TestimonialGrid from '../components/TestimonialGrid.astro';
+import LibraryReferralSection from '../components/LibraryReferralSection.astro';
 import { useTranslations } from '../i18n/utils';
 
 const lang = 'de';
@@ -22,6 +23,9 @@ const t = useTranslations(lang);
     secondaryCtaLink="/hausbibliothek/"
   />
 
+  <!-- Prominenter Verweis auf hausbibliothek.org ("Zu unserer Bibliothek") -->
+  <LibraryReferralSection lang={lang} />
+
   <!-- Standorte & Öffnungszeiten Grid -->
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     <div class="mb-10 text-center">
@@ -34,28 +38,28 @@ const t = useTranslations(lang);
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <LocationOpeningHoursCard
         location="Pankow"
-        address="Schönholzer Str. 13, 13187 Berlin"
+        address="Schulzestr. 1, 13187 Berlin-Pankow (an der S1 Wollankstraße)"
         hours={[
-          { day: "Dienstag", time: "18:00 - 20:30 Uhr" },
-          { day: "Donnerstag", time: "16:00 - 19:00 Uhr" }
+          { day: "Montag - Freitag", time: "10:00 - 18:00 Uhr (bei Veranstaltungen länger)" },
+          { day: "Samstag & Sonntag", time: "während der Veranstaltungen geöffnet" }
         ]}
         contactEmail="pankow@sprachcafe-polnisch.org"
       />
       <LocationOpeningHoursCard
         location="Schöneberg"
-        address="Hauptstraße 26, 10827 Berlin"
+        subTitle="Stadtteilzentrum & KiezRaum"
+        address={"Stadtteilzentrum: Hauptstraße 121 A, 10827 Berlin\nKiezRaum: Gotenstr. 45, 10829 Berlin"}
         hours={[
-          { day: "Mittwoch", time: "17:00 - 20:00 Uhr" },
-          { day: "Freitag", time: "18:30 - 21:30 Uhr" }
+          { day: "Veranstaltungen", time: "während der Veranstaltungen geöffnet" }
         ]}
         contactEmail="schoeneberg@sprachcafe-polnisch.org"
       />
       <LocationOpeningHoursCard
         location="Köpenick"
-        address="Bahnhofstraße 8, 12555 Berlin"
+        subTitle="Nachbarschaftstreff Wiesentreff"
+        address="Am Wiesengraben 7a, 12557 Berlin-Köpenick"
         hours={[
-          { day: "Montag", time: "15:00 - 18:00 Uhr" },
-          { day: "Samstag", time: "11:00 - 15:00 Uhr" }
+          { day: "Veranstaltungen", time: "während der Veranstaltungen geöffnet" }
         ]}
         contactEmail="koepenick@sprachcafe-polnisch.org"
       />
@@ -66,3 +70,4 @@ const t = useTranslations(lang);
   <TestimonialGrid />
 
 </Layout>
+

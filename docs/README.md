@@ -14,6 +14,8 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Such-Komponente & Performance-Benchmark](./SEARCH_BENCHMARK.md): Pagefind Client-Side Suchkomponente, Filter & Benchmark (< 15 ms Latency).
 - [Pagefind Statische Volltextsuche](./PAGEFIND_SEARCH.md): Integration in Astro-Build (`pagefind --site dist`), `data-pagefind-filter` Attribute.
 - [Design-Entscheidungsprotokoll](./design-decisions.md): Bewertung bestehender UI-Muster (Cookie-Banner Entfall, CSS-Scroll-Snap vs. Slider-Plugins).
+- [DSGVO-Datenschutz-Konzept & Sicherheits-Audit](./DSGVO_KONZEPT.md): Zero-Attack-Surface vs. Hausbibliothek, Auth-Audit, Löschkonzept für inaktive Konten.
+- [Hausbibliothek Audit & Architektur-Bewertung](./hausbibliothek-audit.md): Technischer Aufbau, PHP 8.4/MySQL 8.0, RAM/CPU-Messungen, Integrationsempfehlung.
 - [Self-Hosted Schriftarten & Performance](./SELF_HOSTED_FONTS.md): Lokale WOFF2-Einbindung (`font-display: swap`), 0 externe Font-Anfragen, DSGVO & LCP < 1,5s.
 - [WordPress zu Astro Komponenten-Mapping](./COMPONENT_MAPPING.md): Zuordnung aller Theme-Sektionen zu wiederverwendbaren Astro/Tailwind-Komponenten.
 - [Marken-Assets & S3 Sync](./BRAND_ASSETS.md): Optimierung & S3-Upload aller Logos, Favicons, Social- & Herz-Icons.
@@ -25,6 +27,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Branch-Strategie & Deployment-Pipeline](./BRANCHING_STRATEGY.md): Definition von `main`/`beta`, Caddy-Routing, Branch Protection & CI/CD Trigger.
 - [System-Architektur & Diagramme](./architecture/architecture-overview.md): Übersicht über Komponenten, Schnittstellen und Datenflüsse.
 - [Rollback-Prozedur (ROLLBACK.md)](./ROLLBACK.md): Schritt-für-Schritt-Anleitung zur Wiederherstellung bei kritischen Deployment-Fehlern.
+- [Entscheidungsprotokoll: Verwerfen von Directus CMS zugunsten von Node.js Express & SQLite (ADR 0003)](./decisions/0003-retire-directus-cms.md): Dokumentation der Architektur-Entscheidung.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts

@@ -28,8 +28,9 @@ const t = useTranslations(lang);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Brand Asset: SVG Favicon Variant -->
-    <link rel="icon" type="image/svg+xml" href="/brand-assets/favicon.svg" />
+    <!-- Official Brand Assets: Favicon & Logo -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/brand-assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/brand-assets/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     
     <title>{title}</title>
@@ -55,13 +56,14 @@ const t = useTranslations(lang);
     <header role="banner" class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
-        <!-- Optimized SVG Brand Logo -->
+        <!-- Official Brand Logo -->
         <a
           href={lang === 'de' ? '/' : `/${lang}/`}
-          class="flex items-center gap-2.5 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-1"
+          class="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-1"
           aria-label="SprachCafé Polnisch Startseite"
         >
-          <img src="/brand-assets/logo.svg" alt="SprachCafé Polnisch Logo" class="h-10 w-auto" />
+          <img src="/brand-assets/logo.webp" alt="SprachCafé Polnisch Logo" class="h-12 w-auto object-contain rounded-lg shadow-sm" />
+          <span class="font-bold text-lg tracking-tight text-white hidden sm:inline-block">SprachCafé Polnisch e.V.</span>
         </a>
 
         <!-- Semantic Landmark: Main Navigation -->
@@ -82,7 +84,7 @@ const t = useTranslations(lang);
             href="/posts/"
             class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
           >
-            Magazin
+            Blog
           </a>
           <a
             href="/hausbibliothek/"
@@ -90,15 +92,29 @@ const t = useTranslations(lang);
           >
             {t('nav.library')}
           </a>
+          <a
+            href="/mitmachen/"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            Mitmachen
+          </a>
+          <a
+            href="/kontakt/"
+            class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1"
+          >
+            {t('nav.contact')}
+          </a>
         </nav>
 
-        <!-- Reusable Language Switcher -->
-        <LanguageSwitcher currentLang={lang} />
+        <!-- Right Side: Language Switcher -->
+        <div class="flex items-center gap-3">
+          <LanguageSwitcher currentLang={lang} />
+        </div>
       </div>
     </header>
 
-    <!-- Semantic Landmark: Main Content -->
-    <main id="main-content" role="main" tabindex="-1" class="flex-grow focus:outline-none">
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-grow">
       <slot />
     </main>
 
@@ -108,22 +124,13 @@ const t = useTranslations(lang);
         
         <div class="flex items-center gap-3">
           <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-6 h-6" />
-          <p>&copy; {new Date().getFullYear()} SprachCafé Polnisch e.V. — Alle Rechte vorbehalten.</p>
+          <p>&copy; 2026 SprachCafé Polnisch e.V. — Alle Rechte vorbehalten.</p>
         </div>
 
-        <!-- Social / Fediverse Icons -->
-        <div class="flex items-center gap-4">
+        <!-- Official Social Icons (Facebook, Instagram, YouTube, LinkedIn, TikTok) -->
+        <div class="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
           <a
-            href="https://fediverse.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
-            aria-label="Fediverse / Mastodon Kanal"
-          >
-            <img src="/brand-assets/icon-fediverse.svg" alt="Fediverse Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
-          </a>
-          <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/sprachcafe.polnisch/"
             target="_blank"
             rel="noopener noreferrer"
             class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
@@ -132,13 +139,40 @@ const t = useTranslations(lang);
             <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/sprachcafepolnisch/"
             target="_blank"
             rel="noopener noreferrer"
             class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
             aria-label="Instagram Profil"
           >
             <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UCAgdsEs-YX_i6tDGbBtEz-w"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            aria-label="YouTube Kanal"
+          >
+            <img src="/brand-assets/icon-youtube.svg" alt="YouTube Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/sprachcafe-polnisch-ev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            aria-label="LinkedIn Firmenseite"
+          >
+            <img src="/brand-assets/icon-linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
+          </a>
+          <a
+            href="https://www.tiktok.com/@sprachcafepolnisch?_r=1&_t=ZN-95X7nApX6xC"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-sky-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-full"
+            aria-label="TikTok Profil"
+          >
+            <img src="/brand-assets/icon-tiktok.svg" alt="TikTok Icon" class="w-5 h-5 filter invert opacity-80 hover:opacity-100" />
           </a>
         </div>
 

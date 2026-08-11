@@ -88,7 +88,7 @@ export const mockBooks: BookItem[] = [
     isbn: '978-3596904006',
     language: 'DE',
     category: 'Klassiker',
-    location: 'Schöneberg',
+    location: 'Pankow',
     status: 'verfuegbar',
     cover: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop',
     description: 'Klassischer Bildungsroman über Hans Castorp im Sanatorium in den Schweizer Alpen.'
@@ -100,7 +100,7 @@ export const mockBooks: BookItem[] = [
     isbn: '978-8308064436',
     language: 'PL',
     category: 'Science Fiction',
-    location: 'Köpenick',
+    location: 'Pankow',
     status: 'ausgeliehen',
     cover: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&auto=format&fit=crop',
     description: 'Słynna powieść fantastycznonaukowa o próbach kontaktu z obcą inteligencją.'
@@ -124,12 +124,14 @@ export const mockBooks: BookItem[] = [
     isbn: '978-9660378040',
     language: 'UKR',
     category: 'Poesie',
-    location: 'Schöneberg',
+    location: 'Pankow',
     status: 'verfuegbar',
     cover: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop',
     description: 'Zbiór poezji Tarasa Szewczenki - klasyka literatury ukraińskiej.'
   }
 ];
+
+import staticBooks from '../data/books.json';
 
 export async function getEvents(): Promise<EventItem[]> {
   return mockEvents;
@@ -148,10 +150,14 @@ export async function getPostBySlug(slug: string): Promise<PostItem | undefined>
 }
 
 export async function getBooks(): Promise<BookItem[]> {
+  if (Array.isArray(staticBooks) && staticBooks.length > 0) {
+    return staticBooks as BookItem[];
+  }
   return mockBooks;
 }
 
 export async function getBookById(id: string): Promise<BookItem | undefined> {
-  return mockBooks.find(b => b.id === id);
+  const books = await getBooks();
+  return books.find(b => b.id === id);
 }
 

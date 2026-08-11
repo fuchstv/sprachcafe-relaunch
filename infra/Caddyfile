@@ -12,6 +12,68 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org {
 	root * /var/www/production
 	encode zstd gzip
 
+	# ==============================================================================
+	# 301 Redirect Map: Legacy WordPress URLs -> Astro Routes (Phase 6.1)
+	# ==============================================================================
+
+	# 1. Date-based Post Permalinks (/YYYY/MM/DD/slug & /YYYY/MM/slug)
+	@wp_date_day path_regexp wp_date_day ^/(\d{4})/(\d{2})/(\d{2})/(.+?)/?$
+	redir @wp_date_day /posts/{re.wp_date_day.4} 301
+
+	@wp_date_month path_regexp wp_date_month ^/(\d{4})/(\d{2})/(.+?)/?$
+	redir @wp_date_month /posts/{re.wp_date_month.3} 301
+
+	# 2. Multilingual Legacy Post Permalinks (/(de|pl|en)/YYYY/MM/slug)
+	@wp_lang_date path_regexp wp_lang_date ^/(de|pl|en)/(\d{4})/(\d{2})/(.+?)/?$
+	redir @wp_lang_date /{re.wp_lang_date.1}/posts/{re.wp_lang_date.4} 301
+
+	# 3. Specific WordPress Post & Article Slugs Mappings
+	redir /erfolgreicher-relaunch/ /posts/erfolgreicher-relaunch-webportal 301
+	redir /erfolgreicher-relaunch /posts/erfolgreicher-relaunch-webportal 301
+	redir /neue-buchbestaende-koepenick/ /posts/neue-buchbestaende-koepenick 301
+	redir /neue-buchbestaende-koepenick /posts/neue-buchbestaende-koepenick 301
+	redir /pl/udany-relaunch/ /posts/erfolgreicher-relaunch-webportal 301
+	redir /pl/udany-relaunch /posts/erfolgreicher-relaunch-webportal 301
+
+	# 4. Legacy Categories, Tags, Authors & RSS Feeds
+	@wp_categories path_regexp wp_cats ^/category/(.+?)/?$
+	redir @wp_categories /posts/ 301
+
+	@wp_tags path_regexp wp_tags ^/tag/(.+?)/?$
+	redir @wp_tags /posts/ 301
+
+	@wp_authors path_regexp wp_authors ^/author/(.+?)/?$
+	redir @wp_authors /posts/ 301
+
+	@wp_feeds path_regexp wp_feeds ^/(feed|rss|rss2|atom)/?$
+	redir @wp_feeds /posts/ 301
+
+	# 5. Legacy Pages & Content Sections to Astro Routes
+	redir /ueber-uns/ /de/ 301
+	redir /ueber-uns /de/ 301
+	redir /ueber-uns/mission/ /de/ 301
+	redir /ueber-uns/mission /de/ 301
+	redir /projekte/ /posts/ 301
+	redir /projekte /posts/ 301
+	redir /de/projekte/ /posts/ 301
+	redir /de/projekte /posts/ 301
+	redir /freiwillig/ /mitmachen/ 301
+	redir /freiwillig /mitmachen/ 301
+	redir /ehrenamt/ /mitmachen/ 301
+	redir /ehrenamt /mitmachen/ 301
+	redir /engagiere-dich-als-freiwilliger/ /mitmachen/ 301
+	redir /engagiere-dich-als-freiwilliger /mitmachen/ 301
+	redir /test-engagiere-dich-als-freiwilliger/ /mitmachen/ 301
+	redir /test-engagiere-dich-als-freiwilliger /mitmachen/ 301
+	redir /veranstaltungen/ /events/ 301
+	redir /veranstaltungen /events/ 301
+	redir /bibliothek/ /hausbibliothek/ 301
+	redir /bibliothek /hausbibliothek/ 301
+
+	# 6. Legacy WordPress Admin & System Endpoints
+	redir /wp-admin* https://admin.sprachcafe-polnisch.org 301
+	redir /wp-login.php https://admin.sprachcafe-polnisch.org 301
+
 	handle {
 		file_server
 	}
@@ -62,14 +124,11 @@ admin.sprachcafe-polnisch.org {
 # -> Staging-Proxy auf Port 3000 (separater Build-Ordner / Staging)
 # ==============================================================================
 beta.sprachcafe-polnisch.org {
+	root * /var/www/beta
 	encode zstd gzip
 
-	reverse_proxy 127.0.0.1:3000 {
-		header_up Host {host}
-		header_up X-Real-IP {remote_host}
-		header_up X-Forwarded-For {remote_host}
-		header_up X-Forwarded-Proto {scheme}
-		header_up X-Forwarded-Host {host}
+	handle {
+		file_server
 	}
 
 	# Roboter-Indizierung für Staging unterbinden

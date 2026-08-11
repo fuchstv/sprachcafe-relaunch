@@ -1,0 +1,153 @@
+---
+interface Props {
+  lang?: 'de' | 'pl' | 'en';
+}
+
+const { lang = 'de' } = Astro.props;
+
+const content = {
+  de: {
+    badge: "📖 Digitale Vereinsbibliothek",
+    title: "Zu unserer Bibliothek",
+    subtitle: "Entdecke unseren zweisprachigen Buchbestand. Über unser digitales Portal hausbibliothek.org kannst du online recherchieren, Medien ausleihen, Vormerkungen vornehmen und dein Leserkonto verwalten.",
+    ctaPrimary: "Direkt zu hausbibliothek.org",
+    ctaPrimarySub: "Katalog, Ausleihe & Konto",
+    cards: [
+      {
+        icon: "🔍",
+        title: "Katalog-Suche",
+        desc: "Durchsuche über 400 Titel in deutscher und polnischer Sprache an allen drei Standorten."
+      },
+      {
+        icon: "📚",
+        title: "Kostenlose Ausleihe",
+        desc: "Leihe Bücher für 4 Wochen aus – vor Ort in Pankow, Schöneberg oder Köpenick."
+      },
+      {
+        icon: "🔖",
+        title: "Vormerkung & Reservierung",
+        desc: "Reserviere verliehene Titel direkt online und erhalte Benachrichtigungen bei Rückgabe."
+      },
+      {
+        icon: "👤",
+        title: "Mein Nutzerkonto",
+        desc: "Verwalte deine Ausleihen, verlängere Leihfristen und behalte alle Daten im Blick."
+      }
+    ]
+  },
+  pl: {
+    badge: "📖 Cyfrowa Biblioteka",
+    title: "Do naszej Biblioteki",
+    subtitle: "Odkryj nasz dwujęzyczny księgozbiór. Przez portal hausbibliothek.org możesz przeszukiwać katalog, wypożyczać książki, rezerwować tytuły i zarządzać kontem czytelnika.",
+    ctaPrimary: "Przejdź do hausbibliothek.org",
+    ctaPrimarySub: "Katalog, Wypożyczenia i Konto",
+    cards: [
+      {
+        icon: "🔍",
+        title: "Szukaj w katalogu",
+        desc: "Przeglądaj ponad 400 książek po polsku i niemiecku we wszystkich 3 lokalizacjach."
+      },
+      {
+        icon: "📚",
+        title: "Wypożyczenia",
+        desc: "Wypożyczaj książki na 4 tygodnie w Pankow, Schöneberg i Köpenick."
+      },
+      {
+        icon: "🔖",
+        title: "Rezerwacje",
+        desc: "Rezerwuj niedostępne pozycje online i otrzymuj powiadomienia o zwrotach."
+      },
+      {
+        icon: "👤",
+        title: "Konto czytelnika",
+        desc: "Sprawdzaj aktywne wypożyczenia i przedłużaj terminy zwrotu w dowolnym momencie."
+      }
+    ]
+  },
+  en: {
+    badge: "📖 Digital Library",
+    title: "Visit Our Library",
+    subtitle: "Discover our bilingual book collection. Access hausbibliothek.org to search the catalog, borrow books, reserve upcoming titles, and manage your reader account.",
+    ctaPrimary: "Open hausbibliothek.org",
+    ctaPrimarySub: "Catalog, Loans & Account",
+    cards: [
+      {
+        icon: "🔍",
+        title: "Catalog Search",
+        desc: "Search over 400 titles in German and Polish across all 3 Berlin locations."
+      },
+      {
+        icon: "📚",
+        title: "Book Loans",
+        desc: "Borrow books for 4 weeks at Pankow, Schöneberg, or Köpenick."
+      },
+      {
+        icon: "🔖",
+        title: "Reservations",
+        desc: "Reserve borrowed books online and receive updates upon availability."
+      },
+      {
+        icon: "👤",
+        title: "Reader Account",
+        desc: "Track active loans, extend due dates, and manage your profile."
+      }
+    ]
+  }
+};
+
+const current = content[lang] || content.de;
+---
+
+<section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950/80 to-slate-900 border border-sky-800/60 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+    
+    <!-- Background Glow Effect -->
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-3xl mb-12">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/20 border border-sky-500/30 text-sky-300 text-xs font-bold uppercase tracking-wider mb-4">
+        {current.badge}
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        {current.title}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+        {current.subtitle}
+      </p>
+    </div>
+
+    <!-- 4 Action Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {current.cards.map((card) => (
+        <div class="bg-slate-900/90 border border-slate-800/90 rounded-2xl p-6 flex flex-col hover:border-sky-500/50 hover:bg-slate-900 transition-all duration-300 shadow-lg">
+          <div class="text-3xl mb-4" aria-hidden="true">{card.icon}</div>
+          <h3 class="text-lg font-bold text-white mb-2">{card.title}</h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed flex-grow">{card.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Prominent CTA Banner -->
+    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-inner">
+      <div class="text-center sm:text-left">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-400 block mb-1">
+          hausbibliothek.org
+        </span>
+        <h4 class="text-xl font-bold text-white">
+          {current.ctaPrimarySub}
+        </h4>
+      </div>
+
+      <a
+        href="https://hausbibliothek.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-primary-light text-slate-950 font-bold hover:bg-sky-300 transition-colors shadow-lg shadow-sky-500/20 text-center flex items-center justify-center gap-2 group text-base"
+      >
+        <span>{current.ctaPrimary}</span>
+        <span class="group-hover:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+  </div>
+</section>

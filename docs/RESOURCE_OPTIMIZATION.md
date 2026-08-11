@@ -1,69 +1,49 @@
-# Ressourcen- & Speicher-Optimierung (2 GB AWS Lightsail)
+# Ressourcen- & Kapazitätsplanung (2 GB AWS Lightsail Host)
 
-Dieses Dokument analysiert die Datenbank-Engines, Speicherverbrauch und die Optimierungsstrategie für den parallelen Betrieb des SprachCafé Relaunchs und der bestehenden Hausbibliothek auf einer **2 GB RAM AWS Lightsail-Instanz**.
-
----
-
-## 1. Analyse der bestehenden Datenbank-Engine
-
-Eine Überprüfung des bestehenden Hausbibliothek-Setups ([`minimalist_home_library/docker-compose.prod.yml`](file:///home/ubuntu/minimalist_home_library/docker-compose.prod.yml)) zeigt:
-- **Datenbank-Engine**: **MySQL 8.0** (Docker Container `library_db`)
-- **Standard-Verhalten**: Ohne explizite Drosselung allokiert MySQL 8.0 standardmäßig `innodb_buffer_pool_size` > 512 MB sowie ~150 MB für das `performance_schema`.
+Dieses Dokument analysiert die Datenbank-Engines, den tatsächlichen Speicherverbrauch (empirische L.1 Messwerte) und die finale Datenbank-Konsolidierungsentscheidung für den **dauerhaften parallelen Betrieb** des SprachCafé Webportals und der Hausbibliothek auf einer **2 GB RAM AWS Lightsail-Instanz**.
 
 ---
 
-## 2. Architektur-Entscheidung: SQLite für das neue Headless CMS
+## 1. Empirische L.1 Messwerte aus dem laufenden Betrieb
 
-Das parallele Ausführen zweier vollwertiger RDBMS-Serverprozesse (MySQL 8.0 für die Hausbibliothek + PostgreSQL 15 für das CMS) auf einer 2-GB-Instanz würde über 800 MB RAM allein für Datenbank-Daemons beanspruchen. Dies führt bei Lastspitzen zu Out-of-Memory (OOM) Kills.
+Eine direkte Ressourcen-Messung via `docker stats --no-stream` auf dem Live-System zeigt den exakten Speicherverbrauch der Dauerbetriebs-Container:
 
-### ✅ Entscheidung: SQLite für das Headless CMS
-- **Kein zweiter DB-Serverprozess**: SQLite läuft eingebettet (in-process) innerhalb des CMS Node.js-Prozesses.
-- **Speicher-Ersparnis**: Spart ca. **200 MB bis 350 MB RAM** gegenüber einem separaten PostgreSQL-Container.
-- **Perfekt für Vereinsseiten**: Reicht für Lese- und Schreib-Traffic der SprachCafé-Plattform vollkommen aus.
-- **Persistenz**: Die SQLite-Datenbankdatei wird im persistenten Host-Pfad `/opt/sprachcafe/cms-data/cms.db` gespeichert.
-
----
-
-## 3. Drosselung des Hausbibliothek MySQL-Servers (`innodb_buffer_pool_size`)
-
-Um den RAM-Verbrauch des bestehenden MySQL-Containers zu begrenzen, wird die Konfigurationsdatei [`infra/mysql-tuning.cnf`](../infra/mysql-tuning.cnf) bereitgestellt:
-
-```ini
-[mysqld]
-# Drosselung des InnoDB Buffer Pools auf 128 MB (ausreichend für Bibliothekskatalog)
-innodb_buffer_pool_size = 128M
-innodb_log_buffer_size = 8M
-
-# Performance Schema deaktivieren (spart ~100MB+ RAM)
-performance_schema = OFF
-
-# Verbindungen begrenzen (Standard 151 -> 30)
-max_connections = 30
-table_open_cache = 400
-```
-
-### Einbindung in den Hausbibliothek MySQL-Container:
-Im `docker-compose.yml` der Hausbibliothek wird die Datei als Read-Only Mount eingebunden:
-```yaml
-  database:
-    image: mysql:8.0
-    volumes:
-      - db_data:/var/lib/mysql
-      - ../infra/mysql-tuning.cnf:/etc/mysql/conf.d/tuning.cnf:ro
-```
+| Komponente / Container Name | Docker Image | Ist-Verbrauch (RAM) | Speicher-Limit | CPU-Last |
+|---|---|---|---|---|
+| **Hausbibliothek DB (`library_db`)** | `mysql:8.0` | **78.39 MiB** | 512.00 MiB | 0.73% |
+| **Hausbibliothek Backend (`library_backend`)** | `php:8.4-apache` | **21.69 MiB** | 128.00 MiB | 0.01% |
+| **Hausbibliothek Proxy (`library_proxy`)** | `caddy:2-alpine` | **33.18 MiB** | 64.00 MiB | 0.01% |
+| **Hausbibliothek Admin (`library_admin`)** | `phpmyadmin:latest` | **46.39 MiB** | 96.00 MiB | 0.01% |
+| **GESAMT HAUSBIBLIOTHEK STACK** | **4 Container** | **~179.65 MiB** | **—** | **0.76%** |
 
 ---
 
-## 4. Speicher-Budgetierung (2 GB RAM Host)
+## 2. Speicher-Budgetierung & Kapazitätsplanung (2 GB RAM Host)
 
-Durch den Einsatz von **SQLite** für das CMS und die **MySQL-Drosselung** bleibt die Gesamtauslastung der 2-GB-Instanz im grünen Bereich:
+Da die Hausbibliothek **dauerhaft** als isolierter Dienst unter `hausbibliothek.org` betrieben wird, ergibt sich folgende Gesamtauslastung auf dem 2 GB (2.048 MB) Lightsail-Server:
 
-| Komponente | Ohne Optimierung | Mit Optimierung (SQLite & MySQL Drosselung) | Ersparnis |
-|------------|------------------|--------------------------------------------|-----------|
-| **Hausbibliothek MySQL** | ~550 MB | **192 MB** (Limit: 256 MB) | ~358 MB |
-| **Hausbibliothek Backend & Proxy** | ~180 MB | **128 MB** | ~52 MB |
-| **Neues Headless CMS DB** | PostgreSQL (~220 MB) | **SQLite (0 MB Daemon)** | **220 MB** |
-| **Neues Headless CMS App** | ~250 MB | **192 MB** | ~58 MB |
-| **Astro Frontend & Caddy** | ~150 MB | **96 MB** | ~54 MB |
-| **OS & Buffer Cache** | ~350 MB | **350 MB** | 0 MB |
-| **GESAMT RAM-BEDARF** | **~1.700 MB (Kritisch)** | **~958 MB (Optimal)** | **~742 MB frei!** |
+| Komponente / Dienst | Verwendete Technologie | Ist-RAM-Verbrauch | Max. Limit |
+|---|---|---|---|
+| **Hausbibliothek Stack (Dauerbetrieb)** | MySQL 8.0 + PHP 8.4 + Caddy | **179.65 MiB** | 800.00 MiB |
+| **Headless CMS Service** | Node.js + Embedded SQLite 3 (`cms.db`) | **192.00 MiB** | 256.00 MiB |
+| **Astro Frontend Service** | SSG Build / Node.js SSR | **96.00 MiB** | 128.00 MiB |
+| **Host-Betriebssystem & Kernel-Puffer** | Ubuntu Linux 24.04 LTS | **350.00 MiB** | 500.00 MiB |
+| **GESAMT-AUSLASTUNG PROJEKT** | **Alle Services & OS** | **~817.65 MiB** | **1.684,00 MiB** |
+
+### Fazit Kapazitätsplanung (0.1):
+Mit einer Gesamtauslastung von **unter 820 MB RAM** verbleiben auf der 2 GB Instanz **über 1.200 MB RAM freie Reserve**. Ein Engpass oder Ausfallrisiko durch Out-of-Memory (OOM) Kills existiert nicht.
+
+---
+
+## 3. Datenbank-Konsolidierungs-Entscheidung (0.1b & L.1)
+
+Es wurde geprüft, ob eine Konsolidierung der Hausbibliothek-Datenbank (`library_db` - MySQL 8.0) in die neue CMS-Datenbank (SQLite 3, Phase 4.1) sinnvoll und vertretbar ist.
+
+### ❌ Konsolidierung in SQLite wird ABGELEHNT
+1. **Migrations- & Ausfallrisiko**: Die Hausbibliothek besitzt verknüpfte Relationen (Leserkonten, Ausleihhistorie, Fristen, Vormerkungen, bcrypt-Passwort-Hashes). Ein Wechsel der Datenbank-Engine würde ein hohes Risiko für Datenverlust oder Login-Probleme der aktiven Nutzerinnen und Nutzer bedeuten.
+2. **Code-Kopplung**: Das PHP-Backend nutzt MySQL-spezifische SQL-Befehle (`FOR UPDATE` Zeilensperren für konkurrierende Ausleihen, `CURDATE()`, PDO-MySQL DSNs). SQLite unterstützt keine `FOR UPDATE` Sperren, was zu Lock-Konflikten bei zeitgleichen Buchungen führen würde.
+3. **Ressourcenverfügbarkeit**: Da der MySQL-Container dank Tuning ([`infra/mysql-tuning.cnf`](../infra/mysql-tuning.cnf)) in der Praxis nur **~78 MB RAM** benötigt, entsteht durch den parallelen Betrieb kein nennenswerter Over-Head.
+
+### ✅ Beschluss (ADR 0002):
+Die Hausbibliothek **behält dauerhaft ihre eigene MySQL 8.0 Datenbank (`library_db`)**.
+Details siehe [ADR 0002: Dauerhafte Datenbank-Erhaltung der Hausbibliothek](./decisions/0002-database-consolidation-decision.md).
