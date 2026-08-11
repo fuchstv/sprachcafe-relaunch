@@ -27,35 +27,44 @@ sequenceDiagram
 
 ---
 
-## 📋 1. Microsoft Forms Setup (3 Formulare)
+## 📋 1. Microsoft Forms (Aktivierte Vereins-Formulare)
 
-Erstellen Sie in Ihrem Microsoft 365 Vereins-Account drei Formulare mit folgenden Feldern:
+Die nachfolgenden Microsoft Forms Formulare sind für das Redaktionsteam eingerichtet:
 
 ### Formular 1: `Neues Team-Mitglied anlegen`
-1. **Vollständiger Name** (Text, Pflicht)
-2. **Rolle / Funktion (DE)** (Text, Pflicht)
-3. **Rolle / Funktion (PL)** (Text, Optional)
-4. **Rolle / Funktion (EN)** (Text, Optional)
-5. **E-Mail-Adresse** (Text/E-Mail, Optional)
-6. **Telefonnummer** (Text, Optional)
-7. **Profilfoto-URL** (Text/URL, Pflicht - z. B. S3-Link)
-8. **Biografie (DE)** (Mehrzeiliger Text, Optional)
-9. **Sortier-Reihenfolge** (Zahl, Standard: 10)
+- 🔗 **Formular-Link**: [https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u)
+- 🆔 **Form ID**: `CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u`
+- **Erfasste Felder**:
+  1. Vollständiger Name
+  2. Rolle / Funktion (DE, PL, EN)
+  3. E-Mail & Telefonnummer
+  4. Profilfoto-URL (S3 / Cloud)
+  5. Biografie (DE, PL, EN)
+  6. Sortier-Reihenfolge
+
+---
 
 ### Formular 2: `Neue Ausstellung / Galerie eintragen`
-1. **Titel der Ausstellung (DE)** (Text, Pflicht)
-2. **Künstler:in / Urheber:in** (Text, Pflicht)
-3. **Startdatum** (Datum, Pflicht)
-4. **Enddatum** (Datum, Pflicht)
-5. **Beschreibung (DE)** (Mehrzeiliger Text, Pflicht)
-6. **Hauptbild-URL** (Text/URL, Pflicht)
+- 🔗 **Formular-Link**: [https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUME1NN0xVOEw4M1dNNUZBUk42N1NaTDQ1RS4u](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUME1NN0xVOEw4M1dNNUZBUk42N1NaTDQ1RS4u)
+- 🆔 **Form ID**: `CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUME1NN0xVOEw4M1dNNUZBUk42N1NaTDQ1RS4u`
+- **Erfasste Felder**:
+  1. Titel der Ausstellung (DE, PL, EN)
+  2. Künstler:in / Urheber:in
+  3. Startdatum & Enddatum
+  4. Beschreibung (DE, PL, EN)
+  5. Hauptbild-URL
+
+---
 
 ### Formular 3: `Neuer Laden-Artikel eintragen`
-1. **Artikelname (DE)** (Text, Pflicht)
-2. **Beschreibung (DE)** (Mehrzeiliger Text, Pflicht)
-3. **Preis / Spendenbeitrag** (Text, Pflicht - z. B. `15,00 € Spendenbeitrag`)
-4. **Verfügbarkeit** (Auswahl: `in_stock`, `out_of_stock`, `on_request`)
-5. **Produktbild-URL** (Text/URL, Pflicht)
+- 🔗 **Formular-Link**: [https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u)
+- 🆔 **Form ID**: `CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u`
+- **Erfasste Felder**:
+  1. Artikelname (DE, PL, EN)
+  2. Beschreibung (DE, PL, EN)
+  3. Preis / Spendenbeitrag
+  4. Verfügbarkeit (`in_stock`, `out_of_stock`, `on_request`)
+  5. Produktbild-URL
 
 ---
 
