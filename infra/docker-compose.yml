@@ -1,7 +1,7 @@
 version: '3.8'
 
 # Docker Compose Setup for SprachCafé Relaunch Monorepo
-# RAM-Optimized for 2 GB Lightsail Host (Embedded SQLite Database, Caddy Reverse Proxy, Astro Frontend)
+# RAM-Optimized for 2 GB Lightsail Host (Caddy Reverse Proxy, Astro Frontend)
 
 services:
   # Reverse Proxy
@@ -32,37 +32,6 @@ services:
           memory: 16M
     depends_on:
       - frontend
-      - cms
-
-  # Headless CMS (Node.js + Embedded SQLite 3)
-  cms:
-    build:
-      context: ../cms
-      dockerfile: Dockerfile
-    container_name: sprachcafe_cms
-    restart: unless-stopped
-    environment:
-      PORT: ${CMS_PORT:-3000}
-      CMS_ADMIN_SECRET: ${CMS_ADMIN_SECRET:-sprachcafe-cms-secret-jwt-key-2026}
-      DB_CLIENT: ${DB_CLIENT:-sqlite3}
-      DB_DIR: /opt/sprachcafe/cms-data
-      DB_FILENAME: ${DB_FILENAME:-/opt/sprachcafe/cms-data/cms.db}
-      ADMIN_EMAIL: ${CMS_ADMIN_EMAIL:-admin@sprachcafe-polnisch.org}
-      AWS_REGION: ${AWS_REGION:-eu-central-1}
-      AWS_S3_BUCKET: ${AWS_S3_BUCKET_MEDIA:-sprachcafe-media-storage}
-      POWER_AUTOMATE_MEMBER_WEBHOOK_URL: ${POWER_AUTOMATE_MEMBER_WEBHOOK_URL}
-      POWER_AUTOMATE_EVENT_WEBHOOK_URL: ${POWER_AUTOMATE_EVENT_WEBHOOK_URL}
-      POWER_AUTOMATE_CONTACT_WEBHOOK_URL: ${POWER_AUTOMATE_CONTACT_WEBHOOK_URL}
-    volumes:
-      - /opt/sprachcafe/cms-data:/opt/sprachcafe/cms-data
-    ports:
-      - "3000:3000"
-    deploy:
-      resources:
-        limits:
-          memory: 256M
-        reservations:
-          memory: 96M
 
   # Frontend (Astro SSG/SSR)
   frontend:
@@ -74,7 +43,6 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
-      PUBLIC_CMS_API_URL: ${PUBLIC_CMS_API_URL:-http://localhost:8055}
     ports:
       - "3000:3000"
     deploy:
@@ -87,4 +55,3 @@ services:
 volumes:
   caddy_data:
   caddy_config:
-

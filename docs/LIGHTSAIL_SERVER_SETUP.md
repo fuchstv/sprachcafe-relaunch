@@ -36,7 +36,7 @@ Für automatische CI/CD-Deployments (via GitHub Actions) ist ein **dedizierter S
 | `/var/www/beta` | **`deploy`** | `www-data` | `775` (`rwxrwxr-x`) | Zielort für `rsync` Staging Deployment via CI/CD. |
 | `/home/deploy/.ssh/authorized_keys` | `deploy` | `deploy` | `600` (`rw-------`) | Hinterlegter Public Key für GitHub Actions SSH-Zugriff. |
 | `/opt/sprachcafe/infra` | `ubuntu` | `www-data` | `755` (`rwxr-xr-x`) | `ubuntu` führt Docker Compose aus, `www-data` liest Caddyfile. |
-| `/opt/sprachcafe/cms-data` | `postgres` | `postgres` | `700` (`rwx------`) | Ausschließlich vom PostgreSQL Container schreibbar. |
+| `/opt/sprachcafe/cms-data` | `ubuntu` | `ubuntu` | `700` (`rwx------`) | *(Verworfenes Headless-CMS; Ordner/Volume kann auf dem Server mit `sudo rm -rf /opt/sprachcafe/cms-data` gelöscht werden)* |
 
 ---
 

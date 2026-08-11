@@ -13,8 +13,6 @@
 # Phase 2 & 3: Frontend (Astro) & UI Components
 /frontend/ @sprachcafe/frontend-team
 
-# Phase 4 & 5: Headless CMS Configuration & Collections
-/cms/ @sprachcafe/backend-team @sprachcafe/cms-admin
 
 # Phase 6: Migration Scripts (WordPress & Hausbibliothek)
 /scripts/ @sprachcafe/backend-team

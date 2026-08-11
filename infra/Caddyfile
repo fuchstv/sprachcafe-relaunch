@@ -113,15 +113,8 @@ admin.sprachcafe-polnisch.org {
 	# Token-Authentifizierung-Passthrough & Dynamic Header Forwarding zum CMS Backend
 	# Transparente Weiterleitung aller Authorization-Header (Bearer Tokens & JWTs)
 	# --------------------------------------------------------------------------
-	reverse_proxy cms_api:3001 127.0.0.1:3000 {
-		header_up Host {host}
-		header_up X-Real-IP {remote_host}
-		header_up X-Forwarded-For {remote_host}
-		header_up X-Forwarded-Proto {scheme}
-		header_up X-Forwarded-Host {host}
-		# Token Auth Passthrough (Authorization Header with Bearer Token)
-		header_up Authorization {http.request.header.Authorization}
-	}
+	# Headless CMS decommissioned - return 503 Service Unavailable
+	respond "503 Service Unavailable - CMS Admin Interface decommissioned" 503
 
 	# Forced HTTPS Security Headers (HSTS Preload, No-Sniff, Frame Deny)
 	header {

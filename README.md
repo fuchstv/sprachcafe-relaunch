@@ -1,6 +1,6 @@
 # SprachCafé Relaunch - Monorepo
 
-Willkommen im zentralen Repository für den Relaunch der SprachCafé Webplattform. Dieses Repository vereint das Frontend, das Headless CMS, die Infrastruktur-Skripte sowie sämtliche Dokumentationen und CI/CD-Pipelines in einer übersichtlichen Monorepo-Struktur.
+Willkommen im zentralen Repository für den Relaunch der SprachCafé Webplattform. Dieses Repository vereint das Frontend, die Infrastruktur-Skripte sowie sämtliche Dokumentationen und CI/CD-Pipelines in einer übersichtlichen Monorepo-Struktur.
 
 ---
 
@@ -11,7 +11,6 @@ Die Ordnerstruktur ist gemäß den Projektphasen aufgeteilt:
 ```
 sprachcafe-relaunch/
 ├── frontend/             # [Phase 2] Astro-Projekt (Modernes, performantes Frontend)
-├── cms/                  # [Phase 4] Headless-CMS-Konfiguration, Collections & Docker-Setup
 ├── infra/                # [Phase 1] Caddyfile, docker-compose.yml, Terraform/AWS-Skripte
 ├── scripts/              # [Phase 6] Migrationsskripte für WordPress & Hausbibliothek
 ├── .github/              # [Phase 7] CI/CD-Pipelines & Repository-Konfiguration
@@ -23,7 +22,7 @@ sprachcafe-relaunch/
 │   ├── architecture/     # Architekturdiagramme & Systemflüsse
 │   └── decisions/        # Architecture Decision Records (ADRs)
 ├── .gitignore            # Git Ignore Regeln (Node, Docker, Secrets, Build Artifacts)
-├── .env.example          # Beispiel-Umgebungsvariablen (AWS, CMS, DB, Power Automate)
+├── .env.example          # Beispiel-Umgebungsvariablen (AWS, Webhooks)
 └── README.md             # Projekt-Dokumentation (diese Datei)
 ```
 
@@ -42,17 +41,16 @@ Erstellen Sie eine lokale `.env` Datei auf Basis der Vorlage:
 ```bash
 cp .env.example .env
 ```
-Bearbeiten Sie `.env` und tragen Sie die erforderlichen Zugangsdaten ein (z. B. Datenbankpasswörter, Power Automate Webhook URLs, AWS Keys).
+Bearbeiten Sie `.env` und tragen Sie die erforderlichen Zugangsdaten ein (z. B. Power Automate Webhook URLs, AWS Keys).
 
 ### 3. Gesamtes System via Docker starten (Empfohlen)
-Um Frontend, Headless CMS, PostgreSQL und den Caddy Reverse Proxy lokal zu starten:
+Um Frontend und den Caddy Reverse Proxy lokal zu starten:
 ```bash
 cd infra
 docker-compose up -d
 ```
 Anwendungen sind erreichbar unter:
 - **Frontend**: [http://localhost:3000](http://localhost:3000)
-- **Headless CMS Admin**: [http://localhost:8055](http://localhost:8055)
 - **Reverse Proxy**: [http://localhost](http://localhost)
 
 ---
@@ -61,14 +59,12 @@ Anwendungen sind erreichbar unter:
 
 Die Konfiguration erfolgt zentral über Umgebungsvariablen. Wichtige Kategorien:
 
-- **Headless CMS & DB**: `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USER`, `DB_PASSWORD`, `CMS_SECRET`
 - **AWS Cloud Storage**: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_S3_BUCKET_MEDIA`
 - **Power Automate Webhooks**:
   - `POWER_AUTOMATE_MEMBER_WEBHOOK_URL` (Mitgliedsanträge)
   - `POWER_AUTOMATE_EVENT_WEBHOOK_URL` (Veranstaltungsanmeldungen)
   - `POWER_AUTOMATE_CONTACT_WEBHOOK_URL` (Kontaktformular)
-  - `POWER_AUTOMATE_LIBRARY_WEBHOOK_URL` (Hausbibliothek Buchreservierung)
-- **Frontend**: `PUBLIC_ASTRO_SITE_URL`, `PUBLIC_CMS_API_URL`, `CMS_API_TOKEN`
+- **Frontend**: `PUBLIC_ASTRO_SITE_URL`
 
 ---
 
@@ -93,8 +89,8 @@ Auf der AWS Lightsail-Instanz ist die Anwendung unter **`/opt/sprachcafe/`** str
 - **`/opt/sprachcafe/infra`**: Docker Compose, Caddyfile, Shell-Skripte (`setup-lightsail.sh`)
 - **`/opt/sprachcafe/production`**: Web-Root für Production (Symlink: `/var/www/production`)
 - **`/opt/sprachcafe/beta`**: Web-Root für Beta/Staging (Symlink: `/var/www/beta`)
-- **`/opt/sprachcafe/cms-data`**: Persistiertes PostgreSQL Datenverzeichnis (`700`, `999:999`)
-- **`/opt/sprachcafe/backups`**: Täglicher Backup-Speicherort (`cms/` & `hausbibliothek/`)
+- **`/opt/sprachcafe/backups`**: Täglicher Backup-Speicherort (`hausbibliothek/`)
+- *(Hinweis: `/opt/sprachcafe/cms-data` stammte vom verworfenen Headless-CMS-Versuch und kann sicher gelöscht werden, siehe Dokumentation)*
 
 Vollständige Details zu Verzeichnisrechten und Isolierung finden Sie in [docs/LIGHTSAIL_SERVER_SETUP.md](docs/LIGHTSAIL_SERVER_SETUP.md).
 
@@ -106,7 +102,6 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 
 - **`/infra/`**: `@sprachcafe/devops-team`, `@sprachcafe/lead-dev`
 - **`/frontend/`**: `@sprachcafe/frontend-team`
-- **`/cms/`**: `@sprachcafe/backend-team`, `@sprachcafe/cms-admin`
 - **`/scripts/`**: `@sprachcafe/backend-team`
 - **`/.github/workflows/`**: `@sprachcafe/devops-team`, `@sprachcafe/lead-dev`
 - **`/docs/`**: `@sprachcafe/lead-dev`, `@sprachcafe/dev-team`
@@ -135,4 +130,3 @@ Mit jedem Push oder Pull Request auf **`main`** oder **`beta`** werden automatis
 3. **Automated Deployments**:
    - Push auf `beta` ➔ Automatisiertes Deployment nach `/var/www/beta` (`beta.sprachcafe-polnisch.org`)
    - Push auf `main` (via PR) ➔ Automatisiertes Deployment nach `/var/www/production` (`sprachcafe-polnisch.org`)
-

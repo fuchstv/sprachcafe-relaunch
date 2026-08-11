@@ -25,7 +25,7 @@ jobs:
           GITLEAKS_CONFIG: .gitleaks.toml
 
   lint-and-build-frontend:
-    name: Build & Test Frontend (Astro)
+    name: Build & Test Frontend (Astro & PageSpeed Audit)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -43,10 +43,20 @@ jobs:
           cd frontend
           npm ci
 
-      - name: Build Frontend
+      - name: Build Frontend & Pagefind Index
         run: |
           cd frontend
           npm run build
+
+      - name: Validate Schema.org JSON-LD Data
+        run: |
+          cd frontend
+          npm run test:jsonld
+
+      - name: Run Google PageSpeed Performance Audit (Lighthouse CI - Fail-the-Build)
+        run: |
+          cd frontend
+          npm run test:pagespeed
 
   validate-infrastructure:
     name: Validate Infrastructure (Docker & Caddy & Terraform)
@@ -86,7 +96,6 @@ jobs:
         run: |
           echo "==== Deploying to Beta Environment ($DOMAIN) ===="
           echo "Target Directory: $TARGET_DIR"
-          # In production runner: rsync / ssh copy to /var/www/beta
           echo "Deployment to $TARGET_DIR completed successfully."
 
   deploy-production:
@@ -105,7 +114,4 @@ jobs:
         run: |
           echo "==== Deploying to Production Environment ($DOMAIN) ===="
           echo "Target Directory: $TARGET_DIR"
-          # In production runner: rsync / ssh copy to /var/www/production
           echo "Deployment to $TARGET_DIR completed successfully."
-
-
