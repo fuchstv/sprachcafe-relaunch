@@ -19,11 +19,15 @@
 
 import fs from 'fs';
 import path from 'path';
-import dotenv from 'dotenv';
 
-// Load environment variables
-dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
-dotenv.config();
+// Load environment variables safely if dotenv is installed
+try {
+  const dotenv = await import('dotenv');
+  dotenv.default.config({ path: path.resolve(process.cwd(), '../.env') });
+  dotenv.default.config();
+} catch (e) {
+  // Graceful fallback when running in environment with process.env pre-populated
+}
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 const LIBRARY_EXPORT_URL = process.env.LIBRARY_APP_EXPORT_URL || 'http://localhost:8080/api/export/books';
@@ -145,7 +149,6 @@ export function getMockExportBooks(): ExportedBookItem[] {
   }
 
   const csvCandidates = [
-
     path.join(scriptDir, 'katalog_ksiazek.csv'),
     path.resolve(process.cwd(), 'katalog_ksiazek.csv'),
     path.resolve(process.cwd(), 'scripts/katalog_ksiazek.csv'),
