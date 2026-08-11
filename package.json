@@ -14,6 +14,7 @@
     "rrule": "^2.8.1"
   },
   "devDependencies": {
-    "@pnp/cli-microsoft365": "^11.10.0"
+    "@pnp/cli-microsoft365": "^11.10.0",
+    "pac-cli": "^1.0.3"
   }
 }

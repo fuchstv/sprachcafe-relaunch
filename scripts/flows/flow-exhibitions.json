@@ -8,10 +8,13 @@
     "contentVersion": "1.0.0.0",
     "triggers": {
       "When_a_new_response_is_submitted": {
-        "type": "Extension",
+        "type": "OpenApiConnectionWebhook",
         "inputs": {
-          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
-          "parameters": {
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+            "connectionName": "shared_microsoftforms"
+          },
             "form_id": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUME1NN0xVOEw4M1dNNUZBUk42N1NaTDQ1RS4u"
           }
         }
