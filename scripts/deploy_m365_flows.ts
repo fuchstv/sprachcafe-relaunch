@@ -16,7 +16,9 @@ const FLOWS_DIR = path.resolve(scriptDir, 'flows');
 
 function runM365(cmd: string): string {
   try {
-    return execSync(`npx m365 ${cmd}`, { encoding: 'utf-8' });
+    const binPath = path.resolve(scriptDir, '../node_modules/.bin/m365');
+    const m365Bin = fs.existsSync(binPath) ? binPath : 'npx --package=@pnp/cli-microsoft365 m365';
+    return execSync(`${m365Bin} ${cmd}`, { encoding: 'utf-8' });
   } catch (err: any) {
     return err.stdout || err.stderr || err.message;
   }
