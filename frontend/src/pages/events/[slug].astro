@@ -1,21 +1,28 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEvents, getEventBySlug } from '../../lib/cms-api';
-import type { EventItem } from '../../types/cms';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const events = await getEvents();
-  return events.map((event) => ({
-    params: { slug: event.slug },
-    props: { event },
+  const collectionEvents = await getCollection('events');
+  return collectionEvents.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
-interface Props {
-  event: EventItem;
-}
+const { entry } = Astro.props;
+const lang = 'de';
 
-const { event } = Astro.props;
+const event = {
+  slug: entry.slug,
+  title: entry.data.title[lang] || entry.data.title.de,
+  date_start: entry.data.date,
+  location: entry.data.locationRef,
+  language: entry.data.language.join(', ').toUpperCase(),
+  target_group: entry.data.targetAudience[lang] || entry.data.targetAudience.de,
+  description: entry.data.description[lang] || entry.data.description.de,
+  image: entry.data.image.src,
+};
 ---
 
 <Layout title={`${event.title} - SprachCafé Polnisch`} description={event.description}>
@@ -61,12 +68,6 @@ const { event } = Astro.props;
               📅 {new Date(event.date_start).toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })} Uhr
             </span>
           </div>
-          {event.max_participants && (
-            <div class="sm:text-right border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800">
-              <span class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Teilnehmerbegrenzung</span>
-              <span class="text-sm font-semibold text-slate-200">Max. {event.max_participants} Personen</span>
-            </div>
-          )}
         </div>
 
         <div class="prose prose-invert max-w-none text-brand-text-muted leading-relaxed text-lg space-y-4 mb-10">
@@ -80,7 +81,7 @@ const { event } = Astro.props;
             <p class="text-sm text-brand-text-muted">Kostenfrei & ohne verbindliche Anmeldung direkt vorbeikommen!</p>
           </div>
           <a
-            href="#contact"
+            href="/kontakt/"
             class="px-6 py-3 rounded-xl bg-brand-primary-light text-slate-950 font-bold hover:bg-sky-300 transition-colors shadow-lg shadow-sky-500/20 text-center whitespace-nowrap"
           >
             Kontakt / Frage stellen

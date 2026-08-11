@@ -1,41 +1,25 @@
 ---
-export interface TestimonialItem {
-  quote: string;
-  name: string;
-  role?: string;
-  location?: string;
-}
+import { getCollection } from 'astro:content';
 
 interface Props {
   title?: string;
   subtitle?: string;
-  testimonials?: TestimonialItem[];
+  lang?: 'de' | 'pl' | 'en';
 }
 
 const {
   title = "Was unsere Besucher & Community sagen",
   subtitle = "Erfahrungsberichte von Sprachschülern, Künstlern und Vereinsmitgliedern.",
-  testimonials = [
-    {
-      quote: "Ihr habt einen magischen Ort geschaffen. Das SprachCafé Polnisch verbindet Menschen und Kultur auf einzigartige Weise.",
-      name: "A.W.",
-      role: "Künstlerin",
-      location: "Berlin-Pankow"
-    },
-    {
-      quote: "Das SprachCafé ist ein Ort gefüllt mit positiver Energie. Ich habe hier wundervolle Gesprächspartner für mein Polnisch gefunden.",
-      name: "H.P.",
-      role: "Schülerpraktikantin",
-      location: "Berlin-Schöneberg"
-    },
-    {
-      quote: "Die Hausbibliothek bietet fantastische polnische Literatur, und die Frauenkreise sind eine Bereicherung für Familien.",
-      name: "M.K.",
-      role: "Mutter & Bibliotheksnutzerin",
-      location: "Berlin-Köpenick"
-    }
-  ]
+  lang = 'de'
 } = Astro.props;
+
+const rawTestimonials = await getCollection('testimonials');
+const testimonials = rawTestimonials.map((t) => ({
+  quote: t.data.quote[lang] || t.data.quote.de,
+  name: t.data.author,
+  role: t.data.role[lang] || t.data.role.de,
+  avatar: t.data.avatar,
+}));
 ---
 
 <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -62,7 +46,7 @@ const {
           <div>
             <span class="block font-bold text-white text-sm">{item.name}</span>
             <span class="block text-xs text-brand-text-muted">
-              {item.role}{item.location ? ` • ${item.location}` : ''}
+              {item.role}
             </span>
           </div>
         </figcaption>

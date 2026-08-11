@@ -4,10 +4,21 @@ import HeroSection from '../components/HeroSection.astro';
 import LocationOpeningHoursCard from '../components/LocationOpeningHoursCard.astro';
 import TestimonialGrid from '../components/TestimonialGrid.astro';
 import LibraryReferralSection from '../components/LibraryReferralSection.astro';
+import { getCollection } from 'astro:content';
 import { useTranslations } from '../i18n/utils';
 
 const lang = 'de';
 const t = useTranslations(lang);
+
+const locationsCollection = await getCollection('locations');
+const locations = locationsCollection.map((loc) => ({
+  id: loc.slug,
+  name: loc.data.name[lang] || loc.data.name.de,
+  address: `${loc.data.address.street}, ${loc.data.address.zip} ${loc.data.address.city}`,
+  openingHours: loc.data.openingHours[lang] || loc.data.openingHours.de,
+  contactEmail: loc.data.email,
+  mapUrl: loc.data.address.mapUrl,
+}));
 ---
 
 <Layout title="SprachCafé Polnisch - Ort der Begegnung, Sprache und Kultur" lang={lang}>
@@ -36,38 +47,19 @@ const t = useTranslations(lang);
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <LocationOpeningHoursCard
-        location="Pankow"
-        address="Schulzestr. 1, 13187 Berlin-Pankow (an der S1 Wollankstraße)"
-        hours={[
-          { day: "Montag - Freitag", time: "10:00 - 18:00 Uhr (bei Veranstaltungen länger)" },
-          { day: "Samstag & Sonntag", time: "während der Veranstaltungen geöffnet" }
-        ]}
-        contactEmail="pankow@sprachcafe-polnisch.org"
-      />
-      <LocationOpeningHoursCard
-        location="Schöneberg"
-        subTitle="Stadtteilzentrum & KiezRaum"
-        address={"Stadtteilzentrum: Hauptstraße 121 A, 10827 Berlin\nKiezRaum: Gotenstr. 45, 10829 Berlin"}
-        hours={[
-          { day: "Veranstaltungen", time: "während der Veranstaltungen geöffnet" }
-        ]}
-        contactEmail="schoeneberg@sprachcafe-polnisch.org"
-      />
-      <LocationOpeningHoursCard
-        location="Köpenick"
-        subTitle="Nachbarschaftstreff Wiesentreff"
-        address="Am Wiesengraben 7a, 12557 Berlin-Köpenick"
-        hours={[
-          { day: "Veranstaltungen", time: "während der Veranstaltungen geöffnet" }
-        ]}
-        contactEmail="koepenick@sprachcafe-polnisch.org"
-      />
+      {locations.map((loc) => (
+        <LocationOpeningHoursCard
+          location={loc.name}
+          address={loc.address}
+          openingHours={loc.openingHours}
+          contactEmail={loc.contactEmail}
+          mapUrl={loc.mapUrl}
+        />
+      ))}
     </div>
   </section>
 
   <!-- Testimonial Grid Komponente -->
-  <TestimonialGrid />
+  <TestimonialGrid lang={lang} />
 
 </Layout>
-

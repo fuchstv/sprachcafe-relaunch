@@ -1,8 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEvents } from '../../lib/cms-api';
+import { getCollection } from 'astro:content';
 
-const events = await getEvents();
+const lang = 'de';
+
+const collectionEvents = await getCollection('events');
+const events = collectionEvents.map((e) => ({
+  slug: e.slug,
+  title: e.data.title[lang] || e.data.title.de,
+  date_start: e.data.date,
+  location: e.data.locationRef,
+  language: e.data.language.join(', ').toUpperCase(),
+  target_group: e.data.targetAudience[lang] || e.data.targetAudience.de,
+  description: e.data.description[lang] || e.data.description.de,
+  image: e.data.image.src,
+}));
 
 const mainCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&hl=de&mode=AGENDA&src=NWM0M2FmNGIyNmRjMDZhMWMxZjliOTRkNDhmMTNjMzFkNTk3YmJiYjI1Y2U0YzJiZTNhMjdlZGI0NTI3NTRjOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YTVmMDk2YTI3YjU1YmFhODYxOGUzMGZjYjlmMWM3ZDVjNTk3YWMwMjZjYWNhZjJiODk2ODViMmMzYWMyMmI4YkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ODE3YzVkNTcwN2FmY2JmMWY5ZDVhNTRmZDQxMjQ3ZGM3YzUwOTM4NTk0YjIwNjQ2MDRlY2Q2MzlhYjVmNWFlM0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZmE5MzhhZTUyNzQ1MDBmZjFmOWY2ODNmZmI1NjI0MWU0MTQ1ODM5ZTUzZDhmNDU1NGQ1NDRmZDUzNzBhOWU3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OTU4MWYwMWZlNDQxZTljZGJlNzU3M2Q2Y2U3YzY3ZjQ0NDY2NDgxMmZjMDBjYzU5MTUxMzQ5MTI1ZTBjZmM4NEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MTNhMTI4MjY4NzEyMjM0Y2NkMTEzOWE0Zjk2ZDUzMDY5M2Q4YmE5MmZhN2ZlYzg2NzFkNDFhYzRjNjI1MjE0YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23f09300&color=%233f51b5&color=%237986cb&color=%237986cb&color=%234285f4&color=%23616161";
 
@@ -63,8 +75,6 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
               style="border:0;"
               width="100%"
               height="100%"
-              frameborder="0"
-              scrolling="no"
               title="Google Kalender Veranstaltungen SprachCafé Polnisch"
               class="w-full h-full"
             ></iframe>
@@ -95,8 +105,6 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
               style="border:0;"
               width="100%"
               height="100%"
-              frameborder="0"
-              scrolling="no"
               title="Google Kalender SprachCafé für Kinder"
               class="w-full h-full"
             ></iframe>
@@ -152,13 +160,13 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 
                 <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
                   <span class="text-xs text-slate-400">
-                    {event.max_participants ? `Max. ${event.max_participants} Plätze` : 'Ohne Anmeldung'}
+                    Ohne Anmeldung
                   </span>
                   <a
                     href={`/events/${event.slug}/`}
                     class="inline-flex items-center gap-1 text-sm font-semibold text-brand-primary-light hover:text-white transition-colors"
                   >
-                    Details & Anmeldung &rarr;
+                    Details &rarr;
                   </a>
                 </div>
               </div>
