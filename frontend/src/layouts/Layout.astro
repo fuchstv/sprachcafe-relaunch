@@ -8,18 +8,32 @@ interface Props {
   title: string;
   description?: string;
   lang?: LanguageCode;
+  image?: string;
+  type?: string;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
   title,
-  description = "SprachCafé Polnisch - Ort der Begegnung, Sprache und Kultur",
-  lang = "de"
+  description = "SprachCafé Polnisch e.V. - Ort der Begegnung, Sprache und Kultur in Berlin",
+  lang = "de",
+  image,
+  type = "website",
+  jsonLd
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const siteUrl = Astro.site ? Astro.site.toString() : "https://sprachcafe-polnisch.org";
+const canonicalUrl = `${siteUrl.replace(/\/$/, '')}${pathname}`;
+const defaultOgImage = `${siteUrl.replace(/\/$/, '')}/brand-assets/logo.png`;
+const ogImage = image ? (image.startsWith('http') ? image : `${siteUrl.replace(/\/$/, '')}${image}`) : defaultOgImage;
+
 const hreflangs = getHreflangLinks(pathname, siteUrl);
 const t = useTranslations(lang);
+
+// Format locale string for OpenGraph
+const ogLocale = lang === 'de' ? 'de_DE' : lang === 'pl' ? 'pl_PL' : 'en_US';
+const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
 ---
 
 <!DOCTYPE html>
@@ -47,12 +61,35 @@ const t = useTranslations(lang);
     
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Native i18n SEO: Alternate hreflang tags for WCAG & Search Engines -->
+    <!-- OpenGraph Social Meta Tags -->
+    <meta property="og:site_name" content="SprachCafé Polnisch e.V." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content={ogLocale} />
+    {altLocales.map((loc) => (
+      <meta property="og:locale:alternate" content={loc} />
+    ))}
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Native i18n SEO: Alternate hreflang tags -->
     {hreflangs.map((link) => (
       <link rel="alternate" hreflang={link.lang} href={link.url} />
     ))}
-    <link rel="canonical" href={`${siteUrl.replace(/\/$/, '')}${pathname}`} />
+
+    <!-- Schema.org JSON-LD Structured Data Block -->
+    {jsonLd && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd, null, 2)} />
+    )}
   </head>
   <body class="min-h-full flex flex-col bg-[#FDFBF7] dark:bg-[#181615] text-[#1d1b1a] dark:text-[#f5f0ee] transition-colors duration-300">
     

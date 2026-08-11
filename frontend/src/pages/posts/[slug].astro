@@ -16,9 +16,40 @@ interface Props {
 }
 
 const { post } = Astro.props;
+
+// Schema.org BlogPosting / Article JSON-LD
+const postJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.content.slice(0, 160),
+  "datePublished": post.date,
+  "dateModified": post.date,
+  "author": {
+    "@type": "Organization",
+    "name": post.author || "SprachCafé Polnisch e.V.",
+    "url": "https://sprachcafe-polnisch.org"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SprachCafé Polnisch e.V.",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sprachcafe-polnisch.org/brand-assets/logo.png"
+    }
+  },
+  "image": post.featured_image ? (post.featured_image.startsWith('http') ? post.featured_image : `https://sprachcafe-polnisch.org${post.featured_image}`) : "https://sprachcafe-polnisch.org/brand-assets/logo.png",
+  "inLanguage": "de"
+};
 ---
 
-<Layout title={`${post.title} - SprachCafé Polnisch`} description={post.content.slice(0, 160)}>
+<Layout
+  title={`${post.title} - SprachCafé Polnisch`}
+  description={post.content.slice(0, 160)}
+  image={post.featured_image}
+  type="article"
+  jsonLd={postJsonLd}
+>
   <article
     class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
     data-pagefind-body

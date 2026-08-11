@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "pagefind": "pagefind --site dist",
     "test:a11y": "astro build && pagefind --site dist && node scripts/test-a11y.js",
-    "test:search-benchmark": "node scripts/benchmark-search.js"
+    "test:search-benchmark": "node scripts/benchmark-search.js",
+    "test:jsonld": "node ../scripts/validate-jsonld.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

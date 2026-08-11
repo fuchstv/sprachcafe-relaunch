@@ -20,9 +20,40 @@ const buildTime = new Date().toLocaleString('de-DE', { dateStyle: 'medium', time
 const numericBookId = book.id.replace('book-', '');
 const appLangParam = 'de';
 const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lang=${appLangParam}`;
+
+// Schema.org Book JSON-LD
+const bookJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": book.title,
+  "author": {
+    "@type": "Person",
+    "name": book.author
+  },
+  "isbn": book.isbn || undefined,
+  "inLanguage": book.language === 'DE' ? 'de' : book.language === 'PL' ? 'pl' : 'en',
+  "bookFormat": "https://schema.org/Hardcover",
+  "offers": {
+    "@type": "Offer",
+    "availability": book.status === 'verfuegbar' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hausbibliothek SprachCafé Polnisch e.V."
+  },
+  "image": book.cover ? (book.cover.startsWith('http') ? book.cover : `https://sprachcafe-polnisch.org${book.cover}`) : undefined
+};
 ---
 
-<Layout title={`${book.title} - Hausbibliothek`} description={`Details und Ausleihe für das Buch ${book.title} von ${book.author}.`}>
+<Layout
+  title={`${book.title} - Hausbibliothek`}
+  description={`Details und Ausleihe für das Buch ${book.title} von ${book.author}.`}
+  image={book.cover}
+  type="book"
+  jsonLd={bookJsonLd}
+>
   <article
     class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
     data-pagefind-body

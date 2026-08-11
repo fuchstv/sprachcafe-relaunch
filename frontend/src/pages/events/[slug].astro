@@ -23,9 +23,47 @@ const event = {
   description: entry.data.description[lang] || entry.data.description.de,
   image: entry.data.image.src,
 };
+
+// Schema.org Event JSON-LD
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": event.title,
+  "description": event.description,
+  "startDate": event.date_start,
+  "endDate": event.date_start,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": event.location || "SprachCafé Polnisch e.V.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Schulzestraße 1",
+      "addressLocality": "Berlin",
+      "postalCode": "13187",
+      "addressCountry": "DE"
+    }
+  },
+  "image": [
+    event.image.startsWith('http') ? event.image : `https://sprachcafe-polnisch.org${event.image}`
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "SprachCafé Polnisch e.V.",
+    "url": "https://sprachcafe-polnisch.org"
+  },
+  "inLanguage": "de"
+};
 ---
 
-<Layout title={`${event.title} - SprachCafé Polnisch`} description={event.description}>
+<Layout
+  title={`${event.title} - SprachCafé Polnisch`}
+  description={event.description}
+  image={event.image}
+  type="event"
+  jsonLd={eventJsonLd}
+>
   <article
     class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
     data-pagefind-body
