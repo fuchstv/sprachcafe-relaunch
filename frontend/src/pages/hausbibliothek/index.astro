@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getBooks } from '../../lib/cms-api';
 
 const books = await getBooks();
+const buildTime = new Date().toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' });
 
 // Extract unique filter options for dropdowns
 const categories = Array.from(new Set(books.map(b => b.category)));
@@ -14,15 +15,15 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
 <Layout title="Hausbibliothek Katalog - SprachCafé Polnisch" description="Durchsuchen Sie den digitalen Buchkatalog der Hausbibliothek in Pankow, Schöneberg und Köpenick.">
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     
-    <!-- Banner Link to Existing App (Go-Live Link & Phase L2 Info) -->
-    <div class="mb-10 p-6 rounded-2xl bg-gradient-to-r from-sky-950/60 to-slate-900 border border-sky-800/60 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <!-- Banner Link to Existing App (Go-Live Link & Live Status Info) -->
+    <div class="mb-8 p-6 rounded-2xl bg-gradient-to-r from-sky-950/60 to-slate-900 border border-sky-800/60 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-bold uppercase tracking-wider mb-2">
-          📖 Digitale Ausleihe & Nutzerkonto
+          📖 Digitale Ausleihe & Live-Status
         </div>
         <h2 class="text-xl font-bold text-white mb-1">Möchten Sie Bücher ausleihen oder Ihr Nutzerkonto verwalten?</h2>
         <p class="text-sm text-brand-text-muted">
-          Für Reservierungen, Konto-Management und aktive Ausleihen besuchen Sie das Portal hausbibliothek.org.
+          Für verbindliche Reservierungen, Konto-Management und Ausleihen besuchen Sie das Portal hausbibliothek.org.
         </p>
       </div>
       <a
@@ -35,15 +36,27 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
       </a>
     </div>
 
-    <!-- Header Section -->
-    <div class="mb-8 text-center sm:text-left">
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Hausbibliothek Katalog</h1>
-      <p class="mt-3 text-lg text-brand-text-muted max-w-3xl">
-        Stöbern Sie im Literaturbestand unserer Standorte. Nutzen Sie die Filter zur gezielten Suche.
-      </p>
+    <!-- Header Section mit Build-Zeitstempel & Live-Sync Status -->
+    <div class="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-6">
+      <div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Hausbibliothek Katalog</h1>
+        <p class="mt-2 text-base text-brand-text-muted max-w-2xl">
+          Stöbern Sie im Literaturbestand unserer Standorte in Pankow, Schöneberg und Köpenick.
+        </p>
+      </div>
+      
+      <div class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-xs text-slate-400 space-y-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+          <span>Katalogstand: <strong class="text-slate-200">{buildTime} Uhr</strong></span>
+        </div>
+        <div id="live-status-notice" class="text-slate-400 text-[11px] flex items-center gap-1">
+          <span class="animate-pulse">🔄</span> Live-Status wird im Hintergrund abgeglichen...
+        </div>
+      </div>
     </div>
 
-    <!-- Filter UI Elements (Vanilla JS Fallback + Pagefind Ready) -->
+    <!-- Filter UI Elements -->
     <div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 mb-10 shadow-xl">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         
@@ -111,6 +124,7 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
         {books.map((book) => (
           <article
             class="book-card bg-brand-surface border border-slate-800 rounded-2xl overflow-hidden shadow-lg flex flex-col hover:border-slate-700 transition-all duration-300"
+            data-book-id={book.id.replace('book-', '')}
             data-title={book.title.toLowerCase()}
             data-author={book.author.toLowerCase()}
             data-isbn={book.isbn}
@@ -137,7 +151,7 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
                   {book.language}
                 </span>
                 <span class:list={[
-                  'px-2.5 py-0.5 rounded-md text-xs font-bold uppercase',
+                  'status-badge px-2.5 py-0.5 rounded-md text-xs font-bold uppercase transition-colors',
                   book.status === 'verfuegbar' ? 'bg-emerald-950/80 border border-emerald-800/60 text-emerald-400' :
                   book.status === 'ausgeliehen' ? 'bg-rose-950/80 border border-rose-800/60 text-rose-400' :
                   'bg-amber-950/80 border border-amber-800/60 text-amber-400'
@@ -179,9 +193,10 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
     </div>
   </section>
 
-  <!-- Client-side Fallback Filter Script (Works before & alongside Pagefind) -->
+  <!-- Client-side Live Availability Hydration Script -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Filter logic
       const searchInput = document.getElementById('filter-search');
       const languageSelect = document.getElementById('filter-language');
       const categorySelect = document.getElementById('filter-category');
@@ -237,6 +252,48 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
           element.addEventListener('change', filterBooks);
         }
       });
+
+      // 2. Client-side Live Availability Hydration from Export API
+      const exportUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8080/api/export/books'
+        : 'https://hausbibliothek.org/api/export/books';
+
+      fetch(exportUrl)
+        .then(res => res.json())
+        .then(data => {
+          const booksList = Array.isArray(data) ? data : (data.data || []);
+          const statusMap = new Map();
+          booksList.forEach(b => {
+            if (b.id) statusMap.set(String(b.id), b.availability_status || b.status);
+          });
+
+          bookCards.forEach(card => {
+            const bookId = card.getAttribute('data-book-id');
+            const liveStatus = statusMap.get(bookId);
+            if (liveStatus) {
+              const badge = card.querySelector('.status-badge');
+              if (badge) {
+                if (liveStatus === 'available' || liveStatus === 'verfuegbar') {
+                  badge.className = 'status-badge px-2.5 py-0.5 rounded-md text-xs font-bold uppercase bg-emerald-950/80 border border-emerald-800/60 text-emerald-400';
+                  badge.textContent = '🟢 Verfügbar';
+                  card.setAttribute('data-status', 'verfuegbar');
+                } else {
+                  badge.className = 'status-badge px-2.5 py-0.5 rounded-md text-xs font-bold uppercase bg-rose-950/80 border border-rose-800/60 text-rose-400';
+                  badge.textContent = '🔴 Ausgeliehen';
+                  card.setAttribute('data-status', 'ausgeliehen');
+                }
+              }
+            }
+          });
+
+          const liveNotice = document.getElementById('live-status-notice');
+          if (liveNotice) {
+            liveNotice.innerHTML = '✅ <span class="text-emerald-400">Live-Status abgeglichen</span>';
+          }
+        })
+        .catch(err => {
+          console.warn('Live availability fetch warning:', err.message);
+        });
     });
   </script>
 </Layout>

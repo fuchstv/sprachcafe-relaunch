@@ -16,6 +16,8 @@ interface Props {
 }
 
 const { book } = Astro.props;
+const buildTime = new Date().toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' });
+const numericBookId = book.id.replace('book-', '');
 ---
 
 <Layout title={`${book.title} - Hausbibliothek`} description={`Details und Ausleihe für das Buch ${book.title} von ${book.author}.`}>
@@ -24,10 +26,15 @@ const { book } = Astro.props;
     data-pagefind-body
     data-pagefind-filter={`type:Book, language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
   >
-    <nav class="mb-8">
+    <nav class="mb-8 flex items-center justify-between">
       <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary-light hover:underline">
         &larr; Zurück zum Bibliothekskatalog
       </a>
+      
+      <div class="text-xs text-slate-400 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 flex items-center gap-2">
+        <span>Stand: <strong class="text-slate-200">{buildTime} Uhr</strong></span>
+        <span id="detail-live-status-notice" class="text-slate-400">• 🔄 Live-Check...</span>
+      </div>
     </nav>
 
     <div class="bg-brand-surface border border-slate-800 rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-10">
@@ -50,12 +57,16 @@ const { book } = Astro.props;
               <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">
                 {book.category}
               </span>
-              <span class:list={[
-                'px-3 py-1 rounded-full text-xs font-bold uppercase',
-                book.status === 'verfuegbar' ? 'bg-emerald-950/80 border border-emerald-800/60 text-emerald-400' :
-                book.status === 'ausgeliehen' ? 'bg-rose-950/80 border border-rose-800/60 text-rose-400' :
-                'bg-amber-950/80 border border-amber-800/60 text-amber-400'
-              ]}>
+              <span
+                id="book-detail-status-badge"
+                data-book-id={numericBookId}
+                class:list={[
+                  'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors',
+                  book.status === 'verfuegbar' ? 'bg-emerald-950/80 border border-emerald-800/60 text-emerald-400' :
+                  book.status === 'ausgeliehen' ? 'bg-rose-950/80 border border-rose-800/60 text-rose-400' :
+                  'bg-amber-950/80 border border-amber-800/60 text-amber-400'
+                ]}
+              >
                 {book.status === 'verfuegbar' ? 'Verfügbar' : book.status === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}
               </span>
             </div>
@@ -94,33 +105,63 @@ const { book } = Astro.props;
           <!-- Reservation / Loan Action -->
           <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <span class="block text-xs uppercase tracking-wider text-slate-400">Ausleihe & Konto</span>
-              <span class="text-xs text-brand-text-muted">Verwaltung via hausbibliothek.org</span>
+              <span class="block text-xs uppercase tracking-wider text-slate-400">Ausleihe & Live-Status</span>
+              <span class="text-xs text-brand-text-muted">Verbindliche Reservierung via hausbibliothek.org</span>
             </div>
             
-            {book.status === 'verfuegbar' ? (
-              <a
-                href="https://hausbibliothek.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-colors text-center shadow-lg shadow-emerald-500/20"
-              >
-                Jetzt ausleihen / reservieren &rarr;
-              </a>
-            ) : (
-              <a
-                href="https://hausbibliothek.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-colors text-center"
-              >
-                Vormerken auf hausbibliothek.org
-              </a>
-            )}
+            <a
+              id="book-detail-cta"
+              href="https://hausbibliothek.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-colors text-center shadow-lg shadow-emerald-500/20"
+            >
+              Verbindlichen Live-Status auf hausbibliothek.org prüfen &rarr;
+            </a>
           </div>
         </div>
 
       </div>
     </div>
   </article>
+
+  <!-- Client-side Live Availability Hydration Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const badge = document.getElementById('book-detail-status-badge');
+      const notice = document.getElementById('detail-live-status-notice');
+      if (!badge) return;
+
+      const bookId = badge.getAttribute('data-book-id');
+      const exportUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8080/api/export/books'
+        : 'https://hausbibliothek.org/api/export/books';
+
+      fetch(exportUrl)
+        .then(res => res.json())
+        .then(data => {
+          const booksList = Array.isArray(data) ? data : (data.data || []);
+          const match = booksList.find(b => String(b.id) === String(bookId));
+          if (match) {
+            const liveStatus = match.availability_status || match.status;
+            if (liveStatus === 'available' || liveStatus === 'verfuegbar') {
+              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-emerald-950/80 border border-emerald-800/60 text-emerald-400';
+              badge.textContent = '🟢 Verfügbar (Live)';
+            } else {
+              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-rose-950/80 border border-rose-800/60 text-rose-400';
+              badge.textContent = '🔴 Ausgeliehen (Live)';
+            }
+          }
+          if (notice) {
+            notice.innerHTML = '• ✅ <span class="text-emerald-400">Live-Status synchronisiert</span>';
+          }
+        })
+        .catch(err => {
+          console.warn('Live detail status fetch warning:', err.message);
+          if (notice) {
+            notice.innerHTML = '• ⚠️ <span class="text-slate-400">Statisch (Live-Check offline)</span>';
+          }
+        });
+    });
+  </script>
 </Layout>
