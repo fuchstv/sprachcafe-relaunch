@@ -27,6 +27,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Branch-Strategie & Deployment-Pipeline](./BRANCHING_STRATEGY.md): Definition von `main`/`beta`, Caddy-Routing, Branch Protection & CI/CD Trigger.
 - [System-Architektur & Diagramme](./architecture/architecture-overview.md): Übersicht über Komponenten, Schnittstellen und Datenflüsse.
 - [Rollback-Prozedur (ROLLBACK.md)](./ROLLBACK.md): Schritt-für-Schritt-Anleitung zur Wiederherstellung bei kritischen Deployment-Fehlern.
+- [Mehrsprachigkeit & Deep-Linking (Astro <-> Hausbibliothek App)](./i18n-library-deep-linking.md): Dokumentation der Sprach-Parameter (?lang=de/pl) & English UI Fallback.
 - [WordPress Bestands-Audit & Strato-Analyse](./wordpress-audit.md): Analyse von WP-CLI Restriktionen, REST API Erreichbarkeit & Polylang Extraktion.
 - [Redaktions-Workflow & Content-Pflege](./content-workflow.md): Anleitung & Evaluierung für Redakteur:innen (GitHub Web vs. Decap CMS).
 - [Entscheidungsprotokoll: Verwerfen von Directus CMS zugunsten von Node.js Express & SQLite (ADR 0003)](./decisions/0003-retire-directus-cms.md): Dokumentation der Architektur-Entscheidung.

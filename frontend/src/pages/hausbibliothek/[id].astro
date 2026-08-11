@@ -18,6 +18,8 @@ interface Props {
 const { book } = Astro.props;
 const buildTime = new Date().toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' });
 const numericBookId = book.id.replace('book-', '');
+const appLangParam = 'de';
+const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lang=${appLangParam}`;
 ---
 
 <Layout title={`${book.title} - Hausbibliothek`} description={`Details und Ausleihe für das Buch ${book.title} von ${book.author}.`}>
@@ -102,7 +104,7 @@ const numericBookId = book.id.replace('book-', '');
             )}
           </div>
 
-          <!-- Reservation / Loan Action -->
+          <!-- Reservation / Loan Action with Deep-Link -->
           <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <span class="block text-xs uppercase tracking-wider text-slate-400">Ausleihe & Live-Status</span>
@@ -111,7 +113,7 @@ const numericBookId = book.id.replace('book-', '');
             
             <a
               id="book-detail-cta"
-              href="https://hausbibliothek.org"
+              href={deepLinkBookUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition-colors text-center shadow-lg shadow-emerald-500/20"
