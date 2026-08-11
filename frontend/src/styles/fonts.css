@@ -1,6 +1,26 @@
 /* Warm Community Narrative Typography: Literata (Serif Headings) & Plus Jakarta Sans (Body) */
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..800;1,7..72,400..800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap');
 
+:root {
+  --bg-color: #FDFBF7;
+  --text-color: #1d1b1a;
+  --text-muted: #5b403d;
+  --surface-color: #ffffff;
+  --surface-low: #f8f2f0;
+  --border-color: #e7e1df;
+  --header-bg: rgba(253, 251, 247, 0.9);
+}
+
+html.dark {
+  --bg-color: #181615;
+  --text-color: #f5f0ee;
+  --text-muted: #d4c5c2;
+  --surface-color: #22201e;
+  --surface-low: #2a2725;
+  --border-color: #363230;
+  --header-bg: rgba(24, 22, 21, 0.9);
+}
+
 /* Self-Hosted WOFF2 Fonts for SprachCafé Polnisch (DSGVO Compliant) */
 
 /* cyrillic-ext */

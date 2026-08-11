@@ -23,10 +23,22 @@ const t = useTranslations(lang);
 ---
 
 <!DOCTYPE html>
-<html lang={lang} class="h-full bg-[#FDFBF7] text-[#1d1b1a] font-sans antialiased">
+<html lang={lang} class="h-full font-sans antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Anti-FOUC Dark Mode Initializer -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
     
     <!-- Official Brand Assets: Favicon & Logo -->
     <link rel="icon" type="image/png" sizes="512x512" href="/brand-assets/favicon.png" />
@@ -42,7 +54,7 @@ const t = useTranslations(lang);
     ))}
     <link rel="canonical" href={`${siteUrl.replace(/\/$/, '')}${pathname}`} />
   </head>
-  <body class="min-h-full flex flex-col bg-[#FDFBF7] text-[#1d1b1a]">
+  <body class="min-h-full flex flex-col bg-[#FDFBF7] dark:bg-[#181615] text-[#1d1b1a] dark:text-[#f5f0ee] transition-colors duration-300">
     
     <!-- WCAG 2.1 AA Skip Link: Keyboard Focus Navigation -->
     <a
@@ -53,7 +65,7 @@ const t = useTranslations(lang);
     </a>
 
     <!-- Semantic Landmark: Header -->
-    <header role="banner" class="sticky top-0 z-40 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#e7e1df] shadow-sm">
+    <header role="banner" class="sticky top-0 z-40 bg-[#FDFBF7]/90 dark:bg-[#181615]/90 backdrop-blur-md border-b border-[#e7e1df] dark:border-[#363230] shadow-sm transition-colors duration-300">
       <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
         <!-- Official Brand Logo -->
@@ -63,51 +75,62 @@ const t = useTranslations(lang);
           aria-label="SprachCafé Polnisch Startseite"
         >
           <img src="/brand-assets/logo.webp" alt="SprachCafé Polnisch Logo" class="h-12 w-auto object-contain rounded-lg shadow-sm" />
-          <span class="font-serif font-bold text-xl tracking-tight text-[#1d1b1a] hidden sm:inline-block">SprachCafé Polnisch e.V.</span>
+          <span class="font-serif font-bold text-xl tracking-tight text-[#1d1b1a] dark:text-[#f5f0ee] hidden sm:inline-block">SprachCafé Polnisch e.V.</span>
         </a>
 
         <!-- Semantic Landmark: Main Navigation -->
         <nav role="navigation" aria-label={lang === 'de' ? 'Hauptnavigation' : lang === 'pl' ? 'Nawigacja główna' : 'Main Navigation'} class="hidden md:flex items-center gap-6">
           <a
             href={lang === 'de' ? '/' : `/${lang}/`}
-            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.home')}
           </a>
           <a
             href="/events/"
-            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.events')}
           </a>
           <a
             href="/posts/"
-            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             Blog
           </a>
           <a
             href="/hausbibliothek/"
-            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.library')}
           </a>
           <a
             href="/mitmachen/"
-            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             Mitmachen
           </a>
           <a
             href="/kontakt/"
-            class="text-sm font-semibold text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
           >
             {t('nav.contact')}
           </a>
         </nav>
 
-        <!-- Right Side: Language Switcher -->
+        <!-- Right Side: Dark Mode Toggle & Language Switcher -->
         <div class="flex items-center gap-3">
+          <button
+            id="theme-toggle-btn"
+            type="button"
+            class="p-2 rounded-full border border-[#e7e1df] dark:border-[#363230] bg-[#f8f2f0] dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[#DD3333] text-sm"
+            aria-label="Design umschalten"
+            title="Design umschalten (Hell / Dunkel)"
+          >
+            <span class="hidden dark:inline">☀️</span>
+            <span class="inline dark:hidden">🌙</span>
+          </button>
+          
           <LanguageSwitcher currentLang={lang} />
         </div>
       </div>
@@ -119,8 +142,8 @@ const t = useTranslations(lang);
     </main>
 
     <!-- Semantic Landmark: Footer with Social & Donation Brand Assets -->
-    <footer role="contentinfo" class="bg-[#f8f2f0] border-t border-[#e7e1df] py-10 px-4 sm:px-6 lg:px-8 mt-auto">
-      <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-[#5b403d]">
+    <footer role="contentinfo" class="bg-[#f8f2f0] dark:bg-[#22201e] border-t border-[#e7e1df] dark:border-[#363230] py-10 px-4 sm:px-6 lg:px-8 mt-auto transition-colors duration-300">
+      <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
         
         <div class="flex items-center gap-3">
           <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-6 h-6" />
@@ -133,46 +156,46 @@ const t = useTranslations(lang);
             href="https://www.facebook.com/sprachcafe.polnisch/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="Facebook Seite"
           >
-            <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
           </a>
           <a
             href="https://www.instagram.com/sprachcafepolnisch/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="Instagram Profil"
           >
-            <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
           </a>
           <a
             href="https://www.youtube.com/channel/UCAgdsEs-YX_i6tDGbBtEz-w"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="YouTube Kanal"
           >
-            <img src="/brand-assets/icon-youtube.svg" alt="YouTube Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-youtube.svg" alt="YouTube Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
           </a>
           <a
             href="https://www.linkedin.com/company/sprachcafe-polnisch-ev"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="LinkedIn Firmenseite"
           >
-            <img src="/brand-assets/icon-linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
           </a>
           <a
             href="https://www.tiktok.com/@sprachcafepolnisch?_r=1&_t=ZN-95X7nApX6xC"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
             aria-label="TikTok Profil"
           >
-            <img src="/brand-assets/icon-tiktok.svg" alt="TikTok Icon" class="w-5 h-5 opacity-80 hover:opacity-100" />
+            <img src="/brand-assets/icon-tiktok.svg" alt="TikTok Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
           </a>
         </div>
 
@@ -187,5 +210,23 @@ const t = useTranslations(lang);
       </div>
     </footer>
 
+    <!-- Theme Switcher Script -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('theme', 'light');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
