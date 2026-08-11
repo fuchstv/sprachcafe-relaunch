@@ -37,6 +37,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Vollständiges Content-Inventar (Phase R4 Migration)](./content-inventory.md): Erfassung aller Live-Unterseiten, Texte, Bilder, Übersetzungen & PDFs.
 - [Google Kalender Audit & iCal-Integration](./calendar-audit.md): Dekodierung & Zuordnung aller 9 Google-Kalender für iCal-Abruf ohne API-Key.
 - [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](./kalender-pflege.md): Nicht-technische Anleitung für das Redaktionsteam.
+- [M365 Redaktions-Workflows (MS Forms -> Power Automate -> GitHub PR)](./M365_EDITORIAL_WORKFLOWS.md): Vorlagen & Schritt-für-Schritt-Anleitung für Team, Ausstellungen & Laden-Artikel.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts
