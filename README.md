@@ -125,6 +125,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 - 📅 [Google Kalender Audit & iCal-Integration](docs/calendar-audit.md)
 - 📝 [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](docs/kalender-pflege.md)
 - 📋 [M365 Redaktions-Workflows (MS Forms -> Power Automate -> GitHub PR)](docs/M365_EDITORIAL_WORKFLOWS.md)
+- 📝 [Redaktions-Anleitung: Neue Inhalte veröffentlichen](docs/redaktion-anleitung.md)
 
 ---
 

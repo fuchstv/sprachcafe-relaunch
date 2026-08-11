@@ -38,6 +38,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Google Kalender Audit & iCal-Integration](./calendar-audit.md): Dekodierung & Zuordnung aller 9 Google-Kalender für iCal-Abruf ohne API-Key.
 - [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](./kalender-pflege.md): Nicht-technische Anleitung für das Redaktionsteam.
 - [M365 Redaktions-Workflows (MS Forms -> Power Automate -> GitHub PR)](./M365_EDITORIAL_WORKFLOWS.md): Vorlagen & Schritt-für-Schritt-Anleitung für Team, Ausstellungen & Laden-Artikel.
+- [Redaktions-Anleitung: Neue Inhalte veröffentlichen](./redaktion-anleitung.md): Übersichtlicher Leitfaden mit Formular-Links & Ablaufdiagrammen.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts
