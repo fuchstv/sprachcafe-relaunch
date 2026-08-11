@@ -2,6 +2,11 @@
   "name": "sprachcafe-relaunch-monorepo",
   "private": true,
   "type": "module",
+  "scripts": {
+    "create:content": "npx tsx scripts/create_content_item.ts",
+    "sync:calendars": "npx tsx scripts/sync_google_calendars.ts",
+    "sync:library": "npx tsx scripts/sync_hausbibliothek_catalog.ts"
+  },
   "dependencies": {
     "dotenv": "^16.4.7",
     "node-ical": "^0.20.1",
