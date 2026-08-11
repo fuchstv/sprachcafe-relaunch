@@ -26,7 +26,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
 dotenv.config();
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
-const LIBRARY_EXPORT_URL = process.env.LIBRARY_APP_EXPORT_URL || 'https://hausbibliothek.org/api/v1/export/books';
+const LIBRARY_EXPORT_URL = process.env.LIBRARY_APP_EXPORT_URL || 'http://localhost:8080/api/export/books';
 const TARGET_DATA_DIR = path.resolve(scriptDir, '../frontend/src/data');
 const TARGET_BOOKS_FILE = path.join(TARGET_DATA_DIR, 'books.json');
 const REPORT_FILE_PATH = path.resolve(scriptDir, 'library-sync-report.md');
@@ -269,10 +269,15 @@ export async function fetchLibraryCatalog(): Promise<ExportedBookItem[]> {
     if (!response.ok) {
       throw new Error(`HTTP ${response.status} from ${LIBRARY_EXPORT_URL}`);
     }
-    const data = (await response.json()) as ExportedBookItem[];
-    if (Array.isArray(data) && data.length > 0) {
-      console.log(`✓ Received ${data.length} book records from Library App API.`);
-      return data;
+    const resJson = await response.json();
+    const rawList = Array.isArray(resJson) ? resJson : (resJson.data || []);
+    if (Array.isArray(rawList) && rawList.length > 0) {
+      console.log(`✓ Received ${rawList.length} book records from Library App API.`);
+      return rawList.map((item: any) => ({
+        ...item,
+        status: item.status || item.availability_status || 'verfuegbar',
+        cover: item.cover || item.cover_url || ''
+      }));
     }
     throw new Error('Received empty response from API');
   } catch (err: any) {
