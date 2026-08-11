@@ -94,23 +94,41 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org {
 
 # ==============================================================================
 # 2. CMS / Admin Interface (Production): admin.sprachcafe-polnisch.org
-# -> Proxy auf Port 3000 (Headless CMS / Admin)
+# -> Forced HTTPS, Token Auth Passthrough & Optional IP-Whitelist Directive
 # ==============================================================================
 admin.sprachcafe-polnisch.org {
 	encode zstd gzip
 
-	reverse_proxy 127.0.0.1:3000 {
+	# --------------------------------------------------------------------------
+	# OPTIONALE IP-WHITELIST DIREKTIVE (Auskommentierte Option für den produktiven Einsatz)
+	# Schränkt den CMS-Adminzugriff auf autorisierte IPs/Vereinsbüro/VPN ein.
+	# Zum Aktivieren der IP-Sperre einfach die nachfolgenden Zeilen einkommentieren:
+	# --------------------------------------------------------------------------
+	# @admin_whitelist {
+	# 	not client_ip 192.168.1.0/24 203.0.113.50 127.0.0.1
+	# }
+	# respond @admin_whitelist "403 Forbidden - CMS Admin Access Restricted by IP Whitelist" 403
+
+	# --------------------------------------------------------------------------
+	# Token-Authentifizierung-Passthrough & Dynamic Header Forwarding zum CMS Backend
+	# Transparente Weiterleitung aller Authorization-Header (Bearer Tokens & JWTs)
+	# --------------------------------------------------------------------------
+	reverse_proxy cms_api:3001 127.0.0.1:3000 {
 		header_up Host {host}
 		header_up X-Real-IP {remote_host}
 		header_up X-Forwarded-For {remote_host}
 		header_up X-Forwarded-Proto {scheme}
 		header_up X-Forwarded-Host {host}
+		# Token Auth Passthrough (Authorization Header with Bearer Token)
+		header_up Authorization {http.request.header.Authorization}
 	}
 
+	# Forced HTTPS Security Headers (HSTS Preload, No-Sniff, Frame Deny)
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 		X-Content-Type-Options "nosniff"
 		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
 	}
 
 	log {
