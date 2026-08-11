@@ -1,0 +1,84 @@
+{
+  "name": "PowerAutomate_Flow_Team_Registration",
+  "displayName": "SprachCafé - Redaktion Team-Mitglied (MS Forms zu GitHub PR)",
+  "formId": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u",
+  "targetCollection": "team",
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "triggers": {
+      "When_a_new_response_is_submitted": {
+        "type": "Extension",
+        "inputs": {
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+          "parameters": {
+            "form_id": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u"
+          }
+        }
+      }
+    },
+    "actions": {
+      "Get_response_details": {
+        "type": "Extension",
+        "inputs": {
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+          "parameters": {
+            "form_id": "CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u",
+            "response_id": "@triggerBody()?['extraProperties']?['responderId']"
+          }
+        }
+      },
+      "Create_Git_Branch": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_github",
+            "connectionName": "shared_github"
+          },
+          "method": "post",
+          "path": "/repos/fuchstv/sprachcafe-relaunch/git/refs",
+          "body": {
+            "ref": "@concat('refs/heads/content/team-', formatDateTime(utcNow(), 'yyyyMMdd-HHmmss'))",
+            "sha": "@body('Get_beta_branch_SHA')?['object']?['sha']"
+          }
+        }
+      },
+      "Create_Content_File": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_github",
+            "connectionName": "shared_github"
+          },
+          "method": "put",
+          "path": "/repos/fuchstv/sprachcafe-relaunch/contents/frontend/src/content/team/@{concat('team-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))}.md",
+          "body": {
+            "branch": "@concat('content/team-', formatDateTime(utcNow(), 'yyyyMMdd-HHmmss'))",
+            "message": "feat(content): add team member via MS Forms",
+            "content": "@base64(concat('---\nname: \"', body('Get_response_details')?['r123_name'], '\"\nrole:\n  de: \"', body('Get_response_details')?['r123_role'], '\"\n  pl: \"', body('Get_response_details')?['r123_role'], '\"\n  en: \"', body('Get_response_details')?['r123_role'], '\"\nphoto: \"', body('Get_response_details')?['r123_photo'], '\"\n---\n'))"
+          }
+        }
+      },
+      "Create_Pull_Request": {
+        "type": "OpenApiConnection",
+        "inputs": {
+          "host": {
+            "connectionProviderDeletePolicy": "Any",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_github",
+            "connectionName": "shared_github"
+          },
+          "method": "post",
+          "path": "/repos/fuchstv/sprachcafe-relaunch/pulls",
+          "body": {
+            "title": "[Redaktion] Neues Team-Mitglied via MS Forms",
+            "head": "@concat('content/team-', formatDateTime(utcNow(), 'yyyyMMdd-HHmmss'))",
+            "base": "beta",
+            "body": "Automatisch generierter PR aus Microsoft Forms für beta.sprachcafe-polnisch.org"
+          }
+        }
+      }
+    }
+  }
+}
