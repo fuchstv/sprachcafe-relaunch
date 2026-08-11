@@ -33,6 +33,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Entscheidungsprotokoll: Wahl einer Monorepo-Struktur (ADR 0001)](./decisions/0001-monorepo-structure.md)
 - [Entscheidungsprotokoll: Verwerfen des Headless-CMS-Ansatzes (ADR 0002)](./decisions/0002-cms-verworfen.md)
 - [Entscheidungsprotokoll: Eignung von Git/GitHub für redaktionelle Workflows (ADR 0003)](./decisions/0003-github-ungeeignet-fuer-redaktion.md)
+- [Offene Content- & Navigations-Gaps (TODO-Liste)](./content-gaps.md): Übersicht offener Platzhalter & Navigationspunkte für R2/R3/R4.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts

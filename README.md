@@ -120,6 +120,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 - 📝 [Entscheidungsprotokoll Monorepo (ADR 0001)](docs/decisions/0001-monorepo-structure.md)
 - 📝 [Entscheidungsprotokoll CMS verworfen (ADR 0002)](docs/decisions/0002-cms-verworfen.md)
 - 📝 [Entscheidungsprotokoll Redaktions-Workflow (ADR 0003)](docs/decisions/0003-github-ungeeignet-fuer-redaktion.md)
+- 📌 [Offene Content- & Navigations-Gaps (TODO-Liste)](docs/content-gaps.md)
 
 ---
 
