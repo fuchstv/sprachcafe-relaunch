@@ -36,6 +36,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Offene Content- & Navigations-Gaps (TODO-Liste)](./content-gaps.md): Übersicht offener Platzhalter & Navigationspunkte für R2/R3/R4.
 - [Vollständiges Content-Inventar (Phase R4 Migration)](./content-inventory.md): Erfassung aller Live-Unterseiten, Texte, Bilder, Übersetzungen & PDFs.
 - [Google Kalender Audit & iCal-Integration](./calendar-audit.md): Dekodierung & Zuordnung aller 9 Google-Kalender für iCal-Abruf ohne API-Key.
+- [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](./kalender-pflege.md): Nicht-technische Anleitung für das Redaktionsteam.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts

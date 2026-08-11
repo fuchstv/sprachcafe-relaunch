@@ -123,6 +123,7 @@ Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten
 - 📌 [Offene Content- & Navigations-Gaps (TODO-Liste)](docs/content-gaps.md)
 - 📚 [Content-Inventar der Live-Unterseiten (Phase R4)](docs/content-inventory.md)
 - 📅 [Google Kalender Audit & iCal-Integration](docs/calendar-audit.md)
+- 📝 [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](docs/kalender-pflege.md)
 
 ---
 
