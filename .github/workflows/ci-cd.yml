@@ -67,6 +67,10 @@ jobs:
           cd frontend
           npm run test:pagespeed
 
+      - name: Run Playwright E2E Acceptance Test Suite (Calendar, 4-Step Form, Domain & TLS)
+        run: |
+          npx playwright test
+
   validate-infrastructure:
     name: Validate Infrastructure (Docker & Caddy & Terraform)
     runs-on: ubuntu-latest

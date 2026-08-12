@@ -7,7 +7,8 @@
     "deploy:flows": "npx tsx scripts/deploy_m365_flows.ts",
     "setup:mitglied-flow": "npx tsx scripts/setup-mitglied-flow.ts",
     "sync:calendars": "npx tsx scripts/sync_google_calendars.ts",
-    "sync:library": "npx tsx scripts/sync_hausbibliothek_catalog.ts"
+    "sync:library": "npx tsx scripts/sync_hausbibliothek_catalog.ts",
+    "test:e2e": "npx playwright test"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@pnp/cli-microsoft365": "^11.10.0",
+    "@playwright/test": "^1.50.0",
     "pac-cli": "^1.0.3"
   }
 }
