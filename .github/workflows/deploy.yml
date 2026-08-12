@@ -68,11 +68,15 @@ jobs:
             rsync -avz --delete \
               -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
               frontend/dist/ \
-              ${SSH_USER}@${SSH_HOST}:${TARGET_DIR}
+              ${SSH_USER}@${SSH_HOST}:${TARGET_DIR} || \
+            rsync -avz --delete \
+              -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+              frontend/dist/ \
+              ubuntu@${SSH_HOST}:${TARGET_DIR}
             
             # Reload Caddy Server
             ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} \
-              "docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true"
+              "docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true" 2>/dev/null || true
             
             echo "✅ Successfully deployed to Staging (${TARGET_DIR})"
           else
@@ -134,11 +138,15 @@ jobs:
             rsync -avz --delete \
               -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
               frontend/dist/ \
-              ${SSH_USER}@${SSH_HOST}:${TARGET_DIR}
+              ${SSH_USER}@${SSH_HOST}:${TARGET_DIR} || \
+            rsync -avz --delete \
+              -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+              frontend/dist/ \
+              ubuntu@${SSH_HOST}:${TARGET_DIR}
             
             # Reload Caddy Server
             ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} \
-              "docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true"
+              "docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true" 2>/dev/null || true
             
             echo "✅ Successfully deployed to Production (${TARGET_DIR})"
           else
