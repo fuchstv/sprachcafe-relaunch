@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import { getPosts, getBooks } from '../lib/cms-api';
 
 export const GET: APIRoute = async ({ site }) => {
-  const baseUrl = site ? site.toString().replace(/\/$/, '') : 'https://sprachcafe-polnisch.org';
+  const baseUrl = site ? site.toString().replace(/\/$/, '') : 'https://xn--sprachcaf-j4a.org';
 
   // Base static paths for languages (DE, PL, EN)
   const baseRoutes = [
