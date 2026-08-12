@@ -60,7 +60,7 @@ jobs:
       - name: 🚀 Deploy /dist via rsync to Staging (/var/www/beta)
         env:
           SSH_HOST: ${{ secrets.LIGHTSAIL_HOST }}
-          SSH_USER: ${{ secrets.LIGHTSAIL_USER || 'ubuntu' }}
+          SSH_USER: ${{ secrets.LIGHTSAIL_USER || 'deploy' }}
           TARGET_DIR: /var/www/beta/
         run: |
           if [ -n "${{ secrets.LIGHTSAIL_SSH_KEY }}" ] && [ -n "${{ secrets.LIGHTSAIL_HOST }}" ]; then
@@ -71,7 +71,7 @@ jobs:
             
             # Reload Caddy Server
             ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} \
-              "docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile"
+              "docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true"
             
             echo "✅ Successfully deployed to Staging (${TARGET_DIR})"
           else
@@ -125,7 +125,7 @@ jobs:
       - name: 🚀 Deploy /dist via rsync to Production (/var/www/production)
         env:
           SSH_HOST: ${{ secrets.LIGHTSAIL_HOST }}
-          SSH_USER: ${{ secrets.LIGHTSAIL_USER || 'ubuntu' }}
+          SSH_USER: ${{ secrets.LIGHTSAIL_USER || 'deploy' }}
           TARGET_DIR: /var/www/production/
         run: |
           if [ -n "${{ secrets.LIGHTSAIL_SSH_KEY }}" ] && [ -n "${{ secrets.LIGHTSAIL_HOST }}" ]; then
@@ -136,7 +136,7 @@ jobs:
             
             # Reload Caddy Server
             ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} \
-              "docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile"
+              "docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec caddy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true"
             
             echo "✅ Successfully deployed to Production (${TARGET_DIR})"
           else
