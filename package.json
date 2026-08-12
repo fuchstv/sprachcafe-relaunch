@@ -12,7 +12,8 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "node-ical": "^0.20.1",
-    "rrule": "^2.8.1"
+    "rrule": "^2.8.1",
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@pnp/cli-microsoft365": "^11.10.0",
