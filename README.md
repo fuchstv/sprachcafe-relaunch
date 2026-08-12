@@ -72,7 +72,7 @@ Die Konfiguration erfolgt zentral über Umgebungsvariablen. Wichtige Kategorien:
 
 Das Repository nutzt eine strikte Branching-Strategie, die direkt mit den Server-Verzeichnissen und dem Caddy Reverse Proxy gekoppelt ist:
 
-- **`main`** ➔ **`sprachcafe-polnisch.org`** (Deployment nach `/var/www/production`)
+- **`main`** ➔ **`sprachcafe-polnisch.org` & `xn--sprachcaf-j4a.org` (`sprachcafé.org`)** (Deployment nach `/var/www/production`)
   - **Branch Protection**: Geschützt! Direkte Pushes sind blockiert. Änderungen sind nur via Pull Request mit mindestens 1 approving Review und bestandenen CI-Status-Checks erlaubt.
 - **`beta`** ➔ **`beta.sprachcafe-polnisch.org`** (Deployment nach `/var/www/beta`)
   - Integration und Testung neuer Funktionen vor dem Release auf `main`.

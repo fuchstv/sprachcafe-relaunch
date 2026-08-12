@@ -27,7 +27,7 @@ export function getLocalizedPath(pathname: string, targetLang: LanguageCode): st
   return cleanPath ? `/${targetLang}/${cleanPath}/` : `/${targetLang}/`;
 }
 
-export function getHreflangLinks(pathname: string, siteUrl: string = 'https://sprachcafe-polnisch.org') {
+export function getHreflangLinks(pathname: string, siteUrl: string = 'https://xn--sprachcaf-j4a.org') {
   const baseUrl = siteUrl.replace(/\/$/, '');
   
   // Clean pathname from language prefix

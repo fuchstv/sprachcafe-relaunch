@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
-const siteUrl = Astro.site ? Astro.site.toString() : "https://sprachcafe-polnisch.org";
+const siteUrl = Astro.site ? Astro.site.toString() : "https://xn--sprachcaf-j4a.org";
 const canonicalUrl = `${siteUrl.replace(/\/$/, '')}${pathname}`;
 const defaultOgImage = `${siteUrl.replace(/\/$/, '')}/brand-assets/logo.png`;
 const ogImage = image ? (image.startsWith('http') ? image : `${siteUrl.replace(/\/$/, '')}${image}`) : defaultOgImage;

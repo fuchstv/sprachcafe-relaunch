@@ -27,7 +27,7 @@ gitGraph
 
 | Branch | Ziel-Domain | Server-Ordner | Zweck / Beschreibung |
 |--------|-------------|---------------|----------------------|
-| **`main`** | `sprachcafe-polnisch.org` | `/var/www/production` | **Produktivsystem**: Geschützt via Branch Protection. Automatisiertes Production-Deployment nach PR-Merge. |
+| **`main`** | `sprachcafe-polnisch.org` & `xn--sprachcaf-j4a.org` (*sprachcafé.org*) | `/var/www/production` | **Produktivsystem**: Geschützt via Branch Protection. Automatisiertes Production-Deployment nach PR-Merge. |
 | **`beta`** | `beta.sprachcafe-polnisch.org` | `/var/www/beta` | **Staging / Testsystem**: Integration neuer Features. Automatisiertes Beta-Deployment nach Push/Merge. |
 | **`feature/*`** | - | - | **Features**: Entwicklung einzelner Funktionen. Brancht von `beta` ab. Merge via PR nach `beta`. |
 | **`fix/*` / `hotfix/*`** | - | - | **Bugfixes**: Behebung von Fehlern. Brancht von `beta` oder `main`. Merge via PR. |
