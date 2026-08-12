@@ -142,7 +142,7 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts || true
-          rsync -avz --delete frontend/dist/ "$SSH_USER@$SSH_HOST:/var/www/beta/"
+          rsync -rtvz --delete --no-owner --no-group frontend/dist/ "$SSH_USER@$SSH_HOST:/var/www/beta/"
           ssh "$SSH_USER@$SSH_HOST" "docker exec sprachcafe_caddy caddy reload || true"
 
   deploy-production-check:
@@ -183,5 +183,5 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts || true
-          rsync -avz --delete frontend/dist/ "$SSH_USER@$SSH_HOST:/var/www/production/"
+          rsync -rtvz --delete --no-owner --no-group frontend/dist/ "$SSH_USER@$SSH_HOST:/var/www/production/"
           ssh "$SSH_USER@$SSH_HOST" "docker exec sprachcafe_caddy caddy reload || true"
