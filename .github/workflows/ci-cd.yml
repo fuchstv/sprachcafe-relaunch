@@ -101,7 +101,7 @@ jobs:
   deploy-beta-check:
     name: Verify Beta Deployment Readiness (beta.sprachcafe-polnisch.org)
     needs: [secret-scan, lint-and-build-frontend, validate-infrastructure]
-    if: github.ref == 'refs/heads/beta' && github.event_name == 'push'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta') && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
