@@ -1,12 +1,13 @@
-name: CI/CD Pipeline - SprachCafé Relaunch
+name: CI Pipeline - SprachCafé Relaunch
 
 on:
   push:
     branches: [ main, beta ]
   pull_request:
     branches: [ main, beta ]
-  repository_dispatch:
-    types: [ cms_publish ]
+
+permissions:
+  contents: read
 
 jobs:
   secret-scan:
@@ -78,10 +79,10 @@ jobs:
 
       - name: Validate Caddyfile Syntax
         run: |
-          docker run --rm -v $(pwd)/infra/Caddyfile:/etc/caddy/Caddyfile caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile || true
+          docker run --rm -v $(pwd)/infra/Caddyfile:/etc/caddy/Caddyfile caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile
 
-  deploy-beta:
-    name: Deploy to Beta Environment (beta.sprachcafe-polnisch.org)
+  deploy-beta-check:
+    name: Verify Beta Deployment Readiness (beta.sprachcafe-polnisch.org)
     needs: [secret-scan, lint-and-build-frontend, validate-infrastructure]
     if: github.ref == 'refs/heads/beta' && github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -89,17 +90,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy to /var/www/beta
+      - name: Beta Pre-flight Validation
         env:
           TARGET_DIR: /var/www/beta
           DOMAIN: beta.sprachcafe-polnisch.org
         run: |
-          echo "==== Deploying to Beta Environment ($DOMAIN) ===="
+          echo "==== Beta Pre-flight Check ($DOMAIN) ===="
           echo "Target Directory: $TARGET_DIR"
-          echo "Deployment to $TARGET_DIR completed successfully."
+          echo "CI checks passed for $TARGET_DIR."
 
-  deploy-production:
-    name: Deploy to Production Environment (sprachcafe-polnisch.org)
+  deploy-production-check:
+    name: Verify Production Deployment Readiness (sprachcafe-polnisch.org & sprachcafé.org)
     needs: [secret-scan, lint-and-build-frontend, validate-infrastructure]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -107,11 +108,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy to /var/www/production
+      - name: Production Pre-flight Validation
         env:
           TARGET_DIR: /var/www/production
-          DOMAIN: sprachcafe-polnisch.org
+          PRIMARY_DOMAIN: xn--sprachcaf-j4a.org
+          LEGACY_DOMAIN: sprachcafe-polnisch.org
         run: |
-          echo "==== Deploying to Production Environment ($DOMAIN) ===="
+          echo "==== Production Pre-flight Check ($PRIMARY_DOMAIN / $LEGACY_DOMAIN) ===="
           echo "Target Directory: $TARGET_DIR"
-          echo "Deployment to $TARGET_DIR completed successfully."
+          echo "CI checks passed for $TARGET_DIR."
