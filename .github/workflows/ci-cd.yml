@@ -114,14 +114,36 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Beta Pre-flight Validation
+      - name: Beta Pre-flight Validation & Deployment
         env:
           TARGET_DIR: /var/www/beta
           DOMAIN: beta.sprachcafe-polnisch.org
+          SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
           echo "==== Beta Pre-flight Check ($DOMAIN) ===="
           echo "Target Directory: $TARGET_DIR"
           echo "CI checks passed for $TARGET_DIR."
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
+
+      - name: Deploy to Beta Server over SSH (if SSH_HOST secret configured)
+        continue-on-error: true
+        if: ${{ secrets.SSH_HOST != '' }}
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER || 'ubuntu' }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts || true
+          rsync -avz --delete frontend/dist/ "$SSH_USER@$SSH_HOST:/var/www/beta/"
+          ssh "$SSH_USER@$SSH_HOST" "docker exec sprachcafe_caddy caddy reload || true"
 
   deploy-production-check:
     name: Verify Production Deployment Readiness (sprachcafe-polnisch.org & sprachcafé.org)
@@ -132,12 +154,34 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Production Pre-flight Validation
+      - name: Production Pre-flight Validation & Deployment
         env:
           TARGET_DIR: /var/www/production
           PRIMARY_DOMAIN: xn--sprachcaf-j4a.org
           LEGACY_DOMAIN: sprachcafe-polnisch.org
+          SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
           echo "==== Production Pre-flight Check ($PRIMARY_DOMAIN / $LEGACY_DOMAIN) ===="
           echo "Target Directory: $TARGET_DIR"
           echo "CI checks passed for $TARGET_DIR."
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
+
+      - name: Deploy to Production Server over SSH (if SSH_HOST secret configured)
+        continue-on-error: true
+        if: ${{ secrets.SSH_HOST != '' }}
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER || 'ubuntu' }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts || true
+          rsync -avz --delete frontend/dist/ "$SSH_USER@$SSH_HOST:/var/www/production/"
+          ssh "$SSH_USER@$SSH_HOST" "docker exec sprachcafe_caddy caddy reload || true"
