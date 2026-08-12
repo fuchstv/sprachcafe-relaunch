@@ -89,9 +89,17 @@ function runLighthouse(mode) {
   const url = `http://${HOST}:${PORT}/`;
   const reportPath = path.resolve(__dirname, `../lh-report-${mode}.json`);
 
-  const chromePath = fs.existsSync('/usr/bin/google-chrome')
-    ? '/usr/bin/google-chrome'
-    : (fs.existsSync('/snap/bin/chromium') ? '/snap/bin/chromium' : process.env.CHROME_PATH);
+  let chromePath = process.env.CHROME_PATH;
+  if (!chromePath || !fs.existsSync(chromePath)) {
+    const candidatePaths = [
+      '/usr/bin/google-chrome',
+      '/usr/bin/google-chrome-stable',
+      '/usr/bin/chromium',
+      '/usr/bin/chromium-browser',
+      '/snap/bin/chromium'
+    ];
+    chromePath = candidatePaths.find(p => fs.existsSync(p));
+  }
 
   const lighthouseBin = path.resolve(__dirname, '../frontend/node_modules/.bin/lighthouse');
 
@@ -109,13 +117,16 @@ function runLighthouse(mode) {
   }
 
   console.log(`🚀 Executing Lighthouse Audit for Mode: ${mode.toUpperCase()}...`);
+  if (chromePath) {
+    console.log(`📌 Using Chrome Binary: ${chromePath}`);
+  }
   
   try {
     const env = { ...process.env, CI: 'true' };
     if (chromePath) env.CHROME_PATH = chromePath;
-    execFileSync(lighthouseBin, args, { stdio: 'inherit', env });
+    execFileSync(lighthouseBin, args, { stdio: 'inherit', env, timeout: 60000 });
   } catch (err) {
-    console.warn(`⚠️ Notice: Lighthouse process completed with warnings.`);
+    console.warn(`⚠️ Notice: Lighthouse process completed with warnings: ${err.message}`);
   }
 
   if (!fs.existsSync(reportPath)) {
