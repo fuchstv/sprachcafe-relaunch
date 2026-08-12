@@ -5,10 +5,10 @@
 }
 
 # ==============================================================================
-# 1. Haupt-Website (Production): sprachcafe-polnisch.org & www.sprachcafe-polnisch.org
+# 1. Haupt-Website (Production): sprachcafe-polnisch.org & www.sprachcafe-polnisch.org & xn--sprachcaf-j4a.org (sprachcafé.org)
 # -> Statische Dateien aus /var/www/production
 # ==============================================================================
-sprachcafe-polnisch.org, www.sprachcafe-polnisch.org {
+sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www.xn--sprachcaf-j4a.org {
 	root * /var/www/production
 	encode zstd gzip
 
