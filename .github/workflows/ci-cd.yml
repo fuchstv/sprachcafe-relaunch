@@ -57,8 +57,11 @@ jobs:
 
       - name: Setup Google Chrome for Lighthouse
         uses: browser-actions/setup-chrome@v1
+        id: setup-chrome
 
       - name: Run Google PageSpeed Performance Audit (Lighthouse CI - Fail-the-Build)
+        env:
+          CHROME_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         run: |
           cd frontend
           npm run test:pagespeed
