@@ -205,6 +205,19 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
       const bookCards = document.querySelectorAll('.book-card');
       const noResults = document.getElementById('no-results');
 
+      // Cache book data to avoid expensive DOM reading in the filter loop
+      const bookCache = Array.from(bookCards).map(card => ({
+        card: card,
+        title: card.getAttribute('data-title') || '',
+        author: card.getAttribute('data-author') || '',
+        isbn: card.getAttribute('data-isbn') || '',
+        bookLang: card.getAttribute('data-language') || '',
+        bookCat: card.getAttribute('data-category') || '',
+        bookLoc: card.getAttribute('data-location') || '',
+        bookSt: card.getAttribute('data-status') || '',
+        bookId: card.getAttribute('data-book-id') || ''
+      }));
+
       function filterBooks() {
         const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
         const lang = languageSelect ? languageSelect.value : 'all';
@@ -214,14 +227,8 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
 
         let visibleCount = 0;
 
-        bookCards.forEach(card => {
-          const title = card.getAttribute('data-title') || '';
-          const author = card.getAttribute('data-author') || '';
-          const isbn = card.getAttribute('data-isbn') || '';
-          const bookLang = card.getAttribute('data-language') || '';
-          const bookCat = card.getAttribute('data-category') || '';
-          const bookLoc = card.getAttribute('data-location') || '';
-          const bookSt = card.getAttribute('data-status') || '';
+        bookCache.forEach(cachedBook => {
+          const { card, title, author, isbn, bookLang, bookCat, bookLoc, bookSt } = cachedBook;
 
           const matchesQuery = !query || title.includes(query) || author.includes(query) || isbn.includes(query);
           const matchesLang = lang === 'all' || bookLang === lang;
@@ -267,8 +274,8 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
             if (b.id) statusMap.set(String(b.id), b.availability_status || b.status);
           });
 
-          bookCards.forEach(card => {
-            const bookId = card.getAttribute('data-book-id');
+          bookCache.forEach(cachedBook => {
+            const { card, bookId } = cachedBook;
             const liveStatus = statusMap.get(bookId);
             if (liveStatus) {
               const badge = card.querySelector('.status-badge');
@@ -277,14 +284,19 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
                   badge.className = 'status-badge px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300';
                   badge.textContent = '🟢 Verfügbar';
                   card.setAttribute('data-status', 'verfuegbar');
+                  cachedBook.bookSt = 'verfuegbar';
                 } else {
                   badge.className = 'status-badge px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300';
                   badge.textContent = '🔴 Ausgeliehen';
                   card.setAttribute('data-status', 'ausgeliehen');
+                  cachedBook.bookSt = 'ausgeliehen';
                 }
+
               }
             }
           });
+          // Re-trigger filter after live status update
+          filterBooks();
 
           const liveNotice = document.getElementById('live-status-notice');
           if (liveNotice) {
