@@ -222,6 +222,9 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
                 <a href="/mitmachen/" class="block px-3 py-2 text-xs font-semibold text-[#1d1b1a] dark:text-[#f5f0ee] hover:bg-[#8B263E]/10 rounded-xl transition-colors">
                   ❤️ Mitmachen (Übersicht)
                 </a>
+                <a href="/mitmachen/spenden/" class="block px-3 py-2 text-xs font-semibold text-[#1d1b1a] dark:text-[#f5f0ee] hover:bg-[#8B263E]/10 rounded-xl transition-colors">
+                  💖 Spenden
+                </a>
                 <a href="/mitmachen/mitglied-werden/" class="block px-3 py-2 text-xs font-semibold text-[#1d1b1a] dark:text-[#f5f0ee] hover:bg-[#8B263E]/10 rounded-xl transition-colors">
                   📝 Mitglied werden
                 </a>
@@ -267,7 +270,11 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
       <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
         
         <div class="flex items-center gap-3">
-          <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-6 h-6" />
+          <a href="/mitmachen/spenden/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline" title="SprachCafé Polnisch mit einer Spende unterstützen">
+            <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-5 h-5" />
+            <span>Spenden</span>
+          </a>
+          <span class="text-[#e7e1df] dark:text-[#363230]">|</span>
           <p>{t('footer.rights')}</p>
         </div>
 

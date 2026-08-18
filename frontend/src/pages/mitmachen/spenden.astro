@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lang = 'de';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DonateAction',
+  'name': 'Spenden für das SprachCafé Polnisch e.V.',
+  'description': 'Unterstützen Sie die gemeinnützige Kultur- und Bildungsarbeit des SprachCafé Polnisch e.V. mit einer Spende via PayPal oder Banküberweisung.',
+  'recipient': {
+    '@type': 'NonprofitOrganization',
+    'name': 'SprachCafé Polnisch e.V.',
+    'url': 'https://xn--sprachcaf-j4a.org'
+  }
+};
+---
+
+<Layout
+  title="Spenden — SprachCafé Polnisch e.V."
+  description="Unterstützen Sie das SprachCafé Polnisch e.V. mit einer Spende via PayPal oder Banküberweisung. Gemeinnützig & steuerlich absetzbar."
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <!-- Hero Section -->
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-6">
+        <span>💖 Gutes tun &amp; Gemeinschaft stärken</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-6">
+        Spenden für das SprachCafé Polnisch
+      </h1>
+
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto mb-8">
+        Möchtest Du unseren Verein mit Spenden unterstützen? Wir freuen uns darauf! So sichern wir gemeinsam die Kontinuität unserer Aktivitäten, die Euch und so vielen anderen Menschen zugute kommen. Und ihre Qualität, mit Nachhaltigkeit.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="#paypal"
+          class="px-6 py-3 rounded-full bg-[#0070BA] hover:bg-[#005ea6] text-white font-bold text-sm transition-all shadow-sm inline-flex items-center gap-2"
+        >
+          <span>Online spenden via PayPal</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a
+          href="#ueberweisung"
+          class="px-6 py-3 rounded-full bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-sm hover:bg-[#f8f2f0] dark:hover:bg-[#2a2725] transition-colors"
+        >
+          Banküberweisung &darr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spendenwege Grid -->
+  <section class="py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Option 1: PayPal Direktspende -->
+      <div id="paypal" class="bg-white dark:bg-[#22201e] border-2 border-[#0070BA]/30 rounded-3xl p-6 sm:p-8 shadow-md flex flex-col justify-between scroll-mt-24">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-[#0070BA]/10 flex items-center justify-center text-[#0070BA] dark:text-[#38bdf8]">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.004.444 5.394.1 5.855.1h7.525c3.08 0 5.485.666 6.55 2.115 1.047 1.424 1.107 3.518.175 6.07-.942 2.585-2.612 4.417-4.962 5.45-1.464.643-3.21.968-5.196.968h-2.12l-1.077 6.634h.326zm.942-5.836h1.795c3.082 0 5.518-.767 6.666-2.102 1.127-1.31 1.637-3.242 1.258-5.32-.477-2.62-2.355-3.86-5.858-3.86H7.95L5.753 15.5h2.265z"/>
+              </svg>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-[#0070BA]/10 text-[#0070BA] dark:text-[#38bdf8] text-xs font-bold">
+              Schnell &amp; Sicher
+            </span>
+          </div>
+
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+            Online-Spende via PayPal
+          </h2>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+            Unterstützen Sie unsere Projekte mit nur wenigen Klicks via PayPal, Lastschrift oder Kreditkarte. Jeder Betrag hilft direkt vor Ort.
+          </p>
+
+          <!-- Offizielles PayPal Spendenformular -->
+          <div class="bg-[#faf6f3] dark:bg-[#181615] rounded-2xl p-6 border border-[#e7e1df] dark:border-[#363230] text-center space-y-4">
+            <p class="text-xs font-semibold text-[#8c7471] dark:text-[#a89895] uppercase tracking-wider">
+              Offizielles Spendenkonto des Vereins
+            </p>
+            
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="inline-block w-full">
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input type="hidden" name="hosted_button_id" value="B66STKJGQQUK8" />
+              <button
+                type="submit"
+                class="w-full py-4 px-6 rounded-2xl bg-[#0070BA] hover:bg-[#005ea6] text-white font-bold text-base transition-all shadow-md flex items-center justify-center gap-3 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#0070BA]/30"
+              >
+                <span>Jetzt mit PayPal spenden</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </form>
+
+            <p class="text-[11px] text-[#8c7471] dark:text-[#a89895]">
+              🔒 Verschlüsselte Transaktion über PayPal (Europe) S.à r.l.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-[#e7e1df] dark:border-[#363230] flex items-center justify-between text-xs text-[#8c7471] dark:text-[#a89895]">
+          <span>Empfänger: SprachCafé Polnisch e.V.</span>
+          <span>Einmalig oder monatlich</span>
+        </div>
+      </div>
+
+      <!-- Option 2: Banküberweisung -->
+      <div id="ueberweisung" class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between scroll-mt-24">
+        <div>
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-[#8B263E]/10 flex items-center justify-center text-[#8B263E] dark:text-[#ff758f] text-2xl">
+              🏦
+            </div>
+            <span class="px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold">
+              Kostenfrei für den Verein
+            </span>
+          </div>
+
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+            Klassische Banküberweisung
+          </h2>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+            Bei einer direkten Banküberweisung kommt Ihre Spende zu 100% ohne Transaktionsgebühren direkt bei unseren Projekten an.
+          </p>
+
+          <!-- Kontodaten Box -->
+          <div class="bg-[#faf6f3] dark:bg-[#181615] rounded-2xl p-5 sm:p-6 border border-[#e7e1df] dark:border-[#363230] space-y-3">
+            <div>
+              <span class="text-xs text-[#8c7471] dark:text-[#a89895] block">Empfänger</span>
+              <span class="font-semibold text-sm text-[#1d1b1a] dark:text-[#f5f0ee]">SprachCafé Polnisch e.V.</span>
+            </div>
+
+            <div>
+              <span class="text-xs text-[#8c7471] dark:text-[#a89895] block">Kreditinstitut</span>
+              <span class="font-semibold text-sm text-[#1d1b1a] dark:text-[#f5f0ee]">Deutsche Skatbank</span>
+            </div>
+
+            <div class="pt-1">
+              <span class="text-xs text-[#8c7471] dark:text-[#a89895] block">IBAN</span>
+              <div class="flex items-center justify-between gap-2 mt-0.5">
+                <span id="iban-val" class="font-mono font-bold text-sm sm:text-base text-[#8B263E] dark:text-[#ff758f] select-all">
+                  DE79 8306 5408 0004 9743 36
+                </span>
+                <button
+                  type="button"
+                  id="copy-iban-btn"
+                  class="px-2.5 py-1 text-xs font-semibold bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-lg hover:bg-[#8B263E] hover:text-white transition-colors"
+                  title="IBAN in Zwischenablage kopieren"
+                >
+                  Kopieren
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <span class="text-xs text-[#8c7471] dark:text-[#a89895] block">BIC</span>
+              <div class="flex items-center justify-between gap-2 mt-0.5">
+                <span class="font-mono font-semibold text-sm text-[#1d1b1a] dark:text-[#f5f0ee] select-all">
+                  GENO DEF1 SLR
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <span class="text-xs text-[#8c7471] dark:text-[#a89895] block">Verwendungszweck</span>
+              <span class="font-mono text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] bg-[#fff] dark:bg-[#22201e] px-2 py-1 rounded border border-[#e7e1df] dark:border-[#363230] inline-block mt-0.5">
+                Spende
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-[#e7e1df] dark:border-[#363230] text-xs text-[#8c7471] dark:text-[#a89895]">
+          <span>Hinweis: Für Spendenbescheinigung bitte Name &amp; Anschrift im Verwendungszweck angeben.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Wofür wir Ihre Spende einsetzen -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        <span>🌱 Wirkung &amp; Nachhaltigkeit</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+        Wofür Ihre Spende eingesetzt wird
+      </h2>
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+        Ihre Unterstützung fließt direkt in die gemeinnützige Arbeit und fördert die Vielfalt und den Zusammenhalt in Berlin.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm">
+        <div class="text-3xl mb-4">🇵🇱🇩🇪</div>
+        <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Deutsch-Polnischer Kontext</h3>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Förderung der bilateralen Verständigung, lebendige Zweisprachigkeit und kultureller Austausch zwischen den Nachbarländern.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm">
+        <div class="text-3xl mb-4">🌍</div>
+        <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Interkultureller Dialog</h3>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Offene Plattform für den Meinungsaustausch, Abbau von Vorurteilen und gegenseitiges Kennenlernen im Kiez.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm">
+        <div class="text-3xl mb-4">📍</div>
+        <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Lokal &amp; Überregional</h3>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Aktive Standorte in Pankow, Schöneberg und Köpenick sowie überregionale digitale Veranstaltungsangebote.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm">
+        <div class="text-3xl mb-4">👨‍👩‍👧‍👦</div>
+        <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Generationsübergreifend</h3>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Angebote für Kinder, Jugendgruppen, Eltern, Familien und Senior*innen für ein gelebtes Miteinander.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm">
+        <div class="text-3xl mb-4">📚</div>
+        <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Kultur, Bildung &amp; Bibliothek</h3>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Erhalt der zweisprachigen Hausbibliothek, Autorenlesungen, Kunstausstellungen und Bildungsworkshops.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm">
+        <div class="text-3xl mb-4">♻️</div>
+        <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Nachhaltige Weiterentwicklung</h3>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Sicherung langfristiger Raummieten, moderner barrierefreier Infrastruktur und Ausbau der Vereinsangebote.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steuerliche Absetzbarkeit & FAQ Box -->
+  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="rounded-3xl bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] p-8 sm:p-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-[#43ad48]/10 text-[#43ad48] dark:text-[#4ade80] text-xs font-bold uppercase tracking-wider mb-3">
+            Finanzamt &amp; Gemeinnützigkeit
+          </span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+            Spenden sind steuerlich absetzbar
+          </h3>
+          <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-4">
+            Der SprachCafé Polnisch e.V. ist vom Finanzamt Berlin als gemeinnützige Körperschaft anerkannt. Ihre Spenden können Sie in voller Höhe als Sonderausgaben in Ihrer Steuererklärung geltend machen.
+          </p>
+          <ul class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+            <li class="flex items-start gap-2">
+              <span class="text-[#43ad48] font-bold">✓</span>
+              <span><strong>Bis 300 Euro:</strong> Für das Finanzamt genügt der vereinfachte Nachweis (Kontoauszug / PayPal-Beleg).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#43ad48] font-bold">✓</span>
+              <span><strong>Über 300 Euro:</strong> Wir stellen Ihnen gerne eine offizielle Spendenbescheinigung (Zuwendungsbestätigung) aus.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-[#181615] rounded-2xl p-6 border border-[#e7e1df] dark:border-[#363230] space-y-4">
+          <h4 class="font-bold text-sm text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Haben Sie Fragen zur Spende oder Spendenbescheinigung?
+          </h4>
+          <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+            Wir beantworten Ihre Fragen gern persönlich:
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-[#8B263E] font-bold">📞</span>
+              <a href="tel:+4916099680059" class="font-semibold hover:underline text-[#1d1b1a] dark:text-[#f5f0ee]">
+                +49 (0)160 9968 0059
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[#8B263E] font-bold">✉️</span>
+              <a href="mailto:kontakt@sprachcafe-polnisch.org" class="font-semibold hover:underline text-[#1d1b1a] dark:text-[#f5f0ee]">
+                kontakt@sprachcafe-polnisch.org
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side script for copy-to-clipboard -->
+  <script>
+    document.getElementById('copy-iban-btn')?.addEventListener('click', () => {
+      const iban = 'DE79830654080004974336';
+      navigator.clipboard.writeText(iban).then(() => {
+        const btn = document.getElementById('copy-iban-btn');
+        if (btn) {
+          const orig = btn.textContent;
+          btn.textContent = 'Kopiert! ✓';
+          btn.classList.add('bg-green-600', 'text-white');
+          setTimeout(() => {
+            btn.textContent = orig;
+            btn.classList.remove('bg-green-600', 'text-white');
+          }, 2000);
+        }
+      });
+    });
+  </script>
+</Layout>
