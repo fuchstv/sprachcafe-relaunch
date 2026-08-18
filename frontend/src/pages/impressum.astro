@@ -1,64 +1,181 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const lang = 'de';
 ---
 
 <Layout
-  title="Impressum - SprachCafé Polnisch e.V."
-  description="Impressum und rechtliche Angaben des SprachCafé Polnisch e.V. gem. § 5 TMG / § 18 MStV."
+  title="Impressum — SprachCafé Polnisch e.V."
+  description="Impressum und rechtliche Angaben des SprachCafé Polnisch e.V. gem. § 5 DDG / MStV."
+  lang={lang}
 >
-  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="mb-10 text-center sm:text-left">
-      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+  <div class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <header class="text-center sm:text-left space-y-3 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
         Rechtliche Angaben
       </span>
-      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
         Impressum
       </h1>
-      <p class="font-sans text-lg text-[#5b403d] dark:text-[#d4c5c2]">
-        Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG) / § 18 Medienstaatsvertrag (MStV).
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2]">
+        Angaben gemäß gesetzlicher Informationspflichten für das SprachCafé Polnisch e.V.
       </p>
-    </div>
+    </header>
 
-    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed">
+    <!-- Main Content Container -->
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-10 text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed">
       
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-2xl font-bold mb-3">Diensteanbieter</h2>
-        <p class="font-bold">SprachCafé Polnisch e.V.</p>
-        <p>Schulzestraße 1</p>
-        <p>13187 Berlin (Pankow)</p>
-        <p>Deutschland</p>
-      </div>
+      <!-- 1. Adresse und Kontakt -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          Adresse und Kontakt
+        </h2>
+        
+        <div class="space-y-1 text-sm sm:text-base">
+          <p class="font-bold">SprachCafé Polnisch e.V.</p>
+          <p>Schulzestr. 1</p>
+          <p>D-13187 Berlin</p>
+        </div>
 
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-2xl font-bold mb-3">Vertretungsberechtigter Vorstand</h2>
-        <p>Agata Koch (1. Vorsitzende)</p>
-        <p>Elke Albers (2. Vorsitzende / Stellvertretung)</p>
-        <p>Agnieszka Ghanname (Vorstand)</p>
-        <p>Sandra Filip-Badura (Vorstand)</p>
-        <p>Katarzyna Aniela Koziol (Vorstand)</p>
-      </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm pt-2">
+          <p><strong>E-Mail:</strong> <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] underline">kontakt@sprachcafe-polnisch.org</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+4916099680059" class="text-[#8B263E] dark:text-[#ff758f] underline">+49 160 9968 0059</a></p>
+          <p><strong>Bibliothek:</strong> <a href="mailto:bibliothek@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] underline">bibliothek@sprachcafe-polnisch.org</a></p>
+          <p><strong>Speak-Dating:</strong> <a href="mailto:speak-dating@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] underline">speak-dating@sprachcafe-polnisch.org</a></p>
+          <p class="sm:col-span-2"><strong>Buchhaltung / Verwaltung:</strong> <a href="mailto:verwaltung@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] underline">verwaltung@sprachcafe-polnisch.org</a></p>
+        </div>
 
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-2xl font-bold mb-3">Kontakt</h2>
-        <p>Telefon: +49 30 89642057</p>
-        <p>E-Mail: <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a></p>
-        <p>Web: <a href="https://sprachcafé.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">https://sprachcafé.org</a></p>
-      </div>
+        <div class="pt-3">
+          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d] dark:text-[#d4c5c2] mb-2">Social Media:</p>
+          <div class="flex flex-wrap gap-3 text-xs">
+            <a href="https://www.facebook.com/sprachcafe.polnisch/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors">Facebook: SprachCafé Polnisch e.V.</a>
+            <a href="https://www.instagram.com/sprachcafepolnisch/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors">Instagram: @sprachcafepolnisch</a>
+            <a href="https://www.youtube.com/@sprachcafepolnischev" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors">YouTube: SprachCafé Polnisch</a>
+            <a href="https://www.linkedin.com/company/sprachcafe-polnisch-ev" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors">LinkedIn: SprachCafé Polnisch e.V.</a>
+            <a href="https://www.tiktok.com/@sprachcafepolnisch" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors">TikTok: SprachCafé Polnisch e.V.</a>
+          </div>
+        </div>
+      </section>
 
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-2xl font-bold mb-3">Registereintrag</h2>
-        <p>Eintragung im Vereinsregister.</p>
-        <p>Registergericht: Amtsgericht Charlottenburg (Berlin)</p>
-        <p>Registernummer: VR 32176 B</p>
-        <p class="mt-2">Gemeinnützigkeit anerkannt durch das Finanzamt für Körperschaften I Berlin.</p>
-      </div>
+      <!-- 2. Eingetragener gemeinnütziger Verein -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          Eingetragener gemeinnütziger Verein
+        </h2>
+        <p>Das SprachCafé Polnisch ist ein eingetragener Gemeinnütziger Verein.</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-start gap-2">
+            <span>📄</span>
+            <span>
+              <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/Satzung-SCP-12.06.2020.pdf" target="_blank" rel="noopener noreferrer" class="font-bold text-[#8B263E] dark:text-[#ff758f] underline">Satzung 12.06.2020 (PDF)</a>:
+              Vereinsregister – Amtsgericht Berlin-Charlottenburg – Aktenzeichen VR 35014 B
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span>🏛️</span>
+            <span>
+              <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2026/07/Freistellungsbescheid_01.07.2026.pdf" target="_blank" rel="noopener noreferrer" class="font-bold text-[#8B263E] dark:text-[#ff758f] underline">Gemeinnützigkeit (Freistellungsbescheid 01.07.2026, PDF)</a>:
+              Finanzamt für Körperschaften I in Berlin, St.-Nr.: 27 677 / 67313
+            </span>
+          </li>
+        </ul>
+      </section>
 
-      <div>
-        <h2 class="font-serif text-2xl font-bold mb-3">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-        <p>Agata Koch</p>
-        <p>Schulzestraße 1, 13187 Berlin</p>
-      </div>
+      <!-- 3. Vorstand und Vorstandssitzungen -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          Unser Vorstand und Vorstandssitzungen
+        </h2>
+        <ul class="list-disc list-inside space-y-1.5 text-sm sm:text-base">
+          <li><strong>Agata Koch</strong> – Vorsitzende</li>
+          <li><strong>Agnieszka Ghanname</strong> – Stellvertretende Vorsitzende</li>
+          <li><strong>Kasia Koziol</strong> – Stellvertretende Vorsitzende</li>
+          <li><strong>Elke Albers</strong> – Schatzmeisterin</li>
+          <li><strong>Sandra Filip-Badura</strong> – Schriftführerin</li>
+        </ul>
+        <p class="text-xs sm:text-sm text-[#5b403d] dark:text-[#d4c5c2] italic pt-2">
+          Die Vorstandssitzungen finden ca. ein Mal pro Monat online statt. Die Termine werden intern vereinbart.
+        </p>
+      </section>
+
+      <!-- 4. Mitglied werden -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          Mitglied werden!
+        </h2>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a
+            href="https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/Eintrittsformular-03.2020-1.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 rounded-2xl bg-[#8B263E] hover:bg-[#6e1e31] text-white font-bold text-xs sm:text-sm transition-all shadow-sm inline-flex items-center gap-2"
+          >
+            <span>📥 Eintrittsformular (PDF herunterladen)</span>
+          </a>
+          <a
+            href="/mitmachen/mitglied-werden/"
+            class="px-5 py-2.5 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-xs sm:text-sm transition-all inline-flex items-center gap-2"
+          >
+            <span>Online-Mitgliedsantrag öffnen &rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 5. Bankverbindung & Spenden -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          Bankverbindung
+        </h2>
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-5 rounded-2xl border border-[#e7e1df] dark:border-[#363230] text-sm space-y-1 font-mono">
+          <p class="font-sans font-bold text-base">Deutsche Skatbank</p>
+          <p><strong>IBAN:</strong> DE79 8306 5408 0004 9743 36</p>
+          <p><strong>BIC:</strong> GENO DEF1 SLR</p>
+          <p class="font-sans pt-2"><strong>Verwendungszweck:</strong> „Mitgliedsbeitrag / Spende SprachCafé Polnisch e.V.“</p>
+        </div>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir freuen uns, wenn Sie unseren Verein mit Spenden unterstützen. Danke im Voraus!<br />
+          Für die Zusendung Ihrer Spendenbescheinigung denken Sie bitte daran, bei der Überweisung Ihren Namen und Ihre vollständige Adresse anzugeben. Das Finanzamt akzeptiert auch Kontoauszüge, die die Spendenüberweisungen dokumentieren.
+        </p>
+      </section>
+
+      <!-- 6. Tätigkeitsberichte & Dokumente -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          Tätigkeitsberichte & Dokumente
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs font-semibold">
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2026/04/TaetigkeitsberichtSteuererklaerung-SCP-2025-sw.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2025 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2025/04/TaetigkeitsberichtSteuererklaerung-SCP-2024-sw.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2024 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2025/04/TaetigkeitsberichtSteuererklaerung-SCP-2023.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2023 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2023/09/TaetigkeitsberichtSteuererklaerung-SCP_FA_2022.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2022 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2023/09/Sachbericht_2021_Homepage_Zweck_Veranstaltung.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2021 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2023/09/Sachbericht_2020_Homepage.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2020 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/TatigkeitsberichtSteuererklarung-SCP-2019.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2019 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/TatigkeitsberichtSteuererklarung-SCP-2018.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2018 (PDF)</a>
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/TatigkeitsberichtSteuererklarung-SCP-2017.pdf" target="_blank" rel="noopener noreferrer" class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl hover:bg-[#8B263E]/10 hover:text-[#8B263E] transition-colors border border-[#e7e1df] dark:border-[#363230] text-center block">📄 Bericht 2017 (PDF)</a>
+        </div>
+
+        <div class="pt-4 flex flex-wrap gap-3 text-xs">
+          <a href="https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/Fur-Demokratie-und-Menschenrechte.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#8B263E] dark:text-[#ff758f] underline">
+            <span>📜 Für Demokratie und Menschenrechte (PDF herunterladen)</span>
+          </a>
+        </div>
+
+        <div class="pt-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+          Wir sind Unterzeichner*innen von Charta der Vielfalt. <a href="https://www.charta-der-vielfalt.de/fuer-arbeitgebende/" target="_blank" rel="noopener noreferrer" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">Mehr erfahren …</a>
+        </div>
+      </section>
+
+      <!-- 7. Hinweis zur redaktionellen Unabhängigkeit -->
+      <section class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+        <p class="font-bold text-sm text-[#1d1b1a] dark:text-[#f5f0ee]">Hinweis zu Inhalten & Meinungsäußerungen:</p>
+        <p>
+          Das SprachCafé Polnisch ist eine offene Plattform für den Meinungsaustausch. Die Meinung der Referent*innen muss keinesfalls identisch sein mit der des SprachCafés Polnisch.
+        </p>
+      </section>
 
     </div>
-  </section>
+  </div>
 </Layout>
