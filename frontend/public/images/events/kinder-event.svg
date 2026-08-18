@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="kdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e65100"/>
+      <stop offset="100%" stop-color="#8c2500"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#kdGrad)"/>
+  <circle cx="400" cy="190" r="120" fill="#ffffff" opacity="0.12"/>
+  <text x="400" y="195" font-family="system-ui, sans-serif" font-size="54" font-weight="bold" fill="#ffffff" text-anchor="middle">🎈 SprachCafé für Kinder</text>
+  <text x="400" y="250" font-family="system-ui, sans-serif" font-size="22" fill="#ffcc80" text-anchor="middle">Klub Malucha · Kreativwerkstatt · Vorlesen</text>
+  <text x="400" y="300" font-family="system-ui, sans-serif" font-size="16" fill="#ffffff" opacity="0.8" text-anchor="middle">Zweisprachige Frühförderung (PL/DE)</text>
+</svg>
