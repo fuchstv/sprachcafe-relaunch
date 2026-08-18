@@ -2,15 +2,15 @@
 name: "Dorota Stasińska"
 category: "verwaltung"
 role:
-  de: "BundesFreiwillige & Empfang"
-  pl: "Wolontariat BFD i Recepcja"
-  en: "Federal Volunteer & Reception"
+  de: "Verwaltung, Vor-Ort-Koordination & BFD"
+  pl: "Administracja, Koordynacja i Wolontariat"
+  en: "Administration, On-Site Support & Volunteer"
 contact:
   email: "d.stasinska@sprachcafe-polnisch.org"
 photo: "/images/team/07-dorota-stasinska.webp"
 bio:
-  de: "Koordination vor Ort in der Schulzestraße und Mitgliederbetreuung."
-  pl: "Koordynacja na miejscu przy Schulzestraße i obsługa członków."
-  en: "On-site coordination at Schulzestraße and member relations."
+  de: "Verwaltung, Vor-Ort-Betreuung und Besucherempfang im SprachCafé Pankow."
+  pl: "Administracja, obsługa na miejscu i recepcja w SprachCafé Pankow."
+  en: "Administration, on-site reception, and community support in Pankow."
 order: 7
 ---

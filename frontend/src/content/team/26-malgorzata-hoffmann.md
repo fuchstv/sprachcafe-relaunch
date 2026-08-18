@@ -7,10 +7,10 @@ role:
   en: "Doctor of Business Administration (AI & Marketing)"
 contact:
   email: "academy.ai.berlin@gmail.com"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/26-malgorzata-hoffmann.webp"
 bio:
-  de: "Workshops zu Künstlicher Intelligenz, digitalem Marketing und beruflicher Neuorientierung in Berlin."
-  pl: "Warsztaty ze sztucznej inteligencji, marketingu cyfrowego i restartu zawodowego w Berlinie."
-  en: "Workshops on AI, digital marketing, and career restart programs in Berlin."
+  de: "Workshops zu Künstlicher Intelligenz, Marketing & Karriereentwicklung."
+  pl: "Warsztaty ze sztucznej inteligencji, marketingu i rozwoju kariery."
+  en: "Workshops on Artificial Intelligence, marketing, and career restart."
 order: 26
 ---

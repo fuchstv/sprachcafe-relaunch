@@ -10,7 +10,7 @@ contact:
 photo: "/images/team/09-leokadia-rospek.webp"
 bio:
   de: "Sensorisch-kreative Frühförderung für Kleinkinder (1–3 Jahre) in Schöneberg und Köpenick."
-  pl: "Sensoryczno-kreatywne zajęcia dla maluchów w Schöneberg i Köpenick."
-  en: "Sensory-creative early education for toddlers in Schöneberg and Köpenick."
+  pl: "Sensoryczno-kreatywne zajęcia dla maluszków (1–3 lat) w Schöneberg i Köpenick."
+  en: "Sensory-creative early childhood education for toddlers in Schöneberg and Köpenick."
 order: 9
 ---

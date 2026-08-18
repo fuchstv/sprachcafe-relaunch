@@ -10,7 +10,7 @@ contact:
 photo: "/images/team/04-sandra-filip-badura.jpg"
 bio:
   de: "Konzeption und Koordination der Sprachkurse Polnisch als Fremdsprache für Erwachsene."
-  pl: "Koncepcja i koordynacja kursów języka polskiego jako obcego dla dorosłych."
-  en: "Concept and coordination of Polish as a foreign language courses for adults."
+  pl: "Koncepcja i koordynacja kursów języka polskiego dla dorosłych."
+  en: "Concept and coordination of adult Polish language courses."
 order: 4
 ---

@@ -7,10 +7,10 @@ role:
   en: "Accounting & Administration"
 contact:
   email: "verwaltung@sprachcafe-polnisch.org"
-photo: "/images/team/06-agnieszka-kubalewska.webp"
+photo: "/images/team/avatar-default.svg"
 bio:
-  de: "Buchhaltung, Projektmittelabrechnung und Vereinsverwaltung."
+  de: "Buchhaltung, Abrechnung von Förderprojekten und Vereinsverwaltung."
   pl: "Księgowość, rozliczanie projektów i administracja stowarzyszenia."
-  en: "Accounting, grant settlement, and association administration."
+  en: "Accounting, grant administration, and association management."
 order: 6
 ---

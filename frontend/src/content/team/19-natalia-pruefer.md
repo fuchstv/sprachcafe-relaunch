@@ -7,7 +7,7 @@ role:
   en: "Literature & Public Relations"
 contact:
   email: "n.pruefer@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/19-natalia-pruefer.webp"
 bio:
   de: "Organisation von Autorenlesungen, Buchvorstellungen und redaktioneller Öffentlichkeitsarbeit."
   pl: "Organizacja spotkań autorskich, promocja książek i relacje z mediami."

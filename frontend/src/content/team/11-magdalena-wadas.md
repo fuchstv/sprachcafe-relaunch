@@ -9,8 +9,8 @@ contact:
   email: "m.wadas@sprachcafe-polnisch.org"
 photo: "/images/team/11-magdalena-wadas.jpg"
 bio:
-  de: "Kinderpädagogik und Koordination der Angebote in Berlin-Schöneberg."
-  pl: "Pedagogika dziecięca i koordynacja w Berlinie Schöneberg."
-  en: "Childhood education and coordination in Berlin Schöneberg."
+  de: "Pädagogische Leitung und Betreuung der Kindergruppen in Berlin-Schöneberg."
+  pl: "Kierownictwo pedagogiczne grup dziecięcych w Berlinie Schöneberg."
+  en: "Pedagogical lead and coordination of children's groups in Berlin Schöneberg."
 order: 11
 ---

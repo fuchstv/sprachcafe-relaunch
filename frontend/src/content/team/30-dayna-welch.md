@@ -7,7 +7,7 @@ role:
   en: "Federal Volunteer Service (BFD)"
 contact:
   email: "d.welch@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/30-dayna-welch.webp"
 bio:
   de: "Unterstützung im Café-Betrieb, bei Kindergruppen und der Vorbereitung von Vereinsevents."
   pl: "Wsparcie w kawiarni, przy grupach dziecięcych i organizacji wydarzeń."

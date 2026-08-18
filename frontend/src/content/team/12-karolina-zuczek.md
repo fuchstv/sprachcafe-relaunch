@@ -9,8 +9,8 @@ contact:
   email: "k.zuczek@sprachcafe-polnisch.org"
 photo: "/images/team/12-karolina-zuczek.webp"
 bio:
-  de: "Kreatives Gestalten, Kunstpädagogik und Vorleseformate."
-  pl: "Zajęcia plastyczne, pedagogika twórczości i czytanie bajek."
-  en: "Creative arts, art pedagogy, and storytelling."
+  de: "Kreatives Gestalten, Kunstpädagogik und Vorleseformate für Kinder."
+  pl: "Zajęcia plastyczne, pedagogika sztuki i czytanie bajek dla dzieci."
+  en: "Creative arts, art pedagogy, and storytelling for children."
 order: 12
 ---

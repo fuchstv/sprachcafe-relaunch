@@ -9,8 +9,8 @@ contact:
   email: "j.ceremuga@sprachcafe-polnisch.org"
 photo: "/images/team/13-joanna-ceremuga.webp"
 bio:
-  de: "Mehrsprachige Sprachanimation und spielerische Englischförderung."
+  de: "Mehrsprachige Sprachanimation und spielerische Englisch- und Polnischförderung."
   pl: "Wielojęzyczna animacja językowa i nauka angielskiego przez zabawę."
-  en: "Multilingual language animation and playful English tutoring."
+  en: "Multilingual language animation and playful English and Polish tutoring."
 order: 13
 ---

@@ -2,12 +2,12 @@
 name: "Małgorzata Reszka-Matthes"
 category: "kunst"
 role:
-  de: "Künstlerin & Pädagogin"
-  pl: "Artystka i Pedagog"
-  en: "Artist & Educator"
+  de: "Kinderpädagogin & Künstlerin"
+  pl: "Pedagog Dziecięcy i Artystka"
+  en: "Childhood Educator & Artist"
 contact:
   email: "m.reszka-matthes@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/24-malgorzata-reszka-matthes.webp"
 bio:
   de: "Gestaltungskurse, handwerkliche Kunstformate und Ausstellungsbetreuung."
   pl: "Warsztaty plastyczne, rzemiosło artystyczne i opieka nad wystawami."

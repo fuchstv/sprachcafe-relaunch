@@ -7,7 +7,7 @@ role:
   en: "Introspective Writing & Mindfulness"
 contact:
   email: "m.rubaszewska@wp.pl"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/21-malgorzata-kaminska.webp"
 bio:
   de: "Achtsamkeitsorientierte Schreib- und Meditationsabende im SprachCafé."
   pl: "Wieczory uważności, pisania terapeutycznego i medytacji."

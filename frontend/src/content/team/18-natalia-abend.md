@@ -7,7 +7,7 @@ role:
   en: "Language Instructor (Polish & German)"
 contact:
   email: "natalia.abend@gmx.de"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/18-natalia-abend.jpg"
 bio:
   de: "Konversationskurse, Grammatikworkshops und Sprachtraining für Erwachsene."
   pl: "Kursy konwersacyjne, gramatyka i trening językowy dla dorosłych."

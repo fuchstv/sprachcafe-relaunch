@@ -9,8 +9,8 @@ contact:
   email: "e.albers@sprachcafe-polnisch.org"
 photo: "/images/team/02-elke-albers.jpg"
 bio:
-  de: "Schatzmeisterin, Finanzverwaltung und Fundraising."
-  pl: "Skarbnik, finanse oraz fundraising."
-  en: "Treasurer, financial management, and fundraising."
+  de: "Schatzmeisterin, Finanzverwaltung und Fundraising für Förderprojekte des Vereins."
+  pl: "Skarbnik, finanse oraz pozyskiwanie funduszy na projekty stowarzyszenia."
+  en: "Treasurer, financial management, and fundraising for association projects."
 order: 2
 ---
