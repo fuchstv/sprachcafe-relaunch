@@ -163,7 +163,7 @@ const downloadsCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: i18nString,
-    s3FileUrl: z.string().url(),
+    s3FileUrl: z.string(),
     description: i18nString,
     fileType: z.enum(['pdf', 'doc', 'docx', 'zip', 'png', 'jpg']).default('pdf'),
     fileSize: z.string().optional(),
