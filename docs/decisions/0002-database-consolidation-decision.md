@@ -23,7 +23,7 @@ Der Hausbibliothek-Stack läuft **nicht nur als Übergangslösung, sondern dauer
 |---|---|---|---|---|
 | `library_db` | MySQL 8.0 RDBMS | 0.73% | **78.39 MiB** | 512.00 MiB |
 | `library_backend` | PHP 8.4 Apache REST API | 0.01% | **21.69 MiB** | 128.00 MiB |
-| `library_proxy` | Caddy 2 Reverse Proxy | 0.01% | **33.18 MiB** | 64.00 MiB |
+| `caddy` | Caddy 2 Reverse Proxy | 0.01% | **33.18 MiB** | 64.00 MiB |
 | `library_admin` | phpMyAdmin Database Manager | 0.01% | **46.39 MiB** | 96.00 MiB |
 | **GESAMT-STACK** | **4 Container** | **~0.76%** | **~179.65 MiB** | **—** |
 

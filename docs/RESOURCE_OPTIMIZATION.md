@@ -12,7 +12,7 @@ Eine direkte Ressourcen-Messung via `docker stats --no-stream` auf dem Live-Syst
 |---|---|---|---|---|
 | **Hausbibliothek DB (`library_db`)** | `mysql:8.0` | **78.39 MiB** | 512.00 MiB | 0.73% |
 | **Hausbibliothek Backend (`library_backend`)** | `php:8.4-apache` | **21.69 MiB** | 128.00 MiB | 0.01% |
-| **Hausbibliothek Proxy (`library_proxy`)** | `caddy:2-alpine` | **33.18 MiB** | 64.00 MiB | 0.01% |
+| **Zentraler Caddy Proxy (`caddy`)** | `caddy:2-alpine` | **33.18 MiB** | 64.00 MiB | 0.01% |
 | **Hausbibliothek Admin (`library_admin`)** | `phpmyadmin:latest` | **46.39 MiB** | 96.00 MiB | 0.01% |
 | **GESAMT HAUSBIBLIOTHEK STACK** | **4 Container** | **~179.65 MiB** | **—** | **0.76%** |
 

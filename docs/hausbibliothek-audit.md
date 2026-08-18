@@ -96,7 +96,7 @@ Messung der laufenden Docker-Container auf dem Ziel-Host via `docker stats --no-
 |---|---|---|---|---|---|
 | `library_db` | `mysql:8.0` | 0.73% | 78.39 MiB / 512.00 MiB | 15.31% | 39 |
 | `library_backend` | `php:8.4-apache` | 0.01% | 21.69 MiB / 128.00 MiB | 16.95% | 11 |
-| `library_proxy` | `caddy:2-alpine` | 0.01% | 33.18 MiB / 64.00 MiB | 51.85% | 8 |
+| `caddy` | `caddy:2-alpine` | 0.01% | 33.18 MiB / 64.00 MiB | 51.85% | 8 |
 | `library_admin` | `phpmyadmin:latest` | 0.01% | 46.39 MiB / 96.00 MiB | 48.33% | 8 |
 | **Gesamtsystem** | **4 Container** | **~0.76%** | **~179.65 MiB Total** | **—** | **66** |
 
