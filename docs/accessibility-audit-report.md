@@ -13,7 +13,7 @@
 |---|---|
 | **Offizieller Konformitätsgrad** | **Vollständig konform** |
 | **Geprüfte Kernseiten & E-Formulare** | **22 Seiten** |
-| **Erfolgreich bestandene Prüfregeln** | **515 Checks** |
+| **Erfolgreich bestandene Prüfregeln** | **518 Checks** |
 | **Gesamtzahl gefundener Regelverstöße** | **0** |
 | **Kritische Barrieren (Critical / Serious)** | **0** |
 
@@ -140,7 +140,7 @@ Diese Website ist **vollständig konform** mit den Anforderungen der BITV 2.0 (B
 ### ✅ Erklärung zur Barrierefreiheit (`/barrierefreiheit/`)
 
 - **Bereich:** Rechtliches
-- **Bestandene Kriterien:** 22
+- **Bestandene Kriterien:** 25
 - **Status:** Vollständig barrierefrei (0 Verstöße)
 
 ### ✅ Impressum (`/impressum/`)

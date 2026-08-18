@@ -64,3 +64,6 @@ logs/
 *.log
 tmp/
 temp/
+playwright-report/
+test-results/
+blob-report/

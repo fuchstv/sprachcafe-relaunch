@@ -56,7 +56,7 @@ test.describe('Automatisierter WCAG 2.1 AA / BITV 2.0 Accessibility Audit', () =
   for (const target of TARGETS) {
     test(`Axe-Core WCAG 2.1 AA Audit: ${target.name} (${target.path})`, async ({ page }) => {
       await page.goto(target.path);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const accessibilityScanResults = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
