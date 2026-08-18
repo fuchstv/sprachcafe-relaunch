@@ -1,15 +1,16 @@
 ---
 name: "Dorota Stasińska"
+category: "verwaltung"
 role:
-  de: "Verwaltung & Mitgliederbetreuung"
-  pl: "Administracja i Obsługa Członków"
-  en: "Administration & Member Relations"
+  de: "BundesFreiwillige & Empfang"
+  pl: "Wolontariat BFD i Recepcja"
+  en: "Federal Volunteer & Reception"
 contact:
-  email: "kontakt@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "d.stasinska@sprachcafe-polnisch.org"
+photo: "/images/team/07-dorota-stasinska.webp"
 bio:
-  de: "Mitgliederverwaltung, Beitragsabstimmung und Büroorganisation in Pankow."
-  pl: "Ewidencja członków, rozliczanie składek i organizacja biura w Pankow."
-  en: "Membership administration, contribution management, and office organization in Pankow."
+  de: "Koordination vor Ort in der Schulzestraße und Mitgliederbetreuung."
+  pl: "Koordynacja na miejscu przy Schulzestraße i obsługa członków."
+  en: "On-site coordination at Schulzestraße and member relations."
 order: 7
 ---

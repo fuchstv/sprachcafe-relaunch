@@ -1,15 +1,16 @@
 ---
 name: "Karolina Żuczek"
+category: "paedagogik"
 role:
-  de: "Pädagogin & Kunstworkshops"
-  pl: "Pedagog i Warsztaty Artystyczne"
-  en: "Educator & Art Workshops"
+  de: "Kinderpädagogin & Kreativwerkstatt"
+  pl: "Pedagog Dziecięcy i Warsztaty Twórcze"
+  en: "Childhood Educator & Creative Arts"
 contact:
-  email: "kontakt@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "k.zuczek@sprachcafe-polnisch.org"
+photo: "/images/team/12-karolina-zuczek.webp"
 bio:
-  de: "Kreativwerkstätten, Malerei und handwerkliche Kurse für Kinder und Jugendliche."
-  pl: "Warsztaty kreatywne, malarstwo i zajęcia plastyczne dla dzieci i młodzieży."
-  en: "Creative arts, painting, and craft workshops for children and youth."
+  de: "Kreatives Gestalten, Kunstpädagogik und Vorleseformate."
+  pl: "Zajęcia plastyczne, pedagogika twórczości i czytanie bajek."
+  en: "Creative arts, art pedagogy, and storytelling."
 order: 12
 ---

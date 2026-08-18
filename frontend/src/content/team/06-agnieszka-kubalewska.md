@@ -1,15 +1,16 @@
 ---
 name: "Agnieszka Kubalewska-Strohmeyer"
+category: "verwaltung"
 role:
-  de: "Verwaltung & Projektmanagement"
-  pl: "Administracja i Zarządzanie Projektami"
-  en: "Administration & Project Management"
+  de: "Buchhaltung & Verwaltung"
+  pl: "Księgowość i Administracja"
+  en: "Accounting & Administration"
 contact:
-  email: "kontakt@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "verwaltung@sprachcafe-polnisch.org"
+photo: "/images/team/06-agnieszka-kubalewska.webp"
 bio:
-  de: "Projektadministration, Fördermittelabrechnung und operative Koordination der Standorte."
-  pl: "Administracja projektów, rozliczenia dotacji i operacyjna koordynacja placówek."
-  en: "Project administration, grant accounting, and operational coordination across branches."
+  de: "Buchhaltung, Projektmittelabrechnung und Vereinsverwaltung."
+  pl: "Księgowość, rozliczanie projektów i administracja stowarzyszenia."
+  en: "Accounting, grant settlement, and association administration."
 order: 6
 ---

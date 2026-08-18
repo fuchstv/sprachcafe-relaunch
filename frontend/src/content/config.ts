@@ -66,6 +66,7 @@ const teamCollection = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
+    category: z.string().optional(),
     role: i18nString,
     contact: z.object({
       email: z.string().email().optional(),

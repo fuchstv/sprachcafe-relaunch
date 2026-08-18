@@ -1,15 +1,16 @@
 ---
 name: "Elke Albers"
+category: "vorstand"
 role:
-  de: "Schatzmeisterin & Vorstand"
+  de: "Vorstandsmitglied & Schatzmeisterin"
   pl: "Skarbnik i Członkini Zarządu"
-  en: "Treasurer & Board Member"
+  en: "Board Member & Treasurer"
 contact:
-  email: "elke.albers@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "e.albers@sprachcafe-polnisch.org"
+photo: "/images/team/02-elke-albers.jpg"
 bio:
-  de: "Verantwortlich für Finanzen, Fördermittelverwaltung und die buchhalterische Begleitung der Vereinsprojekte."
-  pl: "Odpowiedzialna za finanse, zarządzanie dotacjami i obsługę księgową projektów stowarzyszenia."
-  en: "Responsible for finances, grant management, and financial coordination of association projects."
+  de: "Schatzmeisterin, Finanzverwaltung und Fundraising."
+  pl: "Skarbnik, finanse oraz fundraising."
+  en: "Treasurer, financial management, and fundraising."
 order: 2
 ---

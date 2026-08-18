@@ -1,15 +1,16 @@
 ---
 name: "Philipp Fuchs"
+category: "verwaltung"
 role:
-  de: "IT, Webportal & Digitalisierung"
-  pl: "IT, Portal Internetowy i Cyfryzacja"
-  en: "IT, Web Portal & Digital Infrastructure"
+  de: "IT & Digitale Infrastruktur"
+  pl: "IT i Cyfryzacja"
+  en: "IT & Digital Infrastructure"
 contact:
   email: "p.fuchs@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+photo: "/images/team/08-philipp-fuchs.webp"
 bio:
-  de: "Entwicklung und Betreuung des Astro-Webportals, der Online-Hausbibliothek und der M365-Automatisierung."
-  pl: "Tworzenie i opieka nad portalem Astro, biblioteką cyfrową oraz automatyzacją M365."
-  en: "Development and maintenance of the Astro web portal, digital library, and M365 automation."
+  de: "Entwicklung und Betreuung des Astro-Webportals, der Hausbibliothek und der M365-Workflows."
+  pl: "Tworzenie i opieka nad portalem Astro, biblioteką cyfrową oraz procesami M365."
+  en: "Development and maintenance of the Astro portal, digital library, and M365 workflows."
 order: 8
 ---

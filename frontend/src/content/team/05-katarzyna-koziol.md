@@ -1,15 +1,16 @@
 ---
 name: "Katarzyna Aniela Koziol"
+category: "vorstand"
 role:
-  de: "Vorstand & Kulturkoordination"
-  pl: "Zarząd i Koordynacja Kultury"
-  en: "Board Member & Cultural Coordination"
+  de: "Dipl.-Päd., Holistisches Coaching"
+  pl: "Pedagog, Coaching Holistyczny"
+  en: "Dipl.-Ped., Holistic Coaching"
 contact:
-  email: "katarzyna.koziol@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "hallo@kasia-aniela-koziol.de"
+photo: "/images/team/05-katarzyna-koziol.webp"
 bio:
-  de: "Koordination von Kunstausstellungen, Kulturabenden und Kooperationen mit Kulturinstitutionen."
-  pl: "Koordynacja wystaw sztuki, wieczorów kulturalnych i współpracy z instytucjami kultury."
-  en: "Coordinating art exhibitions, cultural evenings, and institutional partnerships."
+  de: "Holistisches Coaching: Karriere, Business & Mindset."
+  pl: "Coaching holistyczny: kariera, biznes i rozwój osobisty."
+  en: "Holistic coaching: career, business, and mindset."
 order: 5
 ---

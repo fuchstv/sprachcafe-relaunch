@@ -1,15 +1,16 @@
 ---
 name: "Grzegorz Szklarczuk"
+category: "paedagogik"
 role:
-  de: "Pädagoge & Jugendprojekte"
-  pl: "Pedagog i Projekty Młodzieżowe"
-  en: "Educator & Youth Projects"
+  de: "Kinderpädagoge & Medien"
+  pl: "Pedagog Dziecięcy i Media"
+  en: "Childhood Educator & Media"
 contact:
-  email: "kontakt@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "g.szklarczuk@sprachcafe-polnisch.org"
+photo: "/images/team/10-grzegorz-szklarczuk.webp"
 bio:
-  de: "Medienpädagogik, Jugend-Workshops und Sprachförderung für Schulkinder."
-  pl: "Pedagogika medialna, warsztaty młodzieżowe i edukacja językowa dla dzieci w wieku szkolnym."
-  en: "Media education, youth workshops, and language support for school-age children."
+  de: "Medienpädagogik, Film- und Sprachprojekte für Kinder und Jugendliche."
+  pl: "Pedagogika medialna, projekty filmowe i językowe dla dzieci i młodzieży."
+  en: "Media pedagogy, film and language projects for children and youth."
 order: 10
 ---

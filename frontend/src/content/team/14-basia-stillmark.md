@@ -1,15 +1,16 @@
 ---
 name: "Basia Stillmark"
+category: "paedagogik"
 role:
-  de: "Pädagogin & Frühförderung"
-  pl: "Pedagog i Wczesna Edukacja"
-  en: "Educator & Early Childhood"
+  de: "Kinderpädagogin & Musik"
+  pl: "Pedagog Dziecięcy i Muzyka"
+  en: "Childhood Educator & Music"
 contact:
-  email: "kontakt@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "b.stillmark@sprachcafe-polnisch.org"
+photo: "/images/team/14-basia-stillmark.jpg"
 bio:
-  de: "Musik- und Rhythmikpädagogik für Kleinkinder und zweisprachige Eltern-Kind-Kreise."
-  pl: "Zajęcia muzyczno-rytmiczne dla maluchów i dwujęzyczne kręgi rodzinne."
-  en: "Music and rhythm pedagogy for toddlers and bilingual family circles."
+  de: "Musikalische Früherziehung, Singen und Rhythmik."
+  pl: "Wczesna edukacja muzyczna, śpiew i rytmika."
+  en: "Early music education, singing, and rhythmics."
 order: 14
 ---

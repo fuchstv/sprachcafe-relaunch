@@ -1,15 +1,16 @@
 ---
 name: "Sandra Filip-Badura"
+category: "vorstand"
 role:
-  de: "Vorstand & Polnisch als Fremdsprache"
+  de: "Vorstandsmitglied & Polnisch als Fremdsprache"
   pl: "Zarząd i Język Polski jako Obcy"
   en: "Board Member & Polish as Foreign Language"
 contact:
-  email: "sandra.filip@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "s.filip-badura@sprachcafe-polnisch.org"
+photo: "/images/team/04-sandra-filip-badura.jpg"
 bio:
-  de: "Konzeption und methodische Leitung der Polnischkurse für Erwachsene und Sprachtandem-Formate."
-  pl: "Koncepcja i kierownictwo metodyczne kursów języka polskiego dla dorosłych oraz tandemów."
-  en: "Curriculum design and methodology lead for adult Polish courses and language tandem formats."
+  de: "Konzeption und Koordination der Sprachkurse Polnisch als Fremdsprache für Erwachsene."
+  pl: "Koncepcja i koordynacja kursów języka polskiego jako obcego dla dorosłych."
+  en: "Concept and coordination of Polish as a foreign language courses for adults."
 order: 4
 ---

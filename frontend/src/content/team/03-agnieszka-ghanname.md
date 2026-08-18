@@ -1,15 +1,16 @@
 ---
 name: "Agnieszka Ghanname"
+category: "vorstand"
 role:
-  de: "Vorstand & Sozialberatung"
+  de: "Vorstandsmitglied & Sozialberatung"
   pl: "Zarząd i Poradnictwo Społeczne"
   en: "Board Member & Social Counseling"
 contact:
-  email: "agnieszka.ghanname@sprachcafe-polnisch.org"
-photo: "/images/team/avatar-default.svg"
+  email: "a.ghanname@sprachcafe-polnisch.org"
+photo: "/images/team/03-agnieszka-ghanname.webp"
 bio:
-  de: "Leitung der muttersprachlichen Sozialberatung und Koordination der Nachbarschaftshilfe."
-  pl: "Prowadzenie poradnictwa społecznego w języku ojczystym i koordynacja pomocy sąsiedzkiej."
-  en: "Head of native-language social counseling and coordinator of community assistance."
+  de: "Vorstandsmitglied, Leitung der muttersprachlichen Sozialberatung und Kinderpädagogin."
+  pl: "Członkini zarządu, poradnictwo społeczne i pedagogika dziecięca."
+  en: "Board member, social counseling lead, and childhood educator."
 order: 3
 ---
