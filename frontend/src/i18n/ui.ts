@@ -19,6 +19,10 @@ export const ui = {
     'hero.subtitle': 'Ort der Begegnung, Sprache und deutsch-polnischen Kultur.',
     'hero.badge': 'Offizielle Plattform',
     'lang.switch': 'Sprache wählen',
+    'footer.rights': '© 2026 SprachCafé Polnisch e.V. — Alle Rechte vorbehalten.',
+    'footer.privacy': 'Datenschutz',
+    'footer.imprint': 'Impressum',
+    'footer.accessibility': 'Barrierefreiheit',
   },
   pl: {
     'nav.home': 'Strona główna',
@@ -30,6 +34,10 @@ export const ui = {
     'hero.subtitle': 'Miejsce spotkań, języka i kultury niemiecko-polskiej.',
     'hero.badge': 'Oficjalna platforma',
     'lang.switch': 'Wybierz język',
+    'footer.rights': '© 2026 SprachCafé Polnisch e.V. — Wszelkie prawa zastrzeżone.',
+    'footer.privacy': 'Ochrona danych',
+    'footer.imprint': 'Impressum',
+    'footer.accessibility': 'Deklaracja dostępności',
   },
   en: {
     'nav.home': 'Home',
@@ -41,5 +49,9 @@ export const ui = {
     'hero.subtitle': 'A place for encounter, language, and German-Polish culture.',
     'hero.badge': 'Official Platform',
     'lang.switch': 'Select language',
+    'footer.rights': '© 2026 SprachCafé Polnisch e.V. — All rights reserved.',
+    'footer.privacy': 'Privacy Policy',
+    'footer.imprint': 'Imprint',
+    'footer.accessibility': 'Accessibility Statement',
   }
 } as const;

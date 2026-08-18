@@ -13,11 +13,9 @@ Dieses Dokument erfasst alle auf der Staging-Umgebung (`beta.sprachcafe-polnisch
 
 ## 📋 Offene Punkte & Platzhalter
 
-### 1. ⚖️ Rechtliche Seiten & Footer-Links
-- **Problem**: Die Links im Seiten-Footer (Datenschutz, Impressum, Barrierefreiheit) verweisen derzeit nur auf reine Anker-IDs (`#privacy`, `#imprint`, `#accessibility`), da noch keine echten Unterseiten existieren.
-- **Ziel (Phase R2)**:
-  - Erstellung der rechtlich geprüften statischen Astro-Seiten `/datenschutz`, `/impressum` und `/barrierefreiheit`.
-  - Aktualisierung aller Footer-Links auf die korrekten Routen.
+### 1. ⚖️ Rechtliche Seiten & Footer-Links (✅ Erledigt)
+- **Status**: Die statischen Seiten `/datenschutz/`, `/impressum/` und `/barrierefreiheit/` sind vollständig implementiert.
+- **Footer-Integration**: Der Footer löst alle früheren Platzhalter (`#privacy`, `#imprint`, `#accessibility`) ab und verlinkt dynamisch in allen Sprachversionen (DE: *Barrierefreiheit*, PL: *Deklaracja dostępności*, EN: *Accessibility Statement*) direkt auf `/barrierefreiheit/`.
 
 ### 2. 🖼️ Testimonial-Medien & Fotos
 - **Problem**: Die im Testimonial-Bereich eingebundenen Profilbilder verwenden generische Unsplash-Stockphotos anstelle echter Aufnahmen des Vereins.

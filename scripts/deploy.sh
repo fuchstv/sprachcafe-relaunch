@@ -48,9 +48,13 @@ if [[ "$TARGET" == "production" || "$TARGET" == "all" ]]; then
 fi
 
 # 4. Reload Caddy Reverse Proxy for Automatic TLS & Cache Invalidation
-if docker ps --format '{{.Names}}' | grep -q "sprachcafe_caddy"; then
-    echo "🔄 Reloading Caddy Reverse Proxy..."
-    docker exec sprachcafe_caddy caddy reload
+if docker ps --format '{{.Names}}' | grep -q "library_proxy"; then
+    echo "🔄 Reloading Caddy Reverse Proxy (library_proxy)..."
+    docker exec library_proxy caddy reload --config /etc/caddy/Caddyfile || true
+    echo "✓ Caddy reloaded successfully!"
+elif docker ps --format '{{.Names}}' | grep -q "sprachcafe_caddy"; then
+    echo "🔄 Reloading Caddy Reverse Proxy (sprachcafe_caddy)..."
+    docker exec sprachcafe_caddy caddy reload --config /etc/caddy/Caddyfile || true
     echo "✓ Caddy reloaded successfully!"
 fi
 

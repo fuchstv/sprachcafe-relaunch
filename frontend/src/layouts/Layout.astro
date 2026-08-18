@@ -248,7 +248,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
         
         <div class="flex items-center gap-3">
           <img src="/brand-assets/heart-donation.svg" alt="Spenden Herz-Icon" class="w-6 h-6" />
-          <p>&copy; 2026 SprachCafé Polnisch e.V. — Alle Rechte vorbehalten.</p>
+          <p>{t('footer.rights')}</p>
         </div>
 
         <!-- Official Social Icons (Facebook, Instagram, YouTube, LinkedIn, TikTok) -->
@@ -301,11 +301,11 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
         </div>
 
         <div class="flex items-center gap-4">
-          <a href="/datenschutz/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">Datenschutz</a>
+          <a href="/datenschutz/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">{t('footer.privacy')}</a>
           <span>•</span>
-          <a href="/impressum/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">Impressum</a>
+          <a href="/impressum/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">{t('footer.imprint')}</a>
           <span>•</span>
-          <a href="/barrierefreiheit/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">Barrierefreiheit</a>
+          <a href="/barrierefreiheit/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">{t('footer.accessibility')}</a>
         </div>
 
       </div>

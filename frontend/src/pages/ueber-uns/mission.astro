@@ -3,57 +3,387 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Unsere Mission & Werte — SprachCafé Polnisch e.V."
-  description="Erfahren Sie mehr über die Mission, Vision und Kernwerte des SprachCafé Polnisch e.V. in Berlin."
+  title="Mission & Werte — SprachCafé Polnisch e.V."
+  description="Erfahren Sie mehr über die Mission, die Gründungsgeschichte und die Werte des SprachCafé Polnisch e.V. – offener Begegnungsort für Sprache und Kultur in Berlin."
   lang="de"
 >
+  <!-- Hero / Introduction Section -->
   <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
-    <div class="max-w-4xl mx-auto text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
-        <span>🕊️ Mission & Leitbild</span>
-      </div>
-      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-6">
-        Unsere Mission & Werte
-      </h1>
-      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-        Das SprachCafé Polnisch e.V. steht für lebendige Nachbarschaft, zweisprachige Förderung und den brückenbauenden Austausch zwischen der deutschen und polnischen Kultur in Berlin.
-      </p>
-    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      
+      <!-- Text Column (Left) -->
+      <div class="lg:col-span-6 space-y-6 text-[#1d1b1a] dark:text-[#f5f0ee]">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+          <span>🕊️ Leitbild & Mission</span>
+        </div>
+        
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight leading-tight text-[#1d1b1a] dark:text-[#f5f0ee]">
+          Brücken bauen zwischen Kulturen, Sprachen &amp; Generationen
+        </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-8 shadow-sm">
-        <div class="text-3xl mb-4">🗣️</div>
-        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Sprache als Brücke</h3>
-        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
-          Förderung der Mehrsprachigkeit ab dem Kleinkindalter und offene Sprachcafés für Erwachsene.
+        <p class="font-sans text-lg sm:text-xl font-medium text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed">
+          SprachCafé Polnisch e.V. ist ein gemeinnütziger Begegnungsort für Kultur, Sprache und Business mit Aktivitäten in 
+          <span class="font-bold text-[#cc0000] dark:text-[#ff6b6b]">Pankow</span>, 
+          <span class="font-bold text-[#039dcc] dark:text-[#38bdf8]">Schöneberg</span> und 
+          <span class="font-bold text-[#43ad48] dark:text-[#4ade80]">Köpenick</span>.
+        </p>
+
+        <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir bauen Brücken zwischen Kulturen, Sprachen und Generationen, um eine mitfühlendere, verständnisvollere Gemeinschaft zu schaffen – einen Ort, an dem sich jede*r zu Hause fühlt.
+        </p>
+
+        <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Mit polnischem Flair und offenem Herzen veranstalten wir Workshops, kulturelle Events und Gemeinschaftsinitiativen, die Alt- und Neuberliner*innen und Freunde aller Herkunft zusammenbringen.
         </p>
       </div>
 
-      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-8 shadow-sm">
-        <div class="text-3xl mb-4">🤝</div>
-        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Gelebte Nachbarschaft</h3>
-        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
-          Begegnungsorte in Pankow, Schöneberg und Köpenick für Familien, Senioren und Zugewanderte.
-        </p>
+      <!-- Image Column (Right) -->
+      <div class="lg:col-span-6">
+        <figure class="relative overflow-hidden rounded-3xl shadow-lg border border-[#e7e1df] dark:border-[#363230] bg-white dark:bg-[#22201e] p-2">
+          <img
+            src="/images/mission/hero.avif"
+            alt="SprachCafé Polnisch Gemeinschaft und Begegnung"
+            width="1024"
+            height="719"
+            class="w-full h-auto object-cover rounded-2xl"
+            loading="eager"
+          />
+          <figcaption class="text-right text-xs text-[#8c7471] dark:text-[#a89895] mt-2 px-2 italic">
+            &copy; martawilkphotography
+          </figcaption>
+        </figure>
       </div>
 
-      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-8 shadow-sm">
-        <div class="text-3xl mb-4">📚</div>
-        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Kultur & Literatur</h3>
-        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
-          Freier Zugang zur Hausbibliothek, Autorenlesungen, Ausstellungen und Theaterworkshops.
-        </p>
-      </div>
-    </div>
-
-    <div class="text-center">
-      <a
-        href="/mitmachen/mitglied-werden/"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold hover:bg-[#6b1d30] transition-colors"
-      >
-        <span>Mitglied werden & unterstützen</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </a>
     </div>
   </section>
+
+  <!-- Section Divider -->
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <hr class="border-t border-[#e7e1df] dark:border-[#363230]" />
+  </div>
+
+  <!-- Core Values Section (Werte des SprachCafés) -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8B263E] dark:text-[#ff758f] block mb-2">Unsere Leitprinzipien</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+        Werte des SprachCafés
+      </h2>
+      <div class="w-16 h-1 bg-[#8B263E] dark:bg-[#ff758f] mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Respekt -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-[#8B263E]/10 dark:bg-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] flex items-center justify-center text-2xl mb-5 font-serif font-bold">
+          🤝
+        </div>
+        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          Respekt
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir kommunizieren respektvoll und begegnen einander mit Würde. Gewaltfreie Kommunikation leitet unsere Gespräche.
+        </p>
+      </div>
+
+      <!-- Gemeinschaft -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-[#039dcc]/10 dark:bg-[#039dcc]/20 text-[#039dcc] dark:text-[#38bdf8] flex items-center justify-center text-2xl mb-5 font-serif font-bold">
+          🏡
+        </div>
+        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          Gemeinschaft
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir schaffen einen Ort, an dem Menschen miteinander lernen, wachsen und sich gegenseitig unterstützen.
+        </p>
+      </div>
+
+      <!-- Offenheit -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-[#43ad48]/10 dark:bg-[#43ad48]/20 text-[#43ad48] dark:text-[#4ade80] flex items-center justify-center text-2xl mb-5 font-serif font-bold">
+          🌍
+        </div>
+        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          Offenheit
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir sind neugierig auf die Welt, auf Menschen und auf unsere unterschiedlichen Erfahrungen. Bei uns ist jeder willkommen.
+        </p>
+      </div>
+
+      <!-- Vielfalt -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-[#d97706]/10 dark:bg-[#d97706]/20 text-[#d97706] dark:text-[#fbbf24] flex items-center justify-center text-2xl mb-5 font-serif font-bold">
+          🎨
+        </div>
+        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          Vielfalt
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir schätzen jede Stimme und begrüßen die Vielfalt unserer Hintergründe, Kulturen und Erfahrungen.
+        </p>
+      </div>
+
+      <!-- Nachhaltigkeit -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-[#059669]/10 dark:bg-[#059669]/20 text-[#059669] dark:text-[#34d399] flex items-center justify-center text-2xl mb-5 font-serif font-bold">
+          🌱
+        </div>
+        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          Nachhaltigkeit
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir handeln verantwortungsbewusst und berücksichtigen die Auswirkungen unseres Handelns auf Menschen, die Umwelt und künftige Generationen.
+        </p>
+      </div>
+
+      <!-- Integrität -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-[#7c3aed]/10 dark:bg-[#7c3aed]/20 text-[#7c3aed] dark:text-[#a78bfa] flex items-center justify-center text-2xl mb-5 font-serif font-bold">
+          ⚖️
+        </div>
+        <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          Integrität
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wir handeln ehrlich, transparent und im Einklang mit unseren Werten. Unsere Worte und Taten stimmen überein.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Photo Tiled Gallery (Authentic impressions by Marta Wilk) -->
+  <section class="py-6 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="space-y-4">
+      
+      <!-- Gallery Row 1 -->
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-stretch">
+        <div class="sm:col-span-3">
+          <img
+            src="/images/mission/gallery-1.avif"
+            alt="SprachCafé Polnisch Begegnungsmomente"
+            class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-[#e7e1df] dark:border-[#363230]"
+            loading="lazy"
+          />
+        </div>
+        <div class="sm:col-span-6">
+          <img
+            src="/images/mission/gallery-2.avif"
+            alt="Gemeinschaft und Kulturveranstaltung im SprachCafé"
+            class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-[#e7e1df] dark:border-[#363230]"
+            loading="lazy"
+          />
+        </div>
+        <div class="sm:col-span-3">
+          <img
+            src="/images/mission/gallery-3.avif"
+            alt="Polnische Kultur und Sprachaustausch"
+            class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-[#e7e1df] dark:border-[#363230]"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Gallery Row 2 -->
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-stretch">
+        <div class="sm:col-span-4">
+          <img
+            src="/images/mission/gallery-4.avif"
+            alt="Kulturelle Workshops im SprachCafé Polnisch"
+            class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-[#e7e1df] dark:border-[#363230]"
+            loading="lazy"
+          />
+        </div>
+        <div class="sm:col-span-8">
+          <img
+            src="/images/mission/gallery-5.avif"
+            alt="Generationenübergreifende Begegnungen in Pankow und Schöneberg"
+            class="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-sm border border-[#e7e1df] dark:border-[#363230]"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-[#8c7471] dark:text-[#a89895] italic pt-1">
+        &copy; martawilkphotography
+      </p>
+    </div>
+  </section>
+
+  <!-- Origin Story Section (Wie alles begann) -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1000px] mx-auto">
+    <div class="bg-[#f8f2f0] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12 shadow-sm">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-4">
+        <span>📖 Ursprung &amp; Entstehung</span>
+      </div>
+
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-6">
+        Wie alles begann
+      </h2>
+
+      <div class="space-y-5 text-base sm:text-lg text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+        <p class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+          Unsere Geschichte begann 2008 in einem Pankower Kindergarten.
+        </p>
+
+        <p>
+          Ein neues Mädchen, Miriam, war gerade angekommen, und ihre Erzieherin bemerkte, dass sie Schwierigkeiten hatte, sich einzuleben. Der Start in einer neuen Einrichtung ist nie einfach, besonders wenn die Sprache nicht die eigene Muttersprache ist. Für die polnischsprachige Miriam war Deutsch ungewohnt und überwältigend.
+        </p>
+
+        <p>
+          Zwei Mütter in der Gruppe, Agata und Marta, erkannten dieses Gefühl sofort. Auch ihre eigenen Kinder bewegten sich im Alltag zwischen verschiedenen Sprachen. Um Miriam zu unterstützen, begannen sie, zweisprachige Aktivitäten im Gruppenraum zu organisieren: Spiele, Reime, Märchen, Basteln und sogar Kochen (Maultaschen mit Erdbeeren!).
+        </p>
+
+        <p>
+          Was als ein paar Aktivitäten begann, wurde bald zu etwas Größerem. Die Kinder fanden zueinander, die Eltern kamen zusammen und ein Gefühl der Zugehörigkeit begann zu wachsen. Ohne es zu planen, hatten Agata und Marta ein kleines Modell einer mehrsprachigen Gemeinschaft geschaffen.
+        </p>
+
+        <p class="font-serif text-xl font-bold text-[#8B263E] dark:text-[#ff758f] pt-2">
+          Aus diesem Funken entstand dann das <em>SprachCafé Polnisch</em>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Growth & Timeline Section (Wie wir gewachsen sind…) -->
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- Left Column: Growth Image -->
+      <div class="lg:col-span-6">
+        <div class="space-y-4">
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-6">
+            Wie wir gewachsen sind…
+          </h2>
+          <figure class="relative overflow-hidden rounded-3xl shadow-lg border border-[#e7e1df] dark:border-[#363230] bg-white dark:bg-[#22201e] p-2">
+            <img
+              src="/images/mission/growth.avif"
+              alt="Entwicklung des SprachCafé Polnisch"
+              width="1024"
+              height="683"
+              class="w-full h-auto object-cover rounded-2xl"
+              loading="lazy"
+            />
+            <figcaption class="text-right text-xs text-[#8c7471] dark:text-[#a89895] mt-2 px-2 italic">
+              &copy; martawilkphotography
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Right Column: Milestone List -->
+      <div class="lg:col-span-6">
+        <div class="space-y-6">
+          
+          <!-- 2012 -->
+          <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] shadow-sm">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#8B263E]/10 dark:bg-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] flex items-center justify-center font-serif font-bold text-lg">
+              2012
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee] text-base">Bürgerinitiative</h3>
+              <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+                Das SprachCafé Polnisch begann als kleine Bürgerinitiative, die Menschen durch Sprache und Kultur zusammenbrachte.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2016 -->
+          <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] shadow-sm">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#039dcc]/10 dark:bg-[#039dcc]/20 text-[#039dcc] dark:text-[#38bdf8] flex items-center justify-center font-serif font-bold text-lg">
+              2016
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee] text-base">Gemeinnütziger Verein</h3>
+              <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+                Wir wurden als gemeinnütziger Verein eingetragen, wodurch wir unsere Mission gestärkt und unser Programmangebot erweitert haben.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2018 -->
+          <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] shadow-sm">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#43ad48]/10 dark:bg-[#43ad48]/20 text-[#43ad48] dark:text-[#4ade80] flex items-center justify-center font-serif font-bold text-lg">
+              2018
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee] text-base">Zuhause in Pankow</h3>
+              <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+                Wir haben unser langfristiges Zuhause in der Schulzestraße 1 in Pankow gefunden, wo unsere Gemeinschaft Wurzeln geschlagen hat.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2023 -->
+          <div class="flex gap-4 p-5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] shadow-sm">
+            <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#d97706]/10 dark:bg-[#d97706]/20 text-[#d97706] dark:text-[#fbbf24] flex items-center justify-center font-serif font-bold text-lg">
+              2023
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee] text-base">Erweiterung &amp; neue Standorte</h3>
+              <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+                Es begann mit der Erweiterung und der Eröffnung neuer Räumlichkeiten für Kurse, Veranstaltungen und den kulturellen Austausch.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Community CTA Banner (Werde ein Teil unserer Community!) -->
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="relative overflow-hidden rounded-3xl bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] p-8 sm:p-12 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: Text & Button -->
+        <div class="md:col-span-8 space-y-6">
+          <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+            Gemeinschaft erleben
+          </span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+            Werde ein Teil unserer Community!
+          </h2>
+          <p class="text-base sm:text-lg text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-2xl">
+            Egal, ob Du an Veranstaltungen teilnehmen, Dich ehrenamtlich engagieren oder einfach nur eine Tasse Kaffee mit uns genießen möchtest – hier ist ein Platz für Dich.
+          </p>
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a
+              href="/mitmachen/"
+              class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold text-base transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            >
+              <span>Mach mit &rarr;</span>
+            </a>
+            <a
+              href="/events/"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-base hover:bg-[#f8f2f0] dark:hover:bg-[#363230] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            >
+              <span>Veranstaltungen entdecken</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Polish Greeting Coffee Cup Image -->
+        <div class="md:col-span-4 flex justify-center items-center">
+          <img
+            src="/images/mission/coffee-cup.webp"
+            alt="Kaffeetasse mit polnischer Begrüßung"
+            width="280"
+            height="280"
+            class="w-48 sm:w-64 h-auto object-contain transform hover:scale-105 transition-transform duration-300 drop-shadow-md"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </Layout>
