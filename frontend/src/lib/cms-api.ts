@@ -13,7 +13,7 @@ export const mockEvents: EventItem[] = [
     target_group: 'Alle',
     language: 'Bilingual',
     description: 'Ein gemütlicher Abend für alle, die Polnisch und Deutsch in ungezwungener Atmosphäre üben möchten. Eintritt frei!',
-    image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&auto=format&fit=crop',
+    image: '/images/events/event-sprachabend.webp',
     max_participants: 25
   },
   {
@@ -26,7 +26,7 @@ export const mockEvents: EventItem[] = [
     target_group: 'Erwachsene',
     language: 'PL',
     description: 'Gemeinsames Anschauen eines preisgekrönten polnischer Dokus mit anschließender Diskussion bei Tee und Gebäck.',
-    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&auto=format&fit=crop',
+    image: '/images/events/event-geschichten.avif',
     max_participants: 30
   },
   {
@@ -38,7 +38,7 @@ export const mockEvents: EventItem[] = [
     target_group: 'Alle',
     language: 'DE',
     description: 'Präsentation von Neuerscheinungen der zeitgenössischen polnischen Literatur in deutscher Übersetzung.',
-    image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&auto=format&fit=crop',
+    image: '/images/events/event-literaturreise.avif',
     max_participants: 40
   }
 ];
@@ -52,7 +52,7 @@ export const mockPosts: PostItem[] = [
     category: 'Neuigkeiten',
     location_tag: 'Global',
     content: 'Wir freuen uns, unsere neue barrierefreie Plattform mit Astro, Headless CMS und digitaler Hausbibliothek vorzustellen.',
-    featured_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop',
+    featured_image: '/images/hero/homepage-hero.webp',
     author: 'Vorstand SprachCafé'
   },
   {
@@ -63,7 +63,7 @@ export const mockPosts: PostItem[] = [
     category: 'Kultur',
     location_tag: 'Köpenick',
     content: 'Dank einer großzügigen Spende wurden über 50 neue zweisprachige Kinder- und Jugendbücher in unseren Katalog aufgenommen.',
-    featured_image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&auto=format&fit=crop',
+    featured_image: '/images/library/hausbibliothek-raum.webp',
     author: 'Bibliotheksteam'
   }
 ];
@@ -78,7 +78,7 @@ export const mockBooks: BookItem[] = [
     category: 'Belletristik',
     location: 'Pankow',
     status: 'verfuegbar',
-    cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop',
+    cover: '/images/library/hausbibliothek-raum.webp',
     description: 'Powieść o współczesnych nomadach, podróży i poszukiwaniu sensu we współczesnym świecie.'
   },
   {
@@ -90,7 +90,7 @@ export const mockBooks: BookItem[] = [
     category: 'Klassiker',
     location: 'Pankow',
     status: 'verfuegbar',
-    cover: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop',
+    cover: '/images/library/hausbibliothek-raum.webp',
     description: 'Klassischer Bildungsroman über Hans Castorp im Sanatorium in den Schweizer Alpen.'
   },
   {
@@ -102,7 +102,7 @@ export const mockBooks: BookItem[] = [
     category: 'Science Fiction',
     location: 'Pankow',
     status: 'ausgeliehen',
-    cover: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&auto=format&fit=crop',
+    cover: '/images/library/hausbibliothek-raum.webp',
     description: 'Słynna powieść fantastycznonaukowa o próbach kontaktu z obcą inteligencją.'
   },
   {
@@ -114,7 +114,7 @@ export const mockBooks: BookItem[] = [
     category: 'Fantasy',
     location: 'Pankow',
     status: 'reserviert',
-    cover: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=600&auto=format&fit=crop',
+    cover: '/images/library/hausbibliothek-raum.webp',
     description: 'Geralt the Witcher encounters monsters and magic in this famous fantasy saga.'
   },
   {
@@ -126,7 +126,7 @@ export const mockBooks: BookItem[] = [
     category: 'Poesie',
     location: 'Pankow',
     status: 'verfuegbar',
-    cover: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop',
+    cover: '/images/library/hausbibliothek-raum.webp',
     description: 'Zbiór poezji Tarasa Szewczenki - klasyka literatury ukraińskiej.'
   }
 ];

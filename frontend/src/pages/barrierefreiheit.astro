@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const webhookUrl = import.meta.env.PUBLIC_POWER_AUTOMATE_BARRIER_WEBHOOK_URL || "";
 ---
 
 <Layout
@@ -252,7 +254,7 @@ import Layout from '../layouts/Layout.astro';
 
       </div>
 
-      <script is:inline>
+      <script is:inline define:vars={{ webhookUrl }}>
         document.addEventListener('DOMContentLoaded', () => {
           const submitBtn = document.getElementById('barrier-submit-btn');
           const btnText = document.getElementById('barrier-btn-text');
@@ -292,23 +294,24 @@ import Layout from '../layouts/Layout.astro';
             btnSpinner.classList.remove('hidden');
 
             const payload = {
-              sender_name: name,
+              name: name,
               email: email,
-              topic: 'Barriere melden',
-              subject: `[Barriere-Meldung] ${url ? url : 'Website allgemein'}`,
-              message: `URL: ${url || 'Keine Angabe'}\n\nBeschreibung der Barriere:\n${description}`,
-              submitted_at: new Date().toISOString(),
-              recipient: 'kontakt@sprachcafe-polnisch.org'
+              url: url || 'Website allgemein',
+              description: description,
+              device: navigator.userAgent,
+              assistiveTech: 'Nicht angegeben',
+              consent: true,
+              submittedAt: new Date().toISOString()
             };
 
             try {
-              // Graceful client transmission to contact webhook or fallback handling
-              const webhookUrl = "https://prod-00.westeurope.logic.azure.com:443/workflows/placeholder-contact-webhook-url";
-              await fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-              }).catch(() => {});
+              if (webhookUrl && webhookUrl.startsWith('http')) {
+                await fetch(webhookUrl, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(payload)
+                });
+              }
 
               form.classList.add('hidden');
               successBanner.classList.remove('hidden');

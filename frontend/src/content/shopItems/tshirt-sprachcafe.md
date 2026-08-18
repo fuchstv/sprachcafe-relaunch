@@ -11,6 +11,6 @@ priceDisplay:
   de: "20 € (Spendenbeitrag)"
   pl: "20 € (darowizna)"
   en: "20 € (donation)"
-image: "/images/shop/tshirt-adult.svg"
+image: "/images/shop/laden-artikel-3.webp"
 availability: "in_stock"
 ---

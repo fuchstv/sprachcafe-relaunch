@@ -21,5 +21,5 @@ directions:
   pl: "S-Bahn S1 do stacji Julius-Leber-Brücke lub U7 do Kleistpark."
   en: "S-Bahn S1 to Julius-Leber-Brücke or U7 to Kleistpark."
 email: "schoeneberg@sprachcafe-polnisch.org"
-image: "/images/locations/schoeneberg.svg"
+image: "/images/hero/hero-collage-2.avif"
 ---

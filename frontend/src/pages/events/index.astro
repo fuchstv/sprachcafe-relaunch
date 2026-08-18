@@ -25,7 +25,7 @@ const events = collectionEvents.map((e) => ({
   language: e.data.language.join(', ').toUpperCase(),
   target_group: e.data.targetAudience[lang] || e.data.targetAudience.de,
   description: stripHtml(e.data.description[lang] || e.data.description.de),
-  image: e.data.image.src || '/images/events/default-event.svg',
+  image: e.data.image.src || '/images/events/event-sprachabend.webp',
 }));
 
 const mainCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&hl=de&mode=AGENDA&src=NWM0M2FmNGIyNmRjMDZhMWMxZjliOTRkNDhmMTNjMzFkNTk3YmJiYjI1Y2U0YzJiZTNhMjdlZGI0NTI3NTRjOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YTVmMDk2YTI3YjU1YmFhODYxOGUzMGZjYjlmMWM3ZDVjNTk3YWMwMjZjYWNhZjJiODk2ODViMmMzYWMyMmI4YkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ODE3YzVkNTcwN2FmY2JmMWY5ZDVhNTRmZDQxMjQ3ZGM3YzUwOTM4NTk0YjIwNjQ2MDRlY2Q2MzlhYjVmNWFlM0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZmE5MzhhZTUyNzQ1MDBmZjFmOWY2ODNmZmI1NjI0MWU0MTQ1ODM5ZTUzZDhmNDU1NGQ1NDRmZDUzNzBhOWU3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OTU4MWYwMWZlNDQxZTljZGJlNzU3M2Q2Y2U3YzY3ZjQ0NDY2NDgxMmZjMDBjYzU5MTUxMzQ5MTI1ZTBjZmM4NEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MTNhMTI4MjY4NzEyMjM0Y2NkMTEzOWE0Zjk2ZDUzMDY5M2Q4YmE5MmZhN2ZlYzg2NzFkNDFhYzRjNjI1MjE0YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23f09300&color=%233f51b5&color=%237986cb&color=%237986cb&color=%234285f4&color=%23616161";
@@ -151,7 +151,7 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
                     alt={event.title}
                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     loading="lazy"
-                    onerror="this.src='/images/events/default-event.svg'"
+                    onerror="this.src='/images/events/event-sprachabend.webp'"
                   />
                 </div>
               )}

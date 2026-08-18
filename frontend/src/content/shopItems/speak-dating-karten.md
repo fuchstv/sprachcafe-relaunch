@@ -11,6 +11,6 @@ priceDisplay:
   de: "12 € (Spendenbeitrag)"
   pl: "12 € (darowizna)"
   en: "12 € (donation)"
-image: "/images/shop/speak-dating-cards.svg"
+image: "/images/shop/kleiner-laden.jpg"
 availability: "in_stock"
 ---

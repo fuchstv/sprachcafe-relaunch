@@ -4,7 +4,7 @@ interface Props {
 }
 
 const {
-  webhookUrl = import.meta.env.PUBLIC_POWER_AUTOMATE_MEMBER_WEBHOOK_URL || "https://prod-00.westeurope.logic.azure.com:443/workflows/placeholder-webhook-url"
+  webhookUrl = import.meta.env.PUBLIC_POWER_AUTOMATE_VOLUNTEER_WEBHOOK_URL || import.meta.env.PUBLIC_POWER_AUTOMATE_MEMBER_WEBHOOK_URL || ""
 } = Astro.props;
 ---
 

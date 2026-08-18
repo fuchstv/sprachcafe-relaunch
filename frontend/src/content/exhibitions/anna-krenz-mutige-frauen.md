@@ -11,7 +11,7 @@ description:
   pl: "Multimedialna wystawa o wybitnych kobietach historii polsko-niemieckiej, aktywizmu i sztuki."
   en: "A multimedia exhibition celebrating remarkable women of German-Polish history, activism, and art."
 gallery:
-  - url: "/images/exhibitions/mutige-frauen.svg"
+  - url: "/images/exhibitions/czuje-widze-tworze.webp"
     caption:
       de: "Plakat zur Ausstellung Mutige Frauen"
       pl: "Plakat wystawy Odważne Kobiety"

@@ -11,7 +11,7 @@ description:
   pl: "Malarstwo akrylowe i kolaże badające ścieżki międzykulturowego zakorzenienia i osobistej transformacji."
   en: "Vibrant acrylic paintings and collages exploring pathways of intercultural belonging and transformation."
 gallery:
-  - url: "/images/exhibitions/sciezki.svg"
+  - url: "/images/exhibitions/arteszka-kolaz.webp"
     caption:
       de: "Ausstellungsübersicht Ścieżki"
       pl: "Przegląd wystawy Ścieżki"

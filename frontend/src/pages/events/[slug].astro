@@ -37,7 +37,7 @@ const event = {
   target_group: entry.data.targetAudience[lang] || entry.data.targetAudience.de,
   descriptionHtml: rawDesc,
   descriptionPlain: cleanDesc,
-  image: entry.data.image.src || '/images/events/default-event.svg',
+  image: entry.data.image.src || '/images/events/event-sprachabend.webp',
 };
 
 // Schema.org Event JSON-LD
@@ -98,7 +98,7 @@ const eventJsonLd = {
             src={event.image}
             alt={event.title}
             class="w-full h-full object-cover"
-            onerror="this.src='/images/events/default-event.svg'"
+            onerror="this.src='/images/events/event-sprachabend.webp'"
           />
         </div>
       )}

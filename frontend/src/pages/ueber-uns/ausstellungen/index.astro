@@ -33,7 +33,7 @@ const sortedExhibitions = exhibitions.sort((a, b) => b.data.startDate.getTime() 
         const title = exhibition.data.title[lang] || exhibition.data.title.de;
         const artist = exhibition.data.artist;
         const description = exhibition.data.description[lang] || exhibition.data.description.de;
-        const coverImage = exhibition.data.gallery?.[0]?.url || '/images/exhibitions/mutige-frauen.svg';
+        const coverImage = exhibition.data.gallery?.[0]?.url || '/images/exhibitions/schulze-gallery.webp';
         const slug = exhibition.slug;
         const startDateStr = exhibition.data.startDate.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
         const endDateStr = exhibition.data.endDate.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });

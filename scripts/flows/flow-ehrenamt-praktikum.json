@@ -1,0 +1,93 @@
+{
+  "name": "60637cba-a7a7-49e1-a798-6492094896e5",
+  "id": "/providers/Microsoft.ProcessSimple/environments/Default-b745a80a-f682-45e4-ba2e-d48bbd9e703d/flows/60637cba-a7a7-49e1-a798-6492094896e5",
+  "type": "Microsoft.ProcessSimple/environments/flows",
+  "properties": {
+    "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
+    "displayName": "SprachCafé - Ehrenamt & Praktikum (Teams an Agata Koch & Mail an kontakt@)",
+    "state": "Started",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/11/workflows/230c5da119164e9fb4cedf5a6b9391bd/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ejIxs0QS0CujO8veZr6JTb8A5IQl3ZOtYXP8CQRA7zI",
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "appType": { "type": "string" },
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "email": { "type": "string", "format": "email" },
+                "phone": { "type": "string" },
+                "areasOfInterest": { "type": "array" },
+                "availability": { "type": "string" },
+                "motivation": { "type": "string" },
+                "datenschutz": { "type": "boolean" },
+                "submittedAt": { "type": "string" }
+              },
+              "required": ["appType", "firstName", "lastName", "email", "datenschutz"]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_Notification_Targets": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TeamsRecipient",
+                "type": "string",
+                "value": "a.koch@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "MailRecipient",
+                "type": "string",
+                "value": "kontakt@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "NotificationSummary",
+                "type": "string",
+                "value": "Neue Bewerbung (@{triggerBody()?['appType']}): @{triggerBody()?['firstName']} @{triggerBody()?['lastName']} (@{triggerBody()?['email']})"
+              }
+            ]
+          }
+        },
+        "Response_Success": {
+          "type": "Response",
+          "kind": "Http",
+          "runAfter": {
+            "Initialize_Notification_Targets": ["Succeeded"]
+          },
+          "inputs": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "status": "success",
+              "message": "Ihre Bewerbung für Ehrenamt/Praktikum wurde erfolgreich übermittelt. Benachrichtigung an Agata Koch (Teams) und kontakt@sprachcafe-polnisch.org versendet.",
+              "teams_recipient": "a.koch@sprachcafe-polnisch.org",
+              "mail_recipient": "kontakt@sprachcafe-polnisch.org",
+              "timestamp": "@{utcNow()}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

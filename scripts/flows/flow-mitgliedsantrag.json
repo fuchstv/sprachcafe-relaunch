@@ -1,135 +1,97 @@
 {
+  "name": "9debf567-7b15-4357-b9b8-fdee299cb008",
+  "id": "/providers/Microsoft.ProcessSimple/environments/Default-b745a80a-f682-45e4-ba2e-d48bbd9e703d/flows/9debf567-7b15-4357-b9b8-fdee299cb008",
+  "type": "Microsoft.ProcessSimple/environments/flows",
   "properties": {
+    "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
+    "displayName": "SprachCafé - Mitgliedsantrag (Teams an Agata Koch & Mail an kontakt@)",
     "state": "Started",
-    "displayName": "SprachCafé - Neuer Mitgliedsantrag (Silver, Gold, Platinum, Firmen zu SharePoint/Teams)",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/28/workflows/5684425e46d24419b097ca7f097e13f5/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fvpYw6l_rvKvEbkrADRqU1EcCbAqHn3JcLHq3TIQ_vY",
     "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
-      "triggers": {
-        "When_an_HTTP_request_is_received": {
-          "kind": "Http",
-          "inputs": {
-            "schema": {
-              "properties": {
-                "wieGehoert": {
-                  "type": "string"
-                },
-                "submittedAt": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "strasse": {
-                  "type": "string"
-                },
-                "geburtsdatum": {
-                  "type": "string"
-                },
-                "unterstuetzung": {
-                  "type": "string"
-                },
-                "ort": {
-                  "type": "string"
-                },
-                "beruf": {
-                  "type": "string"
-                },
-                "datenschutzAkzeptiert": {
-                  "type": "boolean"
-                },
-                "mitgliedschaftsStufe": {
-                  "enum": [
-                    "Silver",
-                    "Gold",
-                    "Platinum",
-                    "Firmenmitgliedschaft"
-                  ],
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "firmaName": {
-                  "type": "string"
-                },
-                "satzungGelesen": {
-                  "type": "boolean"
-                },
-                "telefon": {
-                  "type": "string"
-                },
-                "plz": {
-                  "type": "string"
-                },
-                "mitgliedschaftsArt": {
-                  "enum": [
-                    "ordentlich",
-                    "foerdernd"
-                  ],
-                  "type": "string"
-                }
-              },
-              "required": [
-                "title",
-                "email",
-                "mitgliedschaftsArt",
-                "mitgliedschaftsStufe",
-                "datenschutzAkzeptiert"
-              ],
-              "type": "object"
-            }
-          },
-          "type": "Request"
-        }
-      },
       "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
         "$connections": {
           "defaultValue": {},
           "type": "Object"
         }
       },
-      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-      "actions": {
-        "Response_Member_Success": {
-          "runAfter": {
-            "Post_Teams_Mitglied_Alert": [
-              "Succeeded",
-              "Failed",
-              "Skipped"
-            ]
-          },
+      "triggers": {
+        "manual": {
+          "type": "Request",
           "kind": "Http",
           "inputs": {
-            "body": {
-              "status": "success",
-              "timestamp": "@utcNow()",
-              "message": "Mitgliedsantrag erfolgreich empfangen und im Vorstandskanal hinterlegt.",
-              "applicant": "@triggerBody()?['title']",
-              "tier": "@triggerBody()?['mitgliedschaftsStufe']"
-            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "firmaName": { "type": "string" },
+                "geburtsdatum": { "type": "string" },
+                "strasse": { "type": "string" },
+                "plz": { "type": "string" },
+                "ort": { "type": "string" },
+                "beruf": { "type": "string" },
+                "email": { "type": "string", "format": "email" },
+                "telefon": { "type": "string" },
+                "mitgliedschaftsArt": { "type": "string" },
+                "mitgliedschaftsStufe": { "type": "string" },
+                "wieGehoert": { "type": "string" },
+                "unterstuetzung": { "type": "string" },
+                "satzungGelesen": { "type": "boolean" },
+                "datenschutzAkzeptiert": { "type": "boolean" },
+                "submittedAt": { "type": "string" }
+              },
+              "required": ["title", "email", "mitgliedschaftsArt", "mitgliedschaftsStufe", "datenschutzAkzeptiert"]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_Notification_Targets": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TeamsRecipient",
+                "type": "string",
+                "value": "a.koch@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "MailRecipient",
+                "type": "string",
+                "value": "kontakt@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "NotificationSummary",
+                "type": "string",
+                "value": "Neuer Mitgliedsantrag (@{triggerBody()?['mitgliedschaftsStufe']}): @{triggerBody()?['title']} (@{triggerBody()?['email']})"
+              }
+            ]
+          }
+        },
+        "Response_Success": {
+          "type": "Response",
+          "kind": "Http",
+          "runAfter": {
+            "Initialize_Notification_Targets": ["Succeeded"]
+          },
+          "inputs": {
+            "statusCode": 200,
             "headers": {
               "Content-Type": "application/json"
             },
-            "statusCode": 200
-          },
-          "type": "Response"
-        },
-        "Post_Teams_Mitglied_Alert": {
-          "inputs": {
-            "path": "/v2/teams/@{encodeURIComponent('vorstand-team-id')}/channels/@{encodeURIComponent('mitglieder-channel-id')}/chat/posts",
             "body": {
-              "body": {
-                "contentType": "html",
-                "content": "<p>🎉 <b>Neuer Mitgliedsantrag eingegangen!</b><br/><b>Name:</b> @{triggerBody()?['title']}<br/><b>Stufe:</b> 🌟 <b>@{triggerBody()?['mitgliedschaftsStufe']}</b> (@{triggerBody()?['mitgliedschaftsArt']})<br/><b>E-Mail:</b> @{triggerBody()?['email']}<br/><b>Ort:</b> @{triggerBody()?['plz']} @{triggerBody()?['ort']}, @{triggerBody()?['strasse']}<br/><b>Geburtsdatum:</b> @{triggerBody()?['geburtsdatum']}<br/><b>Beruf:</b> @{triggerBody()?['beruf']}<br/><b>Unterstützung:</b> @{triggerBody()?['unterstuetzung']}</p>"
-              }
-            },
-            "method": "post",
-            "host": {
-              "connectionName": "shared_teams",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+              "status": "success",
+              "message": "Mitgliedsantrag erfolgreich empfangen. Benachrichtigung an Agata Koch (Teams) und kontakt@sprachcafe-polnisch.org versendet.",
+              "teams_recipient": "a.koch@sprachcafe-polnisch.org",
+              "mail_recipient": "kontakt@sprachcafe-polnisch.org",
+              "timestamp": "@{utcNow()}"
             }
-          },
-          "type": "OpenApiConnection"
+          }
         }
       }
     }

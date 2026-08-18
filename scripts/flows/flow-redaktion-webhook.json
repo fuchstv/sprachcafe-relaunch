@@ -1,0 +1,154 @@
+{
+  "properties": {
+    "state": "Started",
+    "displayName": "SprachCafé - Redaktionsportal (HTTP Webhook zu GitHub PR gegen beta)",
+    "definition": {
+      "contentVersion": "1.0.0.0",
+      "triggers": {
+        "When_an_HTTP_request_is_received": {
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "properties": {
+                "summary": {
+                  "type": "string"
+                },
+                "data": {
+                  "properties": {
+                    "artist": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "availability": {
+                      "type": "string"
+                    },
+                    "photo": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "endDate": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "bio": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "submitted_at": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "content_type": {
+                  "enum": [
+                    "team",
+                    "exhibition",
+                    "shop"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "content_type",
+                "submitted_at",
+                "data"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "Request"
+        }
+      },
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "actions": {
+        "Initialize_Branch_Name": {
+          "inputs": {
+            "variables": [
+              {
+                "value": "content/@{triggerBody()?['content_type']}-@{formatDateTime(utcNow(), 'yyyyMMdd-HHmmss')}",
+                "name": "BranchName",
+                "type": "string"
+              }
+            ]
+          },
+          "type": "InitializeVariable"
+        },
+        "Post_Teams_Redaktion_Alert": {
+          "runAfter": {
+            "Initialize_Branch_Name": [
+              "Succeeded"
+            ]
+          },
+          "inputs": {
+            "path": "/v2/teams/@{encodeURIComponent('vorstand-team-id')}/channels/@{encodeURIComponent('redaktion-channel-id')}/chat/posts",
+            "body": {
+              "body": {
+                "contentType": "html",
+                "content": "<p>📝 <b>Neuer Redaktionseintrag eingereicht!</b><br/><b>Typ:</b> @{triggerBody()?['content_type']}<br/><b>Zusammenfassung:</b> @{triggerBody()?['summary']}<br/><b>Branch:</b> @{variables('BranchName')}</p>"
+              }
+            },
+            "method": "post",
+            "host": {
+              "connectionName": "shared_teams",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            }
+          },
+          "type": "OpenApiConnection"
+        },
+        "Response_Redaktion_Success": {
+          "runAfter": {
+            "Post_Teams_Redaktion_Alert": [
+              "Succeeded",
+              "Failed",
+              "Skipped"
+            ]
+          },
+          "kind": "Http",
+          "inputs": {
+            "body": {
+              "status": "success",
+              "timestamp": "@utcNow()",
+              "message": "Workflow successfully received and queued for GitHub PR generation against branch beta",
+              "branch": "@variables('BranchName')"
+            },
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "statusCode": 200
+          },
+          "type": "Response"
+        }
+      }
+    }
+  }
+}

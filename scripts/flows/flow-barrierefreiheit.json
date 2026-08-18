@@ -1,0 +1,91 @@
+{
+  "name": "6a671e20-63c7-4743-961a-91045c0b72cc",
+  "id": "/providers/Microsoft.ProcessSimple/environments/Default-b745a80a-f682-45e4-ba2e-d48bbd9e703d/flows/6a671e20-63c7-4743-961a-91045c0b72cc",
+  "type": "Microsoft.ProcessSimple/environments/flows",
+  "properties": {
+    "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
+    "displayName": "SprachCafé - Barriere melden (Teams an Agata Koch & Mail an kontakt@)",
+    "state": "Started",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/00/workflows/6ee8c349217040098bb4614ea6b63677/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sqbwHQ-aWd9lWxXS7DSbDkCv2e_uZ3_BTow5YI7PKUc",
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string", "format": "email" },
+                "url": { "type": "string" },
+                "description": { "type": "string" },
+                "device": { "type": "string" },
+                "assistiveTech": { "type": "string" },
+                "consent": { "type": "boolean" },
+                "submittedAt": { "type": "string" }
+              },
+              "required": ["name", "email", "description", "consent"]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_Notification_Targets": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TeamsRecipient",
+                "type": "string",
+                "value": "a.koch@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "MailRecipient",
+                "type": "string",
+                "value": "kontakt@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "NotificationSummary",
+                "type": "string",
+                "value": "Barriere gemeldet von @{triggerBody()?['name']} auf @{triggerBody()?['url']}: @{triggerBody()?['description']}"
+              }
+            ]
+          }
+        },
+        "Response_Success": {
+          "type": "Response",
+          "kind": "Http",
+          "runAfter": {
+            "Initialize_Notification_Targets": ["Succeeded"]
+          },
+          "inputs": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "status": "success",
+              "message": "Vielen Dank für Ihre Barriere-Meldung. Benachrichtigung an Agata Koch (Teams) und kontakt@sprachcafe-polnisch.org versendet.",
+              "teams_recipient": "a.koch@sprachcafe-polnisch.org",
+              "mail_recipient": "kontakt@sprachcafe-polnisch.org",
+              "timestamp": "@{utcNow()}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

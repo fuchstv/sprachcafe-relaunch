@@ -45,7 +45,7 @@ const shopItems = await getCollection('shopItems');
           <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
             <div>
               <div class="h-48 overflow-hidden relative bg-[#8B263E]/10 flex items-center justify-center">
-                {image && image.startsWith('http') ? (
+                {image ? (
                   <img src={image} alt={name} class="w-full h-full object-cover" />
                 ) : (
                   <span class="text-4xl">🛍️</span>

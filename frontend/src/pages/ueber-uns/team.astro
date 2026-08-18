@@ -65,6 +65,14 @@ const sections = [
     members: sortedTeam.filter((m) => m.data.category === 'bfd')
   }
 ];
+
+function getInitials(fullName: string): string {
+  const clean = fullName.replace(/^(Dr\.|Prof\.|DBA)\s+/i, '').replace(/,/g, '').trim();
+  const words = clean.split(/\s+/).filter((w) => !['und', '&', '/', 'von', 'zu', 'de', 'der'].includes(w.toLowerCase()));
+  if (words.length === 0) return 'SP';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+}
 ---
 
 <Layout
@@ -136,8 +144,11 @@ const sections = [
                           loading="lazy"
                         />
                       ) : (
-                        <div class="w-full h-full bg-gradient-to-tr from-[#8B263E] to-[#b93252] text-white flex items-center justify-center text-2xl font-bold">
-                          {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                        <div
+                          class="w-full h-full bg-gradient-to-tr from-[#8B263E] to-[#b93252] text-white flex items-center justify-center text-2xl font-bold font-serif tracking-wider shadow-inner select-none"
+                          aria-label={`Initialen: ${getInitials(name)}`}
+                        >
+                          {getInitials(name)}
                         </div>
                       )}
                     </div>

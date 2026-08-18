@@ -11,6 +11,6 @@ priceDisplay:
   de: "10 € (Spendenbeitrag)"
   pl: "10 € (darowizna)"
   en: "10 € (donation)"
-image: "/images/shop/tote-bag.svg"
+image: "/images/shop/laden-artikel-1.webp"
 availability: "in_stock"
 ---

@@ -11,7 +11,7 @@ description:
   pl: "Poruszający dokument fotograficzny o macierzyństwie, życiu rodzinnym i karmieniu piersią w przestrzeni Berlina."
   en: "Empathetic photo documentary on motherhood, family life, and breastfeeding in Berlin urban spaces."
 gallery:
-  - url: "/images/exhibitions/stillen-in-berlin.svg"
+  - url: "/images/exhibitions/stillen-in-berlin.webp"
     caption:
       de: "Fotoreihe Stillen in Berlin"
       pl: "Cykl fotograficzny Karmienie w Berlinie"

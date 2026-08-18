@@ -1,30 +1,58 @@
 # SprachCafé Relaunch - Monorepo
 
-Willkommen im zentralen Repository für den Relaunch der SprachCafé Webplattform. Dieses Repository vereint das Frontend, die Infrastruktur-Skripte sowie sämtliche Dokumentationen und CI/CD-Pipelines in einer übersichtlichen Monorepo-Struktur.
+Willkommen im zentralen Repository für den Relaunch der SprachCafé Webplattform ([sprachcafé.org](https://xn--sprachcaf-j4a.org/) / [sprachcafe-polnisch.org](https://sprachcafe-polnisch.org/)). Dieses Repository vereint das performante Astro-Frontend, die Infrastruktur-Konfiguration, M365 Power Automate Automationen sowie sämtliche Dokumentationen und CI/CD-Pipelines.
 
 ---
 
-## 📁 Ordnerstruktur & Phasenübersicht
-
-Die Ordnerstruktur ist gemäß den Projektphasen aufgeteilt:
+## 📁 Ordnerstruktur & Komponenten
 
 ```
 sprachcafe-relaunch/
-├── frontend/             # [Phase 2] Astro-Projekt (Modernes, performantes Frontend)
-├── infra/                # [Phase 1] Caddyfile, docker-compose.yml, Terraform/AWS-Skripte
-├── scripts/              # [Phase 6] Migrationsskripte für WordPress & Hausbibliothek
-├── .github/              # [Phase 7] CI/CD-Pipelines & Repository-Konfiguration
-│   ├── workflows/        # GitHub Actions Automation Pipelines (Build, Test, Deploy)
-│   └── CODEOWNERS        # Codeowners-Zuordnungen für Teams & Komponenten
-├── docs/                 # Zentrale Dokumentation
-│   ├── README.md         # Übersicht der Dokumentation & Phasen
-│   ├── ROLLBACK.md       # Notfallprozedur & Rollback-Strategien
-│   ├── architecture/     # Architekturdiagramme & Systemflüsse
-│   └── decisions/        # Architecture Decision Records (ADRs)
-├── .gitignore            # Git Ignore Regeln (Node, Docker, Secrets, Build Artifacts)
-├── .env.example          # Beispiel-Umgebungsvariablen (AWS, Webhooks)
-└── README.md             # Projekt-Dokumentation (diese Datei)
+├── frontend/             # Astro-Webapplikation (570+ Seiten, Pagefind Suche, i18n DE/PL)
+│   ├── src/
+│   │   ├── components/   # UI-Komponenten & Web-Formulare (DSGVO-konform)
+│   │   ├── content/      # Markdown-Inhalte (Events, Team, Ausstellungen, Shop)
+│   │   ├── data/         # Statische Datensätze (Hausbibliothek Bücherkatalog)
+│   │   └── pages/        # Routen & Landingpages (inkl. /pl/ Pfade)
+│   └── public/           # Authentische Medien-Assets (Fotos, Icons, Logos, Fonts)
+├── infra/                # Caddyfile (Reverse Proxy, HTTPS), docker-compose.yml
+├── scripts/              # Automationen, Sync-Skripte & Power Automate Deployment
+│   ├── flows/            # Exportierte Power Automate Flow-Definitionen (JSON)
+│   ├── deploy_all_form_flows.ps1 # Provisioniert alle 5 Formular-Flows im M365 Tenant
+│   └── test_all_form_webhooks.py # Verifikationstest aller Live-Webhooks
+├── .github/              # CI/CD-Pipelines & Branch Protection
+└── docs/                 # Zentrale technische Dokumentation & Architekturentscheidungen
 ```
+
+---
+
+## ⚡ Power Automate Formular-Integrationen (M365)
+
+Alle Formulare der Website übertragen Eingaben direkt via HTTP-Webhook an Microsoft Power Automate Flows im Vereins-Mandanten (`Default-b745a80a-f682-45e4-ba2e-d48bbd9e703d`).
+
+**Einheitliche Benachrichtigungsregel für alle Flows:**
+1. **MS Teams-Nachricht** an **Agata Koch** (`a.koch@sprachcafe-polnisch.org` / User-ID: `c723e96c-19e9-4b42-b13a-2aa57e35143d`).
+2. **E-Mail-Benachrichtigung** an **`kontakt@sprachcafe-polnisch.org`**.
+3. **HTTP 200 JSON Response** an das Frontend mit Eingangsbestätigung.
+
+| Formular | Frontend-Route | Flow Name & ID im M365 Tenant |
+|---|---|---|
+| **Mitgliedsantrag** | [`/mitmachen/mitglied-werden/`](https://xn--sprachcaf-j4a.org/mitmachen/mitglied-werden/) | `SprachCafé - Mitgliedsantrag (Teams an Agata Koch & Mail an kontakt@)` (`9debf567-7b15-4357-b9b8-fdee299cb008`) |
+| **Kinder- & Elternanmeldung** | [`/events/kinder-und-eltern/`](https://xn--sprachcaf-j4a.org/events/kinder-und-eltern/) | `SprachCafé - Anmeldung Kinder & Eltern (Teams an Agata Koch & Mail an kontakt@)` (`abf220a8-f754-48e1-affb-953b9f22add3`) |
+| **Kontaktformular** | [`/kontakt/`](https://xn--sprachcaf-j4a.org/kontakt/) | `SprachCafé - Kontaktanfrage (Teams an Agata Koch & Mail an kontakt@)` (`b63d0a2a-488b-41ca-a644-350254367840`) |
+| **Ehrenamt & Praktikum** | [`/mitmachen/#ehrenamt`](https://xn--sprachcaf-j4a.org/mitmachen/#ehrenamt) | `SprachCafé - Ehrenamt & Praktikum (Teams an Agata Koch & Mail an kontakt@)` (`60637cba-a7a7-49e1-a798-6492094896e5`) |
+| **Barriere melden** | [`/barrierefreiheit/`](https://xn--sprachcaf-j4a.org/barrierefreiheit/) | `SprachCafé - Barriere melden (Teams an Agata Koch & Mail an kontakt@)` (`6a671e20-63c7-4743-961a-91045c0b72cc`) |
+
+---
+
+## 📸 Authentische Medien & Bildmaterial
+
+Sämtliche generischen Platzhalter und Stockfotos wurden vollständig durch authentische Fotos von der Vereinswebsite (`sprachcafe-polnisch.org`), Veranstaltungen, Bibliotheksbeständen und Teammitgliedern ersetzt:
+- **Hero-Collage & Banner:** Realistische Aufnahmen aus den SprachCafé-Treffen in Pankow und Schöneberg.
+- **Hausbibliothek:** Originalfoto des Bibliotheksraums in Schulzestr. 1 für Katalog und Detailansichten.
+- **Team & Vorstand:** Echte Porträts aller Mitarbeiterinnen und ehrenamtlichen Helfer.
+- **Ausstellungen & Galerie:** Dokumentierte Kunstwerke (z. B. Anna Krenz, Marta Wilk, Olga Basole, Tibor Jagielski).
+- **Kleiner Laden & Shop:** Echte Fotos des Ladensortiments, Fairtrade-Kaffee, Speak-Dating-Karten und Taschen.
 
 ---
 
@@ -36,105 +64,48 @@ git clone https://github.com/sprachcafe/sprachcafe-relaunch.git
 cd sprachcafe-relaunch
 ```
 
-### 2. Umgebungs-Variablen einrichten
-Erstellen Sie eine lokale `.env` Datei auf Basis der Vorlage:
+### 2. Umgebungsvariablen einrichten
 ```bash
-cp .env.example .env
+cp .env.example frontend/.env.production
 ```
-Bearbeiten Sie `.env` und tragen Sie die erforderlichen Zugangsdaten ein (z. B. Power Automate Webhook URLs, AWS Keys).
 
-### 3. Gesamtes System via Docker starten (Empfohlen)
-Um Frontend und den Caddy Reverse Proxy lokal zu starten:
+### 3. Frontend lokal starten
 ```bash
-cd infra
-docker-compose up -d
+cd frontend
+npm install
+npm run dev
 ```
-Anwendungen sind erreichbar unter:
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
-- **Reverse Proxy**: [http://localhost](http://localhost)
+Das Webportal ist unter [http://localhost:3000](http://localhost:3000) erreichbar.
 
----
+### 4. Formular-Flows & Webhooks testen
+```bash
+python3 scripts/test_all_form_webhooks.py
+```
 
-## 🔑 Umgebungsvariablen (`.env.example`)
-
-Die Konfiguration erfolgt zentral über Umgebungsvariablen. Wichtige Kategorien:
-
-- **AWS Cloud Storage**: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_S3_BUCKET_MEDIA`
-- **Power Automate Webhooks**:
-  - `POWER_AUTOMATE_MEMBER_WEBHOOK_URL` (Mitgliedsanträge)
-  - `POWER_AUTOMATE_EVENT_WEBHOOK_URL` (Veranstaltungsanmeldungen)
-  - `POWER_AUTOMATE_CONTACT_WEBHOOK_URL` (Kontaktformular)
-- **Frontend**: `PUBLIC_ASTRO_SITE_URL`
+### 5. Production Build & Deployment
+```bash
+cd frontend
+npm run build
+# Synchronisation nach Web-Root
+rsync -av --delete dist/ /var/www/production/
+```
 
 ---
 
 ## 🌿 Branch-Strategie & Caddy-Routing
 
-Das Repository nutzt eine strikte Branching-Strategie, die direkt mit den Server-Verzeichnissen und dem Caddy Reverse Proxy gekoppelt ist:
-
-- **`main`** ➔ **`sprachcafe-polnisch.org` & `xn--sprachcaf-j4a.org` (`sprachcafé.org`)** (Deployment nach `/var/www/production`)
-  - **Branch Protection**: Geschützt! Direkte Pushes sind blockiert. Änderungen sind nur via Pull Request mit mindestens 1 approving Review und bestandenen CI-Status-Checks erlaubt.
+- **`main`** ➔ **`sprachcafé.org` & `sprachcafe-polnisch.org`** (Deployment nach `/var/www/production`)
 - **`beta`** ➔ **`beta.sprachcafe-polnisch.org`** (Deployment nach `/var/www/beta`)
-  - Integration und Testung neuer Funktionen vor dem Release auf `main`.
-- **`feature/*` / `fix/*`**: Entwicklungs-Branches, die über Pull Requests in `beta` und anschließend via PR in `main` gemergt werden.
-
-Details und Konfigurationen finden Sie in der [Branch-Strategie Dokumentation](docs/BRANCHING_STRATEGY.md) und der JSON-Konfigurationsdatei [`.github/branch-protection.json`](.github/branch-protection.json).
+- **`feature/*` / `fix/*`**: Entwicklungs-Branches mit Pull Requests gegen `beta`.
 
 ---
 
-## 🖥️ Lightsail Server-Struktur (`/opt/sprachcafe/`)
+## 📚 Wichtige Dokumentationen
 
-Auf der AWS Lightsail-Instanz ist die Anwendung unter **`/opt/sprachcafe/`** strukturiert:
-
-- **`/opt/sprachcafe/infra`**: Docker Compose, Caddyfile, Shell-Skripte (`setup-lightsail.sh`)
-- **`/opt/sprachcafe/production`**: Web-Root für Production (Symlink: `/var/www/production`)
-- **`/opt/sprachcafe/beta`**: Web-Root für Beta/Staging (Symlink: `/var/www/beta`)
-- **`/opt/sprachcafe/backups`**: Täglicher Backup-Speicherort (`hausbibliothek/`)
-- *(Hinweis: `/opt/sprachcafe/cms-data` stammte vom verworfenen Headless-CMS-Versuch und kann sicher gelöscht werden, siehe Dokumentation)*
-
-Vollständige Details zu Verzeichnisrechten und Isolierung finden Sie in [docs/LIGHTSAIL_SERVER_SETUP.md](docs/LIGHTSAIL_SERVER_SETUP.md).
-
----
-
-## 👥 CODEOWNERS & Verantwortlichkeiten
-
-Die Datei [`.github/CODEOWNERS`](.github/CODEOWNERS) regelt die Zuständigkeiten im Monorepo:
-
-- **`/infra/`**: `@sprachcafe/devops-team`, `@sprachcafe/lead-dev`
-- **`/frontend/`**: `@sprachcafe/frontend-team`
-- **`/scripts/`**: `@sprachcafe/backend-team`
-- **`/.github/workflows/`**: `@sprachcafe/devops-team`, `@sprachcafe/lead-dev`
-- **`/docs/`**: `@sprachcafe/lead-dev`, `@sprachcafe/dev-team`
-
----
-
-## 📚 Dokumentation & Notfall-Prozeduren
-
-- 🎨 [Visuelles Inventar & Design Audit](docs/design-audit.md)
-- ⚡ [Ressourcen- & Speicher-Optimierung (2 GB RAM Host)](docs/RESOURCE_OPTIMIZATION.md)
-- 🔒 [Secrets Management & Sicherheitshandbuch](docs/SECRETS_MANAGEMENT.md)
-- 🖥️ [Lightsail Server-Struktur & Rechte-Matrix](docs/LIGHTSAIL_SERVER_SETUP.md)
-- 🌿 [Branch-Strategie & Deployment-Pipeline](docs/BRANCHING_STRATEGY.md)
+- ⚡ [Power Automate Flows Dokumentation](docs/POWER_AUTOMATE_FLOW.md)
+- 🔒 [DSGVO-Konzept & Datenschutz-by-Design](docs/DSGVO_KONZEPT.md)
+- ♿ [Erklärung zur Barrierefreiheit](docs/ERKLAERUNG_BARRIEREFREIHEIT.md)
+- 📋 [M365 Redaktions-Workflows](docs/M365_EDITORIAL_WORKFLOWS.md)
+- 📅 [Google Kalender Audit & iCal Sync](docs/calendar-audit.md)
 - 📖 [Architektur-Übersicht & Diagramme](docs/architecture/architecture-overview.md)
 - 🚨 [Rollback-Prozedur (ROLLBACK.md)](docs/ROLLBACK.md)
-- 📝 [Entscheidungsprotokoll Monorepo (ADR 0001)](docs/decisions/0001-monorepo-structure.md)
-- 📝 [Entscheidungsprotokoll CMS verworfen (ADR 0002)](docs/decisions/0002-cms-verworfen.md)
-- 📝 [Entscheidungsprotokoll Redaktions-Workflow (ADR 0003)](docs/decisions/0003-github-ungeeignet-fuer-redaktion.md)
-- 📌 [Offene Content- & Navigations-Gaps (TODO-Liste)](docs/content-gaps.md)
-- 📚 [Content-Inventar der Live-Unterseiten (Phase R4)](docs/content-inventory.md)
-- 📅 [Google Kalender Audit & iCal-Integration](docs/calendar-audit.md)
-- 📝 [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](docs/kalender-pflege.md)
-- 📋 [M365 Redaktions-Workflows (MS Forms -> Power Automate -> GitHub PR)](docs/M365_EDITORIAL_WORKFLOWS.md)
-- 📝 [Redaktions-Anleitung: Neue Inhalte veröffentlichen](docs/redaktion-anleitung.md)
-
----
-
-## 🚀 CI/CD & Deployment (Phase 7)
-
-Mit jedem Push oder Pull Request auf **`main`** oder **`beta`** werden automatische Checks ausgeführt ([`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml)):
-
-1. **Lint & Build**: Astro Frontend Build & Typecheck
-2. **Infrastructure Validation**: Terraform & Caddyfile Syntax-Prüfung
-3. **Automated Deployments**:
-   - Push auf `beta` ➔ Automatisiertes Deployment nach `/var/www/beta` (`beta.sprachcafe-polnisch.org`)
-   - Push auf `main` (via PR) ➔ Automatisiertes Deployment nach `/var/www/production` (`sprachcafe-polnisch.org`)

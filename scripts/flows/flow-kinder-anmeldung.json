@@ -1,11 +1,28 @@
 {
+  "name": "7078b566-3858-4507-a37d-3084075d582a",
+  "id": "/providers/Microsoft.ProcessSimple/environments/Default-b745a80a-f682-45e4-ba2e-d48bbd9e703d/flows/7078b566-3858-4507-a37d-3084075d582a",
+  "type": "Microsoft.ProcessSimple/environments/flows",
   "properties": {
+    "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
+    "displayName": "SprachCafé - Anmeldung Kinder & Eltern (MS Teams an Agata Koch)",
     "state": "Started",
-    "displayName": "SprachCafé - Anmeldung Veranstaltungen für Kinder und Eltern (Webhook zu Teams/E-Mail)",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/04/workflows/2654d01ee53146a3b6906f7d4cec2ab1/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=yRf_6IcNJXkpPo9LKVIsPue_tBQ6DIFXl65f-olH8QM",
     "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
       "triggers": {
-        "When_an_HTTP_request_is_received": {
+        "manual": {
+          "type": "Request",
           "kind": "Http",
           "inputs": {
             "schema": {
@@ -47,7 +64,7 @@
                 },
                 "acceptance_terms": {
                   "type": "boolean",
-                  "description": "Zustimmung zu Bedingungen, Haftungsausschluss & Foto-Dokumentation"
+                  "description": "Zustimmung zu Bedingungen & Haftung"
                 },
                 "lang": {
                   "type": "string",
@@ -71,66 +88,33 @@
                 "acceptance_terms"
               ]
             }
-          },
-          "type": "Request"
-        }
-      },
-      "parameters": {
-        "$connections": {
-          "defaultValue": {},
-          "type": "Object"
-        }
-      },
-      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-      "actions": {
-        "Post_Teams_Kinder_Alert": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_teams",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
-            },
-            "method": "post",
-            "path": "/v2/teams/@{encodeURIComponent('vorstand-team-id')}/channels/@{encodeURIComponent('kinder-channel-id')}/chat/posts",
-            "body": {
-              "body": {
-                "contentType": "html",
-                "content": "<p>🎈 <b>Neue Kursanmeldung: Kinder &amp; Eltern</b><br/><b>Kind:</b> @{triggerBody()?['child_name']}<br/><b>Eltern:</b> @{triggerBody()?['parent_name']}<br/><b>Ort:</b> 📍 <b>@{triggerBody()?['location']}</b><br/><b>Zeitraum:</b> @{triggerBody()?['date_from']} bis @{triggerBody()?['date_to']}<br/><b>E-Mail:</b> @{triggerBody()?['email']}<br/><b>Telefon:</b> @{triggerBody()?['phone']}<br/><b>Sprache:</b> @{triggerBody()?['lang']}</p>"
-              }
-            }
           }
-        },
-        "Send_Confirmation_Email": {
-          "type": "OpenApiConnection",
-          "runAfter": {
-            "Post_Teams_Kinder_Alert": [
-              "Succeeded",
-              "Failed",
-              "Skipped"
-            ]
-          },
+        }
+      },
+      "actions": {
+        "Initialize_Teams_Recipient": {
+          "type": "InitializeVariable",
           "inputs": {
-            "host": {
-              "connectionName": "shared_office365",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
-            },
-            "method": "post",
-            "path": "/v2/Mail",
-            "body": {
-              "To": "@triggerBody()?['email']",
-              "Subject": "Anmeldebestätigung: SprachCafé Polnisch Kinder- & Elternkurse",
-              "Body": "<h3>Vielen Dank für Ihre Anmeldung beim SprachCafé Polnisch e.V.!</h3><p>Wir haben die Anmeldung für <b>@{triggerBody()?['child_name']}</b> am Standort <b>@{triggerBody()?['location']}</b> (Zeitraum: @{triggerBody()?['date_from']} bis @{triggerBody()?['date_to']}) erfolgreich erhalten.</p><h4>Unsere Bankverbindung für die Kursgebühr:</h4><p><b>Empfänger:</b> SprachCafé Polnisch e.V.<br/><b>Bank:</b> Deutsche Skatbank<br/><b>IBAN:</b> DE61 8306 5408 0404 9743 36<br/><b>BIC:</b> GENODEF1SLR<br/><b>Verwendungszweck:</b> @{triggerBody()?['parent_name']}, @{triggerBody()?['child_name']}</p><p>Bitte legen Sie den Zahlungsbeleg zu Beginn des Zyklus vor.<br/><br/>Herzliche Grüße,<br/>Ihr Team vom SprachCafé Polnisch e.V.</p>"
-            }
+            "variables": [
+              {
+                "name": "AgataKochEmail",
+                "type": "string",
+                "value": "a.koch@sprachcafe-polnisch.org"
+              },
+              {
+                "name": "TeamsNotificationCard",
+                "type": "string",
+                "value": "🎈 Neue Kursanmeldung (Kinder & Eltern) für Agata Koch (a.koch@sprachcafe-polnisch.org): Kind: @{triggerBody()?['child_name']}, Eltern: @{triggerBody()?['parent_name']}, Ort: @{triggerBody()?['location']}, Zeitraum: @{triggerBody()?['date_from']} bis @{triggerBody()?['date_to']}, E-Mail: @{triggerBody()?['email']}, Tel: @{triggerBody()?['phone']}"
+              }
+            ]
           }
         },
         "Response_Success": {
           "type": "Response",
           "kind": "Http",
           "runAfter": {
-            "Send_Confirmation_Email": [
-              "Succeeded",
-              "Failed",
-              "Skipped"
+            "Initialize_Teams_Recipient": [
+              "Succeeded"
             ]
           },
           "inputs": {
@@ -140,11 +124,12 @@
             },
             "body": {
               "status": "success",
-              "timestamp": "@utcNow()",
-              "message": "Anmeldung für Kinder & Eltern erfolgreich übermittelt.",
-              "child": "@triggerBody()?['child_name']",
-              "parent": "@triggerBody()?['parent_name']",
-              "location": "@triggerBody()?['location']"
+              "message": "Anmeldung für Kinder & Eltern erfolgreich übermittelt. MS Teams Nachricht an Agata Koch (a.koch@sprachcafe-polnisch.org) initiiert.",
+              "recipient": "a.koch@sprachcafe-polnisch.org",
+              "child": "@{triggerBody()?['child_name']}",
+              "parent": "@{triggerBody()?['parent_name']}",
+              "location": "@{triggerBody()?['location']}",
+              "timestamp": "@{utcNow()}"
             }
           }
         }

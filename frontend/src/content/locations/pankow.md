@@ -21,5 +21,5 @@ directions:
   pl: "Kolej miejska S1, S2, S85 do stacji Wollankstraße. Wyjście Schulzestraße, 20 metrów pieszo."
   en: "S-Bahn lines S1, S2, S85 to Wollankstraße. Exit Schulzestraße, 20 meters walk."
 email: "kontakt@sprachcafe-polnisch.org"
-image: "/images/locations/pankow.svg"
+image: "/images/hero/header-general.jpg"
 ---

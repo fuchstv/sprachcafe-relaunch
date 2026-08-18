@@ -11,6 +11,6 @@ priceDisplay:
   de: "15 € (Spendenbeitrag)"
   pl: "15 € (darowizna)"
   en: "15 € (donation)"
-image: "/images/shop/tshirt-kids.svg"
+image: "/images/shop/laden-artikel-2.webp"
 availability: "in_stock"
 ---
