@@ -1,55 +1,237 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const lang = 'de';
 ---
 
 <Layout
-  title="Datenschutzerklärung - SprachCafé Polnisch e.V."
-  description="Datenschutzerklärung des SprachCafé Polnisch e.V. zur Verarbeitung personenbezogener Daten gem. DSGVO."
+  title="Datenschutzerklärung — SprachCafé Polnisch e.V."
+  description="Datenschutzerklärung des SprachCafé Polnisch e.V. zur transparenten Verarbeitung personenbezogener Daten gem. DSGVO & TDDDG."
+  lang={lang}
 >
-  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="mb-10 text-center sm:text-left">
-      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
-        Datenschutz & DSGVO
+  <div class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <header class="text-center sm:text-left space-y-3 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+        Transparenz & Datenschutz
       </span>
-      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
         Datenschutzerklärung
       </h1>
-      <p class="font-sans text-lg text-[#5b403d] dark:text-[#d4c5c2]">
-        Informationen über die Erhebung und Verarbeitung personenbezogener Daten bei Nutzung unseres Webangebots.
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2]">
+        Informationen über die Verarbeitung personenbezogener Daten gemäß Art. 13 &amp; 14 der Datenschutz-Grundverordnung (DSGVO) und dem TDDDG.
       </p>
-    </div>
+    </header>
 
-    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-8 text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed text-sm">
+    <!-- Main Content Container -->
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-10 text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed text-sm sm:text-base">
       
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-xl font-bold mb-3">1. Verantwortliche Stelle</h2>
-        <p><strong>SprachCafé Polnisch e.V.</strong></p>
-        <p>Schulzestraße 1, 13187 Berlin</p>
-        <p>E-Mail: <a href="mailto:datenschutz@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">datenschutz@sprachcafe-polnisch.org</a></p>
-      </div>
+      <!-- 1. Verantwortlicher -->
+      <section class="space-y-3 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          1. Verantwortliche Stelle
+        </h2>
+        <p>Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der DSGVO ist:</p>
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-5 rounded-2xl border border-[#e7e1df] dark:border-[#363230] space-y-1">
+          <p class="font-bold text-base">SprachCafé Polnisch e.V.</p>
+          <p>Schulzestr. 1, D-13187 Berlin</p>
+          <p><strong>Vertreten durch den Vorstand:</strong> Agata Koch (Vorsitzende)</p>
+          <p><strong>E-Mail:</strong> <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+4916099680059" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">+49 160 9968 0059</a></p>
+        </div>
+      </section>
 
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-xl font-bold mb-3">2. Datenerfassung auf unserer Website</h2>
-        <h3 class="font-bold text-base mt-3 mb-1">Server-Log-Dateien</h3>
-        <p>Beim Aufrufen unserer Website werden automatisch Informationen durch den Webserver verarbeitet (IP-Adresse, Datum, Uhrzeit, abgerufene URL, User-Agent). Diese Daten dienen ausschließlich der Gewährleistung eines störungsfreien Betriebs und der IT-Sicherheit (Art. 6 Abs. 1 lit. f DSGVO).</p>
+      <!-- 2. Architektur: Privacy by Design & Zero-Tracking -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          2. Privacy by Design: Unsere datensparsame Architektur
+        </h2>
+        <p>
+          Unser Hauptportal (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">sprachcafe-polnisch.org</code> bzw. <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">sprachcafé.org</code>) wurde nach dem Prinzip der <strong>Datenminimierung (Art. 5 Abs. 1 lit. c DSGVO)</strong> und der <strong>datenfreundlichen Voreinstellungen (Art. 25 DSGVO)</strong> als modernes, statisches Portal (Static Site Generation via Astro) konzipiert:
+        </p>
         
-        <h3 class="font-bold text-base mt-4 mb-1">Mitgliedsantrag & Kontaktformulare</h3>
-        <p>Wenn Sie uns per Kontaktformular oder Mitgliedsantrag Anfragen zukommen lassen, werden Ihre Angaben zur Bearbeitung des Antrags und zur Verwaltung der Mitgliedschaft verarbeitet (Art. 6 Abs. 1 lit. b DSGVO). Die Datenübertragung erfolgt verschlüsselt (TLS/HTTPS).</p>
-      </div>
+        <div class="space-y-3">
+          <div class="p-4 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230]">
+            <h3 class="font-bold text-base text-[#8B263E] dark:text-[#ff758f] mb-1">🚫 100% Tracking- und werbefrei (Kein Cookie-Banner)</h3>
+            <p class="text-sm">
+              Wir verwenden auf unserem Hauptportal <strong>keine Tracking-Cookies, keine Werbenetzwerke, keine Profiling-Dienste und keine Drittanbieter-Analysetools</strong> (wie Google Analytics oder Meta-Pixel). Da wir keine einwilligungspflichtigen Cookies oder Technologien einsetzen, ist auf unserer Hauptseite gemäß § 25 Abs. 2 TDDDG und DSGVO kein störender Cookie-Consent-Banner erforderlich.
+            </p>
+          </div>
 
-      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-6">
-        <h2 class="font-serif text-xl font-bold mb-3">3. Ihre Rechte als betroffene Person</h2>
-        <p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten (Art. 15–20 DSGVO).</p>
-      </div>
+          <div class="p-4 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230]">
+            <h3 class="font-bold text-base text-[#8B263E] dark:text-[#ff758f] mb-1">🔤 Lokales Hosting aller Schriftarten &amp; Assets (Self-Hosted)</h3>
+            <p class="text-sm">
+              Alle verwendeten Schriftarten (wie Inter und Roboto) sowie Icons werden lokal von unserem eigenen Webserver im modernen WOFF2-Format bereitgestellt. Beim Besuch unserer Seiten wird <strong>keine Verbindung zu externen Servern (wie Google Fonts oder externen CDNs)</strong> hergestellt. Ihre IP-Adresse wird zu keinem Zeitpunkt an Google oder Drittanbieter übertragen.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div>
-        <h2 class="font-serif text-xl font-bold mb-3">4. Beschwerderecht bei der Aufsichtsbehörde</h2>
-        <p>Im Falle datenschutzrechtlicher Verstöße steht dem Betroffenen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu:</p>
-        <p class="mt-2"><strong>Berliner Beauftragte für Datenschutz und Informationsfreiheit</strong></p>
-        <p>Alt-Moabit 59–61, 10555 Berlin</p>
-        <p>Web: <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener noreferrer" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">https://www.datenschutz-berlin.de</a></p>
-      </div>
+      <!-- 3. Server-Hosting & Log-Dateien -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          3. Hosting &amp; Server-Log-Dateien
+        </h2>
+        
+        <h3 class="font-bold text-base">Hosting bei AWS (Region Frankfurt am Main / Deutschland)</h3>
+        <p>
+          Unser Webserver und Reverse Proxy (Caddy v2) werden auf einer virtuellen Serverinstanz (AWS Lightsail) von Amazon Web Services EMEA SARL betrieben. Der Serverstandort ist <strong>Frankfurt am Main (`eu-central-1`), Deutschland</strong>. Sämtliche Datenverarbeitungen verbleiben vollständig innerhalb der Europäischen Union. Wir haben mit AWS einen Auftragsverarbeitungsvertrag (Data Processing Addendum, Art. 28 DSGVO) abgeschlossen.
+        </p>
+
+        <h3 class="font-bold text-base pt-2">Server-Log-Dateien (Caddy Reverse Proxy)</h3>
+        <p>
+          Bei jedem Aufruf unserer Website erfasst unser Webserver automatisiert technische Verbindungsdaten, die Ihr Browser an uns übermittelt:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li>IP-Adresse des anfragenden Endgeräts</li>
+          <li>Datum und Uhrzeit der Serveranfrage (Timestamp)</li>
+          <li>Aufgerufene URL und HTTP-Methode (z. B. `GET /ueber-uns/`)</li>
+          <li>HTTP-Statuscode des Servers (z. B. `200 OK`)</li>
+          <li>Übertragene Datenmenge in Bytes</li>
+          <li>Referrer-URL (die zuvor besuchte Seite, sofern vom Browser gesendet)</li>
+          <li>Browsertyp, Browserversion und Betriebssystem (User-Agent-String)</li>
+        </ul>
+        <p class="text-sm pt-1">
+          <strong>Zweck &amp; Rechtsgrundlage:</strong> Die Verarbeitung dieser Daten ist technisch erforderlich, um die Website auszuliefern, die Stabilität und Netzsicherheit zu gewährleisten und Angriffe (z. B. DDoS- oder Brute-Force-Attacken) abzuwehren. Rechtsgrundlage ist unser berechtigtes Interesse gemäß <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> i.V.m. <strong>§ 25 Abs. 2 Nr. 2 TDDDG</strong>.
+        </p>
+        <p class="text-sm">
+          <strong>Speicherdauer:</strong> Die Log-Dateien werden rollierend für <strong>maximal 7 bis 14 Tage</strong> gespeichert und anschließend automatisiert überschrieben. Eine Zusammenführung dieser Daten mit anderen Datenquellen oder eine Profilbildung findet nicht statt.
+        </p>
+
+        <h3 class="font-bold text-base pt-2">SSL/TLS-Verschlüsselung</h3>
+        <p>
+          Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine moderne TLS-Verschlüsselung (HTTPS) mit HTTP/2 / HTTP/3 und automatischen HSTS-Sicherheitsheadern.
+        </p>
+      </section>
+
+      <!-- 4. Formulare & Workflows (Microsoft 365 / Power Automate) -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          4. Kontaktformulare &amp; Online-Mitgliedsantrag
+        </h2>
+        
+        <h3 class="font-bold text-base">Online-Mitgliedsantrag (`/mitmachen/mitglied-werden/`)</h3>
+        <p>
+          Wenn Sie über unser Webportal einen Antrag auf Mitgliedschaft im SprachCafé Polnisch e.V. stellen, erfassen wir die für die Begründung und Verwaltung der Vereinsmitgliedschaft erforderlichen Daten (Name, Anschrift, E-Mail-Adresse, Telefonnummer, gewählte Beitragsstufe sowie bei Erteilung eines SEPA-Lastschriftmandats Ihre IBAN/Bankverbindung).
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Zweck &amp; Rechtsgrundlage:</strong> Durchführung vorvertraglicher Maßnahmen und Erfüllung des Mitgliedschaftsvertrages gemäß <strong>Art. 6 Abs. 1 lit. b DSGVO</strong> sowie Erfüllung gesetzlicher steuerrechtlicher Aufbewahrungspflichten gem. <strong>Art. 6 Abs. 1 lit. c DSGVO</strong> i.V.m. § 147 Abgabenordnung (AO).</li>
+          <li><strong>Speicherdauer:</strong> Für die Dauer der Vereinsmitgliedschaft. Nach Beendigung der Mitgliedschaft werden steuer- und beitragsrelevante Buchungsbelege gemäß den gesetzlichen Fristen für 10 Jahre aufbewahrt und anschließend gelöscht.</li>
+        </ul>
+
+        <h3 class="font-bold text-base pt-2">Kontaktformular (`/kontakt/`) &amp; E-Mail-Anfragen</h3>
+        <p>
+          Bei der Nutzung unseres Kontaktformulars oder bei einer Anfrage per E-Mail verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht, um Ihr Anliegen zu bearbeiten und zu beantworten.
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Rechtsgrundlage:</strong> <strong>Art. 6 Abs. 1 lit. a DSGVO</strong> (Einwilligung durch Absenden) sowie <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (Berechtigtes Interesse an einer effizienten Kommunikation).</li>
+          <li><strong>Speicherdauer:</strong> Nach abschließender Klärung Ihres Anliegens werden die Daten gelöscht (Regelfrist: 6 Monate nach letztem Kontakt), sofern keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</li>
+        </ul>
+
+        <h3 class="font-bold text-base pt-2">Verarbeitung über Microsoft 365 (Power Automate &amp; SharePoint)</h3>
+        <p class="text-sm">
+          Zur sicheren Abwicklung unserer Vereinskorrespondenz und zur digitalen Mitgliederverwaltung nutzen wir Microsoft 365 Cloud-Dienste (Microsoft Ireland Operations Ltd., One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Irland). Die Datenverarbeitung erfolgt innerhalb der <strong>EU Data Boundary (Rechenzentrumsregion Deutschland / Europa)</strong> auf Grundlage eines Auftragsverarbeitungsvertrages (Microsoft DPA gem. Art. 28 DSGVO). Technische Automatisierungs-Trigger übermitteln keine personenbezogenen Antragsdaten an externe Code-Repositories.
+        </p>
+      </section>
+
+      <!-- 5. Hausbibliothek -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          5. Digitale Hausbibliothek (`hausbibliothek.org`)
+        </h2>
+        <p>
+          Das SprachCafé Polnisch betreibt unter <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> eine eigenständige Webanwendung zur Verwaltung des zweisprachigen Buchbestands und des digitalen Leihbetriebs.
+        </p>
+        <ul class="list-disc list-inside space-y-1.5 text-sm pl-2">
+          <li><strong>Verarbeitete Daten:</strong> Leser-Stammdaten (Vorname, Nachname, E-Mail-Adresse, Telefonnummer), kryptographisch gesalzene und gehashte Passwörter (bcrypt/Argon2id), Ausleihdaten (Buchtitel, Ausleih- und Rückgabefristen, Vormerkungen) sowie Beitragsstatus.</li>
+          <li><strong>Technisch notwendiges Session-Cookie (`PHPSESSID`):</strong> Beim Login wird ein technisch zwingend erforderliches Session-Cookie gesetzt, um Ihre autorisierte Sitzung aufrechtzuerhalten. Dieses Cookie besitzt die Sicherheitsattribute <code class="text-xs font-mono">Secure</code> (nur HTTPS), <code class="text-xs font-mono">HttpOnly</code> (kein JS-Zugriff) und <code class="text-xs font-mono">SameSite=Lax</code>. Rechtsgrundlage ist <strong>§ 25 Abs. 2 Nr. 2 TDDDG</strong>.</li>
+          <li><strong>Rechtsgrundlage der Datenverarbeitung:</strong> <strong>Art. 6 Abs. 1 lit. b DSGVO</strong> (Erfüllung der Bibliotheksnutzungsordnung) und <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (Schutz des Vereinseigentums).</li>
+          <li><strong>Automatisiertes 24-Monats-Löschkonzept (Art. 17 DSGVO):</strong> Bibliothekskonten, die seit mindestens 24 Monaten inaktiv sind (keine Anmeldung, keine aktive Ausleihe, keine Vormerkung) und keine offenen Forderungen aufweisen, werden automatisiert und unwiderruflich gelöscht. Historische Ausleihdaten werden zur Aufrechterhaltung der Bestandsstatistik vollständig anonymisiert (<code class="text-xs font-mono">user_id = NULL</code>).</li>
+        </ul>
+      </section>
+
+      <!-- 6. Google Calendar & AWS S3 -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. Termin-Synchronisation &amp; Cloud-Speicher
+        </h2>
+        <div class="space-y-3 text-sm">
+          <p>
+            <strong>Google Calendar Synchronisation:</strong> Wir nutzen die Google Calendar API ausschließlich serverseitig während des automatisierten Website-Builds, um Termine für unsere Veranstaltungsübersichten einzulesen. <em>Beim Aufruf unserer Website durch Besucher findet kein Verbindungsaufbau zu Google statt.</em>
+          </p>
+          <p>
+            <strong>AWS S3 Cloud-Speicher:</strong> Statische Medien (z. B. Buch-Cover und PDF-Dokumente wie die Vereinssatzung) werden über Amazon Simple Storage Service (AWS S3) in der Region <strong>Frankfurt am Main (`eu-central-1`)</strong> ausgeliefert. Es erfolgt keine Nachverfolgung oder Profilerstellung von Website-Besuchern.
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. Externe Links zu Social Media -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          7. Links zu Social-Media-Profilen
+        </h2>
+        <p class="text-sm">
+          Auf unserer Website verlinken wir auf unsere offiziellen Vereinskanäle bei <strong>Facebook, Instagram, YouTube, LinkedIn und TikTok</strong>. Wir binden <em>keine dynamischen Social-Plugins</em> (wie Like- oder Share-Buttons) ein, die bereits beim Laden der Seite Daten an die Plattformbetreiber übermitteln. Ein Datenaustausch mit den jeweiligen Plattformen findet erst statt, wenn Sie aktiv auf den entsprechenden Link klicken und zu dem Drittanbieter weitergeleitet werden.
+        </p>
+      </section>
+
+      <!-- 8. Rechte der betroffenen Personen -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          8. Ihre Rechte als betroffene Person
+        </h2>
+        <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen der DSGVO jederzeit folgende Rechte:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm pt-1">
+          <div class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+            <strong class="block text-[#8B263E] dark:text-[#ff758f]">Auskunftsrecht (Art. 15 DSGVO)</strong>
+            <span>Sie können Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten verlangen.</span>
+          </div>
+          <div class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+            <strong class="block text-[#8B263E] dark:text-[#ff758f]">Berichtigungsrecht (Art. 16 DSGVO)</strong>
+            <span>Sie können die unverzügliche Berichtigung unrichtiger Daten verlangen.</span>
+          </div>
+          <div class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+            <strong class="block text-[#8B263E] dark:text-[#ff758f]">Löschungsrecht (Art. 17 DSGVO)</strong>
+            <span>Sie können die Löschung Ihrer Daten verlangen, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</span>
+          </div>
+          <div class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+            <strong class="block text-[#8B263E] dark:text-[#ff758f]">Einschränkung (Art. 18 DSGVO)</strong>
+            <span>Sie können die Einschränkung der Verarbeitung Ihrer Daten verlangen.</span>
+          </div>
+          <div class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+            <strong class="block text-[#8B263E] dark:text-[#ff758f]">Datenübertragbarkeit (Art. 20 DSGVO)</strong>
+            <span>Sie können Ihre bereitgestellten Daten in einem gängigen, maschinenlesbaren Format anfordern.</span>
+          </div>
+          <div class="p-3 bg-[#f8f2f0] dark:bg-[#2a2725] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+            <strong class="block text-[#8B263E] dark:text-[#ff758f]">Widerspruchsrecht (Art. 21 DSGVO)</strong>
+            <span>Sie können Verarbeitungen, die auf Art. 6 Abs. 1 lit. f DSGVO beruhen, jederzeit widersprechen.</span>
+          </div>
+        </div>
+
+        <p class="text-sm pt-2">
+          Zur Ausübung Ihrer Rechte genügt eine formlose E-Mail an: <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a>.
+        </p>
+
+        <h3 class="font-bold text-base pt-3">Beschwerderecht bei der zuständigen Aufsichtsbehörde (Art. 77 DSGVO)</h3>
+        <p class="text-sm">
+          Im Falle datenschutzrechtlicher Verstöße steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu:
+        </p>
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-4 rounded-xl border border-[#e7e1df] dark:border-[#363230] text-sm space-y-1 mt-2">
+          <p class="font-bold">Berliner Beauftragte für Datenschutz und Informationsfreiheit</p>
+          <p>Alt-Moabit 59–61, 10555 Berlin</p>
+          <p><strong>Telefon:</strong> +49 30 13889-0 | <strong>E-Mail:</strong> <a href="mailto:mailbox@datenschutz-berlin.de" class="text-[#8B263E] dark:text-[#ff758f] underline">mailbox@datenschutz-berlin.de</a></p>
+          <p><strong>Webseite:</strong> <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener noreferrer" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">https://www.datenschutz-berlin.de</a></p>
+        </div>
+      </section>
+
+      <!-- 9. Stand & Aktualität -->
+      <section class="text-xs text-[#5b403d] dark:text-[#d4c5c2] space-y-1">
+        <p><strong>Stand dieser Datenschutzerklärung:</strong> August 2026</p>
+        <p>Wir behalten uns vor, diese Datenschutzerklärung bei technischen Änderungen unseres Webangebots oder bei veränderten gesetzlichen Vorgaben anzupassen.</p>
+      </section>
 
     </div>
-  </section>
+  </div>
 </Layout>
