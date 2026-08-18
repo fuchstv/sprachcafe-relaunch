@@ -419,6 +419,32 @@ const current = labels[lang] || labels.de;
     const successBanner = document.getElementById('member-form-success');
     const errorBanner = document.getElementById('member-form-error');
     const errorMsg = document.getElementById('member-error-msg');
+    const tierSelect = document.getElementById('member-tier') as HTMLSelectElement;
+
+    // Handle tier pre-selection from buttons and URL parameters
+    function setTier(tierName: string) {
+      if (!tierSelect || !tierName) return;
+      for (let i = 0; i < tierSelect.options.length; i++) {
+        if (tierSelect.options[i].value.toLowerCase().includes(tierName.toLowerCase()) || 
+            tierName.toLowerCase().includes(tierSelect.options[i].value.toLowerCase())) {
+          tierSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    // Check URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const tierParam = urlParams.get('tier') || urlParams.get('stufe');
+    if (tierParam) setTier(tierParam);
+
+    // Listen to tier card button clicks
+    document.querySelectorAll('[data-select-tier]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const tier = (e.currentTarget as HTMLElement).getAttribute('data-select-tier');
+        if (tier) setTier(tier);
+      });
+    });
 
     if (!form) return;
 

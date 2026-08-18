@@ -39,6 +39,8 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Leitfaden für die Redaktion: Termine im Google Calendar pflegen](./kalender-pflege.md): Nicht-technische Anleitung für das Redaktionsteam.
 - [M365 Redaktions-Workflows (MS Forms -> Power Automate -> GitHub PR)](./M365_EDITORIAL_WORKFLOWS.md): Vorlagen & Schritt-für-Schritt-Anleitung für Team, Ausstellungen & Laden-Artikel.
 - [Redaktions-Anleitung: Neue Inhalte veröffentlichen](./redaktion-anleitung.md): Übersichtlicher Leitfaden mit Formular-Links & Ablaufdiagrammen.
+- [Power Automate Redaktions-Workflow (Formulare -> Webhook -> GitHub PR)](./POWER_AUTOMATE_REDAKTION_FLOW.md): JSON-Schema & Flow-Architektur für Team, Ausstellung & Laden.
+- [Cloudflare Pages Setup & Custom Domain Deployment Guide](./CLOUDFLARE_PAGES_SETUP.md): CLI vs. API Methoden, Subdomain-Anbindung (`redaktion.sprachcafé.org`) & Deployment.
 - [Entscheidungsprotokolle (ADRs)](./decisions/): Architectural Decision Records (ADRs) für wichtige technische Entscheidungen.
 
 ## Phasenübersicht des Relaunch-Projekts

@@ -1,23 +1,137 @@
 {
-  "name": "PowerAutomate_Flow_Membership_Application",
-  "displayName": "SprachCafé - Mitgliedsantrag (HTTP Webhook zu SharePoint zu Teams)",
-  "targetList": "Mitgliedsanträge",
-  "targetSite": "https://sprachcafepolnisch.sharepoint.com/sites/Vorstand",
-  "fields": [
-    "Title",
-    "FirmaName",
-    "Geburtsdatum",
-    "Strasse",
-    "PLZ",
-    "Ort",
-    "Beruf",
-    "EMail",
-    "Telefon",
-    "MitgliedschaftsArt",
-    "MitgliedschaftsStufe",
-    "WieGehoert",
-    "Unterstuetzung",
-    "SatzungGelesen",
-    "DatenschutzAkzeptiert"
-  ]
+  "properties": {
+    "state": "Started",
+    "displayName": "SprachCafé - Neuer Mitgliedsantrag (Silver, Gold, Platinum, Firmen zu SharePoint/Teams)",
+    "definition": {
+      "contentVersion": "1.0.0.0",
+      "triggers": {
+        "When_an_HTTP_request_is_received": {
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "properties": {
+                "wieGehoert": {
+                  "type": "string"
+                },
+                "submittedAt": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "strasse": {
+                  "type": "string"
+                },
+                "geburtsdatum": {
+                  "type": "string"
+                },
+                "unterstuetzung": {
+                  "type": "string"
+                },
+                "ort": {
+                  "type": "string"
+                },
+                "beruf": {
+                  "type": "string"
+                },
+                "datenschutzAkzeptiert": {
+                  "type": "boolean"
+                },
+                "mitgliedschaftsStufe": {
+                  "enum": [
+                    "Silver",
+                    "Gold",
+                    "Platinum",
+                    "Firmenmitgliedschaft"
+                  ],
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "firmaName": {
+                  "type": "string"
+                },
+                "satzungGelesen": {
+                  "type": "boolean"
+                },
+                "telefon": {
+                  "type": "string"
+                },
+                "plz": {
+                  "type": "string"
+                },
+                "mitgliedschaftsArt": {
+                  "enum": [
+                    "ordentlich",
+                    "foerdernd"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "email",
+                "mitgliedschaftsArt",
+                "mitgliedschaftsStufe",
+                "datenschutzAkzeptiert"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "Request"
+        }
+      },
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "actions": {
+        "Response_Member_Success": {
+          "runAfter": {
+            "Post_Teams_Mitglied_Alert": [
+              "Succeeded",
+              "Failed",
+              "Skipped"
+            ]
+          },
+          "kind": "Http",
+          "inputs": {
+            "body": {
+              "status": "success",
+              "timestamp": "@utcNow()",
+              "message": "Mitgliedsantrag erfolgreich empfangen und im Vorstandskanal hinterlegt.",
+              "applicant": "@triggerBody()?['title']",
+              "tier": "@triggerBody()?['mitgliedschaftsStufe']"
+            },
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "statusCode": 200
+          },
+          "type": "Response"
+        },
+        "Post_Teams_Mitglied_Alert": {
+          "inputs": {
+            "path": "/v2/teams/@{encodeURIComponent('vorstand-team-id')}/channels/@{encodeURIComponent('mitglieder-channel-id')}/chat/posts",
+            "body": {
+              "body": {
+                "contentType": "html",
+                "content": "<p>🎉 <b>Neuer Mitgliedsantrag eingegangen!</b><br/><b>Name:</b> @{triggerBody()?['title']}<br/><b>Stufe:</b> 🌟 <b>@{triggerBody()?['mitgliedschaftsStufe']}</b> (@{triggerBody()?['mitgliedschaftsArt']})<br/><b>E-Mail:</b> @{triggerBody()?['email']}<br/><b>Ort:</b> @{triggerBody()?['plz']} @{triggerBody()?['ort']}, @{triggerBody()?['strasse']}<br/><b>Geburtsdatum:</b> @{triggerBody()?['geburtsdatum']}<br/><b>Beruf:</b> @{triggerBody()?['beruf']}<br/><b>Unterstützung:</b> @{triggerBody()?['unterstuetzung']}</p>"
+              }
+            },
+            "method": "post",
+            "host": {
+              "connectionName": "shared_teams",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            }
+          },
+          "type": "OpenApiConnection"
+        }
+      }
+    }
+  }
 }
