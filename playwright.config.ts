@@ -25,7 +25,7 @@ export default defineConfig({
   webServer: {
     command: 'python3 -m http.server 8089 -d frontend/dist',
     url: 'http://127.0.0.1:8089',
-    reuseExistingServer: false,
+    reuseExistingServer: true,
     timeout: 30 * 1000,
   },
 });

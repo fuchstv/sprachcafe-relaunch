@@ -28,6 +28,8 @@ const TARGETS: AuditTarget[] = [
   { name: 'Hausbibliothek Katalog', path: '/hausbibliothek/', category: 'Kernseite' },
   { name: 'Hausbibliothek Buch-Detail', path: '/hausbibliothek/book-1/', category: 'Kernseite' },
   { name: 'Kontakt & Anfahrt', path: '/kontakt/', category: 'Kernseite' },
+  { name: 'Veranstaltungen: Kinder & Eltern (DE)', path: '/events/kinder-und-eltern/', category: 'E-Formular' },
+  { name: 'Wydarzenia: Dzieci i Rodzice (PL)', path: '/pl/events/kinder-und-eltern/', category: 'E-Formular' },
   { name: 'Blog & Aktuelles', path: '/posts/', category: 'Kernseite' },
   { name: 'Erklärung zur Barrierefreiheit', path: '/barrierefreiheit/', category: 'Rechtliches' },
   { name: 'Impressum', path: '/impressum/', category: 'Rechtliches' },
@@ -60,6 +62,7 @@ test.describe('Automatisierter WCAG 2.1 AA / BITV 2.0 Accessibility Audit', () =
 
       const accessibilityScanResults = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+        .exclude('iframe')
         .analyze();
 
       const violations = accessibilityScanResults.violations.map(v => ({

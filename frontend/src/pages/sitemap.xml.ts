@@ -9,6 +9,7 @@ export const GET: APIRoute = async ({ site }) => {
   const baseRoutes = [
     { path: '', de: '/', pl: '/pl/', en: '/en/' },
     { path: 'events', de: '/events/', pl: '/events/', en: '/events/' },
+    { path: 'events/kinder-und-eltern', de: '/events/kinder-und-eltern/', pl: '/pl/events/kinder-und-eltern/', en: '/events/kinder-und-eltern/' },
     { path: 'posts', de: '/posts/', pl: '/posts/', en: '/posts/' },
     { path: 'hausbibliothek', de: '/hausbibliothek/', pl: '/hausbibliothek/', en: '/hausbibliothek/' },
     { path: 'mitmachen', de: '/mitmachen/', pl: '/mitmachen/', en: '/mitmachen/' },

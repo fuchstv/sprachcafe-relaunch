@@ -1,0 +1,154 @@
+{
+  "properties": {
+    "state": "Started",
+    "displayName": "SprachCafé - Anmeldung Veranstaltungen für Kinder und Eltern (Webhook zu Teams/E-Mail)",
+    "definition": {
+      "contentVersion": "1.0.0.0",
+      "triggers": {
+        "When_an_HTTP_request_is_received": {
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "child_name": {
+                  "type": "string",
+                  "description": "Vorname, Name und Alter des Kindes / Imię, nazwisko i wiek dziecka"
+                },
+                "parent_name": {
+                  "type": "string",
+                  "description": "Vornamen, Name(n) der Eltern / Imiona, nazwisko(-a) rodziców"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "E-Mail-Adresse / Adres e-mail"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "Telefonnummer / Numer telefonu"
+                },
+                "location": {
+                  "type": "string",
+                  "enum": [
+                    "Pankow",
+                    "Schöneberg",
+                    "Köpenick"
+                  ],
+                  "description": "Veranstaltungsort / Miejsce"
+                },
+                "date_from": {
+                  "type": "string",
+                  "description": "Buchungszeitraum Beginn (YYYY-MM-DD)"
+                },
+                "date_to": {
+                  "type": "string",
+                  "description": "Buchungszeitraum Ende (YYYY-MM-DD)"
+                },
+                "acceptance_terms": {
+                  "type": "boolean",
+                  "description": "Zustimmung zu Bedingungen, Haftungsausschluss & Foto-Dokumentation"
+                },
+                "lang": {
+                  "type": "string",
+                  "enum": [
+                    "de",
+                    "pl",
+                    "en"
+                  ]
+                },
+                "submittedAt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "child_name",
+                "parent_name",
+                "email",
+                "location",
+                "date_from",
+                "date_to",
+                "acceptance_terms"
+              ]
+            }
+          },
+          "type": "Request"
+        }
+      },
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "actions": {
+        "Post_Teams_Kinder_Alert": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "method": "post",
+            "path": "/v2/teams/@{encodeURIComponent('vorstand-team-id')}/channels/@{encodeURIComponent('kinder-channel-id')}/chat/posts",
+            "body": {
+              "body": {
+                "contentType": "html",
+                "content": "<p>🎈 <b>Neue Kursanmeldung: Kinder &amp; Eltern</b><br/><b>Kind:</b> @{triggerBody()?['child_name']}<br/><b>Eltern:</b> @{triggerBody()?['parent_name']}<br/><b>Ort:</b> 📍 <b>@{triggerBody()?['location']}</b><br/><b>Zeitraum:</b> @{triggerBody()?['date_from']} bis @{triggerBody()?['date_to']}<br/><b>E-Mail:</b> @{triggerBody()?['email']}<br/><b>Telefon:</b> @{triggerBody()?['phone']}<br/><b>Sprache:</b> @{triggerBody()?['lang']}</p>"
+              }
+            }
+          }
+        },
+        "Send_Confirmation_Email": {
+          "type": "OpenApiConnection",
+          "runAfter": {
+            "Post_Teams_Kinder_Alert": [
+              "Succeeded",
+              "Failed",
+              "Skipped"
+            ]
+          },
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "method": "post",
+            "path": "/v2/Mail",
+            "body": {
+              "To": "@triggerBody()?['email']",
+              "Subject": "Anmeldebestätigung: SprachCafé Polnisch Kinder- & Elternkurse",
+              "Body": "<h3>Vielen Dank für Ihre Anmeldung beim SprachCafé Polnisch e.V.!</h3><p>Wir haben die Anmeldung für <b>@{triggerBody()?['child_name']}</b> am Standort <b>@{triggerBody()?['location']}</b> (Zeitraum: @{triggerBody()?['date_from']} bis @{triggerBody()?['date_to']}) erfolgreich erhalten.</p><h4>Unsere Bankverbindung für die Kursgebühr:</h4><p><b>Empfänger:</b> SprachCafé Polnisch e.V.<br/><b>Bank:</b> Deutsche Skatbank<br/><b>IBAN:</b> DE61 8306 5408 0404 9743 36<br/><b>BIC:</b> GENODEF1SLR<br/><b>Verwendungszweck:</b> @{triggerBody()?['parent_name']}, @{triggerBody()?['child_name']}</p><p>Bitte legen Sie den Zahlungsbeleg zu Beginn des Zyklus vor.<br/><br/>Herzliche Grüße,<br/>Ihr Team vom SprachCafé Polnisch e.V.</p>"
+            }
+          }
+        },
+        "Response_Success": {
+          "type": "Response",
+          "kind": "Http",
+          "runAfter": {
+            "Send_Confirmation_Email": [
+              "Succeeded",
+              "Failed",
+              "Skipped"
+            ]
+          },
+          "inputs": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "status": "success",
+              "timestamp": "@utcNow()",
+              "message": "Anmeldung für Kinder & Eltern erfolgreich übermittelt.",
+              "child": "@triggerBody()?['child_name']",
+              "parent": "@triggerBody()?['parent_name']",
+              "location": "@triggerBody()?['location']"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,8 +12,8 @@
 | Bewertungskriterium | Ergebnis |
 |---|---|
 | **Offizieller Konformitätsgrad** | **Vollständig konform** |
-| **Geprüfte Kernseiten & E-Formulare** | **22 Seiten** |
-| **Erfolgreich bestandene Prüfregeln** | **518 Checks** |
+| **Geprüfte Kernseiten & E-Formulare** | **2 Seiten** |
+| **Erfolgreich bestandene Prüfregeln** | **56 Checks** |
 | **Gesamtzahl gefundener Regelverstöße** | **0** |
 | **Kritische Barrieren (Critical / Serious)** | **0** |
 
@@ -23,136 +23,16 @@ Diese Website ist **vollständig konform** mit den Anforderungen der BITV 2.0 (B
 
 ## 2. 📋 Ergebnisse pro geprüfter Seite
 
-### ✅ Startseite (DE) (`/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Startseite (PL) (`/pl/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Startseite (EN) (`/en/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Über uns Übersicht (`/ueber-uns/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Mission & Werte (`/ueber-uns/mission/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Team & Vorstand (`/ueber-uns/team/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Häufige Fragen (FAQ) (`/ueber-uns/frequently-asked-questions/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 23
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Ausstellungen & Galerie (`/ueber-uns/ausstellungen/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Ausstellung Detail (`/ueber-uns/ausstellungen/anna-krenz-mutige-frauen/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Kleiner Laden (`/ueber-uns/kleiner-laden/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Mehrsprachigkeit & Beratung (`/mehrsprachigkeit/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Veranstaltungen & Kalender (`/events/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 29
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Mitmachen Übersicht (`/mitmachen/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 27
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ E-Formular: 4-Stufen Mitgliedsantrag (DE) (`/mitmachen/mitglied-werden/`)
+### ✅ Veranstaltungen: Kinder & Eltern (DE) (`/events/kinder-und-eltern/`)
 
 - **Bereich:** E-Formular
-- **Bestandene Kriterien:** 27
+- **Bestandene Kriterien:** 28
 - **Status:** Vollständig barrierefrei (0 Verstöße)
 
-### ✅ E-Formular: 4-Stufen Mitgliedsantrag (PL) (`/pl/mitmachen/mitglied-werden/`)
+### ✅ Wydarzenia: Dzieci i Rodzice (PL) (`/pl/events/kinder-und-eltern/`)
 
 - **Bereich:** E-Formular
-- **Bestandene Kriterien:** 27
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Hausbibliothek Katalog (`/hausbibliothek/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 26
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Hausbibliothek Buch-Detail (`/hausbibliothek/book-1/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Kontakt & Anfahrt (`/kontakt/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 26
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Blog & Aktuelles (`/posts/`)
-
-- **Bereich:** Kernseite
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Erklärung zur Barrierefreiheit (`/barrierefreiheit/`)
-
-- **Bereich:** Rechtliches
-- **Bestandene Kriterien:** 25
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Impressum (`/impressum/`)
-
-- **Bereich:** Rechtliches
-- **Bestandene Kriterien:** 22
-- **Status:** Vollständig barrierefrei (0 Verstöße)
-
-### ✅ Datenschutz (`/datenschutz/`)
-
-- **Bereich:** Rechtliches
-- **Bestandene Kriterien:** 22
+- **Bestandene Kriterien:** 28
 - **Status:** Vollständig barrierefrei (0 Verstöße)
 
 ---

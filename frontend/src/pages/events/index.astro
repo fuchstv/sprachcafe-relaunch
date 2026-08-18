@@ -97,10 +97,22 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
       <!-- Kids Calendar Container -->
       <div id="container-kids-cal" class="mt-6 hidden">
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+          <div class="mb-4 p-3.5 bg-[#8B263E]/10 border border-[#8B263E]/20 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="text-xs sm:text-sm text-[#8B263E] dark:text-[#ff758f]">
+              <strong>✨ Kursübersicht &amp; Anmeldung:</strong> Alle Details zu Kinderkursen, Eltern-Community &amp; Online-Anmeldung finden Sie auf unserer Spezialseite.
+            </div>
+            <a
+              href="/events/kinder-und-eltern/"
+              class="px-4 py-2 rounded-xl bg-[#8B263E] text-white text-xs font-bold hover:bg-[#6e1e31] transition-colors shrink-0 shadow-sm flex items-center justify-center gap-1.5"
+            >
+              <span>Zur Kinder &amp; Eltern Seite &rarr;</span>
+            </a>
+          </div>
+
           <div class="flex items-center justify-between mb-4">
             <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] flex items-center gap-2">
               <span>🎈 Google Kalender:</span>
-              <span class="text-[#8B263E] dark:text-[#ff758f] text-base font-normal">SprachCafé für Kinder & Familien</span>
+              <span class="text-[#8B263E] dark:text-[#ff758f] text-base font-normal">SprachCafé für Kinder &amp; Familien</span>
             </h2>
             <a
               href={kidsCalendarUrl}

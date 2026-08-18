@@ -1,0 +1,235 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ChildrenEventForm from '../../components/ChildrenEventForm.astro';
+
+const lang = 'de';
+
+const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&hl=de&mode=AGENDA&src=ZmQ4MGM5ZTViZWVhZDUxMzBmN2U0NDVkMTFhMGY3ZGQzNTYwOTZhMDdkZWZhYmVkOGMyNjczZjAzM2Y5YjI1OUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NjQ1ZmVhNDI2NTdjYjM5ODJhZThjZWQ5Mjg2MTdmYmQyNmQ5YjU3NzBjMjE3YjBkMTI1OTg5NTBlM2I5NjBhYkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZDg4MWZlMTEwNWNlNmUyMzM2OGFkNTkwOWI0ZTU3YjJkMWU0MWNjZGEyODk5YmJhNzcyNzIzZTMyOGFjMDY0YkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MTNhMTI4MjY4NzEyMjM0Y2NkMTEzOWE0Zjk2ZDUzMDY5M2Q4YmE5MmZhN2ZlYzg2NzFkNDFhYzRjNjI1MjE0YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%239e69af&color=%23c0ca33&color=%23009688&color=%23616161";
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  'name': 'SprachCafé Polnisch e.V. — Kinder & Eltern',
+  'url': 'https://sprachcafe-polnisch.org/events/kinder-und-eltern/',
+  'description': 'Regelmäßige Sprachkurse, Spielgruppen und Kulturworkshops für Kinder und bilinguale Familien in Berlin.',
+  'address': {
+    '@type': 'PostalAddress',
+    'streetAddress': 'Schulzestr. 1',
+    'addressLocality': 'Berlin',
+    'postalCode': '13187',
+    'addressCountry': 'DE'
+  }
+};
+---
+
+<Layout
+  title="Veranstaltungen für Kinder und Eltern — SprachCafé Polnisch e.V."
+  description="Im SprachCafé Polnisch unterstützen wir Familien, Kinder und Jugendliche dabei, die polnische Sprache und Kultur spielerisch zu erlernen und zu pflegen. Kurse, Kalender und Online-Anmeldung."
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <div class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto space-y-16">
+    
+    <!-- Hero Section -->
+    <header class="text-center max-w-4xl mx-auto space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold">
+        <span>🎈</span>
+        <span>Kinder, Jugend &amp; Familie</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight">
+        Veranstaltungen für Kinder und Eltern
+      </h1>
+
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+        <strong>Im SprachCafé Polnisch unterstützen wir Familien, Kinder und Jugendliche dabei, die polnische Sprache und Kultur spielerisch zu erlernen und lebendig zu halten.</strong>
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <a
+          href="#anmeldung"
+          class="px-7 py-3.5 rounded-2xl bg-[#8B263E] hover:bg-[#6e1e31] text-white font-bold text-sm sm:text-base transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+        >
+          <span>✍️ Zur Kursanmeldung</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+
+        <a
+          href="#kalender"
+          class="px-7 py-3.5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-sm sm:text-base transition-all shadow-sm flex items-center gap-2"
+        >
+          <span>📅 Terminkalender ansehen</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 3 Value Pillars -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] flex items-center justify-center text-2xl mb-4 font-bold">
+          🗣️
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+          Gelebte Mehrsprachigkeit
+        </h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Zwei- und Mehrsprachigkeit stärken nicht nur Sprachkenntnisse, sondern fördern Kreativität, Empathie und generationenübergreifende Beziehungen.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-[#026c8f]/10 text-[#026c8f] dark:text-[#38bdf8] flex items-center justify-center text-2xl mb-4 font-bold">
+          🎨
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+          Gemeinschaft &amp; Spiel
+        </h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Unser Programm bringt polnischsprachige Familien durch Spiel, Musik, Theater und Kreativität zusammen. Regelmäßige Treffen für Kinder von 0–18 Jahren.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-[#1e6e23]/10 text-[#1e6e23] dark:text-[#4ade80] flex items-center justify-center text-2xl mb-4 font-bold">
+          📚
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+          Zweisprachige Bibliothek
+        </h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Familien sind herzlich eingeladen, in unserer gemütlichen <a href="/hausbibliothek/" class="font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">Hausbibliothek</a> zu stöbern, Bücher auszuleihen und vorzulesen.
+        </p>
+      </div>
+    </section>
+
+    <!-- Video Story Section -->
+    <section class="bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f] uppercase tracking-wider">Video-Einblick</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1">
+          Was bedeutet unser Café für Kinder und Familien?
+        </h2>
+      </div>
+
+      <!-- Responsive Video Player -->
+      <div class="max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-lg border border-[#e7e1df] dark:border-[#363230] bg-black">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/586XBIQN3G8"
+          title="Video: Gemeinschaft im SprachCafé Polnisch für Kinder und Familien"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          class="w-full h-full"
+        ></iframe>
+      </div>
+
+      <!-- Video Credits & Funding -->
+      <div class="text-center text-xs text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl mx-auto leading-relaxed pt-2">
+        <p class="italic">
+          Wir danken <strong>ECKE FILM</strong> für die Produktion sowie dem <strong>Kompetenz- und Koordinationszentrum Polnisch (KoKoPol)</strong> im IBZ St. Marienthal und dem <strong>Auswärtigen Amt</strong> für die Förderung dieses Projekts.
+        </p>
+      </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="kalender" class="space-y-6 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#e7e1df] dark:border-[#363230] pb-4">
+        <div>
+          <span class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f] uppercase tracking-wider">Veranstaltungskalender</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1">
+            Termine für Kinder &amp; Eltern
+          </h2>
+          <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] mt-1">
+            Klicken Sie auf einen Termin, um Details zu Kursleitung, Raum und Voraussetzungen zu sehen.
+          </p>
+        </div>
+
+        <a
+          href={kidsCalendarUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+        >
+          <span>In Google Kalender öffnen</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+
+      <!-- Calendar Container -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 shadow-sm">
+        <div class="w-full aspect-[4/3] sm:aspect-[16/9] min-h-[500px] sm:min-h-[600px] rounded-xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] bg-[#FDFBF7] dark:bg-[#181615]">
+          <iframe
+            src={kidsCalendarUrl}
+            style="border:0;"
+            width="100%"
+            height="100%"
+            title="Google Kalender Kinderveranstaltungen SprachCafé Polnisch"
+            class="w-full h-full"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community & Social Connect -->
+    <section class="bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+            Vernetzung
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Bleiben wir in Verbindung!
+          </h2>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+            Tauschen Sie sich mit anderen Eltern aus, erhalten Sie Neuigkeiten zu Kursplätzen und werden Sie Teil unserer wachsenden Gemeinschaft.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <a
+              href="https://www.facebook.com/groups/KafejkaDlaDzieci"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-3 rounded-xl bg-[#026c8f] hover:bg-[#025672] text-white font-bold text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              <span>📣 Eltern-Gruppe auf Facebook</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+
+            <a
+              href="/kontakt/"
+              class="px-5 py-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              <span>📩 Newsletter &amp; Kontakt</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-[#181615] rounded-2xl p-6 border border-[#e7e1df] dark:border-[#363230] space-y-3">
+          <h3 class="font-bold text-base text-[#1d1b1a] dark:text-[#f5f0ee] flex items-center gap-2">
+            <span>📍</span>
+            <span>Standorte unserer Kinderkurse</span>
+          </h3>
+          <ul class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+            <li class="flex items-start gap-2">
+              <span class="text-[#8B263E] font-bold">●</span>
+              <span><strong>Pankow:</strong> Schulzestr. 1, 13187 Berlin (Hauptstandort &amp; Bibliothek)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#026c8f] font-bold">●</span>
+              <span><strong>Schöneberg:</strong> Albertstr. 12, 10827 Berlin</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#1e6e23] font-bold">●</span>
+              <span><strong>Köpenick:</strong> Partnerstandorte im Südosten</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section id="anmeldung" class="scroll-mt-24">
+      <ChildrenEventForm lang="de" />
+    </section>
+
+  </div>
+</Layout>

@@ -1,0 +1,235 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ChildrenEventForm from '../../../components/ChildrenEventForm.astro';
+
+const lang = 'pl';
+
+const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&hl=pl&mode=AGENDA&src=ZmQ4MGM5ZTViZWVhZDUxMzBmN2U0NDVkMTFhMGY3ZGQzNTYwOTZhMDdkZWZhYmVkOGMyNjczZjAzM2Y5YjI1OUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NjQ1ZmVhNDI2NTdjYjM5ODJhZThjZWQ5Mjg2MTdmYmQyNmQ5YjU3NzBjMjE3YjBkMTI1OTg5NTBlM2I5NjBhYkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZDg4MWZlMTEwNWNlNmUyMzM2OGFkNTkwOWI0ZTU3YjJkMWU0MWNjZGEyODk5YmJhNzcyNzIzZTMyOGFjMDY0YkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=MTNhMTI4MjY4NzEyMjM0Y2NkMTEzOWE0Zjk2ZDUzMDY5M2Q4YmE5MmZhN2ZlYzg2NzFkNDFhYzRjNjI1MjE0YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%239e69af&color=%23c0ca33&color=%23009688&color=%23616161";
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  'name': 'SprachCafé Polnisch e.V. — Dzieci i Rodzice',
+  'url': 'https://sprachcafe-polnisch.org/pl/events/kinder-und-eltern/',
+  'description': 'Regularne warsztaty językowe, grupy zabawowe i wydarzenia kulturalne dla dzieci i rodzin dwujęzycznych w Berlinie.',
+  'address': {
+    '@type': 'PostalAddress',
+    'streetAddress': 'Schulzestr. 1',
+    'addressLocality': 'Berlin',
+    'postalCode': '13187',
+    'addressCountry': 'DE'
+  }
+};
+---
+
+<Layout
+  title="Wydarzenia dla dzieci i rodziców — SprachCafé Polnisch e.V."
+  description="W SprachCafé Polnisch wspieramy rodziny, dzieci i młodzież w nauce i pielęgnowaniu języka oraz kultury polskiej. Kalendarz zajęć, grupy zabawowe i formularz zgłoszeniowy online."
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <div class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto space-y-16">
+    
+    <!-- Hero Section -->
+    <header class="text-center max-w-4xl mx-auto space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold">
+        <span>🎈</span>
+        <span>Dzieci, młodzież i rodzina</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight">
+        Wydarzenia dla dzieci i rodziców
+      </h1>
+
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+        <strong>W SprachCafé Polnisch pomagamy rodzinom, dzieciom i młodzieży uczyć się i pielęgnować język oraz kulturę polską poprzez zabawę, twórczość i spotkania.</strong>
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <a
+          href="#rejestracja"
+          class="px-7 py-3.5 rounded-2xl bg-[#8B263E] hover:bg-[#6e1e31] text-white font-bold text-sm sm:text-base transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+        >
+          <span>✍️ Formularz zapisu</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+
+        <a
+          href="#kalendarz"
+          class="px-7 py-3.5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-sm sm:text-base transition-all shadow-sm flex items-center gap-2"
+        >
+          <span>📅 Zobacz kalendarz spotkań</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 3 Value Pillars -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] flex items-center justify-center text-2xl mb-4 font-bold">
+          🗣️
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+          Żywa dwujęzyczność
+        </h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Wierzymy, że dwujęzyczność i wielojęzyczność wzmacniają nie tylko zdolności językowe, ale rozwijają kreatywność, empatię i relacje międzypokoleniowe.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-[#026c8f]/10 text-[#026c8f] dark:text-[#38bdf8] flex items-center justify-center text-2xl mb-4 font-bold">
+          🎨
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+          Wspólnota i twórczość
+        </h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Nasz program łączy polskojęzyczne rodziny poprzez zabawy, muzykę, teatr i warsztaty. Regularne grupy dla dzieci i młodzieży od 0 do 18 lat.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-7 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-[#1e6e23]/10 text-[#1e6e23] dark:text-[#4ade80] flex items-center justify-center text-2xl mb-4 font-bold">
+          📚
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+          Domowa biblioteka
+        </h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Zapraszamy rodziny do korzystania z naszej przytulnej <a href="/hausbibliothek/" class="font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">biblioteki polskojęzycznej</a>, wypożyczania książek i wspólnego czytania.
+        </p>
+      </div>
+    </section>
+
+    <!-- Video Story Section -->
+    <section class="bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f] uppercase tracking-wider">Materiał wideo</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1">
+          Czym jest nasze café dla dzieci i rodzin?
+        </h2>
+      </div>
+
+      <!-- Responsive Video Player -->
+      <div class="max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-lg border border-[#e7e1df] dark:border-[#363230] bg-black">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/586XBIQN3G8"
+          title="Wideo: Społeczność SprachCafé Polnisch dla dzieci i rodzin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          class="w-full h-full"
+        ></iframe>
+      </div>
+
+      <!-- Video Credits & Funding -->
+      <div class="text-center text-xs text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl mx-auto leading-relaxed pt-2">
+        <p class="italic">
+          Dziękujemy wytwórni <strong>ECKE FILM</strong> za produkcję filmu oraz <strong>Centrum Kompetencji i Koordynacji Języka Polskiego (KoKoPol)</strong> w IBZ St. Marienthal i <strong>Ministerstwu Spraw Zagranicznych RFN (Auswärtiges Amt)</strong> za dofinansowanie tego projektu.
+        </p>
+      </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="kalendarz" class="space-y-6 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#e7e1df] dark:border-[#363230] pb-4">
+        <div>
+          <span class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f] uppercase tracking-wider">Kalendarz wydarzeń</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1">
+            Zajęcia dla dzieci i rodziców
+          </h2>
+          <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] mt-1">
+            Kliknij na wybrane wydarzenie w kalendarzu, aby sprawdzić prowadzącego, salę oraz szczegóły zapisu.
+          </p>
+        </div>
+
+        <a
+          href={kidsCalendarUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+        >
+          <span>Otwórz w Kalendarzu Google</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+
+      <!-- Calendar Container -->
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 shadow-sm">
+        <div class="w-full aspect-[4/3] sm:aspect-[16/9] min-h-[500px] sm:min-h-[600px] rounded-xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] bg-[#FDFBF7] dark:bg-[#181615]">
+          <iframe
+            src={kidsCalendarUrl}
+            style="border:0;"
+            width="100%"
+            height="100%"
+            title="Kalendarz Google wydarzeń dla dzieci SprachCafé Polnisch"
+            class="w-full h-full"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community & Social Connect -->
+    <section class="bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+            Społeczność
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Bądźmy w kontakcie!
+          </h2>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+            Wymieniaj się doświadczeniami z innymi rodzicami, otrzymuj informacje o wolnych miejscach na warsztatach i stań się częścią naszej społeczności.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <a
+              href="https://www.facebook.com/groups/KafejkaDlaDzieci"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-3 rounded-xl bg-[#026c8f] hover:bg-[#025672] text-white font-bold text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              <span>📣 Grupa rodziców na Facebooku</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+
+            <a
+              href="/pl/kontakt/"
+              class="px-5 py-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              <span>📩 Newsletter i kontakt</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-[#181615] rounded-2xl p-6 border border-[#e7e1df] dark:border-[#363230] space-y-3">
+          <h3 class="font-bold text-base text-[#1d1b1a] dark:text-[#f5f0ee] flex items-center gap-2">
+            <span>📍</span>
+            <span>Lokalizacje zajęć dla dzieci</span>
+          </h3>
+          <ul class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+            <li class="flex items-start gap-2">
+              <span class="text-[#8B263E] font-bold">●</span>
+              <span><strong>Pankow:</strong> Schulzestr. 1, 13187 Berlin (Główna siedziba i biblioteka)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#026c8f] font-bold">●</span>
+              <span><strong>Schöneberg:</strong> Albertstr. 12, 10827 Berlin</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#1e6e23] font-bold">●</span>
+              <span><strong>Köpenick:</strong> Lokalizacje partnerskie w Berlinie południowo-wschodnim</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section id="rejestracja" class="scroll-mt-24">
+      <ChildrenEventForm lang="pl" />
+    </section>
+
+  </div>
+</Layout>
