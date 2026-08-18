@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <rect width="600" height="600" fill="#fdfaf9"/>
+  <path d="M250,140 C250,90 350,90 350,140 L350,220 L250,220 Z" fill="none" stroke="#8B263E" stroke-width="12"/>
+  <rect x="200" y="220" width="200" height="240" rx="16" fill="#f3e8e2" stroke="#8B263E" stroke-width="8"/>
+  <text x="300" y="330" font-family="system-ui, sans-serif" font-size="44" text-anchor="middle">📚</text>
+  <text x="300" y="375" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#8B263E" text-anchor="middle">SprachCafé Polnisch</text>
+  <text x="300" y="530" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#1d1b1a" text-anchor="middle">Bio-Baumwolltasche</text>
+</svg>

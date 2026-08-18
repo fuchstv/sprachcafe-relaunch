@@ -14,9 +14,9 @@ language:
   - "de"
   - "pl"
 description:
-  de: "[POL] | [DEU]   Historia, miejsca, ludzie i ich historie   – w języku niemieckim i polskim Wkrótce więcej...   [DEU]  Geschichte, Orte, Menschen und ihre Geschichten   - in DE + PL Mehr in Kürze ..."
-  pl: "[POL] | [DEU]   Historia, miejsca, ludzie i ich historie   – w języku niemieckim i polskim Wkrótce więcej...   [DEU]  Geschichte, Orte, Menschen und ihre Geschichten   - in DE + PL Mehr in Kürze ..."
-  en: "[POL] | [DEU]   Historia, miejsca, ludzie i ich historie   – w języku niemieckim i polskim Wkrótce więcej...   [DEU]  Geschichte, Orte, Menschen und ihre Geschichten   - in DE + PL Mehr in Kürze ..."
+  de: "[POL] | [DEU] <br><br>Historia, miejsca, ludzie i ich historie   – w języku niemieckim i polskim<br><a href=\"https://sprachcafe-polnisch.org/2026/08/historie-ktore-chca-byc-opowiedziane-die-geschichten-die-erzaehlt-werden-moechten-programm-16-17-18-10-2026-berlin/\">Wkrótce więcej...</a><br><br><br>[DEU]<br><br>Geschichte, Orte, Menschen und ihre Geschichten   - in DE + PL<br><a href=\"https://sprachcafe-polnisch.org/2026/08/historie-ktore-chca-byc-opowiedziane-die-geschichten-die-erzaehlt-werden-moechten-programm-16-17-18-10-2026-berlin/\">Mehr in Kürze ...</a>"
+  pl: "[POL] | [DEU] <br><br>Historia, miejsca, ludzie i ich historie   – w języku niemieckim i polskim<br><a href=\"https://sprachcafe-polnisch.org/2026/08/historie-ktore-chca-byc-opowiedziane-die-geschichten-die-erzaehlt-werden-moechten-programm-16-17-18-10-2026-berlin/\">Wkrótce więcej...</a><br><br><br>[DEU]<br><br>Geschichte, Orte, Menschen und ihre Geschichten   - in DE + PL<br><a href=\"https://sprachcafe-polnisch.org/2026/08/historie-ktore-chca-byc-opowiedziane-die-geschichten-die-erzaehlt-werden-moechten-programm-16-17-18-10-2026-berlin/\">Mehr in Kürze ...</a>"
+  en: "[POL] | [DEU] <br><br>Historia, miejsca, ludzie i ich historie   – w języku niemieckim i polskim<br><a href=\"https://sprachcafe-polnisch.org/2026/08/historie-ktore-chca-byc-opowiedziane-die-geschichten-die-erzaehlt-werden-moechten-programm-16-17-18-10-2026-berlin/\">Wkrótce więcej...</a><br><br><br>[DEU]<br><br>Geschichte, Orte, Menschen und ihre Geschichten   - in DE + PL<br><a href=\"https://sprachcafe-polnisch.org/2026/08/historie-ktore-chca-byc-opowiedziane-die-geschichten-die-erzaehlt-werden-moechten-programm-16-17-18-10-2026-berlin/\">Mehr in Kürze ...</a>"
 image:
   src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/pankow-default.jpg"
   alt:

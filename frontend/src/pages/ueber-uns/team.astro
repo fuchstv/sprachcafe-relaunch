@@ -6,6 +6,10 @@ const lang = 'de';
 
 const allTeam = await getCollection('team');
 const sortedTeam = allTeam.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+
+const vorstand = sortedTeam.filter((m) => (m.data.order || 99) <= 5);
+const verwaltung = sortedTeam.filter((m) => (m.data.order || 99) >= 6 && (m.data.order || 99) <= 8);
+const paedagogen = sortedTeam.filter((m) => (m.data.order || 99) >= 9);
 ---
 
 <Layout
@@ -23,57 +27,176 @@ const sortedTeam = allTeam.sort((a, b) => (a.data.order || 99) - (b.data.order |
         Unser Team & Vorstand
       </h1>
       <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto">
-        Die Menschen hinter dem SprachCafé Polnisch e.V. — Gemeinsam gestalten wir Begegnung, Kultur und Zweisprachigkeit in Berlin.
+        Die Menschen hinter dem SprachCafé Polnisch e.V. — Gemeinsam gestalten wir Begegnung, Kultur und Zweisprachigkeit an unseren Standorten in Pankow, Schöneberg und Köpenick.
       </p>
     </div>
 
-    <!-- Team Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-      {sortedTeam.map((member) => {
-        const name = member.data.name;
-        const role = member.data.role[lang] || member.data.role.de;
-        const bio = member.data.bio ? (member.data.bio[lang] || member.data.bio.de) : '';
-        const photo = member.data.photo;
-        const email = member.data.contact?.email;
+    <!-- 1. Vorstand -->
+    <section class="mb-20">
+      <div class="flex items-center gap-3 mb-8 border-b border-[#e7e1df] dark:border-[#363230] pb-4">
+        <span class="text-3xl">🏛️</span>
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Vereinsvorstand
+          </h2>
+          <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">Strategische Leitung & Vertretung des Vereins</p>
+        </div>
+      </div>
 
-        return (
-          <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all">
-            <div>
-              <div class="w-24 h-24 rounded-full overflow-hidden mb-6 mx-auto bg-[#8B263E]/10 border-2 border-[#8B263E]/30 flex items-center justify-center text-3xl font-bold text-[#8B263E]">
-                {photo && photo.startsWith('http') ? (
-                  <img src={photo} alt={name} class="w-full h-full object-cover" />
-                ) : (
-                  <span>{name.charAt(0)}</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {vorstand.map((member) => {
+          const name = member.data.name;
+          const role = member.data.role[lang] || member.data.role.de;
+          const bio = member.data.bio ? (member.data.bio[lang] || member.data.bio.de) : '';
+          const email = member.data.contact?.email;
+
+          return (
+            <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all">
+              <div>
+                <div class="w-20 h-20 rounded-full mb-6 mx-auto bg-gradient-to-tr from-[#8B263E] to-[#b93252] text-white flex items-center justify-center text-2xl font-bold shadow-md">
+                  {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </div>
+                
+                <div class="text-center mb-4">
+                  <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">{name}</h3>
+                  <span class="inline-block px-3 py-1 bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] rounded-full text-xs font-semibold">
+                    {role}
+                  </span>
+                </div>
+
+                {bio && (
+                  <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-center mb-6">
+                    {bio}
+                  </p>
                 )}
               </div>
-              
-              <div class="text-center mb-4">
-                <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">{name}</h3>
-                <span class="inline-block px-3 py-1 bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] rounded-full text-xs font-semibold">
-                  {role}
-                </span>
-              </div>
 
-              {bio && (
-                <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-center mb-6">
-                  {bio}
-                </p>
+              {email && (
+                <div class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] text-center">
+                  <a
+                    href={`mailto:${email}`}
+                    class="inline-flex items-center gap-2 text-xs font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                  >
+                    ✉️ {email}
+                  </a>
+                </div>
               )}
             </div>
+          );
+        })}
+      </div>
+    </section>
 
-            {email && (
-              <div class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] text-center">
-                <a
-                  href={`mailto:${email}`}
-                  class="inline-flex items-center gap-2 text-xs font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
-                >
-                  ✉️ {email}
-                </a>
+    <!-- 2. Verwaltung & IT -->
+    <section class="mb-20">
+      <div class="flex items-center gap-3 mb-8 border-b border-[#e7e1df] dark:border-[#363230] pb-4">
+        <span class="text-3xl">💼</span>
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Verwaltung, IT & Projektkoordination
+          </h2>
+          <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">Organisation, Administration und digitale Plattformen</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {verwaltung.map((member) => {
+          const name = member.data.name;
+          const role = member.data.role[lang] || member.data.role.de;
+          const bio = member.data.bio ? (member.data.bio[lang] || member.data.bio.de) : '';
+          const email = member.data.contact?.email;
+
+          return (
+            <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all">
+              <div>
+                <div class="w-20 h-20 rounded-full mb-6 mx-auto bg-gradient-to-tr from-[#2b4c7e] to-[#456fae] text-white flex items-center justify-center text-2xl font-bold shadow-md">
+                  {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </div>
+                
+                <div class="text-center mb-4">
+                  <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">{name}</h3>
+                  <span class="inline-block px-3 py-1 bg-[#2b4c7e]/10 text-[#2b4c7e] dark:text-[#90caf9] rounded-full text-xs font-semibold">
+                    {role}
+                  </span>
+                </div>
+
+                {bio && (
+                  <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-center mb-6">
+                    {bio}
+                  </p>
+                )}
               </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+
+              {email && (
+                <div class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] text-center">
+                  <a
+                    href={`mailto:${email}`}
+                    class="inline-flex items-center gap-2 text-xs font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                  >
+                    ✉️ {email}
+                  </a>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- 3. Pädagogisches Team & Sprachbegleitung -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-8 border-b border-[#e7e1df] dark:border-[#363230] pb-4">
+        <span class="text-3xl">🎓</span>
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Pädagogisches Team & Sprachbegleitung
+          </h2>
+          <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">Kursleitung, Frühförderung, Lesekreise und Kreativworkshops</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {paedagogen.map((member) => {
+          const name = member.data.name;
+          const role = member.data.role[lang] || member.data.role.de;
+          const bio = member.data.bio ? (member.data.bio[lang] || member.data.bio.de) : '';
+          const email = member.data.contact?.email;
+
+          return (
+            <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all">
+              <div>
+                <div class="w-20 h-20 rounded-full mb-6 mx-auto bg-gradient-to-tr from-[#2e7d32] to-[#43a047] text-white flex items-center justify-center text-2xl font-bold shadow-md">
+                  {name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </div>
+                
+                <div class="text-center mb-4">
+                  <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">{name}</h3>
+                  <span class="inline-block px-3 py-1 bg-[#2e7d32]/10 text-[#2e7d32] dark:text-[#a5d6a7] rounded-full text-xs font-semibold">
+                    {role}
+                  </span>
+                </div>
+
+                {bio && (
+                  <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-center mb-6">
+                    {bio}
+                  </p>
+                )}
+              </div>
+
+              {email && (
+                <div class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] text-center">
+                  <a
+                    href={`mailto:${email}`}
+                    class="inline-flex items-center gap-2 text-xs font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                  >
+                    ✉️ {email}
+                  </a>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   </main>
 </Layout>

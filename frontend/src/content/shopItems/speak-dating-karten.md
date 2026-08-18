@@ -1,17 +1,16 @@
 ---
 name:
-  de: "Polnisch-Deutsches Speak-Dating Kartenspiel"
-  pl: "Polsko-Niemiecka gra kartowa Speak-Dating"
-  en: "Polish-German Speak-Dating Card Game"
+  de: "Speak-Dating Konversationskarten"
+  pl: "Karty konwersacyjne Speak-Dating"
+  en: "Speak-Dating Conversation Cards"
 description:
-  de: "Ein interaktives Kartenspiel mit 50 Gesprächsimpulsen, Vokabeln und Fragen für Tandem-Treffen und Sprachcafés."
-  pl: "Interaktywna gra z 50 pytaniami i słownictwem do spotkań konwersacyjnych."
-  en: "Interactive card game with 50 conversation prompts and vocabulary for language cafes."
+  de: "Exklusives zweisprachiges Kartenset mit Impulsfragen auf Deutsch und Polnisch für Sprachtandems und Spieleabende."
+  pl: "Autorski dwujęzyczny zestaw kart z pytaniami po polsku i niemiecku do tandemu językowego i gier towarzyskich."
+  en: "Exclusive bilingual card set with prompt questions in German and Polish for language tandems and game nights."
 priceDisplay:
-  de: "10,00 € Spendenbeitrag"
-  pl: "10,00 € darowizny"
-  en: "10,00 € donation contribution"
-image: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/shop/speak-dating-cards.jpg"
+  de: "12 € (Spendenbeitrag)"
+  pl: "12 € (darowizna)"
+  en: "12 € (donation)"
+image: "/images/shop/speak-dating-cards.svg"
 availability: "in_stock"
-orderLink: "https://sprachcafe-polnisch.org/kontakt/"
 ---

@@ -18,7 +18,7 @@ description:
   pl: "Przytulny wieczór językowy do nauki polskiego i niemieckiego w swobodnej atmosferze. Każdy poziom mile widziany!"
   en: "Cozy language evening to practice Polish and German in a relaxed atmosphere. All language levels welcome!"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/sprachcafe-pankow.jpg"
+  src: "/images/events/default-event.svg"
   alt:
     de: "Gäste im SprachCafé Pankow"
     pl: "Goście w SprachCafé Pankow"

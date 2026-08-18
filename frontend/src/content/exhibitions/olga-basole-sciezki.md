@@ -1,23 +1,23 @@
 ---
 title:
-  de: "Ścieżki — Lebenspfade"
-  pl: "Ścieżki — Ścieżki Życia"
-  en: "Ścieżki — Life Paths"
+  de: "Ścieżki / Pfade — Abstrakte Malerei"
+  pl: "Ścieżki — Malarstwo Abstrakcyjne"
+  en: "Pathways / Ścieżki — Abstract Paintings"
 artist: "Olga Basole"
-startDate: 2026-08-15T00:00:00Z
-endDate: 2026-09-30T00:00:00Z
+startDate: 2026-05-01
+endDate: 2026-08-31
 description:
-  de: "Eindrucksvolle Grafik- und Aquarellserie zum Thema Heimat, Identität und Sprachbrücken."
-  pl: "Poruszająca seria grafik i akwareli na temat ojczyzny, tożsamości i mostów językowych."
-  en: "Moving graphics and watercolor series on home, identity, and language bridges."
+  de: "Farbintensive Acrylgemälde und Collagen, die Wege des interkulturellen Ankommens und der persönlichen Transformation erforschen."
+  pl: "Malarstwo akrylowe i kolaże badające ścieżki międzykulturowego zakorzenienia i osobistej transformacji."
+  en: "Vibrant acrylic paintings and collages exploring pathways of intercultural belonging and transformation."
 gallery:
-  - url: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/exhibitions/olga-basole-1.jpg"
+  - url: "/images/exhibitions/sciezki.svg"
     caption:
-      de: "Aquarell aus der Serie Ścieżki"
-      pl: "Akwarela z serii Ścieżki"
-      en: "Watercolor from the Ścieżki series"
+      de: "Ausstellungsübersicht Ścieżki"
+      pl: "Przegląd wystawy Ścieżki"
+      en: "Exhibition Overview Pathways"
     alt:
-      de: "Kunstwerk Olga Basole"
-      pl: "Dzieło sztuki Olga Basole"
-      en: "Artwork by Olga Basole"
+      de: "Gemälde von Olga Basole"
+      pl: "Obrazy Olgi Basole"
+      en: "Paintings by Olga Basole"
 ---

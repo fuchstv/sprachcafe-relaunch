@@ -8,5 +8,5 @@ role:
   de: "Mutter & Bibliotheksnutzerin • Berlin-Köpenick"
   pl: "Matka i czytelniczka • Berlin-Köpenick"
   en: "Mother & Library Patron • Berlin-Köpenick"
-avatar: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/testimonials/avatar-mk.png"
+avatar: "/images/team/avatar-default.svg"
 ---

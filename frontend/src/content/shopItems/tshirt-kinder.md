@@ -1,17 +1,16 @@
 ---
 name:
-  de: "SprachCafé Kinder-Shirt"
+  de: "SprachCafé T-Shirt (Kinder)"
   pl: "Koszulka dziecięca SprachCafé"
   en: "SprachCafé Kids T-Shirt"
 description:
-  de: "Farbenfrohe T-Shirts für Kinder mit unserem zweisprachigen Eulensymbol. Bio-Baumwolle."
-  pl: "Kolorowa koszulka dla dzieci z symbolem sowy. Bawełna organiczna."
-  en: "Colorful T-shirts for kids featuring our owl mascot. Organic cotton."
+  de: "Farbenfrohes Kinder-T-Shirt aus weicher Bio-Baumwolle. In verschiedenen Kindergrößen vor Ort erhältlich."
+  pl: "Kolorowa koszulka dziecięca z miękkiej bawełny organicznej. Dostępna na miejscu w różnych rozmiarach."
+  en: "Colorful kids t-shirt made of soft organic cotton. Available on-site in various child sizes."
 priceDisplay:
-  de: "12,00 € Spendenbeitrag"
-  pl: "12,00 € darowizny"
-  en: "12,00 € donation contribution"
-image: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/shop/tshirt-kids.jpg"
+  de: "15 € (Spendenbeitrag)"
+  pl: "15 € (darowizna)"
+  en: "15 € (donation)"
+image: "/images/shop/tshirt-kids.svg"
 availability: "in_stock"
-orderLink: "https://sprachcafe-polnisch.org/kontakt/"
 ---

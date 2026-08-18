@@ -8,5 +8,5 @@ role:
   de: "Schülerpraktikantin • Berlin-Schöneberg"
   pl: "Praktykantka • Berlin-Schöneberg"
   en: "Student Intern • Berlin-Schöneberg"
-avatar: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/testimonials/avatar-hp.png"
+avatar: "/images/team/avatar-default.svg"
 ---

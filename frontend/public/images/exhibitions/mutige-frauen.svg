@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="ex1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a154b"/>
+      <stop offset="100%" stop-color="#1f0720"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#ex1Grad)"/>
+  <circle cx="400" cy="240" r="160" fill="#ff758f" opacity="0.15"/>
+  <text x="400" y="240" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#ffffff" text-anchor="middle">Mutige Frauen</text>
+  <text x="400" y="300" font-family="system-ui, sans-serif" font-size="24" fill="#ff758f" text-anchor="middle">Anna Krenz &amp; Ewa Maria Slaska</text>
+  <text x="400" y="350" font-family="system-ui, sans-serif" font-size="18" fill="#ffffff" opacity="0.8" text-anchor="middle">Porträts &amp; Lebenswege außergewöhnlicher Frauen</text>
+</svg>

@@ -23,5 +23,5 @@ image:
     de: "SprachCamp Sommer für Kinder J."
     pl: "SprachCamp Sommer für Kinder J."
     en: "SprachCamp Sommer für Kinder J."
-isFeatured: true
+isFeatured: false
 ---

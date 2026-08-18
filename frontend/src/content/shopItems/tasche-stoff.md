@@ -1,17 +1,16 @@
 ---
 name:
-  de: "SprachCafé Stoffbeutel (Fairtrade)"
-  pl: "Torba materiałowa SprachCafé (Fairtrade)"
-  en: "SprachCafé Tote Bag (Fairtrade)"
+  de: "Bio-Stoffbeutel SprachCafé"
+  pl: "Eko-torba bawełniana SprachCafé"
+  en: "SprachCafé Organic Tote Bag"
 description:
-  de: "Stabiler Baumwollbeutel mit langem Henkel und zweisprachigem SprachCafé-Siegeldruck."
-  pl: "Trwała torba bawełniana z długim uchwytem i logo SprachCafé."
-  en: "Durable cotton tote bag with long handles and bilingual logo print."
+  de: "Robuste Tragetasche aus 100% recycelter Bio-Baumwolle. Perfekt für Bibliotheksbücher und den Alltag."
+  pl: "Mocna torba ze 100% bawełny organicznej z recyklingu. Idealna na książki z biblioteki i na co dzień."
+  en: "Sturdy tote bag made from 100% recycled organic cotton. Perfect for library books and daily use."
 priceDisplay:
-  de: "8,00 € Spendenbeitrag"
-  pl: "8,00 € darowizny"
-  en: "8,00 € donation contribution"
-image: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/shop/tote-bag.jpg"
+  de: "10 € (Spendenbeitrag)"
+  pl: "10 € (darowizna)"
+  en: "10 € (donation)"
+image: "/images/shop/tote-bag.svg"
 availability: "in_stock"
-orderLink: "https://sprachcafe-polnisch.org/kontakt/"
 ---

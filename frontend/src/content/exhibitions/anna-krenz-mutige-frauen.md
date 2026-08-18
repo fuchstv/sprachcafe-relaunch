@@ -1,23 +1,23 @@
 ---
 title:
-  de: "Mutige Frauen — Polnische Künstlerinnen in Berlin"
-  pl: "Odważne Kobiety — Polskie artystki w Berlinie"
-  en: "Courageous Women — Polish female artists in Berlin"
+  de: "Mutige Frauen — Porträts und Geschichten"
+  pl: "Odważne Kobiety — Portrety i Historie"
+  en: "Brave Women — Portraits and Stories"
 artist: "Anna Krenz & Ewa Maria Slaska"
-startDate: 2026-06-01T00:00:00Z
-endDate: 2026-07-31T00:00:00Z
+startDate: 2026-03-08
+endDate: 2026-06-30
 description:
-  de: "Eine vielschichtige Ausstellung über die Perspektiven polnischer Migrantinnen, Aktivistinnen und Künstlerinnen im Berliner Stadtbild."
-  pl: "Wielowarstwowa wystawa poświęcona perspektywom polskich migrantek, aktywistek i artystek w Berlinie."
-  en: "A multifaceted exhibition exploring the perspectives of Polish female migrants, activists, and artists in Berlin."
+  de: "Eine multimediale Ausstellung über bemerkenswerte Frauen der deutsch-polnischen Geschichte, Aktivismus und Kunst."
+  pl: "Multimedialna wystawa o wybitnych kobietach historii polsko-niemieckiej, aktywizmu i sztuki."
+  en: "A multimedia exhibition celebrating remarkable women of German-Polish history, activism, and art."
 gallery:
-  - url: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/exhibitions/mutige-frauen-1.jpg"
+  - url: "/images/exhibitions/mutige-frauen.svg"
     caption:
-      de: "Vernissage im SprachCafé Pankow"
-      pl: "Wernisaż w SprachCafé Pankow"
-      en: "Exhibition opening at SprachCafé Pankow"
-    alt:
-      de: "Ausstellungsplakat Mutige Frauen"
+      de: "Plakat zur Ausstellung Mutige Frauen"
       pl: "Plakat wystawy Odważne Kobiety"
-      en: "Exhibition poster Courageous Women"
+      en: "Poster for Brave Women Exhibition"
+    alt:
+      de: "Plakat Mutige Frauen"
+      pl: "Plakat Odważne Kobiety"
+      en: "Poster Brave Women"
 ---

@@ -8,5 +8,5 @@ role:
   de: "Künstlerin • Berlin-Pankow"
   pl: "Artystka • Berlin-Pankow"
   en: "Artist • Berlin-Pankow"
-avatar: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/testimonials/avatar-aw.png"
+avatar: "/images/team/avatar-default.svg"
 ---

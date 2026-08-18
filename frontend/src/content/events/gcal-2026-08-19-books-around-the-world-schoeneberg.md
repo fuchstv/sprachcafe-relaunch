@@ -23,5 +23,5 @@ image:
     de: "Books Around the World"
     pl: "Books Around the World"
     en: "Books Around the World"
-isFeatured: false
+isFeatured: true
 ---

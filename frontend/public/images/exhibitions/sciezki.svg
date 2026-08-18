@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="ex3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#744210"/>
+      <stop offset="100%" stop-color="#442408"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#ex3Grad)"/>
+  <circle cx="400" cy="240" r="160" fill="#f6e05e" opacity="0.15"/>
+  <text x="400" y="240" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#ffffff" text-anchor="middle">Ścieżki / Pfade</text>
+  <text x="400" y="300" font-family="system-ui, sans-serif" font-size="24" fill="#faf089" text-anchor="middle">Olga Basole</text>
+  <text x="400" y="350" font-family="system-ui, sans-serif" font-size="18" fill="#ffffff" opacity="0.8" text-anchor="middle">Abstrakte Malerei und Farblandschaften</text>
+</svg>

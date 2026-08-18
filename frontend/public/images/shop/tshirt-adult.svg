@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <rect width="600" height="600" fill="#fdfaf9"/>
+  <path d="M180,160 L240,120 L300,150 L360,120 L420,160 L380,240 L340,220 L340,480 L260,480 L260,220 L220,240 Z" fill="#8B263E"/>
+  <circle cx="300" cy="280" r="40" fill="#ffffff" opacity="0.2"/>
+  <text x="300" y="288" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">SCP</text>
+  <text x="300" y="540" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#1d1b1a" text-anchor="middle">SprachCafé T-Shirt (Erwachsene)</text>
+</svg>

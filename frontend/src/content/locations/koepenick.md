@@ -20,7 +20,6 @@ directions:
   de: "Tram 62 bis Am Wiesengraben oder Bus 165."
   pl: "Tramwaj 62 do przystanku Am Wiesengraben lub autobus 165."
   en: "Tram 62 to Am Wiesengraben or Bus 165."
-phone: "+49 30 12345680"
 email: "koepenick@sprachcafe-polnisch.org"
-image: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/locations/koepenick.jpg"
+image: "/images/locations/koepenick.svg"
 ---

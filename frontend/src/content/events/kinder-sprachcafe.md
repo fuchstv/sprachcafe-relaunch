@@ -18,7 +18,7 @@ description:
   pl: "Dwujęzyczne głośne czytanie, majsterkowanie i zabawy dla dzieci. Razem odkrywamy polskie książki dla dzieci."
   en: "Bilingual reading aloud, crafts, and games for kids. Discovering Polish children's books together."
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/kinder-sprachcafe.jpg"
+  src: "/images/events/default-event.svg"
   alt:
     de: "Kinder beim zweisprachigen Vorlesen"
     pl: "Dzieci podczas dwujęzycznego czytania"
