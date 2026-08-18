@@ -14,10 +14,10 @@ test.describe('📝 Mitgliedschafts-Formular & 4-Schritte-Abnahmetest', () => {
     const schritteSection = page.locator('#schritte');
     await expect(schritteSection).toBeVisible();
 
-    // Schritt 1: Satzung lesen (S3 Link Verification)
+    // Schritt 1: Satzung lesen (PDF Download Link Verification)
     const satzungLink = page.locator('a[href*="Satzung-SCP-12.06.2020.pdf"]').first();
     await expect(satzungLink).toBeVisible();
-    await expect(satzungLink).toHaveAttribute('href', 'https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/downloads/Satzung-SCP-12.06.2020.pdf');
+    await expect(satzungLink).toHaveAttribute('href', '/downloads/Satzung-SCP-12.06.2020.pdf');
 
     // Schritt 2: Mission & Werte
     const missionLink = page.locator('#schritte a[href*="/ueber-uns/mission/"]');
