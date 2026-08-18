@@ -130,7 +130,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
               href="/ueber-uns/"
               class="inline-flex items-center gap-1 text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
             >
-              <span>Über uns</span>
+              <span>{t('nav.about')}</span>
               <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -242,8 +242,8 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
           </a>
         </nav>
 
-        <!-- Right Side: Dark Mode Toggle & Language Switcher -->
-        <div class="flex items-center gap-3">
+        <!-- Right Side: Dark Mode Toggle, Language Switcher & Mobile Hamburger -->
+        <div class="flex items-center gap-2 sm:gap-3">
           <button
             id="theme-toggle-btn"
             type="button"
@@ -256,7 +256,76 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
           </button>
           
           <LanguageSwitcher currentLang={lang} />
+
+          <!-- Mobile Hamburger Toggle -->
+          <button
+            id="mobile-menu-toggle"
+            type="button"
+            class="md:hidden p-2 rounded-xl border border-[#e7e1df] dark:border-[#363230] bg-[#f8f2f0] dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            aria-label="Menü öffnen"
+            aria-expanded="false"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-[#e7e1df] dark:border-[#363230] bg-[#FDFBF7] dark:bg-[#181615] px-4 py-6 space-y-4 shadow-lg">
+        <a
+          href={lang === 'de' ? '/' : `/${lang}/`}
+          class="block py-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] border-b border-[#e7e1df] dark:border-[#363230]"
+        >
+          {t('nav.home')}
+        </a>
+        <div class="space-y-1">
+          <a
+            href="/ueber-uns/"
+            class="block py-2 text-base font-bold text-[#8B263E] dark:text-[#ff758f]"
+          >
+            🏢 {t('nav.about')} (Übersicht)
+          </a>
+          <div class="pl-4 space-y-1 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+            <a href="/ueber-uns/mission/" class="block py-1.5 hover:text-[#8B263E]">🎯 Mission & Werte</a>
+            <a href="/ueber-uns/team/" class="block py-1.5 hover:text-[#8B263E]">👥 Team & Vorstand</a>
+            <a href="/ueber-uns/frequently-asked-questions/" class="block py-1.5 hover:text-[#8B263E]">❓ Häufige Fragen (FAQ)</a>
+            <a href="/ueber-uns/ausstellungen/" class="block py-1.5 hover:text-[#8B263E]">🎨 Ausstellungen</a>
+            <a href="/ueber-uns/kleiner-laden/" class="block py-1.5 hover:text-[#8B263E]">🛍️ Kleiner Laden</a>
+          </div>
+        </div>
+        <a
+          href="/events/"
+          class="block py-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] border-b border-[#e7e1df] dark:border-[#363230]"
+        >
+          📅 {t('nav.events')}
+        </a>
+        <a
+          href="/hausbibliothek/"
+          class="block py-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] border-b border-[#e7e1df] dark:border-[#363230]"
+        >
+          📚 {t('nav.library')}
+        </a>
+        <a
+          href="/posts/"
+          class="block py-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] border-b border-[#e7e1df] dark:border-[#363230]"
+        >
+          📰 Blog
+        </a>
+        <a
+          href="/mitmachen/"
+          class="block py-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] border-b border-[#e7e1df] dark:border-[#363230]"
+        >
+          ❤️ Mitmachen & Spenden
+        </a>
+        <a
+          href="/kontakt/"
+          class="block py-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee]"
+        >
+          ✉️ {t('nav.contact')}
+        </a>
       </div>
     </header>
 
@@ -338,7 +407,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
       </div>
     </footer>
 
-    <!-- Theme Switcher Script -->
+    <!-- Theme Switcher & Mobile Menu Script -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
         const toggleBtn = document.getElementById('theme-toggle-btn');
@@ -351,6 +420,23 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
             } else {
               document.documentElement.classList.add('dark');
               localStorage.setItem('theme', 'dark');
+            }
+          });
+        }
+
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            if (hamburgerIcon && closeIcon) {
+              hamburgerIcon.classList.toggle('hidden');
+              closeIcon.classList.toggle('hidden');
             }
           });
         }
