@@ -1,35 +1,19 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import LibraryReferralSection from '../../components/LibraryReferralSection.astro';
-import { useTranslations } from '../../i18n/utils';
-
-const lang = 'de';
-const t = useTranslations(lang);
+// Canonical German homepage is hosted at /
 ---
-
-<Layout title="SprachCafé Polnisch - Willkommen (DE)" lang={lang}>
-  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-brand-primary-light text-sm font-semibold mb-6">
-      <span>{t('hero.badge')}</span>
-    </div>
-    
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-      {t('hero.title')}
-    </h1>
-    
-    <p class="text-lg sm:text-xl text-brand-text-muted max-w-3xl mx-auto mb-12 leading-relaxed">
-      {t('hero.subtitle')}
-    </p>
-
-    <div class="bg-brand-surface border border-slate-800 rounded-2xl p-6 sm:p-10 text-left shadow-2xl">
-      <h2 class="text-2xl font-bold text-brand-primary-light mb-4">🇩🇪 Deutsche Sprachvariante (/de/)</h2>
-      <p class="text-brand-text-muted leading-relaxed">
-        Willkommen beim SprachCafé Polnisch. Diese Seite bietet Informationen zu unseren Sprachabenden, Kursen und Kulturveranstaltungen.
-      </p>
-    </div>
-  </section>
-
-  <!-- Prominenter Verweis auf hausbibliothek.org ("Zu unserer Bibliothek") -->
-  <LibraryReferralSection lang={lang} />
-</Layout>
-
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/" />
+    <link rel="canonical" href="https://xn--sprachcaf-j4a.org/" />
+    <title>SprachCafé Polnisch e.V.</title>
+    <script is:inline>
+      window.location.replace("/");
+    </script>
+  </head>
+  <body style="font-family: sans-serif; padding: 2rem; text-align: center;">
+    <p>Sie werden zur offiziellen Startseite weitergeleitet...</p>
+    <p><a href="/" style="color: #8B263E; font-weight: bold;">Hier klicken, falls die Weiterleitung nicht automatisch erfolgt.</a></p>
+  </body>
+</html>

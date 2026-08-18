@@ -34,6 +34,8 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www
 	redir /neue-buchbestaende-koepenick /posts/neue-buchbestaende-koepenick 301
 	redir /pl/udany-relaunch/ /posts/erfolgreicher-relaunch-webportal 301
 	redir /pl/udany-relaunch /posts/erfolgreicher-relaunch-webportal 301
+	redir /de/ / 301
+	redir /de / 301
 
 	# 4. Legacy Categories, Tags, Authors & RSS Feeds
 	@wp_categories path_regexp wp_cats ^/category/(.+?)/?$
