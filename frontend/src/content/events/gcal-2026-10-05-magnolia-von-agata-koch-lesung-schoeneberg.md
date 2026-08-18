@@ -18,7 +18,7 @@ description:
   pl: "Eintritt frei<br><a href=\"https://sprachcafe-polnisch.org/2026/07/magnolia-von-agata-koch-lesung-bilderreise/\">Więcej / Mehr ...</a>"
   en: "Eintritt frei<br><a href=\"https://sprachcafe-polnisch.org/2026/07/magnolia-von-agata-koch-lesung-bilderreise/\">Więcej / Mehr ...</a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/schoeneberg-default.jpg"
+  src: "/images/events/schoeneberg-event.svg"
   alt:
     de: "\"Magnolia\" von Agata Koch - Lesung & Bilderreise"
     pl: "\"Magnolia\" von Agata Koch - Lesung & Bilderreise"

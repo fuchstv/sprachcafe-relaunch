@@ -18,7 +18,7 @@ description:
   pl: "Polski on-line? Spróbuj!<br><br>O której?  wieczorem od 19.00 do 20.00<br>Wstęp wolny<br><a href=\"https://www.google.com/url?q=https://sprachcafe-polnisch.org/2025/12/%25e2%2598%2595polish-cafe/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw3EZDcbTGOE_vLsQeA_iBxl\" target=\"_blank\">Więcej...</a>"
   en: "Polski on-line? Spróbuj!<br><br>O której?  wieczorem od 19.00 do 20.00<br>Wstęp wolny<br><a href=\"https://www.google.com/url?q=https://sprachcafe-polnisch.org/2025/12/%25e2%2598%2595polish-cafe/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw3EZDcbTGOE_vLsQeA_iBxl\" target=\"_blank\">Więcej...</a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/online-default.jpg"
+  src: "/images/events/default-event.svg"
   alt:
     de: "Polish-Café online"
     pl: "Polish-Café online"

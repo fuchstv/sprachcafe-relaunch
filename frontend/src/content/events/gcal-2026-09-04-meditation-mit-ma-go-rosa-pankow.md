@@ -18,7 +18,7 @@ description:
   pl: "Medytacja z Małgo Rosa – powrót do miłości | POL ENG DEU  <br><a href=\"https://sprachcafe-polnisch.org/2024/12/medytacja-z-malgo-rosa-powrot-do-milosci-pol-eng-deu/\">Więcej... </a>"
   en: "Medytacja z Małgo Rosa – powrót do miłości | POL ENG DEU  <br><a href=\"https://sprachcafe-polnisch.org/2024/12/medytacja-z-malgo-rosa-powrot-do-milosci-pol-eng-deu/\">Więcej... </a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/pankow-default.jpg"
+  src: "/images/events/pankow-event.svg"
   alt:
     de: "Meditation mit Małgo Rosa"
     pl: "Meditation mit Małgo Rosa"

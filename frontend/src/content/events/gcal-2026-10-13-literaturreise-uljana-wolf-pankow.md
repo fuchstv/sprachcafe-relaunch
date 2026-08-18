@@ -18,7 +18,7 @@ description:
   pl: "<a href=\"https://sprachcafe-polnisch.org/2026/08/literaturreise-mit-uljana-wolf/\">Więcej... Mehr...</a>"
   en: "<a href=\"https://sprachcafe-polnisch.org/2026/08/literaturreise-mit-uljana-wolf/\">Więcej... Mehr...</a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/pankow-default.jpg"
+  src: "/images/events/pankow-event.svg"
   alt:
     de: "Literaturreise - Uljana Wolf"
     pl: "Literaturreise - Uljana Wolf"

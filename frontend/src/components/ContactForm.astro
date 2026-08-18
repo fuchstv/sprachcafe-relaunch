@@ -10,7 +10,7 @@ const {
 
 <div class="contact-form-wrapper bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)] max-w-3xl mx-auto">
   <div class="mb-8 text-center sm:text-left">
-    <span class="inline-block px-3 py-1 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-xs font-bold uppercase tracking-wider mb-2">
+    <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
       DSGVO-Konformes Kontaktformular
     </span>
     <h2 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">Schreiben Sie uns eine Nachricht</h2>
@@ -47,14 +47,14 @@ const {
     <!-- Name Field -->
     <div>
       <label for="contact-name" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-        Ihr Name <span class="text-[#DD3333]">*</span>
+        Ihr Name <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
       </label>
       <input
         type="text"
         id="contact-name"
         required
         placeholder="z. B. Jan Nowak"
-        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#DD3333]"
+        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
       />
     </div>
 
@@ -62,14 +62,14 @@ const {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label for="contact-email" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-          E-Mail-Adresse <span class="text-[#DD3333]">*</span>
+          E-Mail-Adresse <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
         </label>
         <input
           type="email"
           id="contact-email"
           required
           placeholder="jan@example.com"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#DD3333]"
+          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
         />
       </div>
 
@@ -79,7 +79,7 @@ const {
         </label>
         <select
           id="contact-topic"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#DD3333]"
+          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
         >
           <option value="Allgemein" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Allgemeine Anfrage</option>
           <option value="Pankow" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Standort Pankow</option>
@@ -93,28 +93,28 @@ const {
     <!-- Subject -->
     <div>
       <label for="contact-subject" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-        Betreff <span class="text-[#DD3333]">*</span>
+        Betreff <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
       </label>
       <input
         type="text"
         id="contact-subject"
         required
         placeholder="Anfrage zu Sprachkursen / Raumnutzung"
-        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#DD3333]"
+        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
       />
     </div>
 
     <!-- Message -->
     <div>
       <label for="contact-message" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-        Ihre Nachricht <span class="text-[#DD3333]">*</span>
+        Ihre Nachricht <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
       </label>
       <textarea
         id="contact-message"
         required
         rows="5"
         placeholder="Schreiben Sie hier Ihre Nachricht an uns..."
-        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#DD3333] leading-relaxed"
+        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E] leading-relaxed"
       ></textarea>
     </div>
 
@@ -124,10 +124,10 @@ const {
         type="checkbox"
         id="contact-privacy"
         required
-        class="mt-1 w-4 h-4 text-[#DD3333] bg-[#f8f2f0] dark:bg-[#2a2725] border-[#e7e1df] dark:border-[#363230] rounded focus:ring-[#DD3333]"
+        class="mt-1 w-4 h-4 text-[#8B263E] dark:text-[#ff758f] bg-[#f8f2f0] dark:bg-[#2a2725] border-[#e7e1df] dark:border-[#363230] rounded focus:ring-[#8B263E]"
       />
       <label for="contact-privacy" class="text-xs text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-        Ich willige ein, dass meine Daten zur Beantwortung der Anfrage an das Postfach des Vereins übermittelt werden. Es erfolgt keine Speicherung auf der Website (DSGVO-by-Design). <span class="text-[#DD3333]">*</span>
+        Ich willige ein, dass meine Daten zur Beantwortung der Anfrage an das Postfach des Vereins übermittelt werden. Es erfolgt keine Speicherung auf der Website (DSGVO-by-Design). <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
       </label>
     </div>
 
@@ -136,7 +136,7 @@ const {
       <button
         type="button"
         id="contact-submit-btn"
-        class="w-full py-4 px-6 rounded-full bg-[#DD3333] hover:bg-[#b9151e] text-white font-bold text-base transition-all shadow-md flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#DD3333]"
+        class="w-full py-4 px-6 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold text-base transition-all shadow-md flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
       >
         <span id="contact-btn-text">Nachricht direkt senden &rarr;</span>
         <span id="contact-btn-spinner" class="hidden border-2 border-white border-t-transparent rounded-full w-5 h-5 animate-spin"></span>

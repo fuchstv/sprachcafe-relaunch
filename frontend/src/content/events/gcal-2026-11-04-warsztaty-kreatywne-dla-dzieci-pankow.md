@@ -18,7 +18,7 @@ description:
   pl: "<p><strong>Terminy</strong> 2026 (II): 09.09., 16.09., 23.09., 30.09., 07.10., 14.10., 04.11, 11.11., 18.11., 25.11., 02.12., 09.12., 16.12. oraz 13.01., 20.01., 27.01.2027</p><p><strong>Udział w kosztach</strong> cyklu wrzesień 2026-styczeń 2027, łącznie z materiałami, płatne przez SEPA 39€ / miesiąc / dziecko<br>Dołączyć można w każdej chwili.</p><p>Prowadzenie: <b>Patrycja Pisarska</b>, pedagożka</p><p><strong>Prosimy o zgłoszenia</strong>: <a href=\"mailto:patrycja.pisarska88@gmail.com\" target=\"_blank\">patrycja.pisarska88@gmail.com</a><br><br><a href=\"https://sprachcafe-polnisch.org/2026/08/warsztaty-kreatywne-dla-dzieci-w-wieku-4-6-lat/\" target=\"_blank\">Więcej...</a></p>"
   en: "<p><strong>Terminy</strong> 2026 (II): 09.09., 16.09., 23.09., 30.09., 07.10., 14.10., 04.11, 11.11., 18.11., 25.11., 02.12., 09.12., 16.12. oraz 13.01., 20.01., 27.01.2027</p><p><strong>Udział w kosztach</strong> cyklu wrzesień 2026-styczeń 2027, łącznie z materiałami, płatne przez SEPA 39€ / miesiąc / dziecko<br>Dołączyć można w każdej chwili.</p><p>Prowadzenie: <b>Patrycja Pisarska</b>, pedagożka</p><p><strong>Prosimy o zgłoszenia</strong>: <a href=\"mailto:patrycja.pisarska88@gmail.com\" target=\"_blank\">patrycja.pisarska88@gmail.com</a><br><br><a href=\"https://sprachcafe-polnisch.org/2026/08/warsztaty-kreatywne-dla-dzieci-w-wieku-4-6-lat/\" target=\"_blank\">Więcej...</a></p>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/kinder-pankow.jpg"
+  src: "/images/events/kinder-event.svg"
   alt:
     de: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
     pl: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"

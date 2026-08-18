@@ -96,7 +96,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
     <!-- WCAG 2.1 AA Skip Link: Keyboard Focus Navigation -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-[#DD3333] focus:text-white focus:font-bold focus:rounded-lg focus:shadow-xl focus:outline-none"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-[#8B263E] focus:text-white focus:font-bold focus:rounded-lg focus:shadow-xl focus:outline-none"
     >
       {lang === 'de' ? 'Zum Hauptinhalt springen' : lang === 'pl' ? 'Przejdź do treści głównej' : 'Skip to main content'}
     </a>
@@ -108,7 +108,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
         <!-- Official Brand Logo -->
         <a
           href={lang === 'de' ? '/' : `/${lang}/`}
-          class="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md p-1"
+          class="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md p-1"
           aria-label="SprachCafé Polnisch Startseite"
         >
           <img src="/brand-assets/logo.webp" alt="SprachCafé Polnisch Logo" class="h-12 w-auto object-contain rounded-lg shadow-sm" />
@@ -119,7 +119,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
         <nav role="navigation" aria-label={lang === 'de' ? 'Hauptnavigation' : lang === 'pl' ? 'Nawigacja główna' : 'Main Navigation'} class="hidden md:flex items-center gap-6">
           <a
             href={lang === 'de' ? '/' : `/${lang}/`}
-            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
           >
             {t('nav.home')}
           </a>
@@ -128,7 +128,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
           <div class="relative group">
             <a
               href="/ueber-uns/"
-              class="inline-flex items-center gap-1 text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+              class="inline-flex items-center gap-1 text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
             >
               <span>Über uns</span>
               <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,7 +158,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
           <div class="relative group">
             <button
               type="button"
-              class="inline-flex items-center gap-1 text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+              class="inline-flex items-center gap-1 text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
             >
               <span>Entdecken</span>
               <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -189,31 +189,31 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
 
           <a
             href="/events/"
-            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
           >
             {t('nav.events')}
           </a>
           <a
             href="/posts/"
-            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
           >
             Blog
           </a>
           <a
             href="/hausbibliothek/"
-            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
           >
             {t('nav.library')}
           </a>
           <a
             href="/mitmachen/"
-            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
           >
             Mitmachen
           </a>
           <a
             href="/kontakt/"
-            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-2 py-1"
+            class="text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-2 py-1"
           >
             {t('nav.contact')}
           </a>
@@ -224,7 +224,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
           <button
             id="theme-toggle-btn"
             type="button"
-            class="p-2 rounded-full border border-[#e7e1df] dark:border-[#363230] bg-[#f8f2f0] dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[#DD3333] text-sm"
+            class="p-2 rounded-full border border-[#e7e1df] dark:border-[#363230] bg-[#f8f2f0] dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[#8B263E] text-sm"
             aria-label="Design umschalten"
             title="Design umschalten (Hell / Dunkel)"
           >
@@ -257,7 +257,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
             href="https://www.facebook.com/sprachcafe.polnisch/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-full"
             aria-label="Facebook Seite"
           >
             <img src="/brand-assets/icon-facebook.svg" alt="Facebook Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
@@ -266,7 +266,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
             href="https://www.instagram.com/sprachcafepolnisch/"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-full"
             aria-label="Instagram Profil"
           >
             <img src="/brand-assets/icon-instagram.svg" alt="Instagram Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
@@ -275,7 +275,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
             href="https://www.youtube.com/channel/UCAgdsEs-YX_i6tDGbBtEz-w"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-full"
             aria-label="YouTube Kanal"
           >
             <img src="/brand-assets/icon-youtube.svg" alt="YouTube Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
@@ -284,7 +284,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
             href="https://www.linkedin.com/company/sprachcafe-polnisch-ev"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-full"
             aria-label="LinkedIn Firmenseite"
           >
             <img src="/brand-assets/icon-linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
@@ -293,7 +293,7 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
             href="https://www.tiktok.com/@sprachcafepolnisch?_r=1&_t=ZN-95X7nApX6xC"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#DD3333] transition-colors focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-full"
+            class="w-8 h-8 flex items-center justify-center text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:text-[#ff758f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-full"
             aria-label="TikTok Profil"
           >
             <img src="/brand-assets/icon-tiktok.svg" alt="TikTok Icon" class="w-5 h-5 opacity-80 hover:opacity-100 dark:invert" />
@@ -301,11 +301,11 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
         </div>
 
         <div class="flex items-center gap-4">
-          <a href="#privacy" class="hover:text-[#DD3333] focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-1">Datenschutz</a>
+          <a href="/datenschutz/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">Datenschutz</a>
           <span>•</span>
-          <a href="#imprint" class="hover:text-[#DD3333] focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-1">Impressum</a>
+          <a href="/impressum/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">Impressum</a>
           <span>•</span>
-          <a href="#accessibility" class="hover:text-[#DD3333] focus:outline-none focus:ring-2 focus:ring-[#DD3333] rounded-md px-1">Barrierefreiheit</a>
+          <a href="/barrierefreiheit/" class="hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded-md px-1 font-medium">Barrierefreiheit</a>
         </div>
 
       </div>

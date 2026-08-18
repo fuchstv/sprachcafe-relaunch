@@ -18,7 +18,7 @@ description:
   pl: "Info / Anmeldung: <a href=\"mailto:m.wadas@sprachcafe-polnisch.org\" target=\"_blank\"><u>m.wadas@sprachcafe-polnisch.org</u></a>"
   en: "Info / Anmeldung: <a href=\"mailto:m.wadas@sprachcafe-polnisch.org\" target=\"_blank\"><u>m.wadas@sprachcafe-polnisch.org</u></a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/kinder-pankow.jpg"
+  src: "/images/events/kinder-event.svg"
   alt:
     de: "SprachCamp Herbst für Kinder"
     pl: "SprachCamp Herbst für Kinder"

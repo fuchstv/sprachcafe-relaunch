@@ -60,7 +60,7 @@ const bookJsonLd = {
     data-pagefind-filter={`type:Book, language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
   >
     <nav class="mb-8 flex items-center justify-between">
-      <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-bold text-[#DD3333] dark:text-[#ff6b6b] hover:underline">
+      <a href="/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
         &larr; Zurück zum Bibliothekskatalog
       </a>
       
@@ -84,7 +84,7 @@ const bookJsonLd = {
         <div class:list={['flex flex-col justify-between', book.cover ? 'md:col-span-2' : 'md:col-span-3']}>
           <div>
             <div class="flex flex-wrap items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#DD3333] dark:text-[#ff6b6b] border border-[#e7e1df] dark:border-[#363230] text-xs font-bold">
+              <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#8B263E] dark:text-[#ff758f] border border-[#e7e1df] dark:border-[#363230] text-xs font-bold">
                 Sprache: {book.language}
               </span>
               <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230] text-xs font-semibold">
@@ -147,7 +147,7 @@ const bookJsonLd = {
               href={deepLinkBookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full sm:w-auto px-6 py-3 rounded-full bg-[#43AD48] hover:bg-[#006c1a] text-white font-bold transition-all text-center shadow-md"
+              class="w-full sm:w-auto px-6 py-3 rounded-full bg-[#1b5e20] hover:bg-[#0f3813] text-white font-bold transition-all text-center shadow-md"
             >
               Verbindlichen Live-Status auf hausbibliothek.org prüfen &rarr;
             </a>

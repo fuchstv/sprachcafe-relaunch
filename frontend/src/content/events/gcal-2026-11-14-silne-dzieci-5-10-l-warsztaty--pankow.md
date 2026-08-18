@@ -18,7 +18,7 @@ description:
   pl: "[POL] | [DEU]<br>Silne dzieci. Pewne siebie i bezpieczne na co dzień to polskojęzyczne warsztaty coachingowe dla dzieci w wieku 5-10 lat.<br><br>Udział w kosztach: 20€ / termin /dziecko lub rodzinę<br><br><a href=\"https://www.google.com/url?q=https://sprachcafe-polnisch.org/2026/06/silne-dzieci-warsztaty-coachingowe-z-linda-kutzner-dla-dzieci-5-10-lat/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw0LQqfYsLNt3KY9VxW313xv\" target=\"_blank\">Więcej... / Mehr...</a>"
   en: "[POL] | [DEU]<br>Silne dzieci. Pewne siebie i bezpieczne na co dzień to polskojęzyczne warsztaty coachingowe dla dzieci w wieku 5-10 lat.<br><br>Udział w kosztach: 20€ / termin /dziecko lub rodzinę<br><br><a href=\"https://www.google.com/url?q=https://sprachcafe-polnisch.org/2026/06/silne-dzieci-warsztaty-coachingowe-z-linda-kutzner-dla-dzieci-5-10-lat/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw0LQqfYsLNt3KY9VxW313xv\" target=\"_blank\">Więcej... / Mehr...</a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/kinder-pankow.jpg"
+  src: "/images/events/kinder-event.svg"
   alt:
     de: "Silne dzieci (5-10 l.) - warsztaty z Lindą Kutzner"
     pl: "Silne dzieci (5-10 l.) - warsztaty z Lindą Kutzner"

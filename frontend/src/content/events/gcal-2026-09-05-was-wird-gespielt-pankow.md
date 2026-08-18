@@ -18,7 +18,7 @@ description:
   pl: "Eine Spielrunde für Kinder und Erwachsene - in Deutsch.<br>Eintritt frei.<br>Info / Anmeldungen: c.sieger@sprachcafe-polnisch.org<br><a href=\"https://sprachcafe-polnisch.org/2026/06/was-wird-gespielt-w-co-gramy/\">Mehr ...</a>"
   en: "Eine Spielrunde für Kinder und Erwachsene - in Deutsch.<br>Eintritt frei.<br>Info / Anmeldungen: c.sieger@sprachcafe-polnisch.org<br><a href=\"https://sprachcafe-polnisch.org/2026/06/was-wird-gespielt-w-co-gramy/\">Mehr ...</a>"
 image:
-  src: "https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/events/kinder-pankow.jpg"
+  src: "/images/events/kinder-event.svg"
   alt:
     de: "Was wird gespielt?"
     pl: "Was wird gespielt?"

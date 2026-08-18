@@ -8,7 +8,7 @@ const posts = await getPosts();
 <Layout title="Blog - SprachCafé Polnisch" description="Aktuelle Blog-Einträge, Berichte und Neuigkeiten aus dem SprachCafé Polnisch e.V.">
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
     <div class="mb-10 text-center sm:text-left">
-      <span class="inline-block px-3 py-1 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] text-xs font-semibold uppercase tracking-wider mb-3">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-semibold uppercase tracking-wider mb-3">
         Blog & Neuigkeiten
       </span>
       <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-3">Blog</h1>
@@ -20,7 +20,7 @@ const posts = await getPosts();
     <!-- Blog Posts Listing Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {posts.map((post) => (
-        <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] hover:border-[#DD3333]/50 transition-all duration-300 flex flex-col">
+        <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] hover:border-[#8B263E]/50 transition-all duration-300 flex flex-col">
           {post.featured_image && (
             <div class="aspect-video w-full overflow-hidden bg-[#f8f2f0] dark:bg-[#2a2725]">
               <img
@@ -34,7 +34,7 @@ const posts = await getPosts();
 
           <div class="p-6 sm:p-8 flex flex-col flex-grow">
             <div class="flex items-center gap-3 mb-3 text-xs flex-wrap">
-              <span class="px-2.5 py-0.5 rounded-full bg-[#DD3333]/10 border border-[#DD3333]/20 text-[#DD3333] dark:text-[#ff6b6b] font-bold uppercase">
+              <span class="px-2.5 py-0.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] font-bold uppercase">
                 {post.category || 'Blog'}
               </span>
               {post.location_tag && (
@@ -47,7 +47,7 @@ const posts = await getPosts();
               </span>
             </div>
 
-            <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3 leading-snug hover:text-[#DD3333] dark:hover:text-[#ff6b6b] transition-colors">
+            <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3 leading-snug hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors">
               <a href={`/posts/${post.slug}/`}>
                 {post.title}
               </a>
@@ -63,7 +63,7 @@ const posts = await getPosts();
               </span>
               <a
                 href={`/posts/${post.slug}/`}
-                class="inline-flex items-center gap-1 text-sm font-bold text-[#DD3333] dark:text-[#ff6b6b] hover:underline transition-colors"
+                class="inline-flex items-center gap-1 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline transition-colors"
               >
                 Weiterlesen &rarr;
               </a>
