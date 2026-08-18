@@ -1,0 +1,510 @@
+{
+  "impact": [
+    {
+      "link": "https://www.berliner-sparkasse.de/de/home.html",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2024/06/LOC_M10050000_01_RT.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-1.png",
+      "name": "Berliner Sparkasse"
+    },
+    {
+      "link": "https://www.berlin.de/ba-pankow/politik-und-verwaltung/beauftragte/integration/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/Berlin-Pankow_horizontal_transparent_schwarz-1-1024x597-1.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-2.png",
+      "name": "Bezirksamt Pankow von Berlin (Integrationsbeauftragte)"
+    },
+    {
+      "link": "https://www.fonds-soziokultur.de/en",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/margin_1500_750_899671f1d5a245b719a2d9b0a2d4811b_b_logo_m_pw_rgb.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-3.png",
+      "name": "Fonds Soziokultur"
+    },
+    {
+      "link": "https://www.berlin.de/sen/kultur/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-FEIN.jpg",
+      "category": "impact",
+      "localImg": "/images/partners/partner-4.jpg",
+      "name": "Senatsverwaltung für Kultur und Gesellschaftlichen Zusammenhalt"
+    },
+    {
+      "link": "https://kulturstaatsminister.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-BKM.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-5.png",
+      "name": "Die Beauftragte der Bundesregierung für Kultur und Medien (BKM)"
+    },
+    {
+      "link": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/Download-2-1.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-6.png",
+      "name": "Deutsche Stiftung für Engagement und Ehrenamt (DSEE)"
+    },
+    {
+      "link": "https://www.uebersetzerfonds.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/171020_logo_DUF_L_CMYK_Print_schwarz.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-7.png",
+      "name": "Deutscher Übersetzerfonds (DÜF)"
+    },
+    {
+      "link": "https://sdpz.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/2023-08-25-17_07_46-Window.png",
+      "category": "impact",
+      "localImg": "/images/partners/partner-8.png",
+      "name": "Stiftung für deutsch-polnische Zusammenarbeit (SdpZ / FWPN)"
+    },
+    {
+      "link": "https://wspolnotapolska.org.pl/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/11/Design-ohne-Titel.jpg",
+      "category": "impact",
+      "localImg": "/images/partners/partner-9.jpg",
+      "name": "Stowarzyszenie „Wspólnota Polska“"
+    },
+    {
+      "link": "https://www.ibz-marienthal.de",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2025/12/OIP.webp",
+      "category": "impact",
+      "localImg": "/images/partners/partner-10.webp",
+      "name": "Internationales Begegnungszentrum St. Marienthal"
+    },
+    {
+      "link": "https://wid.org.pl/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2025/12/WiD_logo-1.webp",
+      "category": "impact",
+      "localImg": "/images/partners/partner-11.webp",
+      "name": "wid.org.pl"
+    }
+  ],
+  "culture": [
+    {
+      "link": "https://www.hlenet.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Heritage-Language-Education-Network.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-12.webp",
+      "name": "hlenet.org"
+    },
+    {
+      "link": "https://www.berlin.de/ba-pankow/politik-und-verwaltung/beauftragte/integration/gremien/artikel.275692.php",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Lingua-Pankow.jpeg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-13.jpeg",
+      "name": "Bezirksamt Pankow von Berlin (Integrationsbeauftragte)"
+    },
+    {
+      "link": "https://www.via-in-berlin.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Verband-fur-Interkulturelle-Arbeit.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-14.jpg",
+      "name": "via-in-berlin.de"
+    },
+    {
+      "link": "https://www.yekmal.de/en/befan",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-BEFaN.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-15.jpg",
+      "name": "yekmal.de"
+    },
+    {
+      "link": "https://www.beratungsnetz-migration.de/l/de",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/11/2023-11-13-15_27_00-Berliner-Beratungsnetz-fuer-Zugewanderte.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-16.png",
+      "name": "beratungsnetz-migration.de"
+    },
+    {
+      "link": "https://www.orpeg.pl/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/11/ORPEG_logo2.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-17.png",
+      "name": "orpeg.pl"
+    },
+    {
+      "link": "https://jpolski.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/11/Logo-VdPP-2018-7cm.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-18.jpg",
+      "name": "jpolski.de"
+    },
+    {
+      "link": "https://www.migra-up.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/MigraUp_logo_edited.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-19.webp",
+      "name": "migra-up.org"
+    },
+    {
+      "link": "https://www.demokratie-leben.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Demokratie_leben.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-20.webp",
+      "name": "demokratie-leben.de"
+    },
+    {
+      "link": "https://moskito.pfefferwerk.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Pfefferwerk-Stadtkultur-gGmbH.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-21.png",
+      "name": "Partnerschaft für Demokratie Pankow-Nord / Moskito (Pfefferwerk)"
+    },
+    {
+      "link": "https://oder-partnerschaft.eu/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Oder-Partnerschaft.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-22.jpg",
+      "name": "oder-partnerschaft.eu"
+    },
+    {
+      "link": "https://berufscoaching-avgs.de/kasia/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2025/12/skonczone-logo-ze-zlotym-napisem.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-23.webp",
+      "name": "berufscoaching-avgs.de"
+    },
+    {
+      "link": "https://ai-academy.berlin/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/AI-Academy-Berlin.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-24.webp",
+      "name": "ai-academy.berlin"
+    },
+    {
+      "link": "https://polishforyou.eu/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Polish-for-You.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-25.webp",
+      "name": "polishforyou.eu"
+    },
+    {
+      "link": "https://staedtepartner-stettin.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Stadtpartner-Stettin-e.V.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-26.webp",
+      "name": "staedtepartner-stettin.org"
+    },
+    {
+      "link": "https://www.powolanidoszczescia.pl/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/powolanidoszczescia.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-27.webp",
+      "name": "powolanidoszczescia.pl"
+    },
+    {
+      "link": "https://www.facebook.com/polskieimproberlin/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2025/12/Design-ohne-Titel-16.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-28.webp",
+      "name": "facebook.com"
+    },
+    {
+      "link": "https://www.charta-der-vielfalt.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/Download-1.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-29.png",
+      "name": "Charta der Vielfalt"
+    },
+    {
+      "link": "https://nebenan.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/nebenan.de-Gewerbe-1.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-30.png",
+      "name": "nebenan.de Stiftung & Netzwerk"
+    },
+    {
+      "link": "https://www.gewobag.de/bauen-in-berlin/bauprojekte/berlin-suedkreuz/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Gewobag.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-31.webp",
+      "name": "GEWOBAG Wohnungsbau-Aktiengesellschaft Berlin"
+    },
+    {
+      "link": "https://www.pankow-gegen-rassismus.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Pankow20Rassismus.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-32.webp",
+      "name": "Pankow gegen Rassismus"
+    },
+    {
+      "link": "https://www.interkulturellewoche.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Interkulturelle-Woche.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-33.webp",
+      "name": "Interkulturelle Woche"
+    },
+    {
+      "link": "https://familiennacht.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/FamilienNacht.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-34.webp",
+      "name": "FamilienNacht Berlin"
+    },
+    {
+      "link": "https://berliner-maerchentage.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/Download-4-Berliner-Maerchentage.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-35.png",
+      "name": "Berliner Märchentage"
+    },
+    {
+      "link": "https://www.lebendiger-adventskalender-pankow.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/logo-dark.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-36.png",
+      "name": "Lebendiger Adventskalender Pankow"
+    },
+    {
+      "link": "https://www.artspring.berlin/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Logo-rot-weiss.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-37.webp",
+      "name": "artspring berlin Kunstfestival"
+    },
+    {
+      "link": "https://www.expolingua.com/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-EXPOLINGUA-Berlin.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-38.png",
+      "name": "EXPOLINGUA Berlin"
+    },
+    {
+      "link": "https://instytutpolski.pl/berlin/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/Download-4.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-39.png",
+      "name": "Polnisches Institut Berlin (Instytut Polski)"
+    },
+    {
+      "link": "https://poloniaviva.eu/index.php/de/geschaeftsstelle-der-polonia",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/AAAlogos.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-40.png",
+      "name": "Polonia Viva / Bund der Polen in Deutschland"
+    },
+    {
+      "link": "https://www.dpgberlin.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Deutsch-Polnische-Gesellschaft-Berlin-e-V.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-41.jpg",
+      "name": "Deutsch-Polnische Gesellschaft Berlin e.V. (DPG Berlin)"
+    },
+    {
+      "link": "https://kulturprojekte.berlin/projekte/kulturzug-berlin-wroclaw/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/Kulturzug.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-42.webp",
+      "name": "Kulturzug Berlin-Wrocław (Kulturprojekte Berlin)"
+    },
+    {
+      "link": "https://www.stz-pankow.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Stadtteilzentrum-Pankow.gif",
+      "category": "culture",
+      "localImg": "/images/partners/partner-43.gif",
+      "name": "Stadtteilzentrum Pankow"
+    },
+    {
+      "link": "https://interkulturelle-begegnungen.jimdofree.com/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Verein-fur-Interkulturelle-Begegnungen-e-V.gif",
+      "category": "culture",
+      "localImg": "/images/partners/partner-44.gif",
+      "name": "Verein für Interkulturelle Begegnungen e.V."
+    },
+    {
+      "link": "https://freunde-kolbergs.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Freunde-Kolbergs-e-V.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-45.png",
+      "name": "Freunde Kolbergs e.V."
+    },
+    {
+      "link": "https://www.pfh-berlin.de/de/kurmark",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Kurmark.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-46.jpg",
+      "name": "Pestalozzi-Fröbel-Haus / Familienzentrum Kurmark"
+    },
+    {
+      "link": "https://www.sinnergie-ev.com/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Sinnergie-e-V.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-47.jpg",
+      "name": "Sinnergie e.V."
+    },
+    {
+      "link": "http://www.bocconcini.net/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Bocconcini-di-cultura-e-V.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-48.jpg",
+      "name": "Bocconcini di cultura e.V."
+    },
+    {
+      "link": "https://vlbe.org/litauische-gemeinschaft-in-deutschland/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/VLB_logo_web_LTDE_Short-Litauische-Gemeinde.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-49.png",
+      "name": "Litauische Gemeinschaft in Deutschland (VLB)"
+    },
+    {
+      "link": "http://www.zukunftswerkstatt-heinersdorf.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Zukunftswerkstatt-Heinersdorf.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-50.jpg",
+      "name": "Zukunftswerkstatt Heinersdorf"
+    },
+    {
+      "link": "https://buchczyliksiazka.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/profil.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-51.webp",
+      "name": "Buch czyli Książka"
+    },
+    {
+      "link": "https://polen-pl.eu/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Polen-pl.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-52.png",
+      "name": "Polen.pl Magazin"
+    },
+    {
+      "link": "https://migrantka.com/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/LOGO-MIGRANTKA-1.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-53.png",
+      "name": "Migrantka Portal"
+    },
+    {
+      "link": "https://cafeimpuls.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-cafeimpuls.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-54.jpg",
+      "name": "Café Impuls"
+    },
+    {
+      "link": "https://dpjw.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-dpjw-pnwm.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-55.jpg",
+      "name": "Deutsch-Polnisches Jugendwerk (DPJW / PNWM)"
+    },
+    {
+      "link": "https://www.flucht-vertreibung-versoehnung.de/de/home",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2025/12/SFVV_Logo_2020_Cooperation_RGB_Farbe.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-56.webp",
+      "name": "Dokumentationszentrum Flucht, Vertreibung, Versöhnung"
+    },
+    {
+      "link": "https://www.bundesfreiwilligendienst.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-BFD.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-57.jpg",
+      "name": "Bundesfreiwilligendienst (BFD)"
+    },
+    {
+      "link": "https://www.club-dialog.de/bundesfreiwilligendienst/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Club-Dialog-e-V.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-58.png",
+      "name": "Club Dialog e.V."
+    },
+    {
+      "link": "https://www.kaa-berlin-brandenburg.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/KAA_Logo-jpg.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-59.jpg",
+      "name": "KAA Berlin-Brandenburg"
+    },
+    {
+      "link": "https://www.robert-jungk-oberschule.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/Robert-Jungk-Oberschule.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-60.png",
+      "name": "Robert-Jungk-Oberschule"
+    },
+    {
+      "link": "http://www.ehrenamt-pankow.berlin/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-FreiwilligenAgentur-Pankow.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-61.jpg",
+      "name": "FreiwilligenAgentur Pankow"
+    },
+    {
+      "link": "https://smart-eg.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-SMartDe.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-62.png",
+      "name": "SMartDe eG"
+    },
+    {
+      "link": "https://www.berlink.eu/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Berlink.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-63.jpg",
+      "name": "Berlink International Education Agency"
+    },
+    {
+      "link": "https://www.europabildung.org/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-GEB.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-64.png",
+      "name": "Gesellschaft für Europabildung (GEB)"
+    },
+    {
+      "link": "https://www.rbb-online.de/kowalskiundschmidt/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-rbb.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-65.png",
+      "name": "rbb Fernsehen (Kowalski & Schmidt)"
+    },
+    {
+      "link": "https://www.facebook.com/radiopopolsku/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Cosmo.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-66.jpg",
+      "name": "Radio Cosmo / Radio po polsku"
+    },
+    {
+      "link": "http://groupe-dejour.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2023/08/1615230619379.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-67.jpg",
+      "name": "Groupe Dejour"
+    },
+    {
+      "link": "https://www.polskarada-berlin.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Polska-Rada.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-68.jpg",
+      "name": "Polska Rada w Berlinie"
+    },
+    {
+      "link": "https://www.pfefferwerk.de/moskito/partnerschaft-fuer-demokratie-pankow-nord/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Visionen-fur-Pankow.png",
+      "category": "culture",
+      "localImg": "/images/partners/partner-69.png",
+      "name": "Partnerschaft für Demokratie Pankow-Nord / Moskito (Pfefferwerk)"
+    },
+    {
+      "link": "https://www.paula-panke.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Frauenzentrum-Paula-Panke-e-V.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-70.jpg",
+      "name": "Frauenzentrum Paula Panke e.V."
+    },
+    {
+      "link": "https://box66berlin.com/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2021/01/cooperation-Box66.jpg",
+      "category": "culture",
+      "localImg": "/images/partners/partner-71.jpg",
+      "name": "Interkulturelles Zentrum Box66"
+    },
+    {
+      "link": "https://www.gesobau.de/",
+      "imgUrl": "https://i0.wp.com/sprachcafe-polnisch.org/wp-content/uploads/2026/01/gesobau_logo-mit-claim_RGB-zweifarbig-1024x478.webp",
+      "category": "culture",
+      "localImg": "/images/partners/partner-72.webp",
+      "name": "GESOBAU AG"
+    }
+  ]
+}
