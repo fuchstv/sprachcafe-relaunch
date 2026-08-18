@@ -21,6 +21,8 @@
     "@playwright/test": "^1.50.0",
     "@pnp/cli-microsoft365": "^11.10.0",
     "axe-core": "^4.13.0",
+    "docx": "^9.7.1",
+    "exceljs": "^4.4.0",
     "pac-cli": "^1.0.3"
   }
 }
