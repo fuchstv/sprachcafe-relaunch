@@ -11,14 +11,18 @@ const lang = 'de';
 const t = useTranslations(lang);
 
 const locationsCollection = await getCollection('locations');
-const locations = locationsCollection.map((loc) => ({
-  id: loc.slug,
-  name: loc.data.name[lang] || loc.data.name.de,
-  address: `${loc.data.address.street}, ${loc.data.address.zip} ${loc.data.address.city}`,
-  openingHours: loc.data.openingHours[lang] || loc.data.openingHours.de,
-  contactEmail: loc.data.email,
-  mapUrl: loc.data.address.mapUrl,
-}));
+const desiredLocationSlugs = ['pankow', 'schoeneberg', 'koepenick'];
+const locations = desiredLocationSlugs
+  .map((slug) => locationsCollection.find((loc) => loc.slug === slug))
+  .filter((loc): loc is NonNullable<typeof loc> => Boolean(loc))
+  .map((loc) => ({
+    id: loc.slug,
+    name: loc.data.name[lang] || loc.data.name.de,
+    address: `${loc.data.address.street}, ${loc.data.address.zip} ${loc.data.address.city}`,
+    openingHours: loc.data.openingHours[lang] || loc.data.openingHours.de,
+    contactEmail: loc.data.email,
+    mapUrl: loc.data.address.mapUrl,
+  }));
 ---
 
 <Layout title="SprachCafé Polnisch - Ort der Begegnung, Sprache und Kultur" lang={lang}>
@@ -49,6 +53,7 @@ const locations = locationsCollection.map((loc) => ({
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {locations.map((loc) => (
         <LocationOpeningHoursCard
+          id={loc.id}
           location={loc.name}
           address={loc.address}
           openingHours={loc.openingHours}

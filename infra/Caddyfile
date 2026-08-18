@@ -49,10 +49,6 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www
 	redir @wp_feeds /posts/ 301
 
 	# 5. Legacy Pages & Content Sections to Astro Routes
-	redir /ueber-uns/ /de/ 301
-	redir /ueber-uns /de/ 301
-	redir /ueber-uns/mission/ /de/ 301
-	redir /ueber-uns/mission /de/ 301
 	redir /projekte/ /posts/ 301
 	redir /projekte /posts/ 301
 	redir /de/projekte/ /posts/ 301
