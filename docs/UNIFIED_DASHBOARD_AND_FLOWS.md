@@ -51,7 +51,7 @@ flowchart TD
     CF --> CF_SYNC --> DATA_JSON
 
     HOST -->|1-Klick Adaptive Card in Outlook| FLOW_EVENT --> SP_EVENT
-    FLOW_EVENT -->|Kassenmeldung bei Barspende| PETER["Peter Fuchs (p.fuchs@sprachcafe-polnisch.org)"]
+    FLOW_EVENT -->|Kassenmeldung bei Barspende| PHILIPP["Philipp Fuchs (p.fuchs@sprachcafe-polnisch.org)"]
 
     ACCO -->|Monatliche Spendenmeldung| FLOW_FINANZ --> SP_FINANZ
 
@@ -75,7 +75,7 @@ flowchart TD
      - `spendenBar` (optional, z. B. `20.00 €`)
      - `notiz` (optional, z. B. *„Sehr gut besucht, viele neue Eltern aus Heinersdorf“*)
   4. Die Eingabe wird direkt in der SharePoint-Liste `Veranstaltungs_Rueckmeldungen` gespeichert.
-  5. **Kassenbenachrichtigung**: Wenn `spendenBar > 0`, erhält **Peter Fuchs** (`p.fuchs@sprachcafe-polnisch.org`) automatisch eine E-Mail mit der Kassennotiz für den täglichen Kassenabgleich.
+  5. **Kassenbenachrichtigung**: Wenn `spendenBar > 0`, erhält **Philipp Fuchs** (`p.fuchs@sprachcafe-polnisch.org`) automatisch eine E-Mail mit der Kassennotiz für den täglichen Kassenabgleich.
 
 ### 2. Monatliche Buchhaltungs- & Spendenmeldung (`flow-buchhaltung-spenden.json`)
 - **Trigger**: Am 1. jedes Monats um 09:00 Uhr.

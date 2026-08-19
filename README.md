@@ -26,6 +26,13 @@ sprachcafe-relaunch/
 
 ---
 
+## 📖 Ausführliche System- & Synchronisations-Dokumentation
+
+👉 **[Gesamtdokumentation: Synchronisationen, Zeitpläne, Nachtlauf & PowerShell Automationen](docs/SYSTEM_AUTOMATION_AND_SYNC_GUIDE.md)**  
+*Erklärt alle Teilsysteme, den nächtlichen 02:00 Uhr Lauf, Kalender- und Bibliotheks-Syncs, Power Automate Webhooks, das Vorstands-Dashboard und die PowerShell-Synchronisation nach SharePoint.*
+
+---
+
 ## ⚡ Power Automate Formular-Integrationen (M365)
 
 Alle Formulare der Website übertragen Eingaben direkt via HTTP-Webhook an Microsoft Power Automate Flows im Vereins-Mandanten (`Default-b745a80a-f682-45e4-ba2e-d48bbd9e703d`).
