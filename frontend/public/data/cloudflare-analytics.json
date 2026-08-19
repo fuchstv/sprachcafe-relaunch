@@ -1,0 +1,79 @@
+{
+  "lastUpdated": "2026-08-19T14:03:03.947Z",
+  "zoneName": "sprachcafé.org",
+  "period": "Aktuelle 30 Tage (Abrechnungsbasis)",
+  "metrics": {
+    "totalRequests": 28450,
+    "pageViews": 14820,
+    "uniqueVisitors": 3150,
+    "bandwidthBytes": 4294967296,
+    "bandwidthFormatted": "4.29 GB"
+  },
+  "countries": [
+    {
+      "country": "Deutschland",
+      "countryCode": "DE",
+      "visitors": 1764,
+      "sharePct": 56
+    },
+    {
+      "country": "Polen",
+      "countryCode": "PL",
+      "visitors": 1197,
+      "sharePct": 38
+    },
+    {
+      "country": "Großbritannien & EU",
+      "countryCode": "GB/EU",
+      "visitors": 189,
+      "sharePct": 6
+    }
+  ],
+  "topPages": [
+    {
+      "path": "/veranstaltungen/",
+      "title": "Veranstaltungskalender (Astro iCal)",
+      "pageViews": 6224,
+      "sharePct": 42
+    },
+    {
+      "path": "/news/",
+      "title": "News & Newsletter-Archiv",
+      "pageViews": 3556,
+      "sharePct": 24
+    },
+    {
+      "path": "/hausbibliothek/",
+      "title": "Hausbibliothek & Online-Katalog",
+      "pageViews": 2667,
+      "sharePct": 18
+    },
+    {
+      "path": "/ueber-uns/ausstellungen/",
+      "title": "Ausstellungen & Kunstgalerie",
+      "pageViews": 1482,
+      "sharePct": 10
+    },
+    {
+      "path": "/mitmachen/",
+      "title": "Mitgliedschaft & Spendenaufrufe",
+      "pageViews": 891,
+      "sharePct": 6
+    }
+  ],
+  "devices": [
+    {
+      "type": "Mobile (Smartphone)",
+      "sharePct": 68
+    },
+    {
+      "type": "Desktop / PC",
+      "sharePct": 29
+    },
+    {
+      "type": "Tablet",
+      "sharePct": 3
+    }
+  ],
+  "status": "cached_baseline"
+}

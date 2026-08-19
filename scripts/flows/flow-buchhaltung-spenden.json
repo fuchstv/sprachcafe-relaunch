@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "$connections": {
+      "defaultValue": {},
+      "type": "Object"
+    },
+    "SharePointSiteUrl": {
+      "defaultValue": "https://sprachcafepolnisch.sharepoint.com/sites/intranet",
+      "type": "String"
+    },
+    "BookkeeperEmail": {
+      "defaultValue": "A.Strohmeyer@sprachcafe-polnisch.org",
+      "type": "String"
+    }
+  },
+  "triggers": {
+    "MonthlyRecurrence": {
+      "type": "Recurrence",
+      "recurrence": {
+        "frequency": "Month",
+        "interval": 1,
+        "schedule": {
+          "hours": [9],
+          "minutes": [0]
+        },
+        "timeZone": "W. Europe Standard Time"
+      }
+    }
+  },
+  "actions": {
+    "SendMonthlyAccountingCard": {
+      "type": "ApiConnectionWebhook",
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['office365']['connectionId']"
+          }
+        },
+        "body": {
+          "Message": {
+            "To": "@parameters('BookkeeperEmail')",
+            "Subject": "📚 Monatliche Finanz- & Spendenmeldung für Berichte: @{addDays(utcNow(), -10, 'MMMM yyyy')}",
+            "Body": "<html><body><!-- Adaptive Card Envelope --></body></html>"
+          },
+          "Card": {
+            "type": "AdaptiveCard",
+            "version": "1.4",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "📊 Monatliche Spenden- & Kofinanzierungs-Meldung",
+                "weight": "Bolder",
+                "size": "Medium",
+                "color": "Dark"
+              },
+              {
+                "type": "TextBlock",
+                "text": "Liebe Agnieszka, bitte trage kurz die aggregierten Monatssummen für das Sponsoren-Reporting und die Verwendungsnachweise ein:",
+                "wrap": true
+              },
+              {
+                "type": "Input.Text",
+                "id": "berichtsMonat",
+                "label": "1. Abrechnungsmonat (z. B. 2026-08):",
+                "defaultValue": "@{addDays(utcNow(), -10, 'yyyy-MM')}",
+                "isRequired": true
+              },
+              {
+                "type": "Input.Number",
+                "id": "spendenAllgemein",
+                "label": "2. Allgemeine Spenden (in €):",
+                "placeholder": "z. B. 450.00",
+                "min": 0
+              },
+              {
+                "type": "Input.Number",
+                "id": "spendenZweckgebunden",
+                "label": "3. Zweckgebundene Spenden / Projektmittel (in €):",
+                "placeholder": "z. B. 1200.00",
+                "min": 0
+              },
+              {
+                "type": "Input.Number",
+                "id": "mitgliedsbeitraege",
+                "label": "4. Eingegangene Mitgliedsbeiträge (in €):",
+                "placeholder": "z. B. 380.00",
+                "min": 0
+              },
+              {
+                "type": "Input.Text",
+                "id": "bemerkungen",
+                "label": "5. Notizen / Förderprojekt-Zuordnungen:",
+                "isMultiline": true,
+                "placeholder": "z. B. Eigenanteil für SdpZ-Projekt vollständig verbucht..."
+              }
+            ],
+            "actions": [
+              {
+                "type": "Action.Submit",
+                "title": "✅ Monatssummen an SharePoint übermitteln"
+              }
+            ]
+          }
+        },
+        "path": "/v2/mail/sendAdaptiveCard"
+      }
+    },
+    "SaveAccountingToSharePoint": {
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+          }
+        },
+        "method": "post",
+        "path": "/datasets/@{encodeURIComponent(parameters('SharePointSiteUrl'))}/tables/@{encodeURIComponent('Buchhaltung_Spenden')}/items",
+        "body": {
+          "Title": "@body('SendMonthlyAccountingCard')?['data']?['berichtsMonat']",
+          "BerichtsMonat": "@body('SendMonthlyAccountingCard')?['data']?['berichtsMonat']",
+          "SpendenAllgemein": "@body('SendMonthlyAccountingCard')?['data']?['spendenAllgemein']",
+          "SpendenZweckgebunden": "@body('SendMonthlyAccountingCard')?['data']?['spendenZweckgebunden']",
+          "Mitgliedsbeitraege": "@body('SendMonthlyAccountingCard')?['data']?['mitgliedsbeitraege']",
+          "Bemerkungen": "@body('SendMonthlyAccountingCard')?['data']?['bemerkungen']",
+          "ErfasstDurch": "@parameters('BookkeeperEmail')",
+          "Erfassungsdatum": "@{utcNow()}"
+        }
+      }
+    }
+  }
+}

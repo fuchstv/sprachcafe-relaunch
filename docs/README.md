@@ -37,6 +37,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [KPI-Anforderungsanalyse & Projektabrechnungen](./kpi-anforderungen.md): Kennzahlen, Erfassungskonzepte für offene Events (Headcount), Projekt-Tagging & Reporting-Roadmap (S.1–S.4).
 - [Automatisierter Kalender-KPI-Sync & Power BI Anbindung](./CALENDAR_KPI_POWERBI_SYNC.md): Aggregation nach Monat, Standort, Sprache & Zielgruppe via SharePoint-Connector für Power BI.
 - [Power BI Reporting-Handbuch (2-Seiten-Konzept & PDF/PPT-Export)](./POWER_BI_REPORT_GUIDE.md): Internes Monitoring vs. Sponsoren-Wirkungsbericht, Web-Preview & SharePoint-Sync.
+- [Zentrales Gesamtdashboard & M365 Adaptive Cards Flows](./UNIFIED_DASHBOARD_AND_FLOWS.md): All-in-One Cockpit (Events + Headcounts + Cloudflare + Finanzen), tägliche Outlook Cards (Dorota Stasińska), Kassennotizen (Peter Fuchs) & Buchhaltung (Agnieszka Kubalewska-Strohmeyer).
 - [Mailchimp Webhook Setup & Automatisierte News-Veröffentlichung](./MAILCHIMP_WEBHOOK_SETUP.md): Cloudflare Pages Webhook, zweisprachiger Split (🇵🇱/🇩🇪) & direkter GitHub-Commit nach `beta`.
 - [Offene Content- & Navigations-Gaps (TODO-Liste)](./content-gaps.md): Übersicht offener Platzhalter & Navigationspunkte für R2/R3/R4.
 - [Vollständiges Content-Inventar (Phase R4 Migration)](./content-inventory.md): Erfassung aller Live-Unterseiten, Texte, Bilder, Übersetzungen & PDFs.

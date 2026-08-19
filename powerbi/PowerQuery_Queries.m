@@ -14,7 +14,6 @@ in
 // ------------------------------------------------------------------------------
 // Query 2: Veranstaltungs_Kennzahlen (Aggregierte KPI-Tabelle)
 // ------------------------------------------------------------------------------
-// Quelle A: SharePoint Folder (Standard in M365)
 let
     Source = SharePoint.Files("https://sprachcafepolnisch.sharepoint.com/sites/intranet", [ApiVersion = 15]),
     FilteredFiles = Table.SelectRows(Source, each ([Name] = "Veranstaltungs_Kennzahlen.csv" or [Name] = "calendar-kpi-summary.csv")),
@@ -38,71 +37,47 @@ in
     TypedTable
 
 // ------------------------------------------------------------------------------
-// Query 3: Events_Detail (Detaillierte Einzeltermine)
+// Query 3: Veranstaltungs_Rueckmeldungen (M365 Adaptive Cards Feedback)
 // ------------------------------------------------------------------------------
 let
-    Source = SharePoint.Files("https://sprachcafepolnisch.sharepoint.com/sites/intranet", [ApiVersion = 15]),
-    FilteredFiles = Table.SelectRows(Source, each ([Name] = "Events_Detail_PowerBI.csv")),
-    FileContent = FilteredFiles{0}[Content],
-    ImportedCsv = Csv.Document(FileContent, [Delimiter=",", Columns=18, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
-    PromotedHeaders = Table.PromoteHeaders(ImportedCsv, [PromoteAllScalars=true]),
-    TypedTable = Table.TransformColumnTypes(PromotedHeaders,{
-        {"Event_ID", type text},
-        {"Titel", type text},
-        {"Datum", type date},
-        {"Uhrzeit_Start", type time},
-        {"Uhrzeit_Ende", type time},
-        {"Dauer_Minuten", Int64.Type},
-        {"Jahr_Monat", type text},
-        {"Jahr", Int64.Type},
-        {"Monat", Int64.Type},
-        {"Wochentag", type text},
-        {"Standort_Code", type text},
-        {"Standort_Name", type text},
-        {"Zielgruppe_DE", type text},
-        {"Zielgruppe_PL", type text},
-        {"Sprachen", type text},
-        {"Kategorie", type text},
-        {"Projekt", type text},
-        {"Kalender_Quelle", type text}
+    Source = SharePoint.Tables("https://sprachcafepolnisch.sharepoint.com/sites/intranet", [ApiVersion = 15]),
+    TableData = Source{[Id="Veranstaltungs_Rueckmeldungen"]}[Data],
+    TypedTable = Table.TransformColumnTypes(TableData,{
+        {"Title", type text},
+        {"EventDatum", type date},
+        {"Standort", type text},
+        {"TeilnehmerGesamt", Int64.Type},
+        {"DavonKinder", Int64.Type},
+        {"SpendenBar", type number},
+        {"Notiz", type text},
+        {"ErfasstDurch", type text}
     })
 in
     TypedTable
 
 // ------------------------------------------------------------------------------
-// Query 4: DAX Measures (Kennzahlen-Tabelle)
+// Query 4: Cloudflare_Analytics (Live Web Traffic)
 // ------------------------------------------------------------------------------
-/*
-Measures in Tabular Model:
+let
+    Source = Json.Document(Web.Contents("https://xn--sprachcaf-j4a.org/data/cloudflare-analytics.json")),
+    Metrics = Source[metrics],
+    TableData = Table.FromRecords({Metrics})
+in
+    TableData
 
-Gesamt_Veranstaltungen = SUM(Veranstaltungs_Kennzahlen[Anzahl_Veranstaltungen])
-
-Veranstaltungen_Kinder = CALCULATE(
-    [Gesamt_Veranstaltungen],
-    Veranstaltungs_Kennzahlen[Kategorie] = "Kinder & Familie"
-)
-
-Veranstaltungen_Sprachpraxis = CALCULATE(
-    [Gesamt_Veranstaltungen],
-    Veranstaltungs_Kennzahlen[Kategorie] = "Sprachpraxis & Tandem"
-)
-
-Veranstaltungen_Kultur = CALCULATE(
-    [Gesamt_Veranstaltungen],
-    Veranstaltungs_Kennzahlen[Kategorie] = "Kunst, Kultur & Literatur"
-)
-
-Anzahl_Standorte = DISTINCTCOUNT(Veranstaltungs_Kennzahlen[Standort_Code])
-
-Anzahl_Monate = DISTINCTCOUNT(Veranstaltungs_Kennzahlen[Jahr_Monat])
-
-Durchschnitt_Events_Pro_Monat = DIVIDE([Gesamt_Veranstaltungen], [Anzahl_Monate], 0)
-
-Anteil_Pankow_Pct = DIVIDE(
-    CALCULATE([Gesamt_Veranstaltungen], Veranstaltungs_Kennzahlen[Standort_Code] = "pankow"),
-    [Gesamt_Veranstaltungen],
-    0
-)
-
-Zweisprachig_Quote_Pct = 1.0  // 100% aller Veranstaltungen im SprachCafé sind zweisprachig (DE/PL)
-*/
+// ------------------------------------------------------------------------------
+// Query 5: Buchhaltung_Spenden (Agnieszka Kubalewska-Strohmeyer)
+// ------------------------------------------------------------------------------
+let
+    Source = SharePoint.Tables("https://sprachcafepolnisch.sharepoint.com/sites/intranet", [ApiVersion = 15]),
+    TableData = Source{[Id="Buchhaltung_Spenden"]}[Data],
+    TypedTable = Table.TransformColumnTypes(TableData,{
+        {"Title", type text},
+        {"BerichtsMonat", type text},
+        {"SpendenAllgemein", type number},
+        {"SpendenZweckgebunden", type number},
+        {"Mitgliedsbeitraege", type number},
+        {"Bemerkungen", type text}
+    })
+in
+    TypedTable

@@ -1,0 +1,191 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "$connections": {
+      "defaultValue": {},
+      "type": "Object"
+    },
+    "SharePointSiteUrl": {
+      "defaultValue": "https://sprachcafepolnisch.sharepoint.com/sites/intranet",
+      "type": "String"
+    },
+    "DefaultHostEmail": {
+      "defaultValue": "d.stasinska@sprachcafe-polnisch.org",
+      "type": "String"
+    },
+    "AccountingEmail": {
+      "defaultValue": "p.fuchs@sprachcafe-polnisch.org",
+      "type": "String"
+    }
+  },
+  "triggers": {
+    "DailyRecurrence": {
+      "type": "Recurrence",
+      "recurrence": {
+        "frequency": "Day",
+        "interval": 1,
+        "schedule": {
+          "hours": [8],
+          "minutes": [0]
+        },
+        "timeZone": "W. Europe Standard Time"
+      }
+    }
+  },
+  "actions": {
+    "GetYesterdayEvents": {
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+          }
+        },
+        "method": "get",
+        "path": "/datasets/@{encodeURIComponent(parameters('SharePointSiteUrl'))}/tables/@{encodeURIComponent('Veranstaltungs_Kalender')}/items",
+        "queries": {
+          "$filter": "EventDatum ge '@{addDays(utcNow(), -1, 'yyyy-MM-dd')}' and EventDatum lt '@{utcNow('yyyy-MM-dd')}' and Status eq 'Beendet'"
+        }
+      }
+    },
+    "ForEachEvent": {
+      "type": "Foreach",
+      "foreach": "@body('GetYesterdayEvents')?['value']",
+      "actions": {
+        "SendAdaptiveCardToHost": {
+          "type": "ApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['office365']['connectionId']"
+              }
+            },
+            "body": {
+              "Message": {
+                "To": "@parameters('DefaultHostEmail')",
+                "Subject": "📊 Teilnehmer-Rückmeldung: @{items('ForEachEvent')?['Title']} (@{items('ForEachEvent')?['EventDatum']})",
+                "Body": "<html><body><!-- Adaptive Card Envelope --></body></html>"
+              },
+              "Card": {
+                "type": "AdaptiveCard",
+                "version": "1.4",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "📊 Veranstaltungs-Rückmeldung (SprachCafé Polnisch e.V.)",
+                    "weight": "Bolder",
+                    "size": "Medium",
+                    "color": "Dark"
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": "Liebe/r Host, bitte trage kurz die Kennzahlen für das gestrige Event ein:",
+                    "wrap": true
+                  },
+                  {
+                    "type": "FactSet",
+                    "facts": [
+                      { "title": "Veranstaltung:", "value": "@{items('ForEachEvent')?['Title']}" },
+                      { "title": "Datum / Uhrzeit:", "value": "@{items('ForEachEvent')?['EventDatum']} • @{items('ForEachEvent')?['Uhrzeit']}" },
+                      { "title": "Standort:", "value": "@{items('ForEachEvent')?['Standort']}" }
+                    ]
+                  },
+                  {
+                    "type": "Input.Number",
+                    "id": "teilnehmerGesamt",
+                    "label": "1. Teilnehmerzahl gesamt (Pflichtfeld):",
+                    "placeholder": "z. B. 16",
+                    "isRequired": true,
+                    "min": 1,
+                    "max": 500
+                  },
+                  {
+                    "type": "Input.Number",
+                    "id": "davonKinder",
+                    "label": "2. Davon Kinder & Jugendliche (optional):",
+                    "placeholder": "z. B. 5",
+                    "min": 0,
+                    "max": 200
+                  },
+                  {
+                    "type": "Input.Number",
+                    "id": "spendenBar",
+                    "label": "3. Barspenden / Kassen-Einnahmen vor Ort in € (optional):",
+                    "placeholder": "z. B. 25.00",
+                    "min": 0
+                  },
+                  {
+                    "type": "Input.Text",
+                    "id": "notiz",
+                    "label": "4. Bemerkungen / Feedback / Besonderheiten (optional):",
+                    "isMultiline": true,
+                    "placeholder": "z. B. Tolle Stimmung, neue Familien aus Pankow dabei..."
+                  }
+                ],
+                "actions": [
+                  {
+                    "type": "Action.Submit",
+                    "title": "✅ Kennzahlen jetzt speichern"
+                  }
+                ]
+              }
+            },
+            "path": "/v2/mail/sendAdaptiveCard"
+          }
+        },
+        "SaveToSharePointList": {
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+              }
+            },
+            "method": "post",
+            "path": "/datasets/@{encodeURIComponent(parameters('SharePointSiteUrl'))}/tables/@{encodeURIComponent('Veranstaltungs_Rueckmeldungen')}/items",
+            "body": {
+              "Title": "@{items('ForEachEvent')?['Title']}",
+              "EventDatum": "@{items('ForEachEvent')?['EventDatum']}",
+              "Standort": "@{items('ForEachEvent')?['Standort']}",
+              "TeilnehmerGesamt": "@body('SendAdaptiveCardToHost')?['data']?['teilnehmerGesamt']",
+              "DavonKinder": "@body('SendAdaptiveCardToHost')?['data']?['davonKinder']",
+              "SpendenBar": "@body('SendAdaptiveCardToHost')?['data']?['spendenBar']",
+              "Notiz": "@body('SendAdaptiveCardToHost')?['data']?['notiz']",
+              "ErfasstDurch": "@parameters('DefaultHostEmail')",
+              "Erfassungszeitpunkt": "@{utcNow()}"
+            }
+          }
+        },
+        "CheckForCashDonations": {
+          "type": "If",
+          "expression": {
+            "greater": [
+              "@body('SendAdaptiveCardToHost')?['data']?['spendenBar']",
+              0
+            ]
+          },
+          "actions": {
+            "NotifyAccountingPeter": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['office365']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "path": "/v2/Mail",
+                "body": {
+                  "To": "@parameters('AccountingEmail')",
+                  "Subject": "💰 Barspende gemeldet: @{items('ForEachEvent')?['Title']} (@{body('SendAdaptiveCardToHost')?['data']?['spendenBar']} €)",
+                  "Body": "Hallo Peter,<br><br>bei der gestrigen Veranstaltung <strong>@{items('ForEachEvent')?['Title']}</strong> wurden von @{parameters('DefaultHostEmail')} Barspenden in Höhe von <strong>@{body('SendAdaptiveCardToHost')?['data']?['spendenBar']} €</strong> erfasst.<br><br>Standort: @{items('ForEachEvent')?['Standort']}<br>Datum: @{items('ForEachEvent')?['EventDatum']}<br>Notiz: @{body('SendAdaptiveCardToHost')?['data']?['notiz']}<br><br>Beste Grüße,<br>Dein Automatisierungs-Bot"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
