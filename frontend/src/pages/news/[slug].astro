@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allNews = await getCollection('news');
+  return allNews.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: any;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const langBadges = {
+  de: { label: 'Deutsch', flag: '🇩🇪', bg: 'bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] border-[#8B263E]/20' },
+  pl: { label: 'Polski', flag: '🇵🇱', bg: 'bg-[#DC143C]/10 text-[#DC143C] dark:text-[#ff6b81] border-[#DC143C]/20' },
+  en: { label: 'English', flag: '🇬🇧', bg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20' }
+};
+
+const badge = langBadges[entry.data.language] || langBadges.de;
+const formattedDate = new Date(entry.data.date).toLocaleDateString(
+  entry.data.language === 'pl' ? 'pl-PL' : (entry.data.language === 'en' ? 'en-US' : 'de-DE'),
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": entry.data.title,
+  "description": entry.data.description || entry.data.title,
+  "datePublished": entry.data.date.toISOString(),
+  "inLanguage": entry.data.language,
+  "author": {
+    "@type": "Organization",
+    "name": "SprachCafé Polnisch e.V.",
+    "url": "https://sprachcafe-polnisch.org"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SprachCafé Polnisch e.V.",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sprachcafe-polnisch.org/brand-assets/logo.png"
+    }
+  }
+};
+---
+
+<Layout
+  title={`${entry.data.title} - Aktuelles - SprachCafé Polnisch`}
+  description={entry.data.description || entry.data.title}
+  type="article"
+  jsonLd={jsonLd}
+>
+  <article
+    class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+    data-pagefind-body
+    data-pagefind-filter={`type:News, language:${entry.data.language}`}
+  >
+    <!-- Back to News link -->
+    <nav class="mb-8">
+      <a
+        href="/news/"
+        class="inline-flex items-center gap-2 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+      >
+        &larr; {entry.data.language === 'pl' ? 'Powrót do Aktualności' : 'Zurück zur Übersicht (Aktuelles & Newsletter)'}
+      </a>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4 text-sm flex-wrap">
+        <!-- Language Badge -->
+        <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-bold ${badge.bg}`}>
+          <span>{badge.flag}</span>
+          <span>{badge.label}</span>
+        </span>
+
+        <!-- Type Tag -->
+        <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230] text-xs font-semibold">
+          {entry.data.type === 'newsletter' ? '📧 Newsletter-Ausgabe' : '📰 Vereinsnachricht'}
+        </span>
+
+        <!-- Date -->
+        <time datetime={entry.data.date.toISOString()} class="text-[#5b403d] dark:text-[#d4c5c2] text-xs font-medium ml-auto">
+          📅 {formattedDate}
+        </time>
+      </div>
+
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-4">
+        {entry.data.title}
+      </h1>
+
+      {entry.data.sourceUrl && (
+        <div class="mt-4 pt-4 border-t border-[#e7e1df] dark:border-[#363230] flex items-center justify-between text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+          <span>Veröffentlicht über Mailchimp Newsletter</span>
+          <a
+            href={entry.data.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#8B263E] dark:text-[#ff758f] font-semibold hover:underline inline-flex items-center gap-1"
+          >
+            {entry.data.language === 'pl' ? 'Oryginalny biuletyn' : 'Original im Browser ansehen'} &nearr;
+          </a>
+        </div>
+      )}
+    </header>
+
+    <!-- Article Content Body -->
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+      <div class="newsletter-article font-sans text-[#1d1b1a] dark:text-[#f5f0ee] text-base sm:text-lg leading-relaxed space-y-6">
+        <Content />
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Footer -->
+    <div class="mt-12 pt-6 border-t border-[#e7e1df] dark:border-[#363230] flex items-center justify-between">
+      <a
+        href="/news/"
+        class="inline-flex items-center gap-2 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+      >
+        &larr; {entry.data.language === 'pl' ? 'Wszystkie Aktualności' : 'Alle News & Newsletter-Ausgaben'}
+      </a>
+      <a
+        href="/kontakt/"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2] hover:text-[#8B263E] dark:hover:text-[#ff758f]"
+      >
+        ✉️ {entry.data.language === 'pl' ? 'Kontakt z Redakcją' : 'Kontakt zur Redaktion'}
+      </a>
+    </div>
+  </article>
+</Layout>

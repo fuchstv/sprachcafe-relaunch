@@ -139,6 +139,28 @@ export const GET: APIRoute = async ({ site }) => {
     xml += `  </url>\n`;
   });
 
+  // 5. News Collection Routes (Central /news/ and /news/{slug}/)
+  const newsItems = await getCollection('news').catch(() => []);
+  
+  // Static /news/
+  xml += `  <url>\n`;
+  xml += `    <loc>${baseUrl}/news/</loc>\n`;
+  xml += `    <lastmod>${now}</lastmod>\n`;
+  xml += `    <changefreq>daily</changefreq>\n`;
+  xml += `    <priority>0.8</priority>\n`;
+  xml += `  </url>\n`;
+
+  newsItems.forEach((n) => {
+    const itemUrl = `${baseUrl}/news/${n.slug}/`;
+    const itemDate = n.data.date ? new Date(n.data.date).toISOString() : now;
+    xml += `  <url>\n`;
+    xml += `    <loc>${itemUrl}</loc>\n`;
+    xml += `    <lastmod>${itemDate}</lastmod>\n`;
+    xml += `    <changefreq>monthly</changefreq>\n`;
+    xml += `    <priority>0.7</priority>\n`;
+    xml += `  </url>\n`;
+  });
+
   xml += `</urlset>`;
 
   return new Response(xml, {
