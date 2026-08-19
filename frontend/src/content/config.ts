@@ -207,6 +207,22 @@ const shopItemsCollection = defineCollection({
   }),
 });
 
+// -------------------------------------------------------------
+// 9. News / Newsletter Collection (Phase M.2)
+// -------------------------------------------------------------
+const newsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    language: z.enum(['de', 'pl', 'en']),
+    description: z.string().optional(),
+    sourceUrl: z.string().url().optional(),
+    campaignId: z.string().optional(),
+    type: z.enum(['newsletter', 'announcement', 'press']).default('newsletter'),
+  }),
+});
+
 // Export all collections for Astro Content Collections
 export const collections = {
   events: eventsCollection,
@@ -217,4 +233,6 @@ export const collections = {
   downloads: downloadsCollection,
   exhibitions: exhibitionsCollection,
   shopItems: shopItemsCollection,
+  news: newsCollection,
 };
+
