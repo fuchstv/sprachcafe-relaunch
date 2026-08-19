@@ -1,0 +1,202 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getBooks } from '../../../lib/cms-api';
+import type { BookItem } from '../../../types/cms';
+
+export async function getStaticPaths() {
+  const books = await getBooks();
+  return books.map((book) => ({
+    params: { id: book.id },
+    props: { book },
+  }));
+}
+
+interface Props {
+  book: BookItem;
+}
+
+const { book } = Astro.props;
+const lang = 'en';
+const buildTime = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+const numericBookId = book.id.replace('book-', '');
+const appLangParam = 'de';
+const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lang=${appLangParam}`;
+
+// Schema.org Book JSON-LD
+const bookJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": book.title,
+  "author": {
+    "@type": "Person",
+    "name": book.author
+  },
+  "isbn": book.isbn || undefined,
+  "inLanguage": book.language === 'DE' ? 'de' : book.language === 'PL' ? 'pl' : 'en',
+  "bookFormat": "https://schema.org/Hardcover",
+  "offers": {
+    "@type": "Offer",
+    "availability": book.status === 'verfuegbar' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hausbibliothek SprachCafé Polnisch e.V."
+  },
+  "image": book.cover ? (book.cover.startsWith('http') ? book.cover : `https://sprachcafe-polnisch.org${book.cover}`) : undefined
+};
+---
+
+<Layout
+  title={`${book.title} — House Library`}
+  description={`Details and borrowing information for ${book.title} by ${book.author}.`}
+  image={book.cover}
+  type="book"
+  lang={lang}
+  jsonLd={bookJsonLd}
+>
+  <article
+    class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+    data-pagefind-body
+    data-pagefind-filter={`type:Book, language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
+  >
+    <nav class="mb-8 flex items-center justify-between">
+      <a href="/en/hausbibliothek/" class="inline-flex items-center gap-2 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+        &larr; Back to Library Catalog
+      </a>
+      
+      <div class="text-xs text-[#5b403d] dark:text-[#d4c5c2] bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl px-3 py-1.5 flex items-center gap-2">
+        <span>Status: <strong class="text-[#1d1b1a] dark:text-[#f5f0ee]">{buildTime}</strong></span>
+        <span id="detail-live-status-notice" class="text-[#5b403d] dark:text-[#d4c5c2]">• 🔄 Checking real-time status...</span>
+      </div>
+    </nav>
+
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] p-6 sm:p-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Book Cover -->
+        {book.cover && (
+          <div class="bg-[#f8f2f0] dark:bg-[#2a2725] rounded-2xl p-6 flex items-center justify-center border border-[#e7e1df] dark:border-[#363230]">
+            <img src={book.cover} alt={`Cover: ${book.title}`} class="max-h-80 object-contain shadow-md rounded-md" />
+          </div>
+        )}
+
+        <!-- Book Information -->
+        <div class:list={['flex flex-col justify-between', book.cover ? 'md:col-span-2' : 'md:col-span-3']}>
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#8B263E] dark:text-[#ff758f] border border-[#e7e1df] dark:border-[#363230] text-xs font-bold">
+                Language: {book.language}
+              </span>
+              <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230] text-xs font-semibold">
+                {book.category}
+              </span>
+              <span
+                id="book-detail-status-badge"
+                data-book-id={numericBookId}
+                class:list={[
+                  'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors',
+                  book.status === 'verfuegbar' ? 'bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300' :
+                  book.status === 'ausgeliehen' ? 'bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300' :
+                  'bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300'
+                ]}
+              >
+                {book.status === 'verfuegbar' ? 'Available' : book.status === 'ausgeliehen' ? 'Borrowed' : 'Reserved'}
+              </span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-2">
+              {book.title}
+            </h1>
+            
+            <p class="font-sans text-xl font-medium text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+              Author: <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">{book.author}</span>
+            </p>
+
+            <div class="bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 mb-6 space-y-2 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+              <div class="flex justify-between">
+                <span>Location:</span>
+                <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">📍 {book.location}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>ISBN:</span>
+                <span class="font-mono text-[#5b403d] dark:text-[#d4c5c2]">{book.isbn}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Format:</span>
+                <span class="text-[#1d1b1a] dark:text-[#f5f0ee]">Print Book</span>
+              </div>
+            </div>
+
+            {book.description && (
+              <div class="mb-8">
+                <h2 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Book Description</h2>
+                <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed text-sm">{book.description}</p>
+              </div>
+            )}
+          </div>
+
+          <!-- Reservation / Loan Action with Deep-Link -->
+          <div class="pt-6 border-t border-[#e7e1df] dark:border-[#363230] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <span class="block text-xs uppercase tracking-wider text-[#5b403d] dark:text-[#d4c5c2] font-bold">Borrowing &amp; Live Availability</span>
+              <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">Borrow or reserve via the portal hausbibliothek.org</span>
+            </div>
+            
+            <a
+              id="book-detail-cta"
+              href={deepLinkBookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto px-6 py-3 rounded-full bg-[#1b5e20] hover:bg-[#0f3813] text-white font-bold transition-all text-center shadow-md"
+            >
+              Reserve on hausbibliothek.org &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- Client-side Live Availability Hydration Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const badge = document.getElementById('book-detail-status-badge');
+      const notice = document.getElementById('detail-live-status-notice');
+      if (!badge) return;
+
+      const bookId = badge.getAttribute('data-book-id');
+      const exportUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8080/api/export/books'
+        : 'https://hausbibliothek.org/api/export/books';
+
+      fetch(exportUrl)
+        .then(res => res.json())
+        .then(data => {
+          const booksList = Array.isArray(data) ? data : (data.data || []);
+          const match = booksList.find(b => String(b.id) === String(bookId));
+          if (match) {
+            const liveStatus = match.availability_status || match.status;
+            if (liveStatus === 'available' || liveStatus === 'verfuegbar') {
+              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300';
+              badge.textContent = '🟢 Available (Live)';
+            } else {
+              badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase transition-colors bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300';
+              badge.textContent = '🔴 Borrowed (Live)';
+            }
+          }
+          if (notice) {
+            notice.innerHTML = '• ✅ <span class="text-emerald-600 dark:text-emerald-400 font-bold">Real-time status synchronized</span>';
+          }
+        })
+        .catch(err => {
+          console.warn('Live detail status fetch warning:', err.message);
+          if (notice) {
+            notice.innerHTML = '• ⚠️ <span class="text-[#5b403d] dark:text-[#d4c5c2]">Static status (Live offline)</span>';
+          }
+        });
+    });
+  </script>
+</Layout>

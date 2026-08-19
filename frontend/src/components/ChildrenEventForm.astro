@@ -1,7 +1,7 @@
 ---
 interface Props {
   webhookUrl?: string;
-  lang?: 'de' | 'pl';
+  lang?: 'de' | 'pl' | 'en';
 }
 
 const {
@@ -99,10 +99,55 @@ const content = {
     successText: "Twoje zgłoszenie zostało pomyślnie przyjęte. Wysłaliśmy e-mail z potwierdzeniem oraz szczegółami organizacyjnymi.",
     errorTitle: "Błąd wysyłania",
     errorText: "Prosimy sprawdzić formularz i spróbować ponownie lub skontaktować się z nami bezpośrednio przez e-mail."
+  },
+  en: {
+    badge: "Online Registration",
+    title: "Registration Form for Children & Family Activities",
+    subtitle: "Book your spot for our regular children language classes and family activities in Berlin.",
+    section1Title: "1. Booking Period & Personal Details",
+    bookingLead: "I / We hereby register for:",
+    dateFromLabel: "From (Start date)",
+    dateToLabel: "To (End date)",
+    childLabel: "Child's Full Name and Age *",
+    childPlaceholder: "e.g. Jan Kowalski, 6 years",
+    parentLabel: "Parent(s) Full Name(s) *",
+    parentPlaceholder: "e.g. Anna and Piotr Kowalski",
+    emailLabel: "Email Address *",
+    emailPlaceholder: "parents@example.com",
+    phoneLabel: "Phone Number (optional)",
+    phonePlaceholder: "+49 160 12345678",
+    locationLabel: "Course Location *",
+    locationOptions: [
+      { value: "Pankow", label: "📍 Pankow (Schulzestr. 1, 13187 Berlin)" },
+      { value: "Schöneberg", label: "📍 Schöneberg (Albertstr. 12, 10827 Berlin)" },
+      { value: "Köpenick", label: "📍 Köpenick (Partner venue)" }
+    ],
+    section2Title: "2. Bank Account Details",
+    bankIntro: "Please transfer the course fee before the start of the course cycle:",
+    bankAccountHolder: "SprachCafé Polnisch e.V.",
+    bankName: "Deutsche Skatbank",
+    iban: "DE61 8306 5408 0404 9743 36",
+    bic: "GENODEF1SLR",
+    purposeLabel: "Payment Reference (mandatory):",
+    purposeHint: "Parent Name, Child Name",
+    proofNotice: "Proof of payment must be presented at the first session.",
+    copyIban: "Copy IBAN",
+    copied: "Copied! ✓",
+    section3Title: "3. Terms of Participation & Legal Disclosures",
+    liabilityText: "I / We acknowledge that the venue and respective instructors accept no liability for accidents or damages. I possess personal accident and third-party liability insurance. The instructors assume duty of care for children during class hours. House rules apply.",
+    photoText: "Photo and video recordings created during events serve association documentation and public relations purposes; I give my consent. Private recordings without consent are not permitted.",
+    privacyText: "Personal data entrusted to us is handled strictly in accordance with GDPR and will not be shared with third parties.",
+    acceptTermsLabel: "I / We accept the terms above and consent to data processing. *",
+    submitBtn: "Submit Registration",
+    submitting: "Submitting registration...",
+    successTitle: "Thank you for your registration!",
+    successText: "Your course registration has been successfully received. We have sent a confirmation email with all details.",
+    errorTitle: "Submission Error",
+    errorText: "Please check your entries and try again or contact us directly by email."
   }
 };
 
-const t = content[lang];
+const t = content[lang] || content.de;
 ---
 
 <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_24px_rgba(51,49,48,0.06)]" id="kinder-anmeldung-container">
@@ -428,7 +473,7 @@ const t = content[lang];
 
     if (submitBtn && submitText) {
       submitBtn.disabled = true;
-      submitText.textContent = payload.lang === 'pl' ? 'Wysyłanie...' : 'Wird übermittelt...';
+      submitText.textContent = payload.lang === 'pl' ? 'Wysyłanie...' : payload.lang === 'en' ? 'Submitting...' : 'Wird übermittelt...';
     }
 
     try {
@@ -458,13 +503,15 @@ const t = content[lang];
         if (errorMsg) {
           errorMsg.textContent = payload.lang === 'pl'
             ? 'Błąd połączenia. Prosimy spróbować ponownie lub napisać na kontakt@sprachcafe-polnisch.org.'
+            : payload.lang === 'en'
+            ? 'Connection error. Please try again or write to kontakt@sprachcafe-polnisch.org.'
             : 'Verbindungsfehler beim Absenden. Bitte versuchen Sie es erneut oder schreiben Sie uns an kontakt@sprachcafe-polnisch.org.';
         }
       }
     } finally {
       if (submitBtn && submitText) {
         submitBtn.disabled = false;
-        submitText.textContent = payload.lang === 'pl' ? 'Wyślij zgłoszenie' : 'Anmeldung verbindlich senden';
+        submitText.textContent = payload.lang === 'pl' ? 'Wyślij zgłoszenie' : payload.lang === 'en' ? 'Submit Registration' : 'Anmeldung verbindlich senden';
       }
     }
   });

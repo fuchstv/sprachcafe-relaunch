@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+
+const lang = 'en';
+---
+
+<Layout
+  title="Multilingualism & Language Counseling — SprachCafé Polnisch e.V."
+  description="Language counseling, open conversational cafes, project SprachCafé im Ohr, and guidance for bilingual child upbringing (German-Polish) in Berlin."
+  lang={lang}
+>
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto space-y-16">
+    <!-- Hero Header -->
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold">
+        <span>🗣️ Diversity &amp; Multilingualism</span>
+      </div>
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+        Multilingualism &amp; Language Counseling
+      </h1>
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto">
+        Growing up multilingually is a precious lifelong gift. We support families, children, and adults through individual consultations, open conversational meetings, and our bilingual library collection.
+      </p>
+    </div>
+
+    <!-- 3 Pillars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-4xl mb-4">👶</div>
+          <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">Children &amp; Families</h3>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-4">
+            Bilingual storytelling, toddler playgroups, and individual parent consultations on nurturing Polish and German in everyday family life.
+          </p>
+        </div>
+        <span class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f]">Early childhood language development</span>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-4xl mb-4">☕</div>
+          <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">Open Language Cafés</h3>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-4">
+            Relaxed conversational meetups and Speak-Dating events. Practice German and Polish naturally with native speakers.
+          </p>
+        </div>
+        <span class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f]">Welcoming all proficiency levels</span>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-4xl mb-4">📚</div>
+          <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">House Library</h3>
+          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-4">
+            Over 400 bilingual books for children, youth, and adults, fiction, and language learning resources available for free digital borrowing.
+          </p>
+        </div>
+        <a href="/en/hausbibliothek/" class="text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+          Explore House Library &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Retrospective: SprachCafé im Ohr -->
+    <div class="bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+            🎧 Project “SprachCafé im Ohr”
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Language Counseling Across 14 Languages
+          </h2>
+          <p class="font-sans text-sm sm:text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+            Through the multi-year milestone initiative “SprachCafé im Ohr”, we conducted over 1,200 telephone counseling sessions and 30 in-person workshops, and participated in major forums including Expolingua and Berlin Family Night.
+          </p>
+          <p class="font-sans text-xs text-[#8c7471] dark:text-[#a89895]">
+            Funded by the Berlin Senate Department for Social Affairs, Equality, Integration, Diversity and Anti-Discrimination (ASGIVA).
+          </p>
+        </div>
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="p-6 bg-white dark:bg-[#181615] rounded-2xl border border-[#e7e1df] dark:border-[#363230] text-center space-y-2">
+            <span class="text-4xl">🌍</span>
+            <div class="font-serif font-bold text-2xl text-[#8B263E] dark:text-[#ff758f]">14 Languages</div>
+            <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">Empathetic support for multilingual families</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Banner -->
+    <div class="bg-gradient-to-r from-[#8B263E]/5 to-[#8B263E]/10 dark:from-[#8B263E]/20 dark:to-[#8B263E]/10 border border-[#8B263E]/20 rounded-3xl p-8 sm:p-10 text-center max-w-3xl mx-auto">
+      <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Book a Personal Language Consultation</h3>
+      <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6 leading-relaxed">
+        Have questions about bilingual upbringing, school selection in Berlin, or finding the right language course? Reach out to our advisory team.
+      </p>
+      <a
+        href="/en/kontakt/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold hover:bg-[#6b1d30] transition-colors"
+      >
+        <span>Request Counseling</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,359 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'en';
+---
+
+<Layout
+  title="About Us — Our Locations in Berlin — SprachCafé Polnisch e.V."
+  description="SprachCafé Polnisch e.V. is a non-profit community hub for German-Polish culture, multilingualism, and intercultural dialogue in Berlin (Pankow, Schöneberg, Köpenick)."
+  lang={lang}
+>
+  <div class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto space-y-20">
+    
+    <!-- Hero Header -->
+    <header class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold">
+        <span>🏡 Community Hub since 2008</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight">
+        About Us
+      </h1>
+
+      <p class="font-sans text-xl sm:text-2xl text-[#8B263E] dark:text-[#ff758f] font-serif italic max-w-3xl mx-auto leading-relaxed">
+        “We warmly invite you to co-create our café, enjoy being with us, and immerse yourself in the vibrant atmosphere of our community spaces!”
+      </p>
+    </header>
+
+    <!-- SECTION 1: Our Berlin Locations (Pankow, Schöneberg, Köpenick) -->
+    <section class="space-y-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+          Berlin Locations
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+          Our Locations Across Berlin
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- 1. Pankow (Main Location) -->
+        <article id="pankow" class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between scroll-mt-24">
+          <div class="space-y-4">
+            <div class="h-44 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230]">
+              <img
+                src="/images/hero/header-general.jpg"
+                alt="SprachCafé Pankow at Schulzestraße 1"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase">
+                📍 Pankow
+              </span>
+              <span class="text-xs font-semibold text-[#8B263E] dark:text-[#ff758f]">Main Headquarters</span>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+              SprachCafé in Berlin-Pankow
+            </h3>
+
+            <p class="font-sans text-sm font-semibold text-[#8B263E] dark:text-[#ff758f]">
+              At home: Schulzestr. 1, 13187 Berlin, right by S1 / Wollankstr.
+            </p>
+
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Since January 2018, we have our permanent home in northern Berlin. Located along the former Berlin Wall strip, our location carries symbolic significance: we are true bridge-builders between East and West, between languages, cultures, and generations ❤️🩵💚
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-[#e7e1df] dark:border-[#363230] space-y-3 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🕒 Opening Hours:</span>
+              <span>Mon–Fri 10:00 AM – 6:00 PM (extended during events)</span>
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <a
+                href="https://maps.google.com/?q=Schulzestr.+1,+13187+Berlin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+              >
+                <span>🗺️ Show on Map</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a
+                href="mailto:kontakt@sprachcafe-polnisch.org"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+              >
+                <span>✉️ Email</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Schöneberg -->
+        <article id="schoeneberg" class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between scroll-mt-24">
+          <div class="space-y-4">
+            <div class="h-44 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230]">
+              <img
+                src="/images/hero/hero-collage-2.avif"
+                alt="SprachCafé Schöneberg im Stadtteilzentrum"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-[#026c8f]/10 text-[#026c8f] dark:text-[#38bdf8] text-xs font-bold uppercase">
+                📍 Schöneberg
+              </span>
+              <span class="text-xs font-semibold text-[#026c8f] dark:text-[#38bdf8]">South Berlin</span>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+              SprachCafé in Berlin-Schöneberg
+            </h3>
+
+            <p class="font-sans text-sm font-semibold text-[#026c8f] dark:text-[#38bdf8]">
+              c/o Stadtteilzentrum Schöneberg, Hauptstraße 121 A, 10827 Berlin
+            </p>
+
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Our hub for southern Berlin. We remain closely connected with the local community and look forward to new synergies 🩵❤️💚 From April 2023 to February 2026, we were located at Gotenstr. 45 near Südkreuz.
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-[#e7e1df] dark:border-[#363230] space-y-3 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🕒 Opening Hours:</span>
+              <span>Open during scheduled activities and workshops</span>
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <a
+                href="https://maps.google.com/?q=Hauptstra%C3%9Fe+121+A,+10827+Berlin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 font-semibold text-[#026c8f] dark:text-[#38bdf8] hover:underline"
+              >
+                <span>🗺️ Show on Map</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a
+                href="mailto:kontakt@sprachcafe-polnisch.org"
+                class="inline-flex items-center gap-1 font-semibold text-[#026c8f] dark:text-[#38bdf8] hover:underline"
+              >
+                <span>✉️ Email</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Köpenick -->
+        <article id="koepenick" class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm hover:shadow-md transition-all flex flex-col justify-between scroll-mt-24">
+          <div class="space-y-4">
+            <div class="h-44 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230]">
+              <img
+                src="/images/hero/hero-collage-3.avif"
+                alt="SprachCafé Köpenick im Wiesentreff"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full bg-[#1e6e23]/10 text-[#1e6e23] dark:text-[#4ade80] text-xs font-bold uppercase">
+                📍 Köpenick
+              </span>
+              <span class="text-xs font-semibold text-[#1e6e23] dark:text-[#4ade80]">South-East Berlin</span>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+              SprachCafé in Berlin-Köpenick
+            </h3>
+
+            <p class="font-sans text-sm font-semibold text-[#1e6e23] dark:text-[#4ade80]">
+              c/o Nachbarschaftstreff Wiesentreff, Am Wiesengraben 7a, 12557 Berlin
+            </p>
+
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Situated in south-eastern Berlin. In February 2026, we launched our first activities in Köpenick in response to numerous requests from local families 💚❤️🩵
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-[#e7e1df] dark:border-[#363230] space-y-3 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🕒 Opening Hours:</span>
+              <span>Open during scheduled activities and classes</span>
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <a
+                href="https://maps.google.com/?q=Am+Wiesengraben+7a,+12557+Berlin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 font-semibold text-[#1e6e23] dark:text-[#4ade80] hover:underline"
+              >
+                <span>🗺️ Show on Map</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a
+                href="mailto:kontakt@sprachcafe-polnisch.org"
+                class="inline-flex items-center gap-1 font-semibold text-[#1e6e23] dark:text-[#4ade80] hover:underline"
+              >
+                <span>✉️ Email</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: Subsystems & Activity Areas -->
+    <section class="space-y-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+          Offerings &amp; Focus Areas
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+          What We Do
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Café -->
+        <a href="/en/ueber-uns/begegnungscafe/" class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="text-3xl">☕</div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">
+              Meeting Café
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              A cozy neighborhood café with Polish hospitality – a place to meet, relax, and work remotely.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] mt-4 group-hover:underline">
+            <span>Learn more about the café &rarr;</span>
+          </span>
+        </a>
+
+        <!-- Little Shop -->
+        <a href="/en/ueber-uns/kleiner-laden/" class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="text-3xl">🛍️</div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">
+              Little Shop
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Books for sale, Speak-Dating cards, SprachCafé t-shirts, and handmade arts and crafts.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] mt-4 group-hover:underline">
+            <span>Visit our little shop &rarr;</span>
+          </span>
+        </a>
+
+        <!-- Exhibitions & Gallery -->
+        <a href="/en/ueber-uns/ausstellungen/" class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="text-3xl">🎨</div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">
+              Gallery on Schulze
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Exhibitions provide a space of dialogue between guests and artists. Vernissages feature music and poetry.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] mt-4 group-hover:underline">
+            <span>Explore art exhibitions &rarr;</span>
+          </span>
+        </a>
+
+        <!-- House Library -->
+        <a href="/en/hausbibliothek/" class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="text-3xl">📚</div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">
+              House Library
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              A bilingual library of over 400 titles with digital online borrowing via hausbibliothek.org.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] mt-4 group-hover:underline">
+            <span>Library catalog &rarr;</span>
+          </span>
+        </a>
+
+        <!-- Team -->
+        <a href="/en/ueber-uns/team/" class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="text-3xl">👥</div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">
+              Our Team
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Board members, educators, translators, volunteers, and project leads dedicated to our community.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-1 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] mt-4 group-hover:underline">
+            <span>Meet the team &rarr;</span>
+          </span>
+        </a>
+
+        <!-- Room Rental -->
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="text-3xl">🏠</div>
+            <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+              Room Rental
+            </h3>
+            <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+              Rent our rooms for seminars, workshops, group meetups, or private community gatherings.
+            </p>
+          </div>
+          <a
+            href="mailto:kontakt@sprachcafe-polnisch.org"
+            class="inline-flex items-center gap-1 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] mt-4 hover:underline"
+          >
+            <span>Inquire about booking &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: Community & Get Involved -->
+    <section class="bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12 space-y-6">
+      <div class="max-w-3xl">
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+          People Shape Spaces… Join Us!
+        </h2>
+        <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+          We are always looking for passionate volunteers to help host our spaces, organize workshops, spread the word, and bring new ideas to life.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/en/mitmachen/"
+            class="px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold text-sm hover:bg-[#6b1d30] transition-colors"
+          >
+            Get Involved
+          </a>
+          <a
+            href="/en/kontakt/"
+            class="px-6 py-3 rounded-xl bg-white dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-sm hover:bg-[#f8f2f0] transition-colors"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

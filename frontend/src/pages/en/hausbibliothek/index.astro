@@ -1,0 +1,315 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getBooks } from '../../../lib/cms-api';
+
+const lang = 'en';
+const books = await getBooks();
+const buildTime = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+
+// Extract unique filter options for dropdowns
+const categories = Array.from(new Set(books.map(b => b.category)));
+const locations = Array.from(new Set(books.map(b => b.location)));
+const languages = Array.from(new Set(books.map(b => b.language)));
+const statuses = Array.from(new Set(books.map(b => b.status)));
+---
+
+<Layout
+  title="House Library Catalog — SprachCafé Polnisch"
+  description="Explore the digital catalog of the House Library at SprachCafé Polnisch e.V. across Pankow, Schöneberg, and Köpenick. Over 400 bilingual books."
+  lang={lang}
+>
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    
+    <!-- Banner Link to Portal hausbibliothek.org (?lang=en) -->
+    <div class="mb-8 p-6 rounded-2xl bg-[#f8f2f0] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] shadow-[0_4px_20px_rgba(51,49,48,0.05)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
+          📖 Online Borrowing &amp; Live Status
+        </div>
+        <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">Would you like to borrow books or manage your reader account?</h2>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+          Book reservations, account registration, and loan renewals are managed on hausbibliothek.org.
+        </p>
+      </div>
+      <a
+        href="https://hausbibliothek.org/?lang=de"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold transition-all shadow-md whitespace-nowrap"
+      >
+        Go to hausbibliothek.org &rarr;
+      </a>
+    </div>
+
+    <!-- Header Section with library room photo -->
+    <div class="mb-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+      <div class="lg:col-span-7 space-y-4">
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">House Library Catalog</h1>
+        <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl leading-relaxed">
+          Browse our literary collection across Pankow, Schöneberg, and Köpenick locations. Over 400 bilingual works, novels, non-fiction, storytelling, and children's literature.
+        </p>
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl px-4 py-2 text-xs text-[#5b403d] dark:text-[#d4c5c2] inline-block space-y-1">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-[#8B263E] dark:bg-[#ff6b6b]"></span>
+            <span>Catalog Status: <strong class="text-[#1d1b1a] dark:text-[#f5f0ee]">{buildTime}</strong></span>
+          </div>
+          <div id="live-status-notice" class="text-[#5b403d] dark:text-[#d4c5c2] text-[11px] flex items-center gap-1">
+            <span class="animate-pulse">🔄</span> Synchronizing real-time availability...
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="rounded-2xl overflow-hidden shadow-md border border-[#e7e1df] dark:border-[#363230]">
+          <img
+            src="/images/library/hausbibliothek-raum.webp"
+            alt="SprachCafé Polnisch House Library in Berlin"
+            class="w-full h-48 sm:h-56 object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter UI Elements -->
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 mb-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        
+        <!-- Text Search -->
+        <div>
+          <label for="filter-search" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1.5">Search</label>
+          <input
+            type="text"
+            id="filter-search"
+            placeholder="Title, author, ISBN..."
+            class="w-full px-3 py-2 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          />
+        </div>
+
+        <!-- Filter: Language -->
+        <div>
+          <label for="filter-language" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1.5">Language</label>
+          <select id="filter-language" class="w-full px-3 py-2 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]">
+            <option value="all" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">All Languages</option>
+            {languages.map(l => (
+              <option value={l} class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">{l === 'PL' ? 'Polish (PL)' : l === 'DE' ? 'German (DE)' : l === 'EN' ? 'English (EN)' : 'Ukrainian (UKR)'}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Filter: Category -->
+        <div>
+          <label for="filter-category" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1.5">Category</label>
+          <select id="filter-category" class="w-full px-3 py-2 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]">
+            <option value="all" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">All Categories</option>
+            {categories.map(cat => (
+              <option value={cat} class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">{cat}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Filter: Location -->
+        <div>
+          <label for="filter-location" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1.5">Location</label>
+          <select id="filter-location" class="w-full px-3 py-2 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]">
+            <option value="all" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">All Locations</option>
+            {locations.map(loc => (
+              <option value={loc} class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">{loc}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Filter: Status -->
+        <div>
+          <label for="filter-status" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1.5">Availability</label>
+          <select id="filter-status" class="w-full px-3 py-2 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]">
+            <option value="all" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">All Statuses</option>
+            <option value="verfuegbar" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Available</option>
+            <option value="ausgeliehen" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Borrowed</option>
+            <option value="reserviert" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Reserved</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Book Grid List -->
+    <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" data-pagefind-ignore>
+      {books.map(book => {
+        const numericId = book.id.replace('book-', '');
+        return (
+          <div
+            class="book-card bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+            data-title={book.title.toLowerCase()}
+            data-author={book.author.toLowerCase()}
+            data-isbn={book.isbn ? book.isbn.toLowerCase() : ''}
+            data-language={book.language}
+            data-category={book.category}
+            data-location={book.location}
+            data-status={book.status}
+          >
+            <div>
+              <div class="h-48 bg-[#f8f2f0] dark:bg-[#2a2725] overflow-hidden flex items-center justify-center p-4 relative">
+                {book.cover ? (
+                  <img src={book.cover} alt={book.title} class="max-h-full object-contain shadow-sm" loading="lazy" />
+                ) : (
+                  <div class="text-4xl text-[#5b403d] dark:text-[#d4c5c2]">📖</div>
+                )}
+                
+                <span
+                  class:list={[
+                    'book-status-badge absolute top-2 right-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase transition-colors',
+                    book.status === 'verfuegbar' ? 'bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300' :
+                    book.status === 'ausgeliehen' ? 'bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300' :
+                    'bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300'
+                  ]}
+                  data-book-id={numericId}
+                >
+                  {book.status === 'verfuegbar' ? 'Available' : book.status === 'ausgeliehen' ? 'Borrowed' : 'Reserved'}
+                </span>
+              </div>
+
+              <div class="p-5">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f]">
+                    {book.language}
+                  </span>
+                  <span class="text-[10px] text-[#5b403d] dark:text-[#d4c5c2] font-semibold truncate">
+                    {book.category}
+                  </span>
+                </div>
+
+                <h3 class="font-serif font-bold text-base text-[#1d1b1a] dark:text-[#f5f0ee] line-clamp-2 leading-snug mb-1">
+                  {book.title}
+                </h3>
+                
+                <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] mb-3">
+                  {book.author}
+                </p>
+
+                <div class="text-[11px] text-[#5b403d] dark:text-[#d4c5c2] space-y-0.5 border-t border-[#e7e1df] dark:border-[#363230] pt-2">
+                  <div>📍 {book.location}</div>
+                  {book.isbn && <div class="font-mono truncate">ISBN: {book.isbn}</div>}
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0">
+              <a
+                href={`/en/hausbibliothek/${book.id}/`}
+                class="block w-full py-2 text-center text-xs font-bold rounded-xl bg-[#8B263E] hover:bg-[#6b1d30] text-white transition-colors"
+              >
+                Details &amp; Borrowing &rarr;
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-16 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl">
+      <div class="text-4xl mb-2">🔍</div>
+      <h3 class="font-serif font-bold text-lg text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">No Books Found</h3>
+      <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">Try adjusting your search criteria or filters.</p>
+    </div>
+
+  </section>
+
+  <!-- Client-side filter and Live Status Hydration script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('filter-search');
+      const langSelect = document.getElementById('filter-language');
+      const catSelect = document.getElementById('filter-category');
+      const locSelect = document.getElementById('filter-location');
+      const statusSelect = document.getElementById('filter-status');
+      const bookCards = document.querySelectorAll('.book-card');
+      const emptyState = document.getElementById('empty-state');
+      const liveNotice = document.getElementById('live-status-notice');
+
+      function filterBooks() {
+        const query = searchInput.value.toLowerCase().trim();
+        const selLang = langSelect.value;
+        const selCat = catSelect.value;
+        const selLoc = locSelect.value;
+        const selStat = statusSelect.value;
+
+        let visibleCount = 0;
+
+        bookCards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const author = card.getAttribute('data-author') || '';
+          const isbn = card.getAttribute('data-isbn') || '';
+          const l = card.getAttribute('data-language') || '';
+          const c = card.getAttribute('data-category') || '';
+          const loc = card.getAttribute('data-location') || '';
+          const s = card.getAttribute('data-status') || '';
+
+          const matchesQuery = !query || title.includes(query) || author.includes(query) || isbn.includes(query);
+          const matchesLang = selLang === 'all' || l === selLang;
+          const matchesCat = selCat === 'all' || c === selCat;
+          const matchesLoc = selLoc === 'all' || loc === selLoc;
+          const matchesStat = selStat === 'all' || s === selStat;
+
+          if (matchesQuery && matchesLang && matchesCat && matchesLoc && matchesStat) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+
+      [searchInput, langSelect, catSelect, locSelect, statusSelect].forEach(el => {
+        if (el) el.addEventListener('input', filterBooks);
+      });
+
+      // Live Availability Hydration
+      const exportUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8080/api/export/books'
+        : 'https://hausbibliothek.org/api/export/books';
+
+      fetch(exportUrl)
+        .then(res => res.json())
+        .then(data => {
+          const booksList = Array.isArray(data) ? data : (data.data || []);
+          const statusMap = new Map();
+          booksList.forEach(b => {
+            statusMap.set(String(b.id), b.availability_status || b.status);
+          });
+
+          document.querySelectorAll('.book-status-badge').forEach(badge => {
+            const id = badge.getAttribute('data-book-id');
+            if (id && statusMap.has(id)) {
+              const liveStatus = statusMap.get(id);
+              if (liveStatus === 'available' || liveStatus === 'verfuegbar') {
+                badge.className = 'book-status-badge absolute top-2 right-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase transition-colors bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300';
+                badge.textContent = 'Available (Live)';
+                badge.closest('.book-card')?.setAttribute('data-status', 'verfuegbar');
+              } else {
+                badge.className = 'book-status-badge absolute top-2 right-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase transition-colors bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300';
+                badge.textContent = 'Borrowed (Live)';
+                badge.closest('.book-card')?.setAttribute('data-status', 'ausgeliehen');
+              }
+            }
+          });
+
+          if (liveNotice) {
+            liveNotice.innerHTML = '✅ <span class="text-emerald-600 dark:text-emerald-400 font-bold">Real-time status synchronized</span>';
+          }
+        })
+        .catch(err => {
+          console.warn('Live status sync warning:', err.message);
+          if (liveNotice) {
+            liveNotice.innerHTML = '⚠️ <span class="text-[#5b403d] dark:text-[#d4c5c2]">Static catalog status (offline)</span>';
+          }
+        });
+    });
+  </script>
+</Layout>

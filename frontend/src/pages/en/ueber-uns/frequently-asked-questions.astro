@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import FaqAccordion from '../../../components/FaqAccordion.astro';
+
+const lang = 'en';
+
+const faqItems = [
+  {
+    question: {
+      de: "Wo befindet sich das SprachCafé Polnisch und wie sind die Öffnungszeiten?",
+      pl: "Gdzie znajduje się SprachCafé Polnisch i jakie są godziny otwarcia?",
+      en: "Where is SprachCafé Polnisch located and what are the opening hours?"
+    },
+    answer: {
+      de: "Unser Hauptstandort befindet sich in der Schulzestraße 1, 13187 Berlin-Pankow (direkt am S-Bahnhof Wollankstraße). Die Öffnungszeiten sind Montag bis Freitag von 10:00 bis 18:00 Uhr. Weitere Standorte befinden sich in Schöneberg (Hauptstr. 121 A) und Köpenick (Am Wiesengraben 7a).",
+      pl: "Nasza główna siedziba znajduje się przy Schulzestraße 1, 13187 Berlin-Pankow (tuż przy stacji S-Bahn Wollankstraße). Godziny otwarcia to poniedziałek – piątek 10:00 – 18:00 (podczas wieczornych wydarzeń i w weekendy dłużej). Nasze pozostałe lokalizacje to Schöneberg (Hauptstr. 121 A) oraz Köpenick (Am Wiesengraben 7a).",
+      en: "Our main headquarters is located at Schulzestraße 1, 13187 Berlin-Pankow (directly at S-Wollankstraße). Opening hours are Monday through Friday, 10:00 AM to 6:00 PM (extended during evening cultural events). Further branches are located in Schöneberg (Hauptstraße 121 A) and Köpenick (Am Wiesengraben 7a)."
+    }
+  },
+  {
+    question: {
+      de: "Wie kann ich an Sprachkursen oder Tandem-Treffen teilnehmen?",
+      pl: "Jak mogę wziąć udział w kursach językowych lub spotkaniach tandemowych?",
+      en: "How can I participate in language courses or tandem meetups?"
+    },
+    answer: {
+      de: "Alle unsere Sprach-Treffen und offenen Begegnungscafés stehen allen Interessierten offen. Für regelmäßige Sprachkurse oder Kinder-Workshops bitten wir um eine kurze Anmeldung über unsere Website oder per E-Mail.",
+      pl: "Wszystkie nasze otwarte spotkania językowe, konwersacje przy kawie oraz Speak-Dating są bezpłatne i otwarte dla każdego bez konieczności wcześniejszych zapisów. W przypadku regularnych kursów języka polskiego/niemieckiego lub warsztatów dla dzieci prosimy o krótkie zgłoszenie przez formularz na stronie lub kontakt mailowy.",
+      en: "All our open language meetups, coffee conversations, and Speak-Dating sessions are open to everyone without prior registration. For structured language courses or children's workshops, please submit a brief online registration or contact us via email."
+    }
+  },
+  {
+    question: {
+      de: "Wie funktioniert die Hausbibliothek?",
+      pl: "Jak działa Biblioteka Domowa (Hausbibliothek)?",
+      en: "How does the House Library work?"
+    },
+    answer: {
+      de: "Unsere Hausbibliothek umfasst über 400 zweisprachige Bücher für Kinder, Jugendliche und Erwachsene. Mitglieder des SprachCafé Polnisch e.V. können Bücher kostenlos digital über portal.hausbibliothek.org ausleihen.",
+      pl: "Nasza biblioteka domowa liczy ponad 400 pozycji w języku polskim i niemieckim (literatura piękna, książki dla dzieci i młodzieży, podręczniki językowe). Członkowie stowarzyszenia mogą wypożyczać książki bezpłatnie, a katalog online dostępny jest pod adresem portal.hausbibliothek.org.",
+      en: "Our house library features over 400 bilingual books in German and Polish (fiction, non-fiction, children's books, language learning materials). Association members can borrow books free of charge for 4 weeks via hausbibliothek.org."
+    }
+  },
+  {
+    question: {
+      de: "Wie kann ich Mitglied im SprachCafé Polnisch e.V. werden?",
+      pl: "Jak mogę zostać członkiem SprachCafé Polnisch e.V.?",
+      en: "How can I become a member of SprachCafé Polnisch e.V.?"
+    },
+    answer: {
+      de: "Sie können Ihren Mitgliedsantrag ganz einfach online über unsere Seite /mitmachen/mitglied-werden/ ausfüllen. Wählen Sie zwischen den Beitragsstufen Silver (50 €), Gold (120 €), Platinum (200 €) oder Firmenmitgliedschaft.",
+      pl: "Deklarację członkowską możesz wygodnie wypełnić online na stronie /pl/mitmachen/mitglied-werden/. Oferujemy cztery przejrzyste progi składek rocznych: Silver (50 €), Gold (120 € - najpopularniejszy), Platinum (200 €) oraz Członkostwo Firmowe.",
+      en: "You can submit your membership application online directly on our website at /en/mitmachen/mitglied-werden/. We offer transparent annual tiers: Silver (50 €), Gold (120 € - Recommended), Platinum (200 €), and Corporate Membership."
+    }
+  },
+  {
+    question: {
+      de: "Sind Spenden an das SprachCafé Polnisch e.V. steuerlich abzugsfähig?",
+      pl: "Czy darowizny na rzecz SprachCafé Polnisch e.V. można odliczyć od podatku?",
+      en: "Are donations to SprachCafé Polnisch e.V. tax-deductible?"
+    },
+    answer: {
+      de: "Ja! Das SprachCafé Polnisch e.V. ist vom Finanzamt als gemeinnütziger Verein anerkannt. Für Spenden und Mitgliedsbeiträge stellen wir Ihnen gerne eine Zuwendungsbestätigung aus.",
+      pl: "Tak! SprachCafé Polnisch e.V. jest oficjalnie uznanym stowarzyszeniem pożytku publicznego (gemeinnütziger Verein). Na każdą darowiznę i składkę członkowską chętnie wystawiamy oficjalne zaświadczenie podatkowe (Zuwendungsbestätigung / Spendenbescheinigung).",
+      en: "Yes! SprachCafé Polnisch e.V. is recognized by German tax authorities as a charitable non-profit organization (gemeinnütziger Verein). Donations and membership contributions are fully tax-deductible in Germany."
+    }
+  },
+  {
+    question: {
+      de: "Kann ich Räumlichkeiten im SprachCafé mieten?",
+      pl: "Czy mogę wynająć pomieszczenia w SprachCafé?",
+      en: "Can I rent rooms at SprachCafé?"
+    },
+    answer: {
+      de: "Ja, unsere Räume in der Schulzestraße 1 (Pankow) können für Seminare, Workshops, Sprachkurse oder private Feiern gemietet werden. Kontaktieren Sie uns für Details und Verfügbarkeiten.",
+      pl: "Tak! Nasze jasne i przyjazne sale przy Schulzestraße 1 w Pankow można wynająć na warsztaty, seminaria, spotkania zespołów, kursy językowe lub prywatne uroczystości kulturalne i rodzinne. Napisz do nas zapytanie na kontakt@sprachcafe-polnisch.org.",
+      en: "Yes! Our bright rooms at Schulzestraße 1 in Pankow can be booked for seminars, workshops, language classes, team retreats, or private cultural gatherings. Please reach out to us at kontakt@sprachcafe-polnisch.org."
+    }
+  }
+];
+---
+
+<Layout
+  title="Frequently Asked Questions (FAQ) — SprachCafé Polnisch e.V."
+  description="Find answers to frequently asked questions about opening hours, language courses, house library borrowing, room rental, and membership at SprachCafé Polnisch e.V."
+  lang={lang}
+>
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <!-- Hero Header -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
+        <span>❓ Questions &amp; Answers</span>
+      </div>
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-6">
+        Frequently Asked Questions (FAQ)
+      </h1>
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto">
+        Have questions about our locations, opening hours, courses, or borrowing books from the House Library? We have compiled the essential information here.
+      </p>
+    </div>
+
+    <!-- Interactive FAQ Accordion -->
+    <div class="mb-16">
+      <FaqAccordion items={faqItems} lang={lang} />
+    </div>
+
+    <!-- Still Have Questions CTA -->
+    <div class="bg-gradient-to-r from-[#8B263E]/5 to-[#8B263E]/10 dark:from-[#8B263E]/20 dark:to-[#8B263E]/10 border border-[#8B263E]/20 rounded-3xl p-8 text-center max-w-3xl mx-auto">
+      <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Still Have Questions?</h3>
+      <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">Our team is happy to provide personal assistance and information.</p>
+      <a
+        href="/en/kontakt/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold hover:bg-[#6b1d30] transition-colors"
+      >
+        <span>Contact Us</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>

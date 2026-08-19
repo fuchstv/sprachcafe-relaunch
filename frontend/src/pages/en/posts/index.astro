@@ -1,0 +1,81 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getPosts } from '../../../lib/cms-api';
+
+const lang = 'en';
+const posts = await getPosts();
+---
+
+<Layout
+  title="Blog & News — SprachCafé Polnisch"
+  description="Latest blog articles, project stories, and community news from SprachCafé Polnisch e.V. in Berlin."
+  lang={lang}
+>
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="mb-10 text-center sm:text-left">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-semibold uppercase tracking-wider mb-3">
+        Blog &amp; News
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-3">Blog</h1>
+      <p class="font-sans text-lg text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl">
+        News, project updates, community stories, and insights from our House Library.
+      </p>
+    </div>
+
+    <!-- Blog Posts Listing Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {posts.map((post) => (
+        <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] hover:border-[#8B263E]/50 transition-all duration-300 flex flex-col">
+          {post.featured_image && (
+            <div class="aspect-video w-full overflow-hidden bg-[#f8f2f0] dark:bg-[#2a2725]">
+              <img
+                src={post.featured_image}
+                alt={post.title}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          )}
+
+          <div class="p-6 sm:p-8 flex flex-col flex-grow">
+            <div class="flex items-center gap-3 mb-3 text-xs flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] font-bold uppercase">
+                {post.category || 'Blog'}
+              </span>
+              {post.location_tag && (
+                <span class="px-2.5 py-0.5 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230]">
+                  📍 {post.location_tag}
+                </span>
+              )}
+              <span class="text-[#5b403d] dark:text-[#d4c5c2] ml-auto">
+                {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </span>
+            </div>
+
+            <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3 leading-snug hover:text-[#8B263E] dark:hover:text-[#ff758f] transition-colors">
+              <a href={`/en/posts/${post.slug}/`}>
+                {post.title}
+              </a>
+            </h2>
+
+            <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] text-sm line-clamp-3 mb-6 flex-grow leading-relaxed">
+              {post.content}
+            </p>
+
+            <div class="pt-4 border-t border-[#e7e1df] dark:border-[#363230] flex items-center justify-between">
+              <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+                Author: {post.author || 'SprachCafé Editorial'}
+              </span>
+              <a
+                href={`/en/posts/${post.slug}/`}
+                class="inline-flex items-center gap-1 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline transition-colors"
+              >
+                Read more &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
