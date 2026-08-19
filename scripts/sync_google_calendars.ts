@@ -13,6 +13,7 @@
 import fs from 'fs';
 import path from 'path';
 import ical from 'node-ical';
+import he from 'he';
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 const EVENTS_DIR = path.resolve(scriptDir, '../frontend/src/content/events');
@@ -115,6 +116,17 @@ export interface UnifiedEvent {
   idKey: string;
 }
 
+function decodeHtmlEntities(str: string): string {
+  if (!str) return '';
+  let prev = str;
+  let decoded = he.decode(str);
+  while (decoded !== prev && /&[a-zA-Z0-9#]+;/.test(decoded)) {
+    prev = decoded;
+    decoded = he.decode(decoded);
+  }
+  return decoded;
+}
+
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -125,7 +137,7 @@ function slugify(text: string): string {
 }
 
 function sanitizeYamlString(str: string): string {
-  return str.replace(/"/g, '\\"').replace(/\n/g, ' ');
+  return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r?\n/g, ' ');
 }
 
 async function syncGoogleCalendars() {
@@ -151,6 +163,8 @@ async function syncGoogleCalendars() {
 
         const rawTitle = (item.summary || 'Veranstaltung').trim();
         const rawDesc = (item.description || '').trim();
+        const cleanTitle = decodeHtmlEntities(rawTitle).trim();
+        const cleanDesc = decodeHtmlEntities(rawDesc).trim();
         const eventDuration = item.end && item.start ? item.end.getTime() - item.start.getTime() : 2 * 60 * 60 * 1000;
 
         let instanceDates: Date[] = [];
@@ -174,19 +188,19 @@ async function syncGoogleCalendars() {
           const endDate = new Date(startDate.getTime() + eventDuration);
 
           // Unique Deduplication Key: title + startDate + locationRef
-          const dedupeKey = `${slugify(rawTitle)}-${startDate.toISOString()}-${cal.locationRef}`;
+          const dedupeKey = `${slugify(cleanTitle)}-${startDate.toISOString()}-${cal.locationRef}`;
 
           if (processedEventsMap.has(dedupeKey)) {
             continue; // Skip duplicate overlapping event
           }
 
-          const descText = rawDesc ? rawDesc : `Veranstaltung "${rawTitle}" im SprachCafé (${cal.name}).`;
+          const descText = cleanDesc ? cleanDesc : `Veranstaltung "${cleanTitle}" im SprachCafé (${cal.name}).`;
 
           const eventObj: UnifiedEvent = {
             title: {
-              de: rawTitle,
-              pl: rawTitle,
-              en: rawTitle,
+              de: cleanTitle,
+              pl: cleanTitle,
+              en: cleanTitle,
             },
             date: startDate,
             endDate: endDate,
@@ -201,9 +215,9 @@ async function syncGoogleCalendars() {
             image: {
               src: cal.defaultImage,
               alt: {
-                de: rawTitle,
-                pl: rawTitle,
-                en: rawTitle,
+                de: cleanTitle,
+                pl: cleanTitle,
+                en: cleanTitle,
               },
             },
             isFeatured: false,
