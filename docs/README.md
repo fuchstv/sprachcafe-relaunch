@@ -35,6 +35,7 @@ Willkommen in der zentralen Dokumentation des SprachCafé Relaunch Projekts.
 - [Entscheidungsprotokoll: Eignung von Git/GitHub für redaktionelle Workflows (ADR 0003)](./decisions/0003-github-ungeeignet-fuer-redaktion.md)
 - [Entscheidungsprotokoll: Endgültige Einstellung der WordPress-Blog-Aggregation (ADR 0004)](./decisions/0004-einstellung-wordpress-blog-aggregation.md)
 - [KPI-Anforderungsanalyse & Projektabrechnungen](./kpi-anforderungen.md): Kennzahlen, Erfassungskonzepte für offene Events (Headcount), Projekt-Tagging & Reporting-Roadmap (S.1–S.4).
+- [Automatisierter Kalender-KPI-Sync & Power BI Anbindung](./CALENDAR_KPI_POWERBI_SYNC.md): Aggregation nach Monat, Standort, Sprache & Zielgruppe via SharePoint-Connector für Power BI.
 - [Mailchimp Webhook Setup & Automatisierte News-Veröffentlichung](./MAILCHIMP_WEBHOOK_SETUP.md): Cloudflare Pages Webhook, zweisprachiger Split (🇵🇱/🇩🇪) & direkter GitHub-Commit nach `beta`.
 - [Offene Content- & Navigations-Gaps (TODO-Liste)](./content-gaps.md): Übersicht offener Platzhalter & Navigationspunkte für R2/R3/R4.
 - [Vollständiges Content-Inventar (Phase R4 Migration)](./content-inventory.md): Erfassung aller Live-Unterseiten, Texte, Bilder, Übersetzungen & PDFs.

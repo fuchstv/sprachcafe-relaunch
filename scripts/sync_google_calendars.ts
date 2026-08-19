@@ -347,6 +347,204 @@ isFeatured: ${ev.isFeatured}
   }
 
   console.log(`🚀 Successfully wrote ${writtenFilesCount} event files to ${EVENTS_DIR}`);
+
+  // ============================================================================
+  // 📊 KPI & POWER BI / SHAREPOINT REPORTING AGGREGATION (Task S.2 / S.3)
+  // ============================================================================
+  generateKpiReports(allEvents);
+}
+
+const LOCATION_NAMES: Record<string, string> = {
+  pankow: 'Pankow (Schulzestraße / Stadtteilzentrum)',
+  schoeneberg: 'Schöneberg',
+  koepenick: 'Köpenick',
+  partnerorte: 'Partnerorte / Bibliotheken',
+  online: 'Online / Digital',
+};
+
+const MONTH_NAMES_DE = [
+  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
+];
+
+const WEEKDAY_NAMES_DE = [
+  'Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'
+];
+
+function deriveCategory(title: string, sourceCalendar: string): string {
+  const t = (title + ' ' + sourceCalendar).toLowerCase();
+  if (t.includes('kinder') || t.includes('dzieci') || t.includes('rodzic') || t.includes('eltern') || t.includes('fauler sonntag') || t.includes('poczytajmy')) {
+    return 'Kinder & Familie';
+  }
+  if (t.includes('tandem') || t.includes('speak') || t.includes('język') || t.includes('polnisch') || t.includes('deutsch') || t.includes('konversation') || t.includes('lernen')) {
+    return 'Sprachpraxis & Tandem';
+  }
+  if (t.includes('team') || t.includes('spotkanie') || t.includes('treffen') || t.includes('zebranie') || t.includes('mitglied')) {
+    return 'Ehrenamt & Vereinsleben';
+  }
+  return 'Kunst, Kultur & Literatur';
+}
+
+function extractProject(title: string, desc: string): string {
+  const fullText = `${title} ${desc}`;
+  const matchHashtag = fullText.match(/#(projekt|project)-([a-zA-Z0-9_-]+)/i);
+  if (matchHashtag) return matchHashtag[2].toUpperCase();
+
+  const matchBracket = fullText.match(/\[(?:projekt|project):\s*([^\]]+)\]/i);
+  if (matchBracket) return matchBracket[1].trim();
+
+  return 'Regulärer Vereinsbetrieb';
+}
+
+interface KpiSummaryRow {
+  jahrMonat: string;
+  jahr: number;
+  monatNummer: number;
+  monatName: string;
+  standortCode: string;
+  standortName: string;
+  sprache: string;
+  zielgruppe: string;
+  kategorie: string;
+  projekt: string;
+  anzahlVeranstaltungen: number;
+}
+
+function generateKpiReports(allEvents: UnifiedEvent[]) {
+  console.log('\n📊 Generating KPI Summary & Power BI Export Tables...');
+
+  const summaryMap = new Map<string, KpiSummaryRow>();
+  const detailRows: string[] = [
+    'Event_ID,Titel,Datum,Uhrzeit_Start,Uhrzeit_Ende,Dauer_Minuten,Jahr_Monat,Jahr,Monat,Wochentag,Standort_Code,Standort_Name,Zielgruppe_DE,Zielgruppe_PL,Sprachen,Kategorie,Projekt,Kalender_Quelle'
+  ];
+
+  for (const ev of allEvents) {
+    const d = ev.date;
+    const year = d.getFullYear();
+    const monthNum = d.getMonth() + 1;
+    const yearMonth = `${year}-${String(monthNum).padStart(2, '0')}`;
+    const monthName = MONTH_NAMES_DE[d.getMonth()];
+    const weekday = WEEKDAY_NAMES_DE[d.getDay()];
+    const locationName = LOCATION_NAMES[ev.locationRef] || ev.locationRef;
+    const category = deriveCategory(ev.title.de, ev.sourceCalendar);
+    const project = extractProject(ev.title.de, ev.description.de);
+    const languages = 'Polnisch / Deutsch';
+    const targetAudience = ev.targetAudience.de;
+
+    // Grouping Key for Aggregation
+    const groupKey = `${yearMonth}|${ev.locationRef}|${languages}|${targetAudience}|${category}|${project}`;
+
+    if (!summaryMap.has(groupKey)) {
+      summaryMap.set(groupKey, {
+        jahrMonat: yearMonth,
+        jahr: year,
+        monatNummer: monthNum,
+        monatName: monthName,
+        standortCode: ev.locationRef,
+        standortName: locationName,
+        sprache: languages,
+        zielgruppe: targetAudience,
+        kategorie: category,
+        projekt: project,
+        anzahlVeranstaltungen: 0,
+      });
+    }
+
+    const row = summaryMap.get(groupKey)!;
+    row.anzahlVeranstaltungen++;
+
+    // Detail row formatting
+    const timeStart = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    const timeEnd = ev.endDate
+      ? `${String(ev.endDate.getHours()).padStart(2, '0')}:${String(ev.endDate.getMinutes()).padStart(2, '0')}`
+      : '';
+    const durationMin = ev.endDate ? Math.round((ev.endDate.getTime() - d.getTime()) / 60000) : 120;
+    const dateStr = d.toISOString().split('T')[0];
+
+    const safeTitle = `"${ev.title.de.replace(/"/g, '""')}"`;
+    const safeSource = `"${ev.sourceCalendar.replace(/"/g, '""')}"`;
+
+    detailRows.push(
+      `"${ev.idKey}",${safeTitle},${dateStr},${timeStart},${timeEnd},${durationMin},${yearMonth},${year},${monthNum},"${weekday}","${ev.locationRef}","${locationName}","${ev.targetAudience.de}","${ev.targetAudience.pl}","${languages}","${category}","${project}",${safeSource}`
+    );
+  }
+
+  const summaryList = Array.from(summaryMap.values());
+  // Sort summary by YearMonth, Location, Category
+  summaryList.sort((a, b) => a.jahrMonat.localeCompare(b.jahrMonat) || a.standortCode.localeCompare(b.standortCode));
+
+  // Build CSV with UTF-8 BOM (\uFEFF) for 100% native Excel / Power BI encoding compatibility
+  const summaryCsvHeader = 'Jahr_Monat,Jahr,Monat_Nummer,Monat_Name,Standort_Code,Standort_Name,Sprache,Zielgruppe,Kategorie,Projekt,Anzahl_Veranstaltungen\n';
+  const summaryCsvBody = summaryList
+    .map(
+      (r) =>
+        `"${r.jahrMonat}",${r.jahr},${r.monatNummer},"${r.monatName}","${r.standortCode}","${r.standortName}","${r.sprache}","${r.zielgruppe}","${r.kategorie}","${r.projekt}",${r.anzahlVeranstaltungen}`
+    )
+    .join('\n');
+
+  const summaryCsvContent = '\uFEFF' + summaryCsvHeader + summaryCsvBody;
+  const detailCsvContent = '\uFEFF' + detailRows.join('\n');
+
+  // Export Directories
+  const scriptDir = path.dirname(new URL(import.meta.url).pathname);
+  const EXPORTS_DIR = path.resolve(scriptDir, 'kpi_exports');
+  const PUBLIC_DATA_DIR = path.resolve(scriptDir, '../frontend/public/data');
+
+  if (!fs.existsSync(EXPORTS_DIR)) fs.mkdirSync(EXPORTS_DIR, { recursive: true });
+  if (!fs.existsSync(PUBLIC_DATA_DIR)) fs.mkdirSync(PUBLIC_DATA_DIR, { recursive: true });
+
+  // 1. Write Summary CSVs & JSON for Web & Local Power BI
+  const summaryCsvPath = path.join(EXPORTS_DIR, 'Veranstaltungs_Kennzahlen.csv');
+  const detailCsvPath = path.join(EXPORTS_DIR, 'Events_Detail_PowerBI.csv');
+  const publicSummaryCsvPath = path.join(PUBLIC_DATA_DIR, 'calendar-kpi-summary.csv');
+  const publicSummaryJsonPath = path.join(PUBLIC_DATA_DIR, 'calendar-kpi-summary.json');
+
+  fs.writeFileSync(summaryCsvPath, summaryCsvContent, 'utf-8');
+  fs.writeFileSync(detailCsvPath, detailCsvContent, 'utf-8');
+  fs.writeFileSync(publicSummaryCsvPath, summaryCsvContent, 'utf-8');
+  fs.writeFileSync(publicSummaryJsonPath, JSON.stringify(summaryList, null, 2), 'utf-8');
+
+  console.log(`✅ Wrote KPI Summary Table: ${summaryCsvPath} (${summaryList.length} aggregated rows)`);
+  console.log(`✅ Wrote Events Detail Table: ${detailCsvPath} (${detailRows.length - 1} event instances)`);
+  console.log(`✅ Wrote Public Data Files to ${PUBLIC_DATA_DIR}`);
+
+  // 2. Trigger Optional SharePoint / OneDrive Sync
+  syncToSharePoint(summaryCsvContent, summaryList);
+}
+
+/**
+ * Optional SharePoint / Power Automate Webhook Synchronizer
+ * If SHAREPOINT_REPORTING_WEBHOOK is defined in environment, push summary table directly.
+ */
+async function syncToSharePoint(csvData: string, summary: KpiSummaryRow[]) {
+  const webhookUrl = process.env.SHAREPOINT_REPORTING_WEBHOOK || process.env.REPORTING_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.log('ℹ️  SharePoint Webhook URL not set. Local files ready for SharePoint Folder / OneDrive sync.');
+    return;
+  }
+
+  try {
+    console.log('📡 Syncing KPI Summary Table to SharePoint via Power Automate Webhook...');
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fileName: 'Veranstaltungs_Kennzahlen.csv',
+        fileContentBase64: Buffer.from(csvData, 'utf-8').toString('base64'),
+        rowCount: summary.length,
+        timestamp: new Date().toISOString(),
+        summaryData: summary,
+      }),
+    });
+
+    if (response.ok) {
+      console.log('✅ Successfully updated SharePoint Reporting Table!');
+    } else {
+      console.warn(`⚠️ SharePoint Webhook responded with status: ${response.status}`);
+    }
+  } catch (err: any) {
+    console.warn('⚠️ Could not trigger SharePoint Webhook:', err.message);
+  }
 }
 
 syncGoogleCalendars().catch((err) => {
