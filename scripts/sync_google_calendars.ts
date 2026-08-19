@@ -118,13 +118,59 @@ export interface UnifiedEvent {
 
 function decodeHtmlEntities(str: string): string {
   if (!str) return '';
-  let prev = str;
-  let decoded = he.decode(str);
-  while (decoded !== prev && /&[a-zA-Z0-9#]+;/.test(decoded)) {
-    prev = decoded;
-    decoded = he.decode(decoded);
-  }
-  return decoded;
+  let res = str;
+  try {
+    if (typeof he !== 'undefined' && he && he.decode) {
+      let prev = res;
+      res = he.decode(res);
+      while (res !== prev && /&[a-zA-Z0-9#]+;/.test(res)) {
+        prev = res;
+        res = he.decode(res);
+      }
+      return res;
+    }
+  } catch (e) {}
+
+  const htmlEntityMap: Record<string, string> = {
+    '&quot;': '"',
+    '&#34;': '"',
+    '&apos;': "'",
+    '&#39;': "'",
+    '&#039;': "'",
+    '&amp;': '&',
+    '&#38;': '&',
+    '&lt;': '<',
+    '&#60;': '<',
+    '&gt;': '>',
+    '&#62;': '>',
+    '&nbsp;': ' ',
+    '&#160;': ' ',
+    '&ndash;': '–',
+    '&#8211;': '–',
+    '&mdash;': '—',
+    '&#8212;': '—',
+    '&lsquo;': '‘',
+    '&#8216;': '‘',
+    '&rsquo;': '’',
+    '&#8217;': '’',
+    '&ldquo;': '“',
+    '&#8220;': '“',
+    '&rdquo;': '”',
+    '&#8221;': '”',
+    '&bdquo;': '„',
+    '&#8222;': '„',
+    '&laquo;': '«',
+    '&#171;': '«',
+    '&raquo;': '»',
+    '&#187;': '»',
+    '&hellip;': '…',
+    '&#8230;': '…',
+  };
+
+  res = res.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+  res = res.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+  res = res.replace(/&(?:quot|apos|amp|lt|gt|nbsp|ndash|mdash|lsquo|rsquo|ldquo|rdquo|bdquo|laquo|raquo|hellip);/g, (match) => htmlEntityMap[match] || match);
+  return res;
 }
 
 function slugify(text: string): string {
