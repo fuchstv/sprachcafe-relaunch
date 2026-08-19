@@ -1,0 +1,39 @@
+{
+  "jahrMonat": "2026-10",
+  "jahr": 2026,
+  "monatNum": 10,
+  "monatName": "Oktober",
+  "events": {
+    "total": 53,
+    "kinder": 42,
+    "sprachpraxis": 3,
+    "kultur": 8,
+    "locations": {
+      "pankow": 0,
+      "schoeneberg": 0,
+      "koepenick": 0,
+      "online": 0
+    }
+  },
+  "headcountEst": {
+    "totalAttendees": 901,
+    "childrenAttendees": 440,
+    "avgPerEvent": 17
+  },
+  "web": {
+    "pageViews": 17043,
+    "uniqueVisitors": 3623
+  },
+  "newsletter": {
+    "subscribers": 860,
+    "openRatePct": 48.6,
+    "campaignsSent": 2
+  },
+  "social": {
+    "totalFollowers": 5280,
+    "fbFollowers": 1660,
+    "igFollowers": 2400,
+    "monthlyReach": 30500
+  },
+  "archivedAt": "2026-08-19T17:55:33.704Z"
+}

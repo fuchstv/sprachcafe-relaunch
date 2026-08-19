@@ -11,17 +11,23 @@
       body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .no-print { display: none !important; }
     }
+    .filter-btn-active {
+      background-color: #8B263E !important;
+      color: #ffffff !important;
+      border-color: #8B263E !important;
+      box-shadow: 0 4px 12px rgba(139, 38, 62, 0.25);
+    }
   </style>
 </head>
 <body class="bg-[#f5f0ee] text-[#1d1b1a] p-3 md:p-6 font-sans antialiased">
-  <div class="max-w-[1400px] mx-auto bg-white rounded-3xl shadow-xl border border-[#e7e1df] p-6 md:p-10 space-y-8">
+  <div class="max-w-[1440px] mx-auto bg-white rounded-3xl shadow-xl border border-[#e7e1df] p-6 md:p-10 space-y-8">
     
     <!-- Top Action & Navigation Bar -->
     <div class="flex flex-wrap justify-between items-center no-print pb-4 border-b border-[#e7e1df] gap-3">
       <div class="flex items-center gap-3">
         <span class="inline-block w-3 h-3 rounded-full bg-[#8B263E] animate-pulse"></span>
         <span class="text-sm font-bold text-[#1d1b1a]">SprachCafé Polnisch e.V. — Zentrales Gesamt-Dashboard</span>
-        <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#2B7A78]/10 text-[#2B7A78] font-bold">M365 • Cloudflare • Mailchimp Live Sync</span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#2B7A78]/10 text-[#2B7A78] font-bold">M365 • Cloudflare • Mailchimp • Meta CLI Live Sync</span>
       </div>
       <div class="flex items-center gap-2">
         <a href="/reports/sponsoren-wirkungsbericht.html" class="px-4 py-2 text-xs font-bold rounded-xl border border-[#8B263E] text-[#8B263E] hover:bg-[#8B263E]/10 transition-colors">
@@ -39,284 +45,357 @@
     <!-- Header Summary -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div>
-        <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#8B263E]/10 text-[#8B263E] mb-1">
-          Executive Cockpit • Abrechnungsperiode 2026
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl">☕🇵🇱</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#8B263E] bg-[#8B263E]/10 px-3 py-1 rounded-full">Vorstands- & Wirkungsbericht 2026</span>
+          <span class="text-xs px-2.5 py-0.5 rounded-full bg-green-100 text-green-800 font-semibold">🔒 Archiv gesichert</span>
         </div>
-        <h1 class="text-2xl md:text-3xl font-extrabold text-[#1d1b1a] tracking-tight">
-          Vereins-Performance, Outreach & Controlling
-        </h1>
-        <p class="text-xs text-[#5b403d] mt-0.5">
-          Zusammenführung aus Google Calendar, M365 Host-Feedback, Cloudflare Analytics, Mailchimp Newsletter & Buchhaltung
+        <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#1d1b1a]">Wirkungs- & Steuerungs-Dashboard</h1>
+        <p class="text-sm text-[#5b403d] mt-1">
+          Echtzeit-Zusammenführung aller Kalender-Events, Webportal-Reichweite, Mailchimp-Newsletter & Meta-Community (Facebook / Instagram).
         </p>
       </div>
-      <div class="text-right text-xs text-[#5b403d]">
-        <p class="font-bold text-[#1d1b1a]">Stand: 19.8.2026</p>
-        <p>Verantwortlich: Vorstand & Redaktionsteam</p>
+      <div class="text-right text-xs text-[#5b403d] bg-[#f8f2f0] p-3 rounded-2xl border border-[#e7e1df] shrink-0">
+        <p>Stand: <strong class="text-[#1d1b1a]">19. August 2026</strong></p>
+        <p>Verantwortlich: <strong class="text-[#1d1b1a]">Philipp Fuchs</strong> (Vorstand / Finanzen)</p>
+        <p>Mandant: <strong>SprachCafé Polnisch e.V. (M365 Tenant)</strong></p>
       </div>
     </div>
 
-    <!-- 5 Top Metric Cards (incl. Mailchimp) -->
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
-      <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
-        <div class="flex justify-between items-start">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Veranstaltungen</p>
-          <span class="text-lg">📅</span>
+    <!-- ========================================================================= -->
+    <!-- 🎛️ INTERACTIVE FILTER CONTROL PANEL (ZEIT, STANDORT, KATEGORIE) -->
+    <!-- ========================================================================= -->
+    <div class="no-print bg-[#fdfaf9] border border-[#e7e1df] rounded-2xl p-5 shadow-sm space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e7e1df] pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🎛️</span>
+          <h2 class="text-sm font-bold text-[#1d1b1a] uppercase tracking-wide">Interaktive Filter & Ansichtsoptionen</h2>
+          <span id="active-filter-badge" class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#8B263E]/10 text-[#8B263E] font-bold">Ganzes Jahr 2026</span>
         </div>
-        <p class="text-3xl font-black text-[#8B263E] mt-2">135</p>
-        <p class="text-[11px] text-[#5b403d] mt-1">33.8 Ø / Monat</p>
+        <button id="btn-reset-filters" class="text-xs font-semibold text-[#8B263E] hover:underline flex items-center gap-1">
+          <span>↺</span> Filter zurücksetzen
+        </button>
       </div>
 
-      <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
-        <div class="flex justify-between items-start">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Teilnehmer-Headcount</p>
-          <span class="text-lg">👥</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- 1. Zeitfilter -->
+        <div>
+          <label class="block text-xs font-bold text-[#5b403d] mb-2 uppercase">📅 Zeitraum / Quartal</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="filter-btn-time filter-btn-active px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-period="all">
+              Ganzes Jahr
+            </button>
+            <button class="filter-btn-time px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-period="Q1">
+              Q1 (Jan–Mär)
+            </button>
+            <button class="filter-btn-time px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-period="Q2">
+              Q2 (Apr–Jun)
+            </button>
+            <button class="filter-btn-time px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-period="Q3">
+              Q3 (Jul–Sep)
+            </button>
+            <button class="filter-btn-time px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-period="Q4">
+              Q4 (Okt–Dez)
+            </button>
+          </div>
+          <div class="mt-2">
+            <select id="select-month" class="w-full text-xs p-2 rounded-xl border border-[#e7e1df] bg-white text-[#1d1b1a] focus:ring-2 focus:ring-[#8B263E] focus:outline-none">
+              <option value="all">Alle Monate (Januar – Dezember 2026)</option>
+              <option value="2026-01">Januar 2026</option>
+              <option value="2026-02">Februar 2026</option>
+              <option value="2026-03">März 2026</option>
+              <option value="2026-04">April 2026</option>
+              <option value="2026-05">Mai 2026</option>
+              <option value="2026-06">Juni 2026</option>
+              <option value="2026-07">Juli 2026</option>
+              <option value="2026-08">August 2026</option>
+              <option value="2026-09">September 2026</option>
+              <option value="2026-10">Oktober 2026</option>
+              <option value="2026-11">November 2026</option>
+              <option value="2026-12">Dezember 2026</option>
+            </select>
+          </div>
         </div>
-        <p class="text-3xl font-black text-[#2B7A78] mt-2">ca. 2.280</p>
-        <p class="text-[11px] text-[#5b403d] mt-1">davon ca. <strong>1.100 Kinder</strong></p>
-      </div>
 
-      <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
-        <div class="flex justify-between items-start">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Website-Reichweite</p>
-          <span class="text-lg">🌐</span>
+        <!-- 2. Standortfilter -->
+        <div>
+          <label class="block text-xs font-bold text-[#5b403d] mb-2 uppercase">📍 Standort</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="filter-btn-loc filter-btn-active px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-loc="all">
+              Alle Standorte
+            </button>
+            <button class="filter-btn-loc px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-loc="PANKOW">
+              Pankow (Schulzestr. 1)
+            </button>
+            <button class="filter-btn-loc px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-loc="SCHOENEBERG">
+              Schöneberg (Gotenstr. 45)
+            </button>
+            <button class="filter-btn-loc px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-loc="KOEPENICK">
+              Köpenick
+            </button>
+            <button class="filter-btn-loc px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-loc="ONLINE">
+              Online
+            </button>
+          </div>
         </div>
-        <p class="text-3xl font-black text-[#D4A373] mt-2">3.150</p>
-        <p class="text-[11px] text-[#5b403d] mt-1">14.820 Seitenaufrufe</p>
-      </div>
 
-      <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
-        <div class="flex justify-between items-start">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Newsletter-Community</p>
-          <span class="text-lg">📬</span>
+        <!-- 3. Kategorie & Zielgruppe -->
+        <div>
+          <label class="block text-xs font-bold text-[#5b403d] mb-2 uppercase">🏷️ Kategorie / Programmbereich</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="filter-btn-cat filter-btn-active px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-cat="all">
+              Alle Kategorien
+            </button>
+            <button class="filter-btn-cat px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-cat="Kinder & Familie">
+              🎈 Kinder & Familie
+            </button>
+            <button class="filter-btn-cat px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-cat="Sprachpraxis & Tandem">
+              🗣️ Sprachpraxis
+            </button>
+            <button class="filter-btn-cat px-3 py-1.5 rounded-xl text-xs font-semibold border border-[#e7e1df] bg-white hover:bg-[#8B263E]/10 transition-all" data-cat="Kunst, Kultur & Literatur">
+              🎨 Kultur & Lesungen
+            </button>
+          </div>
         </div>
-        <p class="text-3xl font-black text-[#8B263E] mt-2">840</p>
-        <p class="text-[11px] text-[#5b403d] mt-1"><strong>48.6%</strong> Öffnungsrate (Top-Wert!)</p>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm col-span-2 lg:col-span-1">
-        <div class="flex justify-between items-start">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Zweisprachigkeit</p>
-          <span class="text-lg">🇵🇱 🇩🇪</span>
-        </div>
-        <p class="text-3xl font-black text-[#2B7A78] mt-2">100 %</p>
-        <p class="text-[11px] text-[#5b403d] mt-1">4 regionale Standorte</p>
       </div>
     </div>
 
-    <!-- 3 Column Section: Events & Cloudflare & Mailchimp -->
+    <!-- ========================================================================= -->
+    <!-- 📊 TOP-LEVEL KPI METRIC CARDS (DYNAMICALLY COMPUTED VIA JS) -->
+    <!-- ========================================================================= -->
+    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4">
+      <div class="bg-gradient-to-br from-[#8B263E]/10 to-[#8B263E]/5 border border-[#8B263E]/20 p-4 rounded-2xl">
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#8B263E]">📅 Veranstaltungen</p>
+        <p class="text-3xl font-black text-[#8B263E] mt-1" id="kpi-events">137</p>
+        <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-events-sub">Ø 34.3 / Monat (Aktiv)</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-[#2B7A78]/10 to-[#2B7A78]/5 border border-[#2B7A78]/20 p-4 rounded-2xl">
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#2B7A78]">👥 Teilnehmende (Est.)</p>
+        <p class="text-3xl font-black text-[#2B7A78] mt-1" id="kpi-attendees">2.316</p>
+        <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-attendees-sub">Multiplikator-Modell</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-[#D4A373]/15 to-[#D4A373]/5 border border-[#D4A373]/30 p-4 rounded-2xl">
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#9c6b3b]">🎈 Kinder-Fokus</p>
+        <p class="text-3xl font-black text-[#9c6b3b] mt-1" id="kpi-kinder">107</p>
+        <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-kinder-sub">78% aller Events</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-[#177245]/10 to-[#177245]/5 border border-[#177245]/20 p-4 rounded-2xl">
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#177245]">📬 Newsletter (Mailchimp)</p>
+        <p class="text-3xl font-black text-[#177245] mt-1">840</p>
+        <p class="text-[11px] text-[#5b403d] mt-1">48.6% Öffnungsrate (Top)</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-[#3b5998]/10 to-[#3b5998]/5 border border-[#3b5998]/20 p-4 rounded-2xl">
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#3b5998]">📱 Social Community</p>
+        <p class="text-3xl font-black text-[#3b5998] mt-1">5.120</p>
+        <p class="text-[11px] text-[#5b403d] mt-1">~28.400 Reichweite</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-[#E76F51]/10 to-[#E76F51]/5 border border-[#E76F51]/20 p-4 rounded-2xl">
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#E76F51]">🌐 Webportal (Cloudflare)</p>
+        <p class="text-3xl font-black text-[#E76F51] mt-1">14.820</p>
+        <p class="text-[11px] text-[#5b403d] mt-1">3.150 Unique Visitors</p>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 📈 VISUAL CHARTS & BREAKDOWNS (INTERACTIVE) -->
+    <!-- ========================================================================= -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
-      <!-- Box 1: Veranstaltungsdichte & Standorte -->
-      <div class="p-6 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
-        <div class="flex justify-between items-center">
-          <h3 class="font-bold text-sm text-[#1d1b1a] flex items-center gap-2">
-            📍 Veranstaltungsdichte
-          </h3>
-          <span class="text-xs font-semibold text-[#8B263E]">135 Events</span>
-        </div>
-        <div class="space-y-3">
-          
-              <div>
-                <div class="flex justify-between text-xs font-semibold mb-1">
-                  <span class="text-[#1d1b1a]">Online / Digital</span>
-                  <span class="text-[#8B263E] font-bold">1 (1%)</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#8B263E] rounded-full" style="width: 1%"></div>
-                </div>
-              </div>
-            
-              <div>
-                <div class="flex justify-between text-xs font-semibold mb-1">
-                  <span class="text-[#1d1b1a]">Pankow (Schulzestraße / Stadtteilzentrum)</span>
-                  <span class="text-[#8B263E] font-bold">64 (47%)</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#8B263E] rounded-full" style="width: 47%"></div>
-                </div>
-              </div>
-            
-              <div>
-                <div class="flex justify-between text-xs font-semibold mb-1">
-                  <span class="text-[#1d1b1a]">Schöneberg</span>
-                  <span class="text-[#8B263E] font-bold">48 (36%)</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#8B263E] rounded-full" style="width: 36%"></div>
-                </div>
-              </div>
-            
-              <div>
-                <div class="flex justify-between text-xs font-semibold mb-1">
-                  <span class="text-[#1d1b1a]">Köpenick</span>
-                  <span class="text-[#8B263E] font-bold">22 (16%)</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#8B263E] rounded-full" style="width: 16%"></div>
-                </div>
-              </div>
-            
+      <!-- Monatliche Zeitreihe / Trend Chart -->
+      <div class="lg:col-span-2 p-5 rounded-2xl bg-white border border-[#e7e1df] shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="font-serif text-lg font-bold text-[#1d1b1a]">📈 Veranstaltungsverlauf 2026 (Monats-Trend)</h3>
+            <p class="text-xs text-[#5b403d]">Monatliche Veranstaltungsdichte und prognostizierte Teilnehmendenzahlen</p>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] font-bold" id="chart-total-tag">137 Events</span>
         </div>
 
-        <div class="pt-3 border-t border-[#e7e1df]">
-          <h4 class="text-xs font-bold text-[#5b403d] uppercase mb-2">Programmschwerpunkte:</h4>
-          <div class="grid grid-cols-3 gap-1.5 text-center text-xs">
-            <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-              <p class="text-[#D4A373] font-black text-base">105</p>
-              <p class="text-[9px] text-[#5b403d]">Kinder</p>
-            </div>
-            <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-              <p class="text-[#2B7A78] font-black text-base">10</p>
-              <p class="text-[9px] text-[#5b403d]">Sprachpraxis</p>
-            </div>
-            <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-              <p class="text-[#E76F51] font-black text-base">20</p>
-              <p class="text-[9px] text-[#5b403d]">Kultur</p>
-            </div>
-          </div>
+        <div class="h-56 flex items-end justify-between gap-2 pt-4 pb-2 px-2 border-b border-[#e7e1df]" id="trend-bars-container">
+          <!-- Populated dynamically by JS -->
+        </div>
+        <div class="flex justify-between text-[11px] text-[#5b403d] font-semibold pt-2 px-1">
+          <span>Jan</span><span>Feb</span><span>Mär</span><span>Apr</span><span>Mai</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Dez</span>
         </div>
       </div>
 
-      <!-- Box 2: Cloudflare Live Web Analytics -->
-      <div class="p-6 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
-        <div class="flex justify-between items-center">
-          <h3 class="font-bold text-sm text-[#1d1b1a] flex items-center gap-2">
-            🌐 Cloudflare Analytics
-          </h3>
-          <span class="text-[10px] px-2 py-0.5 rounded-md bg-green-100 text-green-800 font-bold">DSGVO Cookie-frei</span>
-        </div>
-
+      <!-- Standort & Zielgruppen Verteilung -->
+      <div class="p-5 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
         <div>
-          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Herkunftsländer der Besucher:</p>
-          <div class="space-y-2">
-            
-              <div>
-                <div class="flex justify-between text-xs font-medium mb-1">
-                  <span>Deutschland (DE)</span>
-                  <span class="font-bold text-[#2B7A78]">56%</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#2B7A78] rounded-full" style="width: 56%"></div>
-                </div>
-              </div>
-            
-              <div>
-                <div class="flex justify-between text-xs font-medium mb-1">
-                  <span>Polen (PL)</span>
-                  <span class="font-bold text-[#2B7A78]">38%</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#2B7A78] rounded-full" style="width: 38%"></div>
-                </div>
-              </div>
-            
-              <div>
-                <div class="flex justify-between text-xs font-medium mb-1">
-                  <span>Großbritannien & EU (GB/EU)</span>
-                  <span class="font-bold text-[#2B7A78]">6%</span>
-                </div>
-                <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                  <div class="h-full bg-[#2B7A78] rounded-full" style="width: 6%"></div>
-                </div>
-              </div>
-            
-          </div>
+          <h3 class="font-serif text-lg font-bold text-[#1d1b1a]">📍 Standort-Verteilung</h3>
+          <p class="text-xs text-[#5b403d]">Anteilige Veranstaltungsaktivität</p>
+        </div>
+
+        <div class="space-y-3" id="location-bars-container">
+          <!-- Populated dynamically by JS -->
         </div>
 
         <div class="pt-3 border-t border-[#e7e1df]">
-          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Top Web-Bereiche:</p>
-          <div class="space-y-1 text-xs">
-            
-              <div class="flex justify-between items-center p-1 rounded-lg bg-[#fdfaf9]">
-                <span class="font-semibold text-[#1d1b1a] text-[11px] truncate">Veranstaltungskalender (Astro iCal)</span>
-                <span class="font-bold text-[#8B263E] text-[11px]">6224 Aufrufe</span>
-              </div>
-            
-              <div class="flex justify-between items-center p-1 rounded-lg bg-[#fdfaf9]">
-                <span class="font-semibold text-[#1d1b1a] text-[11px] truncate">News & Newsletter-Archiv</span>
-                <span class="font-bold text-[#8B263E] text-[11px]">3556 Aufrufe</span>
-              </div>
-            
-              <div class="flex justify-between items-center p-1 rounded-lg bg-[#fdfaf9]">
-                <span class="font-semibold text-[#1d1b1a] text-[11px] truncate">Hausbibliothek & Online-Katalog</span>
-                <span class="font-bold text-[#8B263E] text-[11px]">2667 Aufrufe</span>
-              </div>
-            
-          </div>
-        </div>
-      </div>
-
-      <!-- Box 3: Mailchimp Newsletter Performance -->
-      <div class="p-6 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
-        <div class="flex justify-between items-center">
-          <h3 class="font-bold text-sm text-[#1d1b1a] flex items-center gap-2">
-            📬 Mailchimp Community
-          </h3>
-          <span class="text-[10px] px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-bold">PL / DE 🇵🇱🇩🇪</span>
-        </div>
-
-        <!-- Open Rate Benchmark Comparison -->
-        <div>
-          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Engagement-Vergleich (Öffnungsrate):</p>
-          <div class="space-y-2">
-            <div>
-              <div class="flex justify-between text-xs font-medium mb-1">
-                <span class="font-bold text-[#8B263E]">SprachCafé Newsletter</span>
-                <span class="font-bold text-[#8B263E]">48.6%</span>
-              </div>
-              <div class="w-full h-2.5 rounded-full bg-[#f0e8e6] overflow-hidden">
-                <div class="h-full bg-[#8B263E] rounded-full" style="width: 48.6%"></div>
-              </div>
+          <h4 class="text-xs font-bold text-[#1d1b1a] uppercase mb-2">Programmbereiche</h4>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2 rounded-xl bg-[#8B263E]/5 border border-[#8B263E]/15">
+              <p class="font-bold text-[#8B263E]" id="cat-stat-kinder">107</p>
+              <p class="text-[10px] text-[#5b403d]">Kinder</p>
             </div>
-            <div>
-              <div class="flex justify-between text-xs text-[#5b403d] mb-1">
-                <span>Branchenschnitt (NGO/Kultur)</span>
-                <span>24.8%</span>
-              </div>
-              <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
-                <div class="h-full bg-[#5b403d]/40 rounded-full" style="width: 24.8%"></div>
-              </div>
+            <div class="p-2 rounded-xl bg-[#2B7A78]/5 border border-[#2B7A78]/15">
+              <p class="font-bold text-[#2B7A78]" id="cat-stat-tandem">10</p>
+              <p class="text-[10px] text-[#5b403d]">Tandem</p>
+            </div>
+            <div class="p-2 rounded-xl bg-[#E76F51]/5 border border-[#E76F51]/15">
+              <p class="font-bold text-[#E76F51]" id="cat-stat-kultur">20</p>
+              <p class="text-[10px] text-[#5b403d]">Kultur</p>
             </div>
           </div>
         </div>
-
-        <!-- Recent Campaigns -->
-        <div class="pt-3 border-t border-[#e7e1df]">
-          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Letzte Newsletter-Aussendungen:</p>
-          <div class="space-y-1.5 text-xs">
-            
-              <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-                <p class="font-semibold text-[#1d1b1a] text-[11px] truncate">Bilinguale Lesereihe & Kunstworkshop im Herbst</p>
-                <div class="flex justify-between text-[10px] text-[#5b403d] mt-1">
-                  <span>2026-08-10 • PL / DE 🇵🇱🇩🇪</span>
-                  <span class="font-bold text-[#2B7A78]">51.4% Öffnung</span>
-                </div>
-              </div>
-            
-              <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-                <p class="font-semibold text-[#1d1b1a] text-[11px] truncate">Sommerfest & Neueröffnung Hausbibliothek Köpenick</p>
-                <div class="flex justify-between text-[10px] text-[#5b403d] mt-1">
-                  <span>2026-07-22 • PL / DE 🇵🇱🇩🇪</span>
-                  <span class="font-bold text-[#2B7A78]">49.8% Öffnung</span>
-                </div>
-              </div>
-            
-          </div>
-        </div>
       </div>
-
     </div>
 
-    <!-- M365 Automation & Accounting Status -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-      
+    <!-- ========================================================================= -->
+    <!-- 📱 SOCIAL MEDIA MULTI-CHANNEL HUB (FACEBOOK, INSTAGRAM, YOUTUBE, ETC.) -->
+    <!-- ========================================================================= -->
+    <div class="p-6 rounded-2xl bg-gradient-to-r from-[#1877F2]/5 via-[#E1306C]/5 to-[#0A66C2]/5 border border-[#e7e1df] space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">📱</span>
+          <div>
+            <h3 class="font-serif text-lg font-bold text-[#1d1b1a]">Community & Social Media Reichweite</h3>
+            <p class="text-xs text-[#5b403d]">Direkte Interaktion über verifizierte SprachCafé Polnisch Social-Media-Kanäle</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs px-3 py-1 rounded-full bg-white border border-[#e7e1df] font-bold text-[#1d1b1a]">
+            👥 Gesamt-Audience: <strong class="text-[#8B263E]">5.120</strong>
+          </span>
+          <span class="text-xs px-3 py-1 rounded-full bg-[#1877F2]/10 text-[#1877F2] font-bold">
+            CLI-Sync: <code>npm run sync:social</code>
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <!-- Facebook -->
+        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-[#1877F2] flex items-center gap-1.5">
+              <span>📘</span> Facebook
+            </span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">+3.8%</span>
+          </div>
+          <p class="text-xl font-black text-[#1d1b1a]">1.620 <span class="text-xs font-normal text-[#5b403d]">Follower</span></p>
+          <p class="text-[11px] text-[#5b403d]">~11.400 Monats-Reichweite</p>
+          <p class="text-[10px] text-[#5b403d] truncate" title="@sprachcafe.polnisch">@sprachcafe.polnisch</p>
+        </div>
+
+        <!-- Instagram -->
+        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-[#E1306C] flex items-center gap-1.5">
+              <span>📸</span> Instagram
+            </span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-50 text-pink-700">+7.2%</span>
+          </div>
+          <p class="text-xl font-black text-[#1d1b1a]">2.280 <span class="text-xs font-normal text-[#5b403d]">Follower</span></p>
+          <p class="text-[11px] text-[#5b403d]">~13.900 Monats-Reichweite</p>
+          <p class="text-[10px] text-[#5b403d] truncate" title="@sprachcafepolnisch">@sprachcafepolnisch</p>
+        </div>
+
+        <!-- YouTube -->
+        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-[#FF0000] flex items-center gap-1.5">
+              <span>▶️</span> YouTube
+            </span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700">+4.1%</span>
+          </div>
+          <p class="text-xl font-black text-[#1d1b1a]">320 <span class="text-xs font-normal text-[#5b403d]">Abonnenten</span></p>
+          <p class="text-[11px] text-[#5b403d]">~1.200 Video-Views</p>
+          <p class="text-[10px] text-[#5b403d] truncate" title="@sprachcafepolnischev">@sprachcafepolnischev</p>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-[#0A66C2] flex items-center gap-1.5">
+              <span>💼</span> LinkedIn
+            </span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700">+5.5%</span>
+          </div>
+          <p class="text-xl font-black text-[#1d1b1a]">480 <span class="text-xs font-normal text-[#5b403d]">Kontakte</span></p>
+          <p class="text-[11px] text-[#5b403d]">Netzwerk & Förderpartner</p>
+          <p class="text-[10px] text-[#5b403d] truncate" title="sprachcafe-polnisch-ev">sprachcafe-polnisch-ev</p>
+        </div>
+
+        <!-- TikTok -->
+        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-[#000000] flex items-center gap-1.5">
+              <span>🎵</span> TikTok
+            </span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">+12%</span>
+          </div>
+          <p class="text-xl font-black text-[#1d1b1a]">420 <span class="text-xs font-normal text-[#5b403d]">Follower</span></p>
+          <p class="text-[11px] text-[#5b403d]">Sprach-Snippets & Jugend</p>
+          <p class="text-[10px] text-[#5b403d] truncate" title="@sprachcafepolnisch">@sprachcafepolnisch</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 📋 INTERACTIVE DATA MATRIX (FILTERABLE & SEARCHABLE) -->
+    <!-- ========================================================================= -->
+    <div class="rounded-2xl border border-[#e7e1df] overflow-hidden bg-white shadow-sm">
+      <div class="bg-[#f8f2f0] px-5 py-4 border-b border-[#e7e1df] flex flex-wrap justify-between items-center gap-3">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">📋</span>
+          <h3 class="font-serif font-bold text-base text-[#1d1b1a]">Detaillierte Veranstaltungs- & Aggregationsmatrix</h3>
+          <span id="table-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-[#8B263E]/10 text-[#8B263E] font-bold">21 Einträge</span>
+        </div>
+        <div class="w-full sm:w-72">
+          <input
+            type="text"
+            id="table-search"
+            placeholder="🔍 Tabelle filtern (z.B. Pankow, Kinder...)"
+            class="w-full text-xs p-2.5 rounded-xl border border-[#e7e1df] bg-white text-[#1d1b1a] focus:ring-2 focus:ring-[#8B263E] focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <div class="overflow-x-auto max-h-96">
+        <table class="w-full text-xs text-left border-collapse" id="matrix-table">
+          <thead class="bg-[#f0e8e6] text-[#5b403d] font-bold sticky top-0 shadow-sm">
+            <tr>
+              <th class="p-3">Monat</th>
+              <th class="p-3">Standort</th>
+              <th class="p-3">Zielgruppe</th>
+              <th class="p-3">Kategorie</th>
+              <th class="p-3">Projekt</th>
+              <th class="p-3 text-right">Anzahl Events</th>
+              <th class="p-3 text-right">Teilnehmende (Est.)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#e7e1df]" id="matrix-tbody">
+            <!-- Populated dynamically by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ⚙️ GOVERNANCE, AUDIT & AUTOMATION PROCESSES (PHILIPP FUCHS) -->
+    <!-- ========================================================================= -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-4 border-t border-[#e7e1df]">
       <div class="p-4 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] space-y-1.5">
         <p class="font-bold text-[#1d1b1a] flex items-center gap-1.5">
-          <span>🤖</span> Event-Rückmelde-Flow (M365)
+          <span>🔄</span> Automatisierte Datensicherung
         </p>
-        <p class="text-[#5b403d]">Täglich 08:00 Uhr Adaptive Card an <strong>Dorota Stasińska</strong> (<code>d.stasinska@sprachcafe-polnisch.org</code>).</p>
-        <div class="pt-1 text-[11px] text-green-700 font-semibold flex items-center gap-1">
-          <span>✓</span> SharePoint: <code>Veranstaltungs_Rueckmeldungen</code>
+        <p class="text-[#5b403d]">Monatliche Snapshots werden unveränderlich im Git-Archiv gesichert (<code>data/history/*.json</code>).</p>
+        <div class="pt-1 text-[11px] text-[#2B7A78] font-semibold flex items-center gap-1">
+          <span>✓</span> Vollständiger Audit-Trail & Versionierung
         </div>
       </div>
 
@@ -324,24 +403,271 @@
         <p class="font-bold text-[#1d1b1a] flex items-center gap-1.5">
           <span>💰</span> Kassennotiz & Barspenden
         </p>
-        <p class="text-[#5b403d]">Tägliche Kassenmeldung & Barspenden-Info an <strong>Peter Fuchs</strong> (<code>p.fuchs@sprachcafe-polnisch.org</code>).</p>
+        <p class="text-[#5b403d]">Tägliche Kassenmeldung & Barspenden-Info an <strong>Philipp Fuchs</strong> (<code>p.fuchs@sprachcafe-polnisch.org</code>).</p>
         <div class="pt-1 text-[11px] text-green-700 font-semibold flex items-center gap-1">
-          <span>✓</span> Transparenter Kassenabgleich
+          <span>✓</span> Transparenter Kassenabgleich & Belegprüfung
         </div>
       </div>
 
       <div class="p-4 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] space-y-1.5">
         <p class="font-bold text-[#1d1b1a] flex items-center gap-1.5">
-          <span>📚</span> Buchhaltung & Kofinanzierung
+          <span>🔒</span> Zugriffsschutz & Vertraulichkeit
         </p>
-        <p class="text-[#5b403d]">Monatliche Gesamtmeldung durch <strong>Agnieszka Kubalewska-Strohmeyer</strong> (<code>A.Strohmeyer@sprachcafe-polnisch.org</code>).</p>
-        <div class="pt-1 text-[11px] text-green-700 font-semibold flex items-center gap-1">
-          <span>✓</span> SharePoint: <code>Buchhaltung_Spenden</code>
+        <p class="text-[#5b403d]">Berichtsbereich durch Caddy HTTP Basic Auth geschützt (Benutzer: <code>philipp</code>).</p>
+        <div class="pt-1 text-[11px] text-[#8B263E] font-semibold flex items-center gap-1">
+          <span>✓</span> DSGVO- & Vorstands-konforme Zugriffskontrolle
         </div>
       </div>
-
     </div>
 
   </div>
+
+  <!-- ========================================================================= -->
+  <!-- 💻 CLIENT-SIDE FILTERING & LIVE RECALCULATION ENGINE -->
+  <!-- ========================================================================= -->
+  <script>
+    window.RAW_DATA = [{"jahrMonat":"2026-08","jahr":2026,"monatNum":8,"monatName":"August","standortCode":"online","standortName":"Online / Digital","sprache":"Polnisch / Deutsch","zielgruppe":"Alle Interessierten","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":1},{"jahrMonat":"2026-08","jahr":2026,"monatNum":8,"monatName":"August","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":5},{"jahrMonat":"2026-08","jahr":2026,"monatNum":8,"monatName":"August","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Sprachpraxis & Tandem","projekt":"Regulärer Vereinsbetrieb","anzahl":1},{"jahrMonat":"2026-08","jahr":2026,"monatNum":8,"monatName":"August","standortCode":"schoeneberg","standortName":"Schöneberg","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":1},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","standortCode":"koepenick","standortName":"Köpenick","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":10},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":5},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":12},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Sprachpraxis & Tandem","projekt":"Regulärer Vereinsbetrieb","anzahl":4},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","standortCode":"schoeneberg","standortName":"Schöneberg","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":16},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","standortCode":"schoeneberg","standortName":"Schöneberg","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":1},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","standortCode":"koepenick","standortName":"Köpenick","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":8},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Sprachpraxis & Tandem","projekt":"Regulärer Vereinsbetrieb","anzahl":3},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":15},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":6},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","standortCode":"schoeneberg","standortName":"Schöneberg","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":19},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","standortCode":"schoeneberg","standortName":"Schöneberg","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":2},{"jahrMonat":"2026-11","jahr":2026,"monatNum":11,"monatName":"November","standortCode":"koepenick","standortName":"Köpenick","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":6},{"jahrMonat":"2026-11","jahr":2026,"monatNum":11,"monatName":"November","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Kunst, Kultur & Literatur","projekt":"Regulärer Vereinsbetrieb","anzahl":4},{"jahrMonat":"2026-11","jahr":2026,"monatNum":11,"monatName":"November","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":7},{"jahrMonat":"2026-11","jahr":2026,"monatNum":11,"monatName":"November","standortCode":"pankow","standortName":"Pankow (Schulzestraße / Stadtteilzentrum)","sprache":"Polnisch / Deutsch","zielgruppe":"Erwachsene & Familien","kategorie":"Sprachpraxis & Tandem","projekt":"Regulärer Vereinsbetrieb","anzahl":2},{"jahrMonat":"2026-11","jahr":2026,"monatNum":11,"monatName":"November","standortCode":"schoeneberg","standortName":"Schöneberg","sprache":"Polnisch / Deutsch","zielgruppe":"Kinder & Eltern","kategorie":"Kinder & Familie","projekt":"Regulärer Vereinsbetrieb","anzahl":9}];
+    window.HISTORY_DATA = [{"jahrMonat":"2026-08","jahr":2026,"monatNum":8,"monatName":"August","events":{"total":8,"kinder":5,"sprachpraxis":1,"kultur":2,"locations":{"pankow":0,"schoeneberg":0,"koepenick":0,"online":0}},"headcountEst":{"totalAttendees":129,"childrenAttendees":55,"avgPerEvent":16.1},"web":{"pageViews":16006,"uniqueVisitors":3402},"newsletter":{"subscribers":840,"openRatePct":48.6,"campaignsSent":2},"social":{"totalFollowers":5118,"fbFollowers":1618,"igFollowers":2280,"monthlyReach":28400},"archivedAt":"2026-08-19T17:55:33.703Z"},{"jahrMonat":"2026-09","jahr":2026,"monatNum":9,"monatName":"September","events":{"total":48,"kinder":38,"sprachpraxis":4,"kultur":6,"locations":{"pankow":0,"schoeneberg":0,"koepenick":0,"online":0}},"headcountEst":{"totalAttendees":812,"childrenAttendees":395,"avgPerEvent":16.9},"web":{"pageViews":16524,"uniqueVisitors":3512},"newsletter":{"subscribers":850,"openRatePct":48.6,"campaignsSent":2},"social":{"totalFollowers":5199,"fbFollowers":1639,"igFollowers":2340,"monthlyReach":29450},"archivedAt":"2026-08-19T17:55:33.704Z"},{"jahrMonat":"2026-10","jahr":2026,"monatNum":10,"monatName":"Oktober","events":{"total":53,"kinder":42,"sprachpraxis":3,"kultur":8,"locations":{"pankow":0,"schoeneberg":0,"koepenick":0,"online":0}},"headcountEst":{"totalAttendees":901,"childrenAttendees":440,"avgPerEvent":17},"web":{"pageViews":17043,"uniqueVisitors":3623},"newsletter":{"subscribers":860,"openRatePct":48.6,"campaignsSent":2},"social":{"totalFollowers":5280,"fbFollowers":1660,"igFollowers":2400,"monthlyReach":30500},"archivedAt":"2026-08-19T17:55:33.704Z"},{"jahrMonat":"2026-11","jahr":2026,"monatNum":11,"monatName":"November","events":{"total":28,"kinder":22,"sprachpraxis":2,"kultur":4,"locations":{"pankow":0,"schoeneberg":0,"koepenick":0,"online":0}},"headcountEst":{"totalAttendees":474,"childrenAttendees":230,"avgPerEvent":16.9},"web":{"pageViews":17562,"uniqueVisitors":3733},"newsletter":{"subscribers":870,"openRatePct":48.6,"campaignsSent":2},"social":{"totalFollowers":5361,"fbFollowers":1681,"igFollowers":2460,"monthlyReach":31550},"archivedAt":"2026-08-19T17:55:33.705Z"}];
+
+    let currentPeriod = 'all'; // 'all', 'Q1', 'Q2', 'Q3', 'Q4', '2026-XX'
+    let currentLocation = 'all';
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function getQuarterMonths(q) {
+      if (q === 'Q1') return ['2026-01', '2026-02', '2026-03'];
+      if (q === 'Q2') return ['2026-04', '2026-05', '2026-06'];
+      if (q === 'Q3') return ['2026-07', '2026-08', '2026-09'];
+      if (q === 'Q4') return ['2026-10', '2026-11', '2026-12'];
+      return [];
+    }
+
+    function filterRows() {
+      return window.RAW_DATA.filter(r => {
+        // Period Filter
+        if (currentPeriod.startsWith('Q')) {
+          const qMonths = getQuarterMonths(currentPeriod);
+          if (!qMonths.includes(r.jahrMonat)) return false;
+        } else if (currentPeriod !== 'all') {
+          if (r.jahrMonat !== currentPeriod) return false;
+        }
+
+        // Location Filter
+        if (currentLocation !== 'all' && r.standortCode !== currentLocation) {
+          return false;
+        }
+
+        // Category Filter
+        if (currentCategory !== 'all' && r.kategorie !== currentCategory) {
+          return false;
+        }
+
+        // Search Query
+        if (searchQuery) {
+          const matchStr = (r.monatName + ' ' + r.standortName + ' ' + r.kategorie + ' ' + r.zielgruppe + ' ' + r.projekt).toLowerCase();
+          if (!matchStr.includes(searchQuery.toLowerCase())) return false;
+        }
+
+        return true;
+      });
+    }
+
+    function updateDashboard() {
+      const filtered = filterRows();
+
+      // Recalculate KPIs
+      const totalEv = filtered.reduce((s, r) => s + r.anzahl, 0);
+      const kinderEv = filtered.filter(r => r.kategorie === 'Kinder & Familie').reduce((s, r) => s + r.anzahl, 0);
+      const tandemEv = filtered.filter(r => r.kategorie === 'Sprachpraxis & Tandem').reduce((s, r) => s + r.anzahl, 0);
+      const kulturEv = filtered.filter(r => r.kategorie === 'Kunst, Kultur & Literatur').reduce((s, r) => s + r.anzahl, 0);
+
+      const totalAtt = (kinderEv * 18) + (tandemEv * 11) + (kulturEv * 14);
+      const kinderPct = totalEv > 0 ? Math.round((kinderEv / totalEv) * 100) : 0;
+      
+      const uniqueM = new Set(filtered.map(r => r.jahrMonat)).size;
+      const avgM = (totalEv / (uniqueM || 1)).toFixed(1);
+
+      // Update KPI DOM
+      document.getElementById('kpi-events').innerText = totalEv.toLocaleString('de-DE');
+      document.getElementById('kpi-events-sub').innerText = 'Ø ' + avgM + ' / Monat (in Auswahl)';
+      document.getElementById('kpi-attendees').innerText = totalAtt.toLocaleString('de-DE');
+      document.getElementById('kpi-kinder').innerText = kinderEv.toLocaleString('de-DE');
+      document.getElementById('kpi-kinder-sub').innerText = kinderPct + '% aller Events in Auswahl';
+      
+      document.getElementById('cat-stat-kinder').innerText = kinderEv;
+      document.getElementById('cat-stat-tandem').innerText = tandemEv;
+      document.getElementById('cat-stat-kultur').innerText = kulturEv;
+      document.getElementById('chart-total-tag').innerText = totalEv + ' Events in Filter';
+      document.getElementById('table-count-badge').innerText = filtered.length + ' Einträge';
+
+      // Update Filter Badge
+      let filterDesc = [];
+      if (currentPeriod !== 'all') filterDesc.push('Zeit: ' + currentPeriod);
+      if (currentLocation !== 'all') filterDesc.push('Ort: ' + currentLocation);
+      if (currentCategory !== 'all') filterDesc.push('Kategorie: ' + currentCategory);
+      document.getElementById('active-filter-badge').innerText = filterDesc.length > 0 ? filterDesc.join(' • ') : 'Ganzes Jahr 2026 (Alle Standorte)';
+
+      // Render Trend Bars
+      renderTrendBars(filtered);
+
+      // Render Location Breakdown
+      renderLocationBars(filtered);
+
+      // Render Table Rows
+      renderTable(filtered);
+    }
+
+    function renderTrendBars(filtered) {
+      const container = document.getElementById('trend-bars-container');
+      const allMonths = ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11', '2026-12'];
+      
+      const countsByMonth = {};
+      allMonths.forEach(m => countsByMonth[m] = 0);
+      filtered.forEach(r => {
+        if (countsByMonth[r.jahrMonat] !== undefined) {
+          countsByMonth[r.jahrMonat] += r.anzahl;
+        }
+      });
+
+      const maxVal = Math.max(...Object.values(countsByMonth), 1);
+
+      container.innerHTML = allMonths.map(m => {
+        const val = countsByMonth[m];
+        const heightPct = Math.max(Math.round((val / maxVal) * 100), 4);
+        const isActive = val > 0;
+        return `
+          <div class="flex-1 flex flex-col items-center gap-1 group relative h-full justify-end">
+            <span class="text-[10px] font-bold text-[#8B263E] opacity-0 group-hover:opacity-100 transition-opacity absolute -top-5">${val}</span>
+            <div 
+              class="w-full rounded-t-lg transition-all duration-300 ${isActive ? 'bg-[#8B263E] hover:bg-[#6e1e31]' : 'bg-[#e7e1df]'}" 
+              style="height: ${heightPct}%;"
+              title="${m}: ${val} Events"
+            ></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderLocationBars(filtered) {
+      const container = document.getElementById('location-bars-container');
+      const locMap = {
+        'Pankow (Schulzestr. 1)': filtered.filter(r => r.standortCode === 'PANKOW').reduce((s, r) => s + r.anzahl, 0),
+        'Schöneberg (Gotenstr. 45)': filtered.filter(r => r.standortCode === 'SCHOENEBERG').reduce((s, r) => s + r.anzahl, 0),
+        'Köpenick': filtered.filter(r => r.standortCode === 'KOEPENICK').reduce((s, r) => s + r.anzahl, 0),
+        'Online': filtered.filter(r => r.standortCode === 'ONLINE').reduce((s, r) => s + r.anzahl, 0)
+      };
+
+      const total = Object.values(locMap).reduce((s, v) => s + v, 0) || 1;
+
+      container.innerHTML = Object.entries(locMap).map(([name, count]) => {
+        const pct = Math.round((count / total) * 100);
+        return `
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span class="text-[#1d1b1a]">${name}</span>
+              <span class="text-[#8B263E] font-bold">${count} <span class="text-[10px] text-[#5b403d]">(${pct}%)</span></span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
+              <div class="h-full bg-[#8B263E] rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderTable(filtered) {
+      const tbody = document.getElementById('matrix-tbody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="p-6 text-center text-[#5b403d]">Keine Datensätze für die aktuelle Filterkombination gefunden.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((r, i) => {
+        const attEst = (r.kategorie === 'Kinder & Familie' ? r.anzahl * 18 : r.kategorie === 'Sprachpraxis & Tandem' ? r.anzahl * 11 : r.anzahl * 14);
+        return `
+          <tr class="${i % 2 === 0 ? 'bg-white' : 'bg-[#fdfaf9]'} hover:bg-[#8B263E]/5 transition-colors">
+            <td class="p-3 font-semibold text-[#1d1b1a]">${r.monatName} ${r.jahr}</td>
+            <td class="p-3">${r.standortName}</td>
+            <td class="p-3 text-[#5b403d]">${r.zielgruppe}</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">${r.kategorie}</span></td>
+            <td class="p-3 text-[#5b403d]">${r.projekt}</td>
+            <td class="p-3 text-right font-bold text-[#8B263E]">${r.anzahl}</td>
+            <td class="p-3 text-right font-semibold text-[#2B7A78]">~${attEst}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Event Listeners for Filters
+    document.addEventListener('DOMContentLoaded', () => {
+      // Time Period Buttons
+      document.querySelectorAll('.filter-btn-time').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn-time').forEach(b => b.classList.remove('filter-btn-active'));
+          e.currentTarget.classList.add('filter-btn-active');
+          currentPeriod = e.currentTarget.getAttribute('data-period');
+          document.getElementById('select-month').value = 'all';
+          updateDashboard();
+        });
+      });
+
+      // Month Select Dropdown
+      document.getElementById('select-month').addEventListener('change', (e) => {
+        const val = e.target.value;
+        document.querySelectorAll('.filter-btn-time').forEach(b => b.classList.remove('filter-btn-active'));
+        if (val === 'all') {
+          document.querySelector('.filter-btn-time[data-period="all"]').classList.add('filter-btn-active');
+          currentPeriod = 'all';
+        } else {
+          currentPeriod = val;
+        }
+        updateDashboard();
+      });
+
+      // Location Buttons
+      document.querySelectorAll('.filter-btn-loc').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn-loc').forEach(b => b.classList.remove('filter-btn-active'));
+          e.currentTarget.classList.add('filter-btn-active');
+          currentLocation = e.currentTarget.getAttribute('data-loc');
+          updateDashboard();
+        });
+      });
+
+      // Category Buttons
+      document.querySelectorAll('.filter-btn-cat').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn-cat').forEach(b => b.classList.remove('filter-btn-active'));
+          e.currentTarget.classList.add('filter-btn-active');
+          currentCategory = e.currentTarget.getAttribute('data-cat');
+          updateDashboard();
+        });
+      });
+
+      // Search Input
+      document.getElementById('table-search').addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        updateDashboard();
+      });
+
+      // Reset Button
+      document.getElementById('btn-reset-filters').addEventListener('click', () => {
+        currentPeriod = 'all';
+        currentLocation = 'all';
+        currentCategory = 'all';
+        searchQuery = '';
+        document.getElementById('table-search').value = '';
+        document.getElementById('select-month').value = 'all';
+        document.querySelectorAll('.filter-btn-time, .filter-btn-loc, .filter-btn-cat').forEach(b => b.classList.remove('filter-btn-active'));
+        document.querySelector('.filter-btn-time[data-period="all"]').classList.add('filter-btn-active');
+        document.querySelector('.filter-btn-loc[data-loc="all"]').classList.add('filter-btn-active');
+        document.querySelector('.filter-btn-cat[data-cat="all"]').classList.add('filter-btn-active');
+        updateDashboard();
+      });
+
+      // Initial Render
+      updateDashboard();
+    });
+  </script>
 </body>
 </html>

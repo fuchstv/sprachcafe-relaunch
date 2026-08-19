@@ -82,6 +82,11 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www
 		respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
 	}
 
+	# Basic Auth Protection for /reports/*
+	basic_auth /reports/* {
+		philipp $2a$14$DIRdKlU/PFEaHNqQb3FoS.9nR2sPHunOLWfctslP0O030QXWzeeiC
+	}
+
 	handle {
 		file_server
 	}
@@ -145,6 +150,11 @@ admin.sprachcafe-polnisch.org {
 beta.sprachcafe-polnisch.org {
 	root * /var/www/beta
 	encode zstd gzip
+
+	# Basic Auth Protection for /reports/*
+	basic_auth /reports/* {
+		philipp $2a$14$DIRdKlU/PFEaHNqQb3FoS.9nR2sPHunOLWfctslP0O030QXWzeeiC
+	}
 
 	handle {
 		file_server

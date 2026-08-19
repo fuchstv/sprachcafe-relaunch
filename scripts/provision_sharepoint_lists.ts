@@ -210,7 +210,7 @@ async function main() {
   console.log('\n🌱 [3/3] Erzeuge Startdaten für Mitgliederzahlen & -entwicklung...');
   const seedMembers = [
     { Title: 'Agata Koch', Email: 'agata.koch@sprachcafe-polnisch.org', Ort: 'Berlin Pankow', MitgliedschaftsArt: 'ordentlich', MitgliedschaftsStufe: 'Platinum', Status: 'Aktiv', BeitragBezahlt: true },
-    { Title: 'Peter Fuchs', Email: 'p.fuchs@sprachcafe-polnisch.org', Ort: 'Berlin Pankow', MitgliedschaftsArt: 'ordentlich', MitgliedschaftsStufe: 'Platinum', Status: 'Aktiv', BeitragBezahlt: true },
+    { Title: 'Philipp Fuchs', Email: 'p.fuchs@sprachcafe-polnisch.org', Ort: 'Berlin Pankow', MitgliedschaftsArt: 'ordentlich', MitgliedschaftsStufe: 'Platinum', Status: 'Aktiv', BeitragBezahlt: true },
     { Title: 'Dorota Stasińska', Email: 'd.stasinska@sprachcafe-polnisch.org', Ort: 'Berlin Mitte', MitgliedschaftsArt: 'ordentlich', MitgliedschaftsStufe: 'Gold', Status: 'Aktiv', BeitragBezahlt: true },
     { Title: 'Agnieszka Kubalewska-Strohmeyer', Email: 'A.Strohmeyer@sprachcafe-polnisch.org', Ort: 'Berlin Schöneberg', MitgliedschaftsArt: 'ordentlich', MitgliedschaftsStufe: 'Gold', Status: 'Aktiv', BeitragBezahlt: true },
     { Title: 'Familie Kowalski', Email: 'kowalski.berlin@gmail.com', Ort: 'Berlin Prenzlauer Berg', MitgliedschaftsArt: 'foerdernd', MitgliedschaftsStufe: 'Gold', Status: 'Aktiv', BeitragBezahlt: true },

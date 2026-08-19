@@ -166,7 +166,7 @@
             ]
           },
           "actions": {
-            "NotifyAccountingPeter": {
+            "NotifyAccountingPhilipp": {
               "type": "ApiConnection",
               "inputs": {
                 "host": {
@@ -179,7 +179,7 @@
                 "body": {
                   "To": "@parameters('AccountingEmail')",
                   "Subject": "💰 Barspende gemeldet: @{items('ForEachEvent')?['Title']} (@{body('SendAdaptiveCardToHost')?['data']?['spendenBar']} €)",
-                  "Body": "Hallo Peter,<br><br>bei der gestrigen Veranstaltung <strong>@{items('ForEachEvent')?['Title']}</strong> wurden von @{parameters('DefaultHostEmail')} Barspenden in Höhe von <strong>@{body('SendAdaptiveCardToHost')?['data']?['spendenBar']} €</strong> erfasst.<br><br>Standort: @{items('ForEachEvent')?['Standort']}<br>Datum: @{items('ForEachEvent')?['EventDatum']}<br>Notiz: @{body('SendAdaptiveCardToHost')?['data']?['notiz']}<br><br>Beste Grüße,<br>Dein Automatisierungs-Bot"
+                  "Body": "Hallo Philipp,<br><br>bei der gestrigen Veranstaltung <strong>@{items('ForEachEvent')?['Title']}</strong> wurden von @{parameters('DefaultHostEmail')} Barspenden in Höhe von <strong>@{body('SendAdaptiveCardToHost')?['data']?['spendenBar']} €</strong> erfasst.<br><br>Standort: @{items('ForEachEvent')?['Standort']}<br>Datum: @{items('ForEachEvent')?['EventDatum']}<br>Notiz: @{body('SendAdaptiveCardToHost')?['data']?['notiz']}<br><br>Beste Grüße,<br>Dein Automatisierungs-Bot"
                 }
               }
             }

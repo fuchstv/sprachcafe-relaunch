@@ -1,0 +1,39 @@
+{
+  "jahrMonat": "2026-08",
+  "jahr": 2026,
+  "monatNum": 8,
+  "monatName": "August",
+  "events": {
+    "total": 8,
+    "kinder": 5,
+    "sprachpraxis": 1,
+    "kultur": 2,
+    "locations": {
+      "pankow": 0,
+      "schoeneberg": 0,
+      "koepenick": 0,
+      "online": 0
+    }
+  },
+  "headcountEst": {
+    "totalAttendees": 129,
+    "childrenAttendees": 55,
+    "avgPerEvent": 16.1
+  },
+  "web": {
+    "pageViews": 16006,
+    "uniqueVisitors": 3402
+  },
+  "newsletter": {
+    "subscribers": 840,
+    "openRatePct": 48.6,
+    "campaignsSent": 2
+  },
+  "social": {
+    "totalFollowers": 5118,
+    "fbFollowers": 1618,
+    "igFollowers": 2280,
+    "monthlyReach": 28400
+  },
+  "archivedAt": "2026-08-19T17:55:33.703Z"
+}

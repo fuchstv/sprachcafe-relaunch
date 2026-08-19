@@ -8,6 +8,9 @@
     "setup:mitglied-flow": "npx tsx scripts/setup-mitglied-flow.ts",
     "sync:calendars": "npx tsx scripts/sync_google_calendars.ts",
     "sync:library": "npx tsx scripts/sync_hausbibliothek_catalog.ts",
+    "sync:social": "npx tsx scripts/fetch_social_metrics.ts",
+    "archive:kpi": "npx tsx scripts/archive_kpi_snapshots.ts",
+    "build:reports": "npx tsx scripts/fetch_cloudflare_analytics.ts && npx tsx scripts/fetch_mailchimp_metrics.ts && npx tsx scripts/fetch_social_metrics.ts && npx tsx scripts/archive_kpi_snapshots.ts && npx tsx scripts/generate_powerbi_previews.ts",
     "test:e2e": "npx playwright test"
   },
   "dependencies": {

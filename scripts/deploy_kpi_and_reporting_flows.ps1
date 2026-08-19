@@ -1,7 +1,7 @@
 # ==============================================================================
 # SprachCafé Polnisch e.V. - Deploy KPI, Event Feedback & Accounting Flows
 # Deploys / Updates:
-#  1. SprachCafé - Tägliche Event-Rückmeldung (Dorota Stasińska & Kasse an Peter Fuchs)
+#  1. SprachCafé - Tägliche Event-Rückmeldung (Dorota Stasińska & Kasse an Philipp Fuchs)
 #  2. SprachCafé - Monatliche Buchhaltung & Spenden (Agnieszka Kubalewska-Strohmeyer)
 #  3. SprachCafé - Reporting Webhook (Kalender-KPIs & Cloudflare Sync)
 # ==============================================================================

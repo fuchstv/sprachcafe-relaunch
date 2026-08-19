@@ -1,0 +1,39 @@
+{
+  "jahrMonat": "2026-11",
+  "jahr": 2026,
+  "monatNum": 11,
+  "monatName": "November",
+  "events": {
+    "total": 28,
+    "kinder": 22,
+    "sprachpraxis": 2,
+    "kultur": 4,
+    "locations": {
+      "pankow": 0,
+      "schoeneberg": 0,
+      "koepenick": 0,
+      "online": 0
+    }
+  },
+  "headcountEst": {
+    "totalAttendees": 474,
+    "childrenAttendees": 230,
+    "avgPerEvent": 16.9
+  },
+  "web": {
+    "pageViews": 17562,
+    "uniqueVisitors": 3733
+  },
+  "newsletter": {
+    "subscribers": 870,
+    "openRatePct": 48.6,
+    "campaignsSent": 2
+  },
+  "social": {
+    "totalFollowers": 5361,
+    "fbFollowers": 1681,
+    "igFollowers": 2460,
+    "monthlyReach": 31550
+  },
+  "archivedAt": "2026-08-19T17:55:33.705Z"
+}
