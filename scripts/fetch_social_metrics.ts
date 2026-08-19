@@ -12,6 +12,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import 'dotenv/config';
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 const OUTPUT_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/social-metrics.json');
