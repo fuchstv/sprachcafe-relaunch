@@ -11,7 +11,7 @@ type: "newsletter"
 <div class="newsletter-article font-sans text-base leading-relaxed text-[#1d1b1a] dark:text-[#f5f0ee] space-y-6">
 <figure class="my-6"><img src="https://gallery.mailchimp.com/cdbb41f9160eb33abbe5274b9/images/8369e6f7-8b14-4941-8a55-bb0d8e14da0b.jpg" alt="" class="rounded-2xl shadow-md max-w-full h-auto my-4" loading="lazy" /></figure>
 
-                            <div style="text-align: right;"><div class="text-right text-xs text-[#5b403d] dark:text-[#d4c5c2] italic mb-2">Foto © A.Koch</div></div><div class="inline-block my-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#8B263E]/10 dark:bg-[#ff758f]/10 text-[#8B263E] dark:text-[#ff758f] border border-[#8B263E]/20">Pl | Styczeń 2017</div>
+<div style="text-align: right;"><div class="text-right text-xs text-[#5b403d] dark:text-[#d4c5c2] italic mb-2">Foto © A.Koch</div></div><div class="inline-block my-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#8B263E]/10 dark:bg-[#ff758f]/10 text-[#8B263E] dark:text-[#ff758f] border border-[#8B263E]/20">Pl | Styczeń 2017</div>
 <h4 class="font-bold text-lg text-[#1d1b1a] dark:text-[#f5f0ee] my-2">Szczęśliwego Nowego Roku<br>
 - życzymy nam wszystkim!</h4>
 <br>
@@ -44,9 +44,9 @@ Serdecznie zapraszamy!<br>
 <br>
 Z noworocznymi pozdrowieniami
 
-                            <div class="mt-8 p-6 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-sm space-y-1">
-  <p class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">Polska Kafejka Językowa – SprachCafé Polnisch e.V.</p>
-  <p><a href="https://sprachcafe-polnisch.org" class="font-semibold text-[#8B263E] dark:text-[#ff758f] underline">www.sprachcafe-polnisch.org</a></p>
-  <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">📞 +49 (0)160 9968 0059 • Dołącz do nas na Facebooku!</p>
+<div class="mt-8 p-6 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-sm space-y-1">
+<p class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">Polska Kafejka Językowa – SprachCafé Polnisch e.V.</p>
+<p><a href="https://sprachcafe-polnisch.org" class="font-semibold text-[#8B263E] dark:text-[#ff758f] underline">www.sprachcafe-polnisch.org</a></p>
+<p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">📞 +49 (0)160 9968 0059 • Dołącz do nas na Facebooku!</p>
 </div>
 </div>

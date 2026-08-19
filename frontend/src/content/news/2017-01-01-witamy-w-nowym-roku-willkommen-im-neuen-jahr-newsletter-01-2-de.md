@@ -43,9 +43,9 @@ Serdecznie zapraszamy!<br>
 <br>
 Z noworocznymi pozdrowieniami
 
-                            <div class="mt-8 p-6 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-sm space-y-1">
-  <p class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">SprachCafé Polnisch e.V.</p>
-  <p><a href="https://sprachcafe-polnisch.org" class="font-semibold text-[#8B263E] dark:text-[#ff758f] underline">www.sprachcafe-polnisch.org</a></p>
-  <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">📞 +49 (0)160 9968 0059 • Besuche uns auf Facebook!</p>
+<div class="mt-8 p-6 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-sm space-y-1">
+<p class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">SprachCafé Polnisch e.V.</p>
+<p><a href="https://sprachcafe-polnisch.org" class="font-semibold text-[#8B263E] dark:text-[#ff758f] underline">www.sprachcafe-polnisch.org</a></p>
+<p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">📞 +49 (0)160 9968 0059 • Besuche uns auf Facebook!</p>
 </div>
 </div>
