@@ -72,6 +72,16 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www
 	redir /wp-admin* https://admin.sprachcafe-polnisch.org 301
 	redir /wp-login.php https://admin.sprachcafe-polnisch.org 301
 
+	# 7. Mailchimp Webhook Endpoint (GET Handshake & POST Events)
+	handle /api/webhooks/mailchimp* {
+		header Content-Type "application/json; charset=utf-8"
+		respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
+	}
+	handle /api/mailchimp-webhook* {
+		header Content-Type "application/json; charset=utf-8"
+		respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
+	}
+
 	handle {
 		file_server
 	}
