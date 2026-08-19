@@ -1,54 +1,115 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import LocationOpeningHoursCard from '../../components/LocationOpeningHoursCard.astro';
+import TestimonialGrid from '../../components/TestimonialGrid.astro';
 import LibraryReferralSection from '../../components/LibraryReferralSection.astro';
+import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 
 const lang = 'pl';
 const t = useTranslations(lang);
+
+const locationsCollection = await getCollection('locations');
+const desiredLocationSlugs = ['pankow', 'schoeneberg', 'koepenick'];
+const locations = desiredLocationSlugs
+  .map((slug) => locationsCollection.find((loc) => loc.slug === slug))
+  .filter((loc): loc is NonNullable<typeof loc> => Boolean(loc))
+  .map((loc) => ({
+    id: loc.slug,
+    name: loc.data.name[lang] || loc.data.name.de,
+    address: `${loc.data.address.street}, ${loc.data.address.zip} ${loc.data.address.city}`,
+    openingHours: loc.data.openingHours[lang] || loc.data.openingHours.de,
+    contactEmail: loc.data.email,
+    mapUrl: loc.data.address.mapUrl,
+  }));
 ---
 
-<Layout title="SprachCafé Polnisch - Witamy (/pl/)" lang={lang}>
-  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 text-center max-w-[1200px] mx-auto">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
-      <span>{t('hero.badge')}</span>
+<Layout
+  title="SprachCafé Polnisch — Miejsce spotkań, języka i kultury w Berlinie"
+  description="SprachCafé Polnisch e.V. to miejsce spotkań non-profit poświęcone kulturze, językowi i dialogowi polsko-niemieckiemu w dzielnicach Pankow, Schöneberg i Köpenick. Odkryj wydarzenia, bibliotekę domową i kursy."
+  lang={lang}
+>
+  <!-- Hero Section mit Bildcollage -->
+  <HeroSection
+    title="Witamy w SprachCafé Polnisch"
+    subtitle="Zanurz się w języku i kulturze polskiej oraz niemieckiej. Ucz się, nawiązuj kontakty i twórz wspólnotę w Berlinie (Pankow, Schöneberg i Köpenick)."
+    badge="Oficjalna platforma stowarzyszenia"
+    primaryCtaText="Odkryj wydarzenia"
+    primaryCtaLink="/pl/events/"
+    secondaryCtaText="Katalog Biblioteki Domowej"
+    secondaryCtaLink="/pl/hausbibliothek/"
+  />
+
+  <!-- Prominenter Verweis auf hausbibliothek.org ("Do naszej biblioteki") -->
+  <LibraryReferralSection lang={lang} />
+
+  <!-- Standorte & Öffnungszeiten Grid -->
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="mb-10 text-center">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        Nasze 3 lokalizacje w Berlinie
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+        Godziny otwarcia i adresy
+      </h2>
     </div>
-    
-    <h1 class="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-[#1d1b1a] dark:text-[#f5f0ee] mb-6 leading-tight">
-      {t('hero.title')}
-    </h1>
-    
-    <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] max-w-3xl mx-auto mb-12 leading-relaxed">
-      {t('hero.subtitle')}
-    </p>
 
-    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 sm:p-10 text-left shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
-      <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f] mb-4">🇵🇱 Witamy na polskiej stronie SprachCafé</h2>
-      <p class="font-sans text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-8">
-        SprachCafé Polnisch wspiera dialog polsko-niemiecki, kursy językowe oraz spotkania kulturalne w Berlinie.
-      </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {locations.map((loc) => (
+        <LocationOpeningHoursCard
+          id={loc.id}
+          location={loc.name}
+          address={loc.address}
+          openingHours={loc.openingHours}
+          contactEmail={loc.contactEmail}
+          mapUrl={loc.mapUrl}
+        />
+      ))}
+    </div>
+  </section>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-6 rounded-xl border border-[#e7e1df] dark:border-[#363230]">
-          <div class="text-3xl mb-3" aria-hidden="true">🗣️</div>
-          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Spotkania językowe</h3>
-          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">Regularne kawiarnie językowe dla języka polskiego i niemieckiego.</p>
+  <!-- Sekcja Kalendarza i Działań Społecznych -->
+  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="bg-gradient-to-br from-[#8B263E]/10 via-white dark:via-[#22201e] to-[#8B263E]/5 border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+            📅 Publikacja & Kalendarz
+          </span>
+          <h2 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            Nasz kalendarz na rok 2026!
+          </h2>
+          <p class="font-sans text-sm sm:text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+            Tegoroczny kalendarz, zaprojektowany przez młodych artystów Kafejki, jest świętem wyobraźni, kreatywności i języka. Pobierz bezpłatną wersję cyfrową online lub odwiedź nas w Pankow, aby odebrać egzemplarz drukowany.
+          </p>
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a
+              href="/pl/events/"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold text-sm hover:bg-[#6b1d30] transition-colors shadow-sm"
+            >
+              <span>Przejdź do kalendarza wydarzeń &rarr;</span>
+            </a>
+            <a
+              href="/pl/mitmachen/"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-sm hover:bg-[#f8f2f0] dark:hover:bg-[#363230] transition-colors"
+            >
+              <span>Dołącz do nas</span>
+            </a>
+          </div>
         </div>
-
-        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-6 rounded-xl border border-[#e7e1df] dark:border-[#363230]">
-          <div class="text-3xl mb-3" aria-hidden="true">📚</div>
-          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Biblioteka domowa</h3>
-          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">Cyfrowe wypożyczanie literatury polskiej i niemieckiej.</p>
-        </div>
-
-        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-6 rounded-xl border border-[#e7e1df] dark:border-[#363230]">
-          <div class="text-3xl mb-3" aria-hidden="true">🎉</div>
-          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Wydarzenia kulturalne</h3>
-          <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">Spotkania autorskie, seanse filmowe i warsztaty.</p>
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="p-6 bg-white dark:bg-[#1e1c1a] border border-[#e7e1df] dark:border-[#363230] rounded-2xl text-center shadow-sm space-y-3">
+            <span class="text-4xl">🎨</span>
+            <h3 class="font-serif font-bold text-lg text-[#1d1b1a] dark:text-[#f5f0ee]">Sztuka i Rękodzieło</h3>
+            <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">Wspierane przez Auswärtiges Amt oraz KokoPol.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sekcja odnośnika do hausbibliothek.org -->
-  <LibraryReferralSection lang={lang} />
+  <!-- Testimonial Grid Komponente -->
+  <TestimonialGrid lang={lang} />
 </Layout>
+

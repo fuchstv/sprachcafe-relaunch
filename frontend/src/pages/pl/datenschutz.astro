@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lang = 'pl';
+---
+
+<Layout
+  title="Ochrona danych osobowych — SprachCafé Polnisch e.V."
+  description="Polityka prywatności i ochrona danych osobowych w SprachCafé Polnisch e.V. zgodnie z RODO (GDPR / DSGVO) oraz TDDDG."
+  lang={lang}
+>
+  <div class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <header class="text-center sm:text-left space-y-3 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+        Przejrzystość &amp; Ochrona prywatności
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+        Ochrona danych osobowych
+      </h1>
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2]">
+        Informacje o przetwarzaniu danych osobowych zgodnie z art. 13 i 14 Ogólnego Rozporządzenia o Ochronie Danych (RODO / DSGVO) oraz przepisami TDDDG.
+      </p>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-10 text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed text-sm sm:text-base">
+      
+      <!-- 1. Administrator Danych -->
+      <section class="space-y-3 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          1. Administrator Danych Osobowych
+        </h2>
+        <p>Administratorem danych osobowych na tej stronie internetowej w rozumieniu RODO jest:</p>
+        <div class="bg-[#f8f2f0] dark:bg-[#2a2725] p-5 rounded-2xl border border-[#e7e1df] dark:border-[#363230] space-y-1">
+          <p class="font-bold text-base">SprachCafé Polnisch e.V.</p>
+          <p>Schulzestr. 1, D-13187 Berlin</p>
+          <p><strong>Reprezentowane przez Zarząd:</strong> Agata Koch (Przewodnicząca Zarządu)</p>
+          <p><strong>E-Mail:</strong> <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+4916099680059" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">+49 160 9968 0059</a></p>
+        </div>
+      </section>
+
+      <!-- 2. Privacy by Design -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          2. Privacy by Design: Nowoczesna i bezpieczna architektura
+        </h2>
+        <p>
+          Nasz portal internetowy został zaprojektowany zgodnie z zasadą <strong>minimalizacji danych (art. 5 ust. 1 lit. c RODO)</strong> oraz <strong>domyślnej ochrony danych (art. 25 RODO)</strong> jako nowoczesna statyczna strona (Astro SSG):
+        </p>
+        
+        <div class="space-y-3">
+          <div class="p-4 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230]">
+            <h3 class="font-bold text-base text-[#8B263E] dark:text-[#ff758f] mb-1">🚫 100% Bez trackerów i reklam (Brak uciążliwych bannerów cookies)</h3>
+            <p class="text-sm">
+              Na naszym portalu <strong>nie stosujemy żadnych śledzących plików cookies, sieci reklamowych, mechanizmów profilowania ani zewnętrznych narzędzi analitycznych</strong> (takich jak Google Analytics czy Meta Pixel). Ponieważ nie używamy technologii wymagających zgody użytkownika, na naszej stronie głównej nie ma konieczności wyświetlania bannerów cookies.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230]">
+            <h3 class="font-bold text-base text-[#8B263E] dark:text-[#ff758f] mb-1">🔤 Lokalne hostowanie wszystkich czcionek i zasobów (Self-Hosted)</h3>
+            <p class="text-sm">
+              Wszystkie wykorzystywane czcionki (m.in. Inter i Roboto) oraz ikony serwowane są bezpośrednio z naszego własnego serwera w nowoczesnym formacie WOFF2. Podczas odwiedzania stron <strong>nie następuje żadne połączenie z zewnętrznymi serwerami (takimi jak Google Fonts lub zewnętrzne sieci CDN)</strong>. Twój adres IP nie jest przekazywany firmie Google ani podmiotom trzecim.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Serwery & Logi -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          3. Hosting &amp; Pliki dziennika serwera (Logi)
+        </h2>
+        
+        <h3 class="font-bold text-base">Hosting w AWS (Region Frankfurt nad Menem / Niemcy)</h3>
+        <p>
+          Nasz serwer www i reverse proxy (Caddy v2) działają na wirtualnym serwerze w infrastrukturze Amazon Web Services EMEA SARL. Lokalizacja serwera to <strong>Frankfurt nad Menem (`eu-central-1`), Niemcy</strong>. Wszelkie operacje przetwarzania danych odbywają się w granicach Unii Europejskiej.
+        </p>
+
+        <h3 class="font-bold text-base pt-2">Pliki dziennika serwera (Server Logs)</h3>
+        <p>
+          Przy każdym wejściu na stronę nasz serwer rejestruje wyłącznie niezbędne technicznie dane połączenia przesyłane przez Twoją przeglądarkę (adres IP, data i godzina, żądany URL, kod odpowiedzi HTTP, przesyłany wolumen danych, przeglądarka i system operacyjny).
+        </p>
+        <p class="text-sm pt-1">
+          <strong>Cel i podstawa prawna:</strong> Zapewnienie stabilności technicznej i bezpieczeństwa sieci (obrona przed atakami DDoS). Podstawa prawna: prawnie uzasadniony interes zgodnie z <strong>art. 6 ust. 1 lit. f RODO</strong>. Logi są przechowywane rotacyjnie przez <strong>maksymalnie 7–14 dni</strong>.
+        </p>
+      </section>
+
+      <!-- 4. Formularze & Przetwarzanie -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          4. Formularz kontaktowy i wnioski członkowskie
+        </h2>
+        
+        <h3 class="font-bold text-base">Wniosek o członkostwo online (`/pl/mitmachen/mitglied-werden/`)</h3>
+        <p>
+          Dane podane we wniosku członkowskim przetwarzane są wyłącznie w celu zawarcia i realizacji umowy członkowskiej (art. 6 ust. 1 lit. b RODO) oraz spełnienia ustawowych obowiązków księgowych (art. 6 ust. 1 lit. c RODO).
+        </p>
+
+        <h3 class="font-bold text-base pt-2">Formularz kontaktowy (`/pl/kontakt/`)</h3>
+        <p>
+          Dane wpisane w formularzu kontaktowym są przesyłane bezpośrednio do naszej skrzynki e-mail i służą wyłącznie do udzielenia odpowiedzi na Twoje zapytanie.
+        </p>
+      </section>
+
+      <!-- 5. Biblioteka Domowa -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          5. Biblioteka Domowa (`hausbibliothek.org`)
+        </h2>
+        <p>
+          Aplikacja Biblioteki Domowej pod adresem <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> zarządza wypożyczeniami książek i kontami czytelników. Konta nieaktywne przez ponad 24 miesiące są automatycznie usuwane zgodnie z procedurą czyszczenia danych (art. 17 RODO).
+        </p>
+      </section>
+
+      <!-- 6. Prawa osoby, której dane dotyczą -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. Twoje prawa zgodnie z RODO
+        </h2>
+        <p>Przysługuje Ci prawo dostępu do swoich danych (art. 15 RODO), prawo do ich sprostowania (art. 16 RODO), usunięcia (art. 17 RODO), ograniczenia przetwarzania (art. 18 RODO), przenoszenia danych (art. 20 RODO) oraz prawo do sprzeciwu (art. 21 RODO).</p>
+        <p class="text-sm pt-2">
+          Aby skorzystać ze swoich praw, wystarczy wysłać wiadomość na adres: <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a>.
+        </p>
+      </section>
+
+      <!-- 7. Organ nadzorczy -->
+      <section class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+        <p><strong>Właściwy organ nadzorczy ds. ochrony danych:</strong></p>
+        <p>Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin, E-Mail: mailbox@datenschutz-berlin.de</p>
+        <p class="pt-2"><strong>Stan na:</strong> Sierpień 2026 r.</p>
+      </section>
+
+    </div>
+  </div>
+</Layout>

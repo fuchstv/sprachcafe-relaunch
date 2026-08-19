@@ -1,0 +1,218 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import partnersData from '../../../data/partners.json';
+
+const lang = 'pl';
+
+const { impact, culture } = partnersData;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  'name': 'Nasi Partnerzy i Sponsorzy — SprachCafé Polnisch e.V.',
+  'description': 'Poznaj partnerów kooperacyjnych, fundacje, sponsorów i partnerów kulturalnych SprachCafé Polnisch e.V. w Berlinie.',
+  'publisher': {
+    '@type': 'Organization',
+    'name': 'SprachCafé Polnisch e.V.',
+    'url': 'https://sprachcafe-polnisch.org/pl/'
+  }
+};
+---
+
+<Layout
+  title="Nasi Partnerzy i Sponsorzy — SprachCafé Polnisch e.V."
+  description="Od lokalnych inicjatyw, przez instytucje edukacyjne i fundacje, po berlińskie Senatsverwaltungen — Nasi partnerzy aktywnie wspierają SprachCafé Polnisch."
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <!-- Hero Section -->
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-6">
+        <span>🤝 Współpraca &amp; Sieć kontaktów</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-6">
+        Nasi Partnerzy i Sponsorzy
+      </h1>
+
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto mb-8">
+        Od lokalnych przedsiębiorstw, przez placówki edukacyjne i fundacje, po organizacje pożytku publicznego – SprachCafé Polnisch z dumą współpracuje z szerokim gronem partnerów wspierających naszą misję. Jesteśmy im ogromnie wdzięczni za zaufanie i wsparcie.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="#impact-partner"
+          class="px-6 py-3 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold text-sm transition-all shadow-sm"
+        >
+          Partnerzy Wpływu Społecznego &darr;
+        </a>
+        <a
+          href="#kultur-partner"
+          class="px-6 py-3 rounded-full bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-sm hover:bg-[#f8f2f0] dark:hover:bg-[#2a2725] transition-colors"
+        >
+          Partnerzy Społeczni &amp; Kulturalni &darr;
+        </a>
+        <a
+          href="#partner-werden"
+          class="px-6 py-3 rounded-full bg-[#039dcc]/10 text-[#039dcc] dark:text-[#38bdf8] font-bold text-sm hover:bg-[#039dcc]/20 transition-colors"
+        >
+          Zostań partnerem &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <hr class="border-t border-[#e7e1df] dark:border-[#363230]" />
+  </div>
+
+  <!-- 1. Impact-Partner Section -->
+  <section id="impact-partner" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto scroll-mt-24">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        <span>🏛️ Wsparcie Instytucjonalne</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+        Partnerzy Wpływu Społecznego (Impact Partners)
+      </h2>
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+        Partnerzy udzielający wsparcia finansowego oraz współpracujący z nami na zasadach partnerstwa merytorycznego, by zwiększać pozytywny wpływ społeczny.
+      </p>
+    </div>
+
+    <!-- Impact Partner Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {impact.map((partner) => (
+        <a
+          href={partner.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#8B263E]/40 transition-all flex flex-col justify-between items-center text-center"
+          aria-label={`${partner.name} (otwiera zewnętrzny link)`}
+        >
+          <div class="w-full h-32 bg-[#faf6f3] dark:bg-[#181615] rounded-xl flex items-center justify-center p-4 mb-4 border border-[#e7e1df]/60 dark:border-[#363230]/60 group-hover:scale-[1.02] transition-transform">
+            <img
+              src={partner.localImg}
+              alt={partner.name}
+              class="max-h-20 max-w-[85%] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full">
+            <h3 class="font-sans font-bold text-sm text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors line-clamp-2">
+              {partner.name}
+            </h3>
+            <span class="inline-flex items-center gap-1 text-xs text-[#8c7471] dark:text-[#a89895] mt-2 group-hover:underline">
+              <span>Odwiedź stronę internetową</span>
+              <svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Info Detail Box for Berlin Administration -->
+    <div class="mt-10 p-6 sm:p-8 rounded-2xl bg-[#faf6f3] dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+      <h4 class="font-serif text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+        🏛️ Finansowanie przez Kraj Związkowy Berlin i Ministerstwa Federalne:
+      </h4>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-3 bg-white dark:bg-[#181615] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+          <strong>Senatsverwaltung für Kultur und Gesellschaftlichen Zusammenhalt:</strong>
+          <p class="mt-1">Wsparcie dla oferty artystycznej, literackiej i teatralnej.</p>
+        </div>
+        <div class="p-3 bg-white dark:bg-[#181615] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+          <strong>Senatsverwaltung für ASGIVA:</strong>
+          <p class="mt-1">Integracja, różnorodność, partycypacja i walka z dyskryminacją.</p>
+        </div>
+        <div class="p-3 bg-white dark:bg-[#181615] rounded-xl border border-[#e7e1df] dark:border-[#363230]">
+          <strong>Landesbeirat für Partizipation:</strong>
+          <p class="mt-1">Reprezentacja migrantów w pracach Berlińskiego Senatu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <hr class="border-t border-[#e7e1df] dark:border-[#363230]" />
+  </div>
+
+  <!-- 2. Gemeinschafts- und Kulturpartner Section -->
+  <section id="kultur-partner" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto scroll-mt-24">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#039dcc]/10 border border-[#039dcc]/20 text-[#039dcc] dark:text-[#38bdf8] text-xs font-bold uppercase tracking-wider mb-3">
+        <span>🎨 Wymiana Kulturalna &amp; Sąsiedztwo</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+        Partnerzy Społeczni i Kulturalni
+      </h2>
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+        Organizacje, stowarzyszenia oraz sieci współpracujące z nami w celu budowania społeczności, wymiany kulturalnej oraz promocji dwujęzyczności i wielojęzyczności.
+      </p>
+    </div>
+
+    <!-- Culture Partner Cards Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+      {culture.map((partner) => (
+        <a
+          href={partner.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-[#039dcc]/40 transition-all flex flex-col justify-between items-center text-center"
+          title={partner.name}
+          aria-label={`${partner.name} (otwiera zewnętrzny link)`}
+        >
+          <div class="w-full h-24 bg-[#faf6f3] dark:bg-[#181615] rounded-xl flex items-center justify-center p-3 mb-3 border border-[#e7e1df]/60 dark:border-[#363230]/60 group-hover:scale-105 transition-transform">
+            <img
+              src={partner.localImg}
+              alt={partner.name}
+              class="max-h-16 max-w-[90%] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <p class="font-sans text-xs font-semibold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#039dcc] dark:group-hover:text-[#38bdf8] transition-colors line-clamp-2">
+            {partner.name}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 3. Partner Werden CTA Section -->
+  <section id="partner-werden" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto scroll-mt-24">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#8B263E]/10 via-[#FAF6F3] to-[#039dcc]/10 dark:from-[#8B263E]/20 dark:via-[#22201e] dark:to-[#039dcc]/20 border border-[#e7e1df] dark:border-[#363230] p-8 sm:p-14 text-center">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+          Kooperacje &amp; Partnerstwa
+        </span>
+        
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+          Chcesz zostać partnerem SprachCafé?
+        </h2>
+
+        <p class="text-base sm:text-lg text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Czy to jako członek wspierający, sponsor, partner projektowy w dziedzinie edukacji i kultury, czy przy wspólnych inicjatywach sąsiedzkich: Czekamy na kontakt z Państwem!
+        </p>
+
+        <div class="pt-4 flex flex-wrap justify-center items-center gap-4">
+          <a
+            href="/pl/kontakt/"
+            class="px-8 py-3.5 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold text-base transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          >
+            Napisz zapytanie o partnerstwo &rarr;
+          </a>
+          <a
+            href="/pl/mitmachen/mitglied-werden/"
+            class="px-6 py-3.5 rounded-full bg-white dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-base hover:bg-[#f8f2f0] dark:hover:bg-[#363230] transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          >
+            Sprawdź członkostwo firmowe
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

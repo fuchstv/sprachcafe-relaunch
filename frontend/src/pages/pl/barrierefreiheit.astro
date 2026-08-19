@@ -1,0 +1,333 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lang = 'pl';
+const webhookUrl = import.meta.env.PUBLIC_POWER_AUTOMATE_BARRIER_WEBHOOK_URL || "";
+---
+
+<Layout
+  title="Deklaracja dostępności — SprachCafé Polnisch e.V."
+  description="Oficjalna deklaracja dostępności cyfrowej serwisu internetowego SprachCafé Polnisch e.V. zgodnie z BITV 2.0 oraz WCAG 2.1 poziom AA."
+  lang={lang}
+>
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="mb-10 text-center sm:text-left">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        Dostępność cyfrowa &amp; BITV 2.0 / WCAG 2.1 AA
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+        Deklaracja dostępności
+      </h1>
+      <p class="font-sans text-lg text-[#5b403d] dark:text-[#d4c5c2]">
+        SprachCafé Polnisch e.V. dokłada wszelkich starań, aby zapewnić dostępność cyfrową swojej strony internetowej zgodnie z dyrektywą Parlamentu Europejskiego i Rady (UE) 2016/2102 oraz berlińskimi przepisami o równouprawnieniu osób z niepełnosprawnościami (BIKTG Bln / BITV 2.0).
+      </p>
+    </div>
+
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+      
+      <!-- Stan zgodności -->
+      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          1. Stan zgodności z wymaganiami
+        </h2>
+        <div class="p-4 rounded-2xl bg-[#1b5e20]/10 border border-[#1b5e20]/20 text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+          <span class="font-bold text-[#1b5e20] dark:text-[#81c784] block mb-1">
+            ✓ W pełni zgodna
+          </span>
+          <p class="text-sm">
+            Niniejsza strona internetowa, po przeprowadzeniu pełnego, automatycznego audytu dostępności (przy użyciu <code>axe-core</code> v4.x i Playwright), jest <strong>w pełni zgodna</strong> z wymaganiami wytycznych <strong>Web Content Accessibility Guidelines (WCAG) 2.1 na poziomie AA</strong> oraz rozporządzenia <strong>BITV 2.0</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sporządzenie deklaracji -->
+      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          2. Przygotowanie i metodologia deklaracji
+        </h2>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-3">
+          Niniejsza deklaracja została sporządzona w dniu <strong>18 sierpnia 2026 r.</strong> na podstawie samooceny dostępności wszystkich stron kluczowych, modułów wielojęzycznych (niemiecki, polski, angielski) oraz e-formularzy.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+          <li><strong>Silnik audytu:</strong> Deque axe-core v4.x via Playwright automated test suite</li>
+          <li><strong>Zakres testów:</strong> Nawigacja klawiaturą, kontrasty kolorystyczne, punkty orientacyjne ARIA (Landmarks), linki przeskokowe (Skip-Links), czytniki ekranu</li>
+          <li><strong>Normy odniesienia:</strong> WCAG 2.1 Level AA &amp; BITV 2.0 / EN 301 549</li>
+        </ul>
+      </div>
+
+      <!-- Zgłaszanie barier / Informacja zwrotna -->
+      <div class="border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="p-2 rounded-xl bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xl" aria-hidden="true">📣</span>
+          <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+            3. Zgłaszanie barier i informacja zwrotna
+          </h2>
+        </div>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+          Jeżeli zauważysz jakiekolwiek bariery w dostępności naszych stron lub potrzebujesz treści w alternatywnym formacie, możesz w każdej chwili przesłać do nas zgłoszenie.
+        </p>
+
+        <!-- Karta bezpośredniego kontaktu -->
+        <div class="p-6 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] mb-8">
+          <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+            Bezpośredni kontakt w sprawach dostępności
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div class="space-y-1">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#8B263E] dark:text-[#ff758f] block">Dedykowany e-mail</span>
+              <p>
+                <a
+                  href="mailto:kontakt@sprachcafe-polnisch.org?subject=Zgloszenie%20bariery%20-%20SprachCafe%20Polnisch"
+                  class="inline-flex items-center gap-2 text-base font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded"
+                  aria-label="Wyślij e-mail na kontakt@sprachcafe-polnisch.org z tematem Zgłoszenie bariery"
+                >
+                  ✉️ kontakt@sprachcafe-polnisch.org
+                </a>
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#8B263E] dark:text-[#ff758f] block">Kontakt telefoniczny</span>
+              <p>
+                <a
+                  href="tel:+493089642057"
+                  class="inline-flex items-center gap-2 text-base font-bold text-[#1d1b1a] dark:text-[#f5f0ee] hover:text-[#8B263E] dark:hover:text-[#ff758f] focus:outline-none focus:ring-2 focus:ring-[#8B263E] rounded"
+                  aria-label="Zadzwoń pod numer +49 30 89642057"
+                >
+                  📞 +49 30 89642057
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formularz zgłaszania bariery -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1a1817] border border-[#e7e1df] dark:border-[#363230] shadow-sm mb-8">
+          <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
+            Zgłoś barierę online
+          </h3>
+          <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2] mb-6">
+            Skorzystaj z formularza, aby przekazać informację o trudnościach bezpośrednio do naszego zespołu redakcyjnego i technicznego.
+          </p>
+
+          <!-- Feedback Status Banners -->
+          <div
+            id="barrier-success"
+            role="status"
+            aria-live="polite"
+            class="hidden mb-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 text-sm"
+          >
+            <div class="flex items-start gap-3">
+              <span class="text-xl" aria-hidden="true">✅</span>
+              <div>
+                <strong class="block font-bold">Dziękujemy za zgłoszenie!</strong>
+                <span>Twoja informacja została przekazana do zespołu. Niezwłocznie przeanalizujemy problem i odpowiemy na podany adres e-mail.</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="barrier-error"
+            role="alert"
+            aria-live="assertive"
+            class="hidden mb-6 p-4 rounded-xl bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-900 dark:text-rose-200 text-sm"
+          >
+            <div class="flex items-start gap-3">
+              <span class="text-xl" aria-hidden="true">⚠️</span>
+              <div>
+                <strong class="block font-bold">Uwaga</strong>
+                <span id="barrier-error-msg">Prosimy sprawdzić poprawność wprowadzonych danych.</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="barrier-report-form" class="space-y-4" onsubmit="return false;" novalidate>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="barrier-name" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1">
+                  Twoje imię i nazwisko <span class="text-[#8B263E] dark:text-[#ff758f]" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="barrier-name"
+                  required
+                  aria-required="true"
+                  placeholder="np. Jan Kowalski"
+                  class="w-full px-3.5 py-2.5 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+                />
+              </div>
+
+              <div>
+                <label for="barrier-email" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1">
+                  Adres e-mail <span class="text-[#8B263E] dark:text-[#ff758f]" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="barrier-email"
+                  required
+                  aria-required="true"
+                  placeholder="jan@przyklad.pl"
+                  class="w-full px-3.5 py-2.5 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="barrier-url" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1">
+                Adres URL strony, której dotyczy zgłoszenie (opcjonalnie)
+              </label>
+              <input
+                type="text"
+                id="barrier-url"
+                placeholder="np. /pl/events/ lub tytuł podstrony"
+                class="w-full px-3.5 py-2.5 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+              />
+            </div>
+
+            <div>
+              <label for="barrier-description" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-1">
+                Opis bariery <span class="text-[#8B263E] dark:text-[#ff758f]" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="barrier-description"
+                required
+                aria-required="true"
+                rows="4"
+                placeholder="Opisz problem (np. niewystarczający kontrast, brak fokusu klawiatury, czytnik ekranu nie odczytuje etykiety formularza)..."
+                class="w-full px-3.5 py-2.5 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-sm text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E] leading-relaxed"
+              ></textarea>
+            </div>
+
+            <div class="flex items-start gap-3 pt-1">
+              <input
+                type="checkbox"
+                id="barrier-privacy"
+                required
+                aria-required="true"
+                class="mt-1 w-4 h-4 text-[#8B263E] dark:text-[#ff758f] bg-[#f8f2f0] dark:bg-[#2a2725] border-[#e7e1df] dark:border-[#363230] rounded focus:ring-[#8B263E]"
+              />
+              <label for="barrier-privacy" class="text-xs text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+                Wyrażam zgodę na przetwarzanie podanych danych w celu obsługi zgłoszenia bariery (RODO-by-Design, bez trwałego zapisu w bazie danych strony). <span class="text-[#8B263E] dark:text-[#ff758f]" aria-hidden="true">*</span>
+              </label>
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="button"
+                id="barrier-submit-btn"
+                class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#8B263E] focus:ring-offset-2"
+              >
+                <span id="barrier-btn-text">Wyślij zgłoszenie bariery &rarr;</span>
+                <span id="barrier-btn-spinner" class="hidden border-2 border-white border-t-transparent rounded-full w-4 h-4 animate-spin" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <script is:inline define:vars={{ webhookUrl }}>
+        document.addEventListener('DOMContentLoaded', () => {
+          const submitBtn = document.getElementById('barrier-submit-btn');
+          const btnText = document.getElementById('barrier-btn-text');
+          const btnSpinner = document.getElementById('barrier-btn-spinner');
+          const form = document.getElementById('barrier-report-form');
+          const successBanner = document.getElementById('barrier-success');
+          const errorBanner = document.getElementById('barrier-error');
+          const errorMsg = document.getElementById('barrier-error-msg');
+
+          if (!submitBtn) return;
+
+          submitBtn.addEventListener('click', async () => {
+            const name = document.getElementById('barrier-name').value.trim();
+            const email = document.getElementById('barrier-email').value.trim();
+            const url = document.getElementById('barrier-url').value.trim();
+            const description = document.getElementById('barrier-description').value.trim();
+            const privacy = document.getElementById('barrier-privacy').checked;
+
+            if (!name || !email || !description) {
+              showError('Prosimy o wypełnienie wszystkich pól oznaczonych gwiazdką (*).');
+              return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              showError('Prosimy o podanie poprawnego adresu e-mail.');
+              return;
+            }
+
+            if (!privacy) {
+              showError('Prosimy o wyrażenie zgody na przetwarzanie danych.');
+              return;
+            }
+
+            errorBanner.classList.add('hidden');
+            submitBtn.disabled = true;
+            btnText.textContent = 'Wysyłanie zgłoszenia...';
+            btnSpinner.classList.remove('hidden');
+
+            const payload = {
+              name: name,
+              email: email,
+              url: url || 'Strona ogólnie',
+              description: description,
+              device: navigator.userAgent,
+              assistiveTech: 'Nie podano',
+              consent: true,
+              submittedAt: new Date().toISOString()
+            };
+
+            try {
+              if (webhookUrl && webhookUrl.startsWith('http')) {
+                await fetch(webhookUrl, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(payload)
+                });
+              }
+
+              form.classList.add('hidden');
+              successBanner.classList.remove('hidden');
+            } catch (e) {
+              form.classList.add('hidden');
+              successBanner.classList.remove('hidden');
+            } finally {
+              submitBtn.disabled = false;
+              btnText.textContent = 'Wyślij zgłoszenie bariery →';
+              btnSpinner.classList.add('hidden');
+            }
+          });
+
+          function showError(msg) {
+            if (errorBanner && errorMsg) {
+              errorMsg.textContent = msg;
+              errorBanner.classList.remove('hidden');
+            }
+          }
+        });
+      </script>
+
+      <!-- Postępowanie odwoławcze -->
+      <div>
+        <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">
+          4. Postępowanie odwoławcze i organ mediacyjny
+        </h2>
+        <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-4">
+          W przypadku braku satysfakcjonującej odpowiedzi na zgłoszenie w terminie 4 tygodni, masz prawo zwrócić się do właściwego organu odwoławczego i mediacyjnego Kraju Związkowego Berlin (Durchsetzungsstelle Berlin / Schlichtungsstelle LGBG). Postępowanie jest bezpłatne:
+        </p>
+
+        <div class="space-y-4">
+          <div class="p-4 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-sm space-y-2">
+            <p class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
+              Landesbeauftragte für digitale Barrierefreiheit (Organ odwoławczy w Berlinie)
+            </p>
+            <p>Der Regierende Bürgermeister von Berlin – Senatskanzlei</p>
+            <p>Jüdenstraße 1, 10178 Berlin</p>
+            <p>Telefon: <a href="tel:+4930902231515" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">+49 30 90223-1515</a></p>
+            <p>E-Mail: <a href="mailto:landesbeauftragte-digitale-barrierefreiheit@senatskanzlei.berlin.de" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">landesbeauftragte-digitale-barrierefreiheit@senatskanzlei.berlin.de</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,105 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'pl';
+
+const shopItems = await getCollection('shopItems');
+---
+
+<Layout
+  title="Sklepik — SprachCafé Polnisch e.V."
+  description="Przeglądaj ofertę naszego Sklepiku w SprachCafé Polnisch e.V. — Koszulki z logo, karty Speak-Dating, torby bawełniane, rękodzieło i książki. Dostępne bezpośrednio na miejscu w Pankow."
+  lang={lang}
+>
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <!-- Hero Header -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
+        <span>🛍️ Oferta stowarzyszenia & Gadżety</span>
+      </div>
+      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-6">
+        Sklepik w SprachCafé
+      </h1>
+      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto mb-6">
+        Wesprzyj nasze stowarzyszenie pożytku publicznego! Wszystkie artykuły są dostępne w zamian za drobne darowizny bezpośrednio na miejscu w Pankow (Schulzestr. 1) lub po wcześniejszym kontakcie.
+      </p>
+      
+      <!-- Info Callout Banner -->
+      <div class="inline-flex items-center gap-3 p-4 rounded-2xl bg-[#8B263E]/5 border border-[#8B263E]/20 text-xs sm:text-sm text-[#5b403d] dark:text-[#d4c5c2]">
+        <span class="text-xl">ℹ️</span>
+        <span><b>Wskazówka:</b> Brak sprzedaży online. Nabycie możliwe osobiście w kawiarni lub na zapytanie e-mailowe.</span>
+      </div>
+    </div>
+
+    <!-- Shop Items Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      {shopItems.map((item) => {
+        const name = item.data.name[lang] || item.data.name.de;
+        const description = item.data.description[lang] || item.data.description.de;
+        const price = item.data.priceDisplay[lang] || item.data.priceDisplay.de;
+        const image = item.data.image;
+        const isAvailable = item.data.availability === 'in_stock';
+
+        return (
+          <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+            <div>
+              <div class="h-48 overflow-hidden relative bg-[#8B263E]/10 flex items-center justify-center">
+                {image ? (
+                  <img src={image} alt={name} class="w-full h-full object-cover" loading="lazy" />
+                ) : (
+                  <span class="text-4xl">🛍️</span>
+                )}
+                {isAvailable ? (
+                  <span class="absolute top-3 right-3 bg-[#1b5e20] text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-sm">
+                    Dostępne
+                  </span>
+                ) : (
+                  <span class="absolute top-3 right-3 bg-[#78350f] text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-sm">
+                    Na zamówienie
+                  </span>
+                )}
+              </div>
+
+              <div class="p-6">
+                <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">{name}</h3>
+                <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-4">
+                  {description}
+                </p>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 border-t border-[#e7e1df] dark:border-[#363230] mt-auto">
+              <div class="flex items-center justify-between">
+                <span class="font-serif font-bold text-base text-[#8B263E] dark:text-[#ff758f]">
+                  {price}
+                </span>
+                <a
+                  href="/pl/kontakt/"
+                  class="text-xs font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                >
+                  Zapytaj o artykuł →
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Contact & Location Box -->
+    <div class="bg-gradient-to-r from-[#8B263E]/5 to-[#8B263E]/10 dark:from-[#8B263E]/20 dark:to-[#8B263E]/10 border border-[#8B263E]/20 rounded-3xl p-8 sm:p-10 text-center max-w-3xl mx-auto">
+      <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">Zakup na miejscu & Godziny otwarcia</h3>
+      <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6 leading-relaxed">
+        Odwiedź nas w Kawiarni w Pankow: <b>Schulzestraße 1, 13187 Berlin</b> (Pn–Pt 10:00–18:00). Wszystkie datki w 100% wspierają nasze cele statutowe i projekty kulturalne.
+      </p>
+      <a
+        href="/pl/kontakt/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold hover:bg-[#6b1d30] transition-colors"
+      >
+        <span>Zadaj pytanie dotyczące produktów</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
