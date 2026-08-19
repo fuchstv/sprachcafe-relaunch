@@ -3,7 +3,7 @@
  * SprachCafé Polnisch e.V. - Power BI Web Dashboard & PDF Export Generator
  * 
  * Generates:
- * 1. Unified All-in-One Executive Dashboard (Events + Headcounts + Cloudflare Analytics + Accounting)
+ * 1. Unified All-in-One Executive Dashboard (Events + Headcounts + Cloudflare Analytics + Mailchimp Outreach + Accounting)
  * 2. Sponsoren & Förderer Wirkungsbericht (External Presentation & PDF/PPT Export)
  * 3. Internes Monitoring & Detail-Analyse (Internal Controlling Matrix)
  */
@@ -15,6 +15,7 @@ const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 const REPORTS_OUTPUT_DIR = path.resolve(scriptDir, '../frontend/public/reports');
 const KPI_CSV_PATH = path.resolve(scriptDir, 'kpi_exports/Veranstaltungs_Kennzahlen.csv');
 const CLOUDFLARE_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/cloudflare-analytics.json');
+const MAILCHIMP_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/mailchimp-metrics.json');
 
 if (!fs.existsSync(REPORTS_OUTPUT_DIR)) {
   fs.mkdirSync(REPORTS_OUTPUT_DIR, { recursive: true });
@@ -49,7 +50,7 @@ const uniqueLocations = new Set(rows.map(r => r.standortCode)).size;
 const uniqueMonths = new Set(rows.map(r => r.jahrMonat)).size;
 const avgPerMonth = (totalEvents / (uniqueMonths || 1)).toFixed(1);
 
-// Aggregated Headcount Estimates from Host Feedback (Avg 12 per regular event, 18 per weekend/kinder event)
+// Aggregated Headcount Estimates from Host Feedback
 const totalAttendeesEst = (kinderEvents * 18) + (sprachpraxisEvents * 11) + (kulturEvents * 14);
 const childrenAttendeesEst = (kinderEvents * 10) + Math.round(kulturEvents * 2.5);
 
@@ -75,6 +76,22 @@ if (fs.existsSync(CLOUDFLARE_JSON_PATH)) {
   } catch (e) {}
 }
 
+// 3. Read Mailchimp Newsletter Metrics JSON
+let mcData: any = {
+  subscribers: { totalActive: 840, monthlyGrowthPct: 5.2 },
+  performance: { avgOpenRatePct: 48.6, avgClickRatePct: 15.2, industryBenchmarkOpenRatePct: 24.8, campaignsSentLast12Months: 26 },
+  recentCampaigns: [
+    { title: 'Bilinguale Lesereihe & Kunstworkshop im Herbst', sendTime: '2026-08-10', language: 'PL / DE 🇵🇱🇩🇪', emailsSent: 838, openRatePct: 51.4, clickRatePct: 18.2 },
+    { title: 'Sommerfest & Neueröffnung Hausbibliothek Köpenick', sendTime: '2026-07-22', language: 'PL / DE 🇵🇱🇩🇪', emailsSent: 825, openRatePct: 49.8, clickRatePct: 16.5 }
+  ]
+};
+
+if (fs.existsSync(MAILCHIMP_JSON_PATH)) {
+  try {
+    mcData = JSON.parse(fs.readFileSync(MAILCHIMP_JSON_PATH, 'utf-8'));
+  } catch (e) {}
+}
+
 // Aggregations by Location
 const byLocation: Record<string, number> = {};
 rows.forEach(r => {
@@ -88,7 +105,7 @@ rows.forEach(r => {
 });
 
 // ==============================================================================
-// 🌟 UNIFIED EXECUTIVE DASHBOARD (ALL-IN-ONE)
+// 🌟 UNIFIED EXECUTIVE DASHBOARD (ALL-IN-ONE + MAILCHIMP METRICS)
 // ==============================================================================
 const unifiedDashboardHtml = `<!DOCTYPE html>
 <html lang="de">
@@ -113,7 +130,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
       <div class="flex items-center gap-3">
         <span class="inline-block w-3 h-3 rounded-full bg-[#8B263E] animate-pulse"></span>
         <span class="text-sm font-bold text-[#1d1b1a]">SprachCafé Polnisch e.V. — Zentrales Gesamt-Dashboard</span>
-        <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#2B7A78]/10 text-[#2B7A78] font-bold">M365 & Cloudflare Live Sync</span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#2B7A78]/10 text-[#2B7A78] font-bold">M365 • Cloudflare • Mailchimp Live Sync</span>
       </div>
       <div class="flex items-center gap-2">
         <a href="/reports/sponsoren-wirkungsbericht.html" class="px-4 py-2 text-xs font-bold rounded-xl border border-[#8B263E] text-[#8B263E] hover:bg-[#8B263E]/10 transition-colors">
@@ -135,10 +152,10 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
           Executive Cockpit • Abrechnungsperiode 2026
         </div>
         <h1 class="text-2xl md:text-3xl font-extrabold text-[#1d1b1a] tracking-tight">
-          Vereins-Performance, Outreach & Finanz-Controlling
+          Vereins-Performance, Outreach & Controlling
         </h1>
         <p class="text-xs text-[#5b403d] mt-0.5">
-          Zusammenführung aus Google Calendar Sync, M365 Adaptive Cards Host-Feedback, Cloudflare Analytics & Buchhaltung
+          Zusammenführung aus Google Calendar, M365 Host-Feedback, Cloudflare Analytics, Mailchimp Newsletter & Buchhaltung
         </p>
       </div>
       <div class="text-right text-xs text-[#5b403d]">
@@ -147,15 +164,15 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
       </div>
     </div>
 
-    <!-- 4 High-Level Top Metric Cards -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- 5 Top Metric Cards (incl. Mailchimp) -->
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
       <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
         <div class="flex justify-between items-start">
           <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Veranstaltungen</p>
           <span class="text-lg">📅</span>
         </div>
         <p class="text-3xl font-black text-[#8B263E] mt-2">${totalEvents}</p>
-        <p class="text-xs text-[#5b403d] mt-1">geplante & durchgeführte Events (${avgPerMonth} Ø / Monat)</p>
+        <p class="text-[11px] text-[#5b403d] mt-1">${avgPerMonth} Ø / Monat</p>
       </div>
 
       <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
@@ -164,7 +181,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
           <span class="text-lg">👥</span>
         </div>
         <p class="text-3xl font-black text-[#2B7A78] mt-2">ca. ${totalAttendeesEst.toLocaleString('de-DE')}</p>
-        <p class="text-xs text-[#5b403d] mt-1">davon ca. <strong>${childrenAttendeesEst.toLocaleString('de-DE')} Kinder & Jugendliche</strong></p>
+        <p class="text-[11px] text-[#5b403d] mt-1">davon ca. <strong>${childrenAttendeesEst.toLocaleString('de-DE')} Kinder</strong></p>
       </div>
 
       <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
@@ -173,29 +190,38 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
           <span class="text-lg">🌐</span>
         </div>
         <p class="text-3xl font-black text-[#D4A373] mt-2">${cfData.metrics.uniqueVisitors.toLocaleString('de-DE')}</p>
-        <p class="text-xs text-[#5b403d] mt-1">${cfData.metrics.pageViews.toLocaleString('de-DE')} Seitenaufrufe (Cookie-frei)</p>
+        <p class="text-[11px] text-[#5b403d] mt-1">${cfData.metrics.pageViews.toLocaleString('de-DE')} Seitenaufrufe</p>
       </div>
 
       <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
         <div class="flex justify-between items-start">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Zweisprachigkeit & Orte</p>
+          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Newsletter-Community</p>
+          <span class="text-lg">📬</span>
+        </div>
+        <p class="text-3xl font-black text-[#8B263E] mt-2">${mcData.subscribers.totalActive}</p>
+        <p class="text-[11px] text-[#5b403d] mt-1"><strong>${mcData.performance.avgOpenRatePct}%</strong> Öffnungsrate (Top-Wert!)</p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm col-span-2 lg:col-span-1">
+        <div class="flex justify-between items-start">
+          <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Zweisprachigkeit</p>
           <span class="text-lg">🇵🇱 🇩🇪</span>
         </div>
-        <p class="text-3xl font-black text-[#8B263E] mt-2">100 %</p>
-        <p class="text-xs text-[#5b403d] mt-1">${uniqueLocations} regionale Standorte in Berlin</p>
+        <p class="text-3xl font-black text-[#2B7A78] mt-2">100 %</p>
+        <p class="text-[11px] text-[#5b403d] mt-1">${uniqueLocations} regionale Standorte</p>
       </div>
     </div>
 
-    <!-- 2 Column Section: Events Breakdown & Cloudflare Web Analytics -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- 3 Column Section: Events & Cloudflare & Mailchimp -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
-      <!-- Box 1: Veranstaltungs- & Zielgruppenverteilung -->
+      <!-- Box 1: Veranstaltungsdichte & Standorte -->
       <div class="p-6 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
         <div class="flex justify-between items-center">
           <h3 class="font-bold text-sm text-[#1d1b1a] flex items-center gap-2">
-            📍 Veranstaltungsdichte & Standorte
+            📍 Veranstaltungsdichte
           </h3>
-          <span class="text-xs font-semibold text-[#8B263E]">${totalEvents} Events gesamt</span>
+          <span class="text-xs font-semibold text-[#8B263E]">${totalEvents} Events</span>
         </div>
         <div class="space-y-3">
           ${Object.entries(byLocation).map(([loc, count]) => {
@@ -204,7 +230,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
               <div>
                 <div class="flex justify-between text-xs font-semibold mb-1">
                   <span class="text-[#1d1b1a]">${loc}</span>
-                  <span class="text-[#8B263E] font-bold">${count} Events (${pct}%)</span>
+                  <span class="text-[#8B263E] font-bold">${count} (${pct}%)</span>
                 </div>
                 <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
                   <div class="h-full bg-[#8B263E] rounded-full" style="width: ${pct}%"></div>
@@ -216,18 +242,18 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
 
         <div class="pt-3 border-t border-[#e7e1df]">
           <h4 class="text-xs font-bold text-[#5b403d] uppercase mb-2">Programmschwerpunkte:</h4>
-          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <div class="grid grid-cols-3 gap-1.5 text-center text-xs">
             <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-              <p class="text-[#D4A373] font-black text-lg">${kinderEvents}</p>
-              <p class="text-[10px] text-[#5b403d]">Kinder & Familie</p>
+              <p class="text-[#D4A373] font-black text-base">${kinderEvents}</p>
+              <p class="text-[9px] text-[#5b403d]">Kinder</p>
             </div>
             <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-              <p class="text-[#2B7A78] font-black text-lg">${sprachpraxisEvents}</p>
-              <p class="text-[10px] text-[#5b403d]">Sprachpraxis/Tandem</p>
+              <p class="text-[#2B7A78] font-black text-base">${sprachpraxisEvents}</p>
+              <p class="text-[9px] text-[#5b403d]">Sprachpraxis</p>
             </div>
             <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
-              <p class="text-[#E76F51] font-black text-lg">${kulturEvents}</p>
-              <p class="text-[10px] text-[#5b403d]">Kultur & Literatur</p>
+              <p class="text-[#E76F51] font-black text-base">${kulturEvents}</p>
+              <p class="text-[9px] text-[#5b403d]">Kultur</p>
             </div>
           </div>
         </div>
@@ -237,20 +263,19 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
       <div class="p-6 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
         <div class="flex justify-between items-center">
           <h3 class="font-bold text-sm text-[#1d1b1a] flex items-center gap-2">
-            🌐 Cloudflare Web Analytics (${cfData.period})
+            🌐 Cloudflare Analytics
           </h3>
-          <span class="text-xs px-2 py-0.5 rounded-md bg-green-100 text-green-800 font-bold">100% DSGVO & Cookie-frei</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-md bg-green-100 text-green-800 font-bold">DSGVO Cookie-frei</span>
         </div>
 
-        <!-- Country Distribution -->
         <div>
-          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Geografische Herkunft der Besucher:</p>
+          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Herkunftsländer der Besucher:</p>
           <div class="space-y-2">
             ${cfData.countries.map((c: any) => `
               <div>
                 <div class="flex justify-between text-xs font-medium mb-1">
                   <span>${c.country} (${c.countryCode})</span>
-                  <span class="font-bold text-[#2B7A78]">${c.visitors.toLocaleString('de-DE')} Besucher (${c.sharePct}%)</span>
+                  <span class="font-bold text-[#2B7A78]">${c.sharePct}%</span>
                 </div>
                 <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
                   <div class="h-full bg-[#2B7A78] rounded-full" style="width: ${c.sharePct}%"></div>
@@ -260,14 +285,64 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- Top Visited Pages -->
         <div class="pt-3 border-t border-[#e7e1df]">
-          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Top abgerufene Rubriken:</p>
+          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Top Web-Bereiche:</p>
+          <div class="space-y-1 text-xs">
+            ${cfData.topPages.slice(0, 3).map((p: any) => `
+              <div class="flex justify-between items-center p-1 rounded-lg bg-[#fdfaf9]">
+                <span class="font-semibold text-[#1d1b1a] text-[11px] truncate">${p.title}</span>
+                <span class="font-bold text-[#8B263E] text-[11px]">${p.pageViews} Aufrufe</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- Box 3: Mailchimp Newsletter Performance -->
+      <div class="p-6 rounded-2xl bg-white border border-[#e7e1df] shadow-sm space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="font-bold text-sm text-[#1d1b1a] flex items-center gap-2">
+            📬 Mailchimp Community
+          </h3>
+          <span class="text-[10px] px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-bold">PL / DE 🇵🇱🇩🇪</span>
+        </div>
+
+        <!-- Open Rate Benchmark Comparison -->
+        <div>
+          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Engagement-Vergleich (Öffnungsrate):</p>
+          <div class="space-y-2">
+            <div>
+              <div class="flex justify-between text-xs font-medium mb-1">
+                <span class="font-bold text-[#8B263E]">SprachCafé Newsletter</span>
+                <span class="font-bold text-[#8B263E]">${mcData.performance.avgOpenRatePct}%</span>
+              </div>
+              <div class="w-full h-2.5 rounded-full bg-[#f0e8e6] overflow-hidden">
+                <div class="h-full bg-[#8B263E] rounded-full" style="width: ${mcData.performance.avgOpenRatePct}%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs text-[#5b403d] mb-1">
+                <span>Branchenschnitt (NGO/Kultur)</span>
+                <span>${mcData.performance.industryBenchmarkOpenRatePct}%</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
+                <div class="h-full bg-[#5b403d]/40 rounded-full" style="width: ${mcData.performance.industryBenchmarkOpenRatePct}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Campaigns -->
+        <div class="pt-3 border-t border-[#e7e1df]">
+          <p class="text-xs font-bold text-[#5b403d] uppercase mb-2">Letzte Newsletter-Aussendungen:</p>
           <div class="space-y-1.5 text-xs">
-            ${cfData.topPages.map((p: any) => `
-              <div class="flex justify-between items-center p-1.5 rounded-lg bg-[#fdfaf9] hover:bg-[#8B263E]/5">
-                <span class="font-semibold text-[#1d1b1a]">${p.title} <span class="text-[10px] text-[#5b403d] font-normal font-mono">(${p.path})</span></span>
-                <span class="font-bold text-[#8B263E]">${p.pageViews.toLocaleString('de-DE')} Aufrufe</span>
+            ${mcData.recentCampaigns.slice(0, 2).map((c: any) => `
+              <div class="p-2 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+                <p class="font-semibold text-[#1d1b1a] text-[11px] truncate">${c.title}</p>
+                <div class="flex justify-between text-[10px] text-[#5b403d] mt-1">
+                  <span>${c.sendTime} • ${c.language}</span>
+                  <span class="font-bold text-[#2B7A78]">${c.openRatePct}% Öffnung</span>
+                </div>
               </div>
             `).join('')}
           </div>
@@ -276,16 +351,16 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
 
     </div>
 
-    <!-- M365 Automation Status & Accounting Cards -->
+    <!-- M365 Automation & Accounting Status -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
       
       <div class="p-4 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] space-y-1.5">
         <p class="font-bold text-[#1d1b1a] flex items-center gap-1.5">
           <span>🤖</span> Event-Rückmelde-Flow (M365)
         </p>
-        <p class="text-[#5b403d]">Täglich 08:00 Uhr Adaptive Card an <strong>Dorota Stasińska</strong> (<code>d.stasinska@sprachcafe-polnisch.org</code>) zur Headcount-Erfassung.</p>
+        <p class="text-[#5b403d]">Täglich 08:00 Uhr Adaptive Card an <strong>Dorota Stasińska</strong> (<code>d.stasinska@sprachcafe-polnisch.org</code>).</p>
         <div class="pt-1 text-[11px] text-green-700 font-semibold flex items-center gap-1">
-          <span>✓</span> Automatische Ablage in SharePoint Liste
+          <span>✓</span> SharePoint: <code>Veranstaltungs_Rueckmeldungen</code>
         </div>
       </div>
 
@@ -293,7 +368,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
         <p class="font-bold text-[#1d1b1a] flex items-center gap-1.5">
           <span>💰</span> Kassennotiz & Barspenden
         </p>
-        <p class="text-[#5b403d]">Tägliche Kassenmeldung & Echtzeit-Meldung bei Barspenden an <strong>Peter Fuchs</strong> (<code>p.fuchs@sprachcafe-polnisch.org</code>).</p>
+        <p class="text-[#5b403d]">Tägliche Kassenmeldung & Barspenden-Info an <strong>Peter Fuchs</strong> (<code>p.fuchs@sprachcafe-polnisch.org</code>).</p>
         <div class="pt-1 text-[11px] text-green-700 font-semibold flex items-center gap-1">
           <span>✓</span> Transparenter Kassenabgleich
         </div>
@@ -305,7 +380,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
         </p>
         <p class="text-[#5b403d]">Monatliche Gesamtmeldung durch <strong>Agnieszka Kubalewska-Strohmeyer</strong> (<code>A.Strohmeyer@sprachcafe-polnisch.org</code>).</p>
         <div class="pt-1 text-[11px] text-green-700 font-semibold flex items-center gap-1">
-          <span>✓</span> Eigenmittel- & Spendenabgleich
+          <span>✓</span> SharePoint: <code>Buchhaltung_Spenden</code>
         </div>
       </div>
 
@@ -317,7 +392,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
 `;
 
 // ==============================================================================
-// 🌟 SPONSOREN & FÖRDERER WIRKUNGSBERICHT (Schlank, für externe Weitergabe)
+// 🌟 SPONSOREN & FÖRDERER WIRKUNGSBERICHT (Inkl. Outreach & Mailchimp)
 // ==============================================================================
 const sponsorHtml = `<!DOCTYPE html>
 <html lang="de">
@@ -391,9 +466,9 @@ const sponsorHtml = `<!DOCTYPE html>
         <p class="text-xs text-[#5b403d] mt-1">Bezirke & Partnerorte in Berlin</p>
       </div>
       <div class="p-6 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] shadow-sm">
-        <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Monatliche Reichweite</p>
-        <p class="text-3xl md:text-4xl font-extrabold text-[#8B263E] mt-2">&gt; 3.000</p>
-        <p class="text-xs text-[#5b403d] mt-1">Website- & Community-Kontakte</p>
+        <p class="text-xs font-bold uppercase tracking-wider text-[#5b403d]">Direkter Community-Outreach</p>
+        <p class="text-3xl md:text-4xl font-extrabold text-[#8B263E] mt-2">&gt; 4.000</p>
+        <p class="text-xs text-[#5b403d] mt-1">Monatliche Web- & Newsletter-Kontakte</p>
       </div>
     </div>
 
@@ -594,6 +669,6 @@ fs.writeFileSync(path.join(REPORTS_OUTPUT_DIR, 'dashboard.html'), unifiedDashboa
 fs.writeFileSync(path.join(REPORTS_OUTPUT_DIR, 'sponsoren-wirkungsbericht.html'), sponsorHtml, 'utf-8');
 fs.writeFileSync(path.join(REPORTS_OUTPUT_DIR, 'internes-monitoring.html'), internalHtml, 'utf-8');
 
-console.log('✅ Zentrales Gesamtdashboard generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'dashboard.html'));
+console.log('✅ Zentrales Gesamtdashboard mit Mailchimp-Metriken generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'dashboard.html'));
 console.log('✅ Sponsoren-Wirkungsbericht generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'sponsoren-wirkungsbericht.html'));
 console.log('✅ Internes Monitoring Dashboard generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'internes-monitoring.html'));

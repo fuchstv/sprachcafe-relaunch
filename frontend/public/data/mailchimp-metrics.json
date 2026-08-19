@@ -1,0 +1,51 @@
+{
+  "lastUpdated": "2026-08-19T14:28:29.537Z",
+  "listName": "SprachCafé Polnisch e.V. – Społeczność & Newsletter",
+  "subscribers": {
+    "totalActive": 840,
+    "cleanedCount": 14,
+    "unsubscribeCount": 22,
+    "monthlyGrowthPct": 5.2
+  },
+  "performance": {
+    "avgOpenRatePct": 48.6,
+    "avgClickRatePct": 15.2,
+    "industryBenchmarkOpenRatePct": 24.8,
+    "campaignsSentLast12Months": 26
+  },
+  "recentCampaigns": [
+    {
+      "title": "Bilinguale Lesereihe & Kunstworkshop im Herbst",
+      "sendTime": "2026-08-10",
+      "language": "PL / DE 🇵🇱🇩🇪",
+      "emailsSent": 838,
+      "openRatePct": 51.4,
+      "clickRatePct": 18.2
+    },
+    {
+      "title": "Sommerfest & Neueröffnung Hausbibliothek Köpenick",
+      "sendTime": "2026-07-22",
+      "language": "PL / DE 🇵🇱🇩🇪",
+      "emailsSent": 825,
+      "openRatePct": 49.8,
+      "clickRatePct": 16.5
+    },
+    {
+      "title": "SprachCafé Junior & Eltern-Tandem Programmstart",
+      "sendTime": "2026-06-28",
+      "language": "PL / DE 🇵🇱🇩🇪",
+      "emailsSent": 812,
+      "openRatePct": 47.1,
+      "clickRatePct": 14
+    },
+    {
+      "title": "Monatsrückblick & Einladung zur Mitgliederversammlung",
+      "sendTime": "2026-05-30",
+      "language": "DE / PL 🇩🇪🇵🇱",
+      "emailsSent": 798,
+      "openRatePct": 46.2,
+      "clickRatePct": 12.1
+    }
+  ],
+  "status": "cached_baseline"
+}
