@@ -4,12 +4,14 @@ import { getCollection } from 'astro:content';
 
 const lang = 'de';
 
-const shopItems = await getCollection('shopItems');
+const shopItems = (await getCollection('shopItems')).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
 ---
 
 <Layout
   title="Kleiner Laden — SprachCafé Polnisch e.V."
-  description="Stöbern Sie im Kleinen Laden des SprachCafé Polnisch e.V. — T-Shirts, Speak-Dating-Karten, Stoffbeutel und Kunsthandwerk. Erhältlich direkt vor Ort in Pankow."
+  description="Stöbern Sie im Kleinen Laden des SprachCafé Polnisch e.V. — T-Shirts, Speak-Dating-Karten, Bücher und Handgemachte Schätze. Erhältlich direkt vor Ort in Pankow."
   lang={lang}
 >
   <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
@@ -33,7 +35,7 @@ const shopItems = await getCollection('shopItems');
     </div>
 
     <!-- Shop Items Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {shopItems.map((item) => {
         const name = item.data.name[lang] || item.data.name.de;
         const description = item.data.description[lang] || item.data.description.de;
@@ -44,9 +46,9 @@ const shopItems = await getCollection('shopItems');
         return (
           <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
             <div>
-              <div class="h-48 overflow-hidden relative bg-[#8B263E]/10 flex items-center justify-center">
+              <div class="h-64 overflow-hidden relative bg-[#8B263E]/5 dark:bg-[#1a1817] flex items-center justify-center p-3">
                 {image ? (
-                  <img src={image} alt={name} class="w-full h-full object-cover" />
+                  <img src={image} alt={name} class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" loading="lazy" />
                 ) : (
                   <span class="text-4xl">🛍️</span>
                 )}

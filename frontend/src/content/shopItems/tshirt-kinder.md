@@ -4,13 +4,14 @@ name:
   pl: "Koszulka dziecięca SprachCafé"
   en: "SprachCafé Kids T-Shirt"
 description:
-  de: "Farbenfrohes Kinder-T-Shirt aus weicher Bio-Baumwolle. In verschiedenen Kindergrößen vor Ort erhältlich."
-  pl: "Kolorowa koszulka dziecięca z miękkiej bawełny organicznej. Dostępna na miejscu w różnych rozmiarach."
-  en: "Colorful kids t-shirt made of soft organic cotton. Available on-site in various child sizes."
+  de: "Kinder-T-Shirts aus 100% hochwertiger Baumwolle in Weiß mit rotem oder blauem Aufdruck (Biene). In den Größen 104 und 140 erhältlich."
+  pl: "Białe koszulki dziecięce ze 100% wysokiej jakości bawełny z czerwonym lub niebieskim nadrukiem pszczółki – w rozmiarach 104 i 140."
+  en: "Children's T-shirts made of 100% high-quality cotton in white with red or blue bee print – in sizes 104 and 140."
 priceDisplay:
-  de: "15 € (Spendenbeitrag)"
-  pl: "15 € (darowizna)"
-  en: "15 € (donation)"
-image: "/images/shop/laden-artikel-2.webp"
+  de: "12 € (Spendenbeitrag)"
+  pl: "12 € (darowizna)"
+  en: "12 € (donation)"
+image: "/images/shop/laden-artikel-3.webp"
 availability: "in_stock"
+order: 3
 ---

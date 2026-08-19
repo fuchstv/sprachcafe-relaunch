@@ -23,5 +23,5 @@ image:
     de: "Dla Maluszków (do 1,5 r.ż.), ich Mam & Tatusiów | PL"
     pl: "Dla Maluszków (do 1,5 r.ż.), ich Mam & Tatusiów | PL"
     en: "Dla Maluszków (do 1,5 r.ż.), ich Mam & Tatusiów | PL"
-isFeatured: false
+isFeatured: true
 ---

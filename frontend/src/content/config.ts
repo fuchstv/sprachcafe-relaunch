@@ -204,6 +204,7 @@ const shopItemsCollection = defineCollection({
     image: z.string(),
     availability: z.enum(['in_stock', 'out_of_stock', 'preorder', 'on_request']).default('in_stock'),
     orderLink: z.string().url().optional(),
+    order: z.number().optional(),
   }),
 });
 

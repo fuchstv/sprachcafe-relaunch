@@ -23,5 +23,5 @@ image:
     de: "SPEAK-DATING"
     pl: "SPEAK-DATING"
     en: "SPEAK-DATING"
-isFeatured: true
+isFeatured: false
 ---

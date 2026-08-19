@@ -4,13 +4,14 @@ name:
   pl: "Koszulka SprachCafé (dorośli)"
   en: "SprachCafé T-Shirt (Adults)"
 description:
-  de: "100% Bio-Baumwolle mit hochwertigem SprachCafé Polnisch Logo-Siebdruck. Fair und nachhaltig produziert."
-  pl: "100% bawełna organiczna z sitodrukiem logo SprachCafé. Produkcja etyczna i zrównoważona."
-  en: "100% organic cotton with high quality screen printed SprachCafé logo. Fair trade & sustainably made."
+  de: "100% hochwertige Baumwolle mit Aufdruck. Für Erwachsene in den Größen XS, S, M, L und XL in Schwarz, Weiß und Blau erhältlich."
+  pl: "100% wysokiej jakości bawełna z nadrukiem. Dostępna dla dorosłych w rozmiarach XS, S, M, L oraz XL w kolorach czarnym, białym i błękitnym."
+  en: "100% high-quality cotton with print. Available for adults in sizes XS, S, M, L and XL in black, white and blue."
 priceDisplay:
-  de: "20 € (Spendenbeitrag)"
-  pl: "20 € (darowizna)"
-  en: "20 € (donation)"
-image: "/images/shop/laden-artikel-3.webp"
+  de: "15 € (Spendenbeitrag)"
+  pl: "15 € (darowizna)"
+  en: "15 € (donation)"
+image: "/images/shop/laden-artikel-2.webp"
 availability: "in_stock"
+order: 2
 ---

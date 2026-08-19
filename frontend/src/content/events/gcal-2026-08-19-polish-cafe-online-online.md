@@ -23,5 +23,5 @@ image:
     de: "Polish-Café online"
     pl: "Polish-Café online"
     en: "Polish-Café online"
-isFeatured: true
+isFeatured: false
 ---
