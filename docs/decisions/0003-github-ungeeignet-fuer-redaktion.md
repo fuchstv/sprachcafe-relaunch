@@ -33,3 +33,12 @@ Stattdessen verfolgen wir folgenden praxisnahen Ansatz:
 
 ### Negativ
 - Aktualisierungen aus externen Quellen werden erst nach Ablauf des automatischen Static-Site-Builds (ca. 1–2 Minuten) auf der Website sichtbar.
+
+---
+
+## Ergänzung (2026-08-19): Einstellung der WordPress-Blog-Aggregation
+
+Im Nachgang zur Einführung der automatisierten Workflows für Google Calendar und Mailchimp wurde auch die bisher pausierte **WordPress-Blog-Aggregation (`/posts/`) endgültig ad acta gelegt** (siehe [ADR 0004: Endgültige Einstellung der WordPress-Blog-Aggregation](./0004-einstellung-wordpress-blog-aggregation.md)):
+- **Veranstaltungen**: Werden vollständig über den Google Calendar Sync (`events`) abgedeckt.
+- **Vereinsnachrichten & Berichte**: Werden direkt aus dem Mailchimp-Newsletter-Workflow (`news`) zweisprachig per Webhook in Astro Markdown committet.
+- Die bisherige Navigation `📰 Blog & Aktuelles` (`/posts/`) wurde durch die zentrale News-Sammlung `/news/` abgelöst. Ein Betrieb oder Polling von WordPress entfällt vollständig.
