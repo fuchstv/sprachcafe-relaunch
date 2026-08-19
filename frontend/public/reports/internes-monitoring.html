@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SprachCafé Polnisch e.V. — Internes Monitoring & Detail-Analyse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      @page { size: landscape; margin: 8mm; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#f5f0ee] text-[#1d1b1a] p-4 md:p-8 font-sans antialiased">
+  <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-xl border border-[#e7e1df] p-6 md:p-10 space-y-6">
+    
+    <!-- Top Action Bar -->
+    <div class="flex justify-between items-center no-print pb-4 border-b border-[#e7e1df]">
+      <div class="flex items-center gap-2 text-sm text-[#5b403d]">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#2B7A78]"></span>
+        <strong>Internes Vorstands- & Controlling-Dashboard</strong> (Power BI Modell)
+      </div>
+      <div class="flex gap-3">
+        <a href="/reports/sponsoren-wirkungsbericht.html" class="px-4 py-2 text-xs font-bold rounded-xl border border-[#8B263E] text-[#8B263E] hover:bg-[#8B263E]/10 transition-colors">
+          🌟 Zum Sponsoren-Wirkungsbericht
+        </a>
+        <button onclick="window.print()" class="px-5 py-2 text-xs font-bold text-white bg-[#8B263E] hover:bg-[#721f32] rounded-xl shadow-md transition-colors flex items-center gap-2">
+          🖨️ Drucken / PDF Export
+        </button>
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-extrabold text-[#1d1b1a]">
+          📊 Internes Monitoring: Veranstaltungs- & Steuerungsdaten
+        </h1>
+        <p class="text-xs text-[#5b403d] mt-1">
+          Datenbasis: Google Calendar Sync Engine • Stand: 19.8.2026
+        </p>
+      </div>
+      <div class="text-right">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#2B7A78]/10 text-[#2B7A78]">
+          135 Events / 4 Monate erfasst
+        </span>
+      </div>
+    </div>
+
+    <!-- 6 Detailed KPI Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+      <div class="p-4 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+        <p class="text-[11px] font-bold text-[#5b403d] uppercase">Gesamt Events</p>
+        <p class="text-2xl font-black text-[#8B263E] mt-1">135</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+        <p class="text-[11px] font-bold text-[#5b403d] uppercase">Kinder & Familie</p>
+        <p class="text-2xl font-black text-[#D4A373] mt-1">105</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+        <p class="text-[11px] font-bold text-[#5b403d] uppercase">Sprachpraxis</p>
+        <p class="text-2xl font-black text-[#2B7A78] mt-1">10</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+        <p class="text-[11px] font-bold text-[#5b403d] uppercase">Kultur & Literatur</p>
+        <p class="text-2xl font-black text-[#E76F51] mt-1">20</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+        <p class="text-[11px] font-bold text-[#5b403d] uppercase">Aktive Standorte</p>
+        <p class="text-2xl font-black text-[#1d1b1a] mt-1">4</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[#fdfaf9] border border-[#e7e1df]">
+        <p class="text-[11px] font-bold text-[#5b403d] uppercase">Ø Events / Monat</p>
+        <p class="text-2xl font-black text-[#8B263E] mt-1">33.8</p>
+      </div>
+    </div>
+
+    <!-- Aggregation Table -->
+    <div class="rounded-2xl border border-[#e7e1df] overflow-hidden">
+      <div class="bg-[#f8f2f0] px-4 py-3 border-b border-[#e7e1df] flex justify-between items-center">
+        <h3 class="font-bold text-sm text-[#1d1b1a]">📋 Aggregierte Kennzahlen-Matrix</h3>
+        <span class="text-xs text-[#5b403d]">21 Aggregationszeilen</span>
+      </div>
+      <div class="overflow-x-auto max-h-96">
+        <table class="w-full text-xs text-left border-collapse">
+          <thead class="bg-[#f0e8e6] text-[#5b403d] font-bold sticky top-0">
+            <tr>
+              <th class="p-2.5">Monat</th>
+              <th class="p-2.5">Standort</th>
+              <th class="p-2.5">Zielgruppe</th>
+              <th class="p-2.5">Kategorie</th>
+              <th class="p-2.5">Projekt</th>
+              <th class="p-2.5 text-right">Anzahl Events</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#e7e1df]">
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">August 2026</td>
+                <td class="p-2.5">Online / Digital</td>
+                <td class="p-2.5">Alle Interessierten</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">1</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">August 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">5</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">August 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Sprachpraxis & Tandem</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">1</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">August 2026</td>
+                <td class="p-2.5">Schöneberg</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">1</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">September 2026</td>
+                <td class="p-2.5">Köpenick</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">10</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">September 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">5</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">September 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">12</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">September 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Sprachpraxis & Tandem</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">4</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">September 2026</td>
+                <td class="p-2.5">Schöneberg</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">16</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">September 2026</td>
+                <td class="p-2.5">Schöneberg</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">1</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">Oktober 2026</td>
+                <td class="p-2.5">Köpenick</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">8</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">Oktober 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Sprachpraxis & Tandem</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">3</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">Oktober 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">15</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">Oktober 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">6</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">Oktober 2026</td>
+                <td class="p-2.5">Schöneberg</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">19</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">Oktober 2026</td>
+                <td class="p-2.5">Schöneberg</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">2</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">November 2026</td>
+                <td class="p-2.5">Köpenick</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">4</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">November 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kunst, Kultur & Literatur</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">4</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">November 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">7</td>
+              </tr>
+            
+              <tr class="bg-[#fdfaf9] hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">November 2026</td>
+                <td class="p-2.5">Pankow (Schulzestraße / Stadtteilzentrum)</td>
+                <td class="p-2.5">Erwachsene & Familien</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Sprachpraxis & Tandem</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">2</td>
+              </tr>
+            
+              <tr class="bg-white hover:bg-[#8B263E]/5">
+                <td class="p-2.5 font-semibold text-[#1d1b1a]">November 2026</td>
+                <td class="p-2.5">Schöneberg</td>
+                <td class="p-2.5">Kinder & Eltern</td>
+                <td class="p-2.5"><span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-medium">Kinder & Familie</span></td>
+                <td class="p-2.5 text-[#5b403d]">Regulärer Vereinsbetrieb</td>
+                <td class="p-2.5 text-right font-bold text-[#8B263E]">9</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

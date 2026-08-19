@@ -1,0 +1,74 @@
+{
+  "name": "SprachCafe_Reporting_Model",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "de-DE",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SharePoint",
+        "connectionDetails": {
+          "protocol": "sharepoint",
+          "address": {
+            "url": "https://sprachcafepolnisch.sharepoint.com/sites/intranet"
+          }
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Veranstaltungs_Kennzahlen",
+        "columns": [
+          { "name": "Jahr_Monat", "dataType": "string", "sourceColumn": "Jahr_Monat" },
+          { "name": "Jahr", "dataType": "int64", "sourceColumn": "Jahr" },
+          { "name": "Monat_Nummer", "dataType": "int64", "sourceColumn": "Monat_Nummer" },
+          { "name": "Monat_Name", "dataType": "string", "sourceColumn": "Monat_Name", "sortByColumn": "Monat_Nummer" },
+          { "name": "Standort_Code", "dataType": "string", "sourceColumn": "Standort_Code" },
+          { "name": "Standort_Name", "dataType": "string", "sourceColumn": "Standort_Name" },
+          { "name": "Sprache", "dataType": "string", "sourceColumn": "Sprache" },
+          { "name": "Zielgruppe", "dataType": "string", "sourceColumn": "Zielgruppe" },
+          { "name": "Kategorie", "dataType": "string", "sourceColumn": "Kategorie" },
+          { "name": "Projekt", "dataType": "string", "sourceColumn": "Projekt" },
+          { "name": "Anzahl_Veranstaltungen", "dataType": "int64", "sourceColumn": "Anzahl_Veranstaltungen" }
+        ],
+        "measures": [
+          {
+            "name": "Gesamt_Veranstaltungen",
+            "expression": "SUM(Veranstaltungs_Kennzahlen[Anzahl_Veranstaltungen])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Veranstaltungen_Kinder",
+            "expression": "CALCULATE([Gesamt_Veranstaltungen], Veranstaltungs_Kennzahlen[Kategorie] = \"Kinder & Familie\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Veranstaltungen_Sprachpraxis",
+            "expression": "CALCULATE([Gesamt_Veranstaltungen], Veranstaltungs_Kennzahlen[Kategorie] = \"Sprachpraxis & Tandem\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Veranstaltungen_Kultur",
+            "expression": "CALCULATE([Gesamt_Veranstaltungen], Veranstaltungs_Kennzahlen[Kategorie] = \"Kunst, Kultur & Literatur\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Anzahl_Standorte",
+            "expression": "DISTINCTCOUNT(Veranstaltungs_Kennzahlen[Standort_Code])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Anzahl_Monate",
+            "expression": "DISTINCTCOUNT(Veranstaltungs_Kennzahlen[Jahr_Monat])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Durchschnitt_Events_Pro_Monat",
+            "expression": "DIVIDE([Gesamt_Veranstaltungen], [Anzahl_Monate], 0)",
+            "formatString": "#,##0.0"
+          }
+        ]
+      }
+    ]
+  }
+}

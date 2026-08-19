@@ -1,0 +1,71 @@
+{
+  "name": "SprachCafé Polnisch e.V. Corporate Theme",
+  "dataColors": [
+    "#8B263E",
+    "#D4A373",
+    "#2B7A78",
+    "#E76F51",
+    "#264653",
+    "#457B9D",
+    "#E9C46A",
+    "#F4A261"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1D1B1A",
+  "tableAccent": "#8B263E",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI Semibold, sans-serif",
+            "fontSize": 12,
+            "fontColor": { "solid": { "color": "#1D1B1A" } },
+            "alignment": "Left"
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#FFFFFF" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#E7E1DF" } },
+            "radius": 12
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#000000" } },
+            "transparency": 95,
+            "preset": "BottomRight"
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [
+          {
+            "fontFamily": "Segoe UI Bold, sans-serif",
+            "fontSize": 28,
+            "color": { "solid": { "color": "#8B263E" } }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "fontFamily": "Segoe UI, sans-serif",
+            "fontSize": 10,
+            "color": { "solid": { "color": "#5B403D" } }
+          }
+        ]
+      }
+    }
+  }
+}

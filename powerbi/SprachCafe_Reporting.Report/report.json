@@ -1,0 +1,166 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.0.0/schema.json",
+  "theme": "SprachCafe_Theme",
+  "pages": [
+    {
+      "name": "InternesMonitoring",
+      "displayName": "Internes Monitoring & Detail-Analyse",
+      "displayOption": "FitToPage",
+      "width": 1280,
+      "height": 720,
+      "visuals": [
+        {
+          "name": "HeaderTitle",
+          "visualType": "textbox",
+          "position": { "x": 20, "y": 15, "width": 800, "height": 50 },
+          "text": "📊 SprachCafé Polnisch e.V. — Internes Monitoring & Detail-Analyse"
+        },
+        {
+          "name": "CardTotalEvents",
+          "visualType": "card",
+          "position": { "x": 20, "y": 75, "width": 190, "height": 100 },
+          "title": "Veranstaltungen Gesamt",
+          "query": "Gesamt_Veranstaltungen"
+        },
+        {
+          "name": "CardKinderEvents",
+          "visualType": "card",
+          "position": { "x": 225, "y": 75, "width": 190, "height": 100 },
+          "title": "Kinder & Familie",
+          "query": "Veranstaltungen_Kinder"
+        },
+        {
+          "name": "CardSprachpraxis",
+          "visualType": "card",
+          "position": { "x": 430, "y": 75, "width": 190, "height": 100 },
+          "title": "Sprachpraxis & Tandems",
+          "query": "Veranstaltungen_Sprachpraxis"
+        },
+        {
+          "name": "CardKultur",
+          "visualType": "card",
+          "position": { "x": 635, "y": 75, "width": 190, "height": 100 },
+          "title": "Kunst, Kultur & Literatur",
+          "query": "Veranstaltungen_Kultur"
+        },
+        {
+          "name": "CardLocations",
+          "visualType": "card",
+          "position": { "x": 840, "y": 75, "width": 190, "height": 100 },
+          "title": "Aktive Standorte",
+          "query": "Anzahl_Standorte"
+        },
+        {
+          "name": "CardMonthlyAvg",
+          "visualType": "card",
+          "position": { "x": 1045, "y": 75, "width": 215, "height": 100 },
+          "title": "Ø Events / Monat",
+          "query": "Durchschnitt_Events_Pro_Monat"
+        },
+        {
+          "name": "BarChartLocation",
+          "visualType": "columnChart",
+          "position": { "x": 20, "y": 190, "width": 600, "height": 260 },
+          "title": "Veranstaltungen nach Standort & Monat",
+          "xAxis": "Monat_Name",
+          "yAxis": "Anzahl_Veranstaltungen",
+          "legend": "Standort_Name"
+        },
+        {
+          "name": "DonutChartCategory",
+          "visualType": "donutChart",
+          "position": { "x": 635, "y": 190, "width": 625, "height": 260 },
+          "title": "Verteilung nach Inhaltsrubrik / Zielgruppe",
+          "category": "Kategorie",
+          "values": "Anzahl_Veranstaltungen"
+        },
+        {
+          "name": "DetailMatrixTable",
+          "visualType": "tableEx",
+          "position": { "x": 20, "y": 465, "width": 1240, "height": 240 },
+          "title": "Detaillierte Kennzahlen-Matrix (Monat × Standort × Zielgruppe × Projekt)",
+          "columns": [
+            "Jahr_Monat",
+            "Monat_Name",
+            "Standort_Name",
+            "Zielgruppe",
+            "Kategorie",
+            "Projekt",
+            "Anzahl_Veranstaltungen"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SponsorenWirkungsbericht",
+      "displayName": "Sponsoren & Förderer Wirkungsbericht",
+      "displayOption": "FitToPage",
+      "width": 1280,
+      "height": 720,
+      "visuals": [
+        {
+          "name": "SponsorHeader",
+          "visualType": "textbox",
+          "position": { "x": 20, "y": 15, "width": 1240, "height": 55 },
+          "text": "🌟 SprachCafé Polnisch e.V. — Wirkungsbericht für Förderer & Sponsoren"
+        },
+        {
+          "name": "SponsorSubHeader",
+          "visualType": "textbox",
+          "position": { "x": 20, "y": 68, "width": 1240, "height": 25 },
+          "text": "Zweisprachige Bildungs- und Kulturangebote in Berlin • Rechnungsperiode 2026"
+        },
+        {
+          "name": "ImpactCard1",
+          "visualType": "card",
+          "position": { "x": 20, "y": 105, "width": 295, "height": 115 },
+          "title": "Durchgeführte Veranstaltungen",
+          "query": "Gesamt_Veranstaltungen"
+        },
+        {
+          "name": "ImpactCard2",
+          "visualType": "card",
+          "position": { "x": 335, "y": 105, "width": 295, "height": 115 },
+          "title": "Zweisprachige Angebote (PL/DE)",
+          "query": "100 % Quote"
+        },
+        {
+          "name": "ImpactCard3",
+          "visualType": "card",
+          "position": { "x": 650, "y": 105, "width": 295, "height": 115 },
+          "title": "Regionale Standorte in Berlin",
+          "query": "5 Bezirke & Online"
+        },
+        {
+          "name": "ImpactCard4",
+          "visualType": "card",
+          "position": { "x": 965, "y": 105, "width": 295, "height": 115 },
+          "title": "Monatliche Reichweite (Website & Events)",
+          "query": "> 2.500 Kontakte"
+        },
+        {
+          "name": "SponsorBarChart",
+          "visualType": "barChart",
+          "position": { "x": 20, "y": 235, "width": 610, "height": 330 },
+          "title": "Veranstaltungsdichte nach Standort / Bezirk",
+          "category": "Standort_Name",
+          "values": "Anzahl_Veranstaltungen"
+        },
+        {
+          "name": "SponsorPieChart",
+          "visualType": "pieChart",
+          "position": { "x": 650, "y": 235, "width": 610, "height": 330 },
+          "title": "Zielgruppenansprache & Programmschwerpunkte",
+          "category": "Zielgruppe",
+          "values": "Anzahl_Veranstaltungen"
+        },
+        {
+          "name": "SponsorFooterCard",
+          "visualType": "textbox",
+          "position": { "x": 20, "y": 580, "width": 1240, "height": 125 },
+          "text": "📌 Über das SprachCafé Polnisch e.V.: Der Verein engagiert sich seit 2012 für gelebte Mehrsprachigkeit, deutsch-polnischen Kulturaustausch und interkulturelle Begegnungen in Berlin-Pankow, Schöneberg und Köpenick. Alle Aktivitäten sind gemeinnützig und barrierearm zugänglich. • Kontakt: kontakt@sprachcafe-polnisch.org • www.sprachcafe-polnisch.org"
+        }
+      ]
+    }
+  ]
+}
