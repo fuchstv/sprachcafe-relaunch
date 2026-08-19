@@ -3,8 +3,8 @@
  * SprachCafé Polnisch e.V. - Historical KPI Snapshot & Time-Series Archiver
  * 
  * Creates immutable, git-versioned monthly snapshots in `frontend/public/data/history/`
- * ensuring historical event data, visitor headcounts, web traffic, newsletter reach,
- * and social media growth are permanently preserved and filterable.
+ * ensuring historical event data, visitor headcounts, web traffic, and newsletter reach
+ * are permanently preserved and filterable.
  */
 
 import fs from 'fs';
@@ -15,7 +15,6 @@ const HISTORY_DIR = path.resolve(scriptDir, '../frontend/public/data/history');
 const KPI_CSV_PATH = path.resolve(scriptDir, 'kpi_exports/Veranstaltungs_Kennzahlen.csv');
 const CLOUDFLARE_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/cloudflare-analytics.json');
 const MAILCHIMP_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/mailchimp-metrics.json');
-const SOCIAL_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/social-metrics.json');
 const ALL_MONTHS_JSON_PATH = path.join(HISTORY_DIR, 'all-months.json');
 
 if (!fs.existsSync(HISTORY_DIR)) {
@@ -52,12 +51,6 @@ export interface MonthlySnapshot {
     subscribers: number;
     openRatePct: number;
     campaignsSent: number;
-  };
-  social: {
-    totalFollowers: number;
-    fbFollowers: number;
-    igFollowers: number;
-    monthlyReach: number;
   };
   archivedAt: string;
 }
@@ -98,16 +91,12 @@ async function main() {
   // Read secondary data
   let cfData: any = {};
   let mcData: any = {};
-  let socData: any = {};
 
   if (fs.existsSync(CLOUDFLARE_JSON_PATH)) {
     try { cfData = JSON.parse(fs.readFileSync(CLOUDFLARE_JSON_PATH, 'utf-8')); } catch (e) {}
   }
   if (fs.existsSync(MAILCHIMP_JSON_PATH)) {
     try { mcData = JSON.parse(fs.readFileSync(MAILCHIMP_JSON_PATH, 'utf-8')); } catch (e) {}
-  }
-  if (fs.existsSync(SOCIAL_JSON_PATH)) {
-    try { socData = JSON.parse(fs.readFileSync(SOCIAL_JSON_PATH, 'utf-8')); } catch (e) {}
   }
 
   const allSnapshots: MonthlySnapshot[] = [];
@@ -131,19 +120,15 @@ async function main() {
     const totalAttendees = (kinder * 18) + (sprachpraxis * 11) + (kultur * 14);
     const childrenAttendees = (kinder * 10) + Math.round(kultur * 2.5);
 
-    // Month specific web & social extrapolations
+    // Month specific web extrapolations
     const monthIdx = first.monatNum; // 1 - 12
     const webViews = Math.round((cfData?.metrics?.pageViews || 14820) * (0.8 + (monthIdx * 0.035)));
     const webVisitors = Math.round((cfData?.metrics?.uniqueVisitors || 3150) * (0.8 + (monthIdx * 0.035)));
-
     const subscribers = Math.round(760 + (monthIdx * 10));
-    const fbFollowers = 1450 + (monthIdx * 21);
-    const igFollowers = 1800 + (monthIdx * 60);
 
     const snapshotFile = path.join(HISTORY_DIR, `${ym}.json`);
     let snapshot: MonthlySnapshot;
 
-    // If month snapshot already exists and is in the past (before current month August 2026), preserve historical file if present
     if (fs.existsSync(snapshotFile) && ym < '2026-08') {
       try {
         snapshot = JSON.parse(fs.readFileSync(snapshotFile, 'utf-8'));
@@ -157,7 +142,6 @@ async function main() {
           headcountEst: { totalAttendees, childrenAttendees, avgPerEvent: parseFloat((totalAttendees / (totalEvents || 1)).toFixed(1)) },
           web: { pageViews: webViews, uniqueVisitors: webVisitors },
           newsletter: { subscribers, openRatePct: 48.6, campaignsSent: 2 },
-          social: { totalFollowers: fbFollowers + igFollowers + 1220, fbFollowers, igFollowers, monthlyReach: 20000 + (monthIdx * 1050) },
           archivedAt: new Date().toISOString()
         };
       }
@@ -171,7 +155,6 @@ async function main() {
         headcountEst: { totalAttendees, childrenAttendees, avgPerEvent: parseFloat((totalAttendees / (totalEvents || 1)).toFixed(1)) },
         web: { pageViews: webViews, uniqueVisitors: webVisitors },
         newsletter: { subscribers, openRatePct: 48.6, campaignsSent: 2 },
-        social: { totalFollowers: fbFollowers + igFollowers + 1220, fbFollowers, igFollowers, monthlyReach: 20000 + (monthIdx * 1050) },
         archivedAt: new Date().toISOString()
       };
       fs.writeFileSync(snapshotFile, JSON.stringify(snapshot, null, 2), 'utf-8');

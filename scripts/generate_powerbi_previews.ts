@@ -4,7 +4,7 @@
  * 
  * Generates:
  * 1. Unified All-in-One Executive Dashboard with Dynamic Multi-Year & Real-Time Filtering
- *    (Supports past years e.g. 2024, 2025, current 2026, and future years 2027+)
+ *    (Events + Dynamic Headcounts + Cloudflare Web Analytics + Mailchimp Outreach + Accounting)
  * 2. Sponsoren & Förderer Wirkungsbericht (External Presentation & PDF/PPT Export)
  * 3. Internes Monitoring & Detail-Analyse (Internal Controlling Matrix)
  */
@@ -17,7 +17,6 @@ const REPORTS_OUTPUT_DIR = path.resolve(scriptDir, '../frontend/public/reports')
 const KPI_CSV_PATH = path.resolve(scriptDir, 'kpi_exports/Veranstaltungs_Kennzahlen.csv');
 const CLOUDFLARE_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/cloudflare-analytics.json');
 const MAILCHIMP_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/mailchimp-metrics.json');
-const SOCIAL_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/social-metrics.json');
 const HISTORY_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/history/all-months.json');
 
 if (!fs.existsSync(REPORTS_OUTPUT_DIR)) {
@@ -91,32 +90,14 @@ if (fs.existsSync(MAILCHIMP_JSON_PATH)) {
   try { mcData = JSON.parse(fs.readFileSync(MAILCHIMP_JSON_PATH, 'utf-8')); } catch (e) {}
 }
 
-// 4. Read Social Media Metrics JSON
-let socData: any = {
-  totalSocialAudience: 5120,
-  totalMonthlyReach: 28400,
-  avgEngagementRatePct: 6.8,
-  channels: {
-    facebook: { name: 'Facebook', handle: '@sprachcafe.polnisch', followers: 1620, monthlyReach: 11400, monthlyEngagementPct: 5.4, monthlyGrowthPct: 3.8 },
-    instagram: { name: 'Instagram', handle: '@sprachcafepolnisch', followers: 2280, monthlyReach: 13900, monthlyEngagementPct: 8.1, monthlyGrowthPct: 7.2 },
-    youtube: { name: 'YouTube', handle: '@sprachcafepolnischev', followers: 320, monthlyReach: 1200, monthlyEngagementPct: 6.2, monthlyGrowthPct: 4.1 },
-    linkedin: { name: 'LinkedIn', handle: 'sprachcafe-polnisch-ev', followers: 480, monthlyReach: 1100, monthlyEngagementPct: 7.9, monthlyGrowthPct: 5.5 },
-    tiktok: { name: 'TikTok', handle: '@sprachcafepolnisch', followers: 420, monthlyReach: 800, monthlyEngagementPct: 6.5, monthlyGrowthPct: 12.0 }
-  }
-};
-
-if (fs.existsSync(SOCIAL_JSON_PATH)) {
-  try { socData = JSON.parse(fs.readFileSync(SOCIAL_JSON_PATH, 'utf-8')); } catch (e) {}
-}
-
-// 5. Read History Snapshots
+// 4. Read History Snapshots
 let historyData: any = [];
 if (fs.existsSync(HISTORY_JSON_PATH)) {
   try { historyData = JSON.parse(fs.readFileSync(HISTORY_JSON_PATH, 'utf-8')); } catch (e) {}
 }
 
 // ==============================================================================
-// 🌟 UNIFIED EXECUTIVE DASHBOARD (WITH MULTI-YEAR & REAL-TIME INTERACTIVE FILTERING)
+// 🌟 UNIFIED EXECUTIVE DASHBOARD (MULTI-YEAR & REAL-TIME INTERACTIVE FILTERING)
 // ==============================================================================
 const unifiedDashboardHtml = `<!DOCTYPE html>
 <html lang="de">
@@ -147,7 +128,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
       <div class="flex items-center gap-3">
         <span class="inline-block w-3 h-3 rounded-full bg-[#8B263E] animate-pulse"></span>
         <span class="text-sm font-bold text-[#1d1b1a]">SprachCafé Polnisch e.V. — Zentrales Gesamt-Dashboard</span>
-        <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#2B7A78]/10 text-[#2B7A78] font-bold">M365 • Cloudflare • Mailchimp • Meta CLI Live Sync</span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#2B7A78]/10 text-[#2B7A78] font-bold">M365 • Cloudflare • Mailchimp Live Sync</span>
       </div>
       <div class="flex items-center gap-2">
         <a href="/reports/sponsoren-wirkungsbericht.html" class="px-4 py-2 text-xs font-bold rounded-xl border border-[#8B263E] text-[#8B263E] hover:bg-[#8B263E]/10 transition-colors">
@@ -172,7 +153,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
         </div>
         <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#1d1b1a]">Wirkungs- & Steuerungs-Dashboard</h1>
         <p class="text-sm text-[#5b403d] mt-1">
-          Echtzeit-Zusammenführung aller Kalender-Events, Webportal-Reichweite, Mailchimp-Newsletter & Meta-Community (Facebook / Instagram) mit Mehrjahres-Unterstützung.
+          Echtzeit-Zusammenführung aller Kalender-Events, Webportal-Reichweite, Mailchimp-Newsletter & Controlling mit Mehrjahres-Filter.
         </p>
       </div>
       <div class="text-right text-xs text-[#5b403d] bg-[#f8f2f0] p-3 rounded-2xl border border-[#e7e1df] shrink-0">
@@ -199,7 +180,7 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
-        <!-- 1. Jahresfilter (Unterstützt zurückliegende Jahre & Zukunft) -->
+        <!-- 1. Jahresfilter -->
         <div>
           <label class="block text-xs font-bold text-[#5b403d] mb-2 uppercase">🗓️ Berichtsjahr</label>
           <div class="flex flex-wrap gap-1.5" id="year-filter-buttons">
@@ -285,38 +266,32 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
     <!-- ========================================================================= -->
     <!-- 📊 TOP-LEVEL KPI METRIC CARDS (DYNAMICALLY COMPUTED VIA JS) -->
     <!-- ========================================================================= -->
-    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4">
-      <div class="bg-gradient-to-br from-[#8B263E]/10 to-[#8B263E]/5 border border-[#8B263E]/20 p-4 rounded-2xl">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="bg-gradient-to-br from-[#8B263E]/10 to-[#8B263E]/5 border border-[#8B263E]/20 p-5 rounded-2xl">
         <p class="text-[11px] font-bold uppercase tracking-wider text-[#8B263E]">📅 Veranstaltungen</p>
         <p class="text-3xl font-black text-[#8B263E] mt-1" id="kpi-events">${totalEvents}</p>
         <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-events-sub">Ø ${avgPerMonth} / Monat (Aktiv)</p>
       </div>
 
-      <div class="bg-gradient-to-br from-[#2B7A78]/10 to-[#2B7A78]/5 border border-[#2B7A78]/20 p-4 rounded-2xl">
+      <div class="bg-gradient-to-br from-[#2B7A78]/10 to-[#2B7A78]/5 border border-[#2B7A78]/20 p-5 rounded-2xl">
         <p class="text-[11px] font-bold uppercase tracking-wider text-[#2B7A78]">👥 Teilnehmende (Est.)</p>
         <p class="text-3xl font-black text-[#2B7A78] mt-1" id="kpi-attendees">${totalAttendeesEst.toLocaleString('de-DE')}</p>
         <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-attendees-sub">Multiplikator-Modell</p>
       </div>
 
-      <div class="bg-gradient-to-br from-[#D4A373]/15 to-[#D4A373]/5 border border-[#D4A373]/30 p-4 rounded-2xl">
+      <div class="bg-gradient-to-br from-[#D4A373]/15 to-[#D4A373]/5 border border-[#D4A373]/30 p-5 rounded-2xl">
         <p class="text-[11px] font-bold uppercase tracking-wider text-[#9c6b3b]">🎈 Kinder-Fokus</p>
         <p class="text-3xl font-black text-[#9c6b3b] mt-1" id="kpi-kinder">${kinderEvents}</p>
         <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-kinder-sub">${Math.round((kinderEvents / totalEvents) * 100)}% aller Events</p>
       </div>
 
-      <div class="bg-gradient-to-br from-[#177245]/10 to-[#177245]/5 border border-[#177245]/20 p-4 rounded-2xl">
+      <div class="bg-gradient-to-br from-[#177245]/10 to-[#177245]/5 border border-[#177245]/20 p-5 rounded-2xl">
         <p class="text-[11px] font-bold uppercase tracking-wider text-[#177245]">📬 Newsletter (Mailchimp)</p>
         <p class="text-3xl font-black text-[#177245] mt-1">${mcData.subscribers.totalActive}</p>
         <p class="text-[11px] text-[#5b403d] mt-1">${mcData.performance.avgOpenRatePct}% Öffnungsrate (Top)</p>
       </div>
 
-      <div class="bg-gradient-to-br from-[#3b5998]/10 to-[#3b5998]/5 border border-[#3b5998]/20 p-4 rounded-2xl">
-        <p class="text-[11px] font-bold uppercase tracking-wider text-[#3b5998]">📱 Social Community</p>
-        <p class="text-3xl font-black text-[#3b5998] mt-1">${socData.totalSocialAudience.toLocaleString('de-DE')}</p>
-        <p class="text-[11px] text-[#5b403d] mt-1">~${socData.totalMonthlyReach.toLocaleString('de-DE')} Reichweite</p>
-      </div>
-
-      <div class="bg-gradient-to-br from-[#E76F51]/10 to-[#E76F51]/5 border border-[#E76F51]/20 p-4 rounded-2xl">
+      <div class="bg-gradient-to-br from-[#E76F51]/10 to-[#E76F51]/5 border border-[#E76F51]/20 p-5 rounded-2xl">
         <p class="text-[11px] font-bold uppercase tracking-wider text-[#E76F51]">🌐 Webportal (Cloudflare)</p>
         <p class="text-3xl font-black text-[#E76F51] mt-1">${cfData.metrics.pageViews.toLocaleString('de-DE')}</p>
         <p class="text-[11px] text-[#5b403d] mt-1">${cfData.metrics.uniqueVisitors.toLocaleString('de-DE')} Unique Visitors</p>
@@ -373,96 +348,6 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
               <p class="text-[10px] text-[#5b403d]">Kultur</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- 📱 SOCIAL MEDIA MULTI-CHANNEL HUB (FACEBOOK, INSTAGRAM, YOUTUBE, ETC.) -->
-    <!-- ========================================================================= -->
-    <div class="p-6 rounded-2xl bg-gradient-to-r from-[#1877F2]/5 via-[#E1306C]/5 to-[#0A66C2]/5 border border-[#e7e1df] space-y-4">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center gap-2.5">
-          <span class="text-2xl">📱</span>
-          <div>
-            <h3 class="font-serif text-lg font-bold text-[#1d1b1a]">Community & Social Media Reichweite</h3>
-            <p class="text-xs text-[#5b403d]">Direkte Interaktion über verifizierte SprachCafé Polnisch Social-Media-Kanäle</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-xs px-3 py-1 rounded-full bg-white border border-[#e7e1df] font-bold text-[#1d1b1a]">
-            👥 Gesamt-Audience: <strong class="text-[#8B263E]">${socData.totalSocialAudience.toLocaleString('de-DE')}</strong>
-          </span>
-          <span class="text-xs px-3 py-1 rounded-full bg-[#1877F2]/10 text-[#1877F2] font-bold">
-            CLI-Sync: <code>npm run sync:social</code>
-          </span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-        <!-- Facebook -->
-        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-sm text-[#1877F2] flex items-center gap-1.5">
-              <span>📘</span> Facebook
-            </span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">+${socData.channels.facebook.monthlyGrowthPct}%</span>
-          </div>
-          <p class="text-xl font-black text-[#1d1b1a]">${socData.channels.facebook.followers.toLocaleString('de-DE')} <span class="text-xs font-normal text-[#5b403d]">Follower</span></p>
-          <p class="text-[11px] text-[#5b403d]">~${socData.channels.facebook.monthlyReach.toLocaleString('de-DE')} Monats-Reichweite</p>
-          <p class="text-[10px] text-[#5b403d] truncate" title="${socData.channels.facebook.handle}">${socData.channels.facebook.handle}</p>
-        </div>
-
-        <!-- Instagram -->
-        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-sm text-[#E1306C] flex items-center gap-1.5">
-              <span>📸</span> Instagram
-            </span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-50 text-pink-700">+${socData.channels.instagram.monthlyGrowthPct}%</span>
-          </div>
-          <p class="text-xl font-black text-[#1d1b1a]">${socData.channels.instagram.followers.toLocaleString('de-DE')} <span class="text-xs font-normal text-[#5b403d]">Follower</span></p>
-          <p class="text-[11px] text-[#5b403d]">~${socData.channels.instagram.monthlyReach.toLocaleString('de-DE')} Monats-Reichweite</p>
-          <p class="text-[10px] text-[#5b403d] truncate" title="${socData.channels.instagram.handle}">${socData.channels.instagram.handle}</p>
-        </div>
-
-        <!-- YouTube -->
-        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-sm text-[#FF0000] flex items-center gap-1.5">
-              <span>▶️</span> YouTube
-            </span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700">+${socData.channels.youtube.monthlyGrowthPct}%</span>
-          </div>
-          <p class="text-xl font-black text-[#1d1b1a]">${socData.channels.youtube.followers.toLocaleString('de-DE')} <span class="text-xs font-normal text-[#5b403d]">Abonnenten</span></p>
-          <p class="text-[11px] text-[#5b403d]">~${socData.channels.youtube.monthlyReach.toLocaleString('de-DE')} Video-Views</p>
-          <p class="text-[10px] text-[#5b403d] truncate" title="${socData.channels.youtube.handle}">${socData.channels.youtube.handle}</p>
-        </div>
-
-        <!-- LinkedIn -->
-        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-sm text-[#0A66C2] flex items-center gap-1.5">
-              <span>💼</span> LinkedIn
-            </span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700">+${socData.channels.linkedin.monthlyGrowthPct}%</span>
-          </div>
-          <p class="text-xl font-black text-[#1d1b1a]">${socData.channels.linkedin.followers.toLocaleString('de-DE')} <span class="text-xs font-normal text-[#5b403d]">Kontakte</span></p>
-          <p class="text-[11px] text-[#5b403d]">Netzwerk & Förderpartner</p>
-          <p class="text-[10px] text-[#5b403d] truncate" title="${socData.channels.linkedin.handle}">${socData.channels.linkedin.handle}</p>
-        </div>
-
-        <!-- TikTok -->
-        <div class="bg-white p-4 rounded-xl border border-[#e7e1df] shadow-sm space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-sm text-[#000000] flex items-center gap-1.5">
-              <span>🎵</span> TikTok
-            </span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">+${socData.channels.tiktok.monthlyGrowthPct}%</span>
-          </div>
-          <p class="text-xl font-black text-[#1d1b1a]">${socData.channels.tiktok.followers.toLocaleString('de-DE')} <span class="text-xs font-normal text-[#5b403d]">Follower</span></p>
-          <p class="text-[11px] text-[#5b403d]">Sprach-Snippets & Jugend</p>
-          <p class="text-[10px] text-[#5b403d] truncate" title="${socData.channels.tiktok.handle}">${socData.channels.tiktok.handle}</p>
         </div>
       </div>
     </div>
@@ -970,9 +855,9 @@ const sponsorHtml = `<!DOCTYPE html>
         <p class="text-xs text-[#5b403d] mt-1">~${childrenAttendeesEst.toLocaleString('de-DE')} Kinderkontakte</p>
       </div>
       <div class="p-5 rounded-2xl bg-[#E76F51]/5 border border-[#E76F51]/20 text-center">
-        <p class="text-xs font-bold uppercase text-[#E76F51]">Digitale Reichweite</p>
-        <p class="text-4xl font-black text-[#E76F51] mt-2">${(cfData.metrics.pageViews + socData.totalMonthlyReach).toLocaleString('de-DE')}</p>
-        <p class="text-xs text-[#5b403d] mt-1">Web, Newsletter & Social Media</p>
+        <p class="text-xs font-bold uppercase text-[#E76F51]">Digitale Web-Reichweite</p>
+        <p class="text-4xl font-black text-[#E76F51] mt-2">${cfData.metrics.pageViews.toLocaleString('de-DE')}</p>
+        <p class="text-xs text-[#5b403d] mt-1">Cloudflare Analytics (PageViews)</p>
       </div>
     </div>
 
