@@ -3,8 +3,8 @@ title:
   de: "Warsztaty sensoryczno–muzyczne dla dzieci w wieku 1,5–3 lat"
   pl: "Warsztaty sensoryczno–muzyczne dla dzieci w wieku 1,5–3 lat"
   en: "Warsztaty sensoryczno–muzyczne dla dzieci w wieku 1,5–3 lat"
-date: 2026-10-07T14:00:00.000Z
-endDate: 2026-10-07T14:45:00.000Z
+date: 2026-10-07T16:00:00.000Z
+endDate: 2026-10-07T16:45:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Kinder & Eltern"

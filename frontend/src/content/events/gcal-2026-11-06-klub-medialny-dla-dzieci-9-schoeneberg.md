@@ -3,8 +3,8 @@ title:
   de: "KLUB MEDIALNY dla dzieci 9+"
   pl: "KLUB MEDIALNY dla dzieci 9+"
   en: "KLUB MEDIALNY dla dzieci 9+"
-date: 2026-11-06T15:30:00.000Z
-endDate: 2026-11-06T17:00:00.000Z
+date: 2026-11-06T16:30:00.000Z
+endDate: 2026-11-06T18:00:00.000Z
 locationRef: "schoeneberg"
 targetAudience:
   de: "Kinder & Eltern"

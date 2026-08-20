@@ -1,0 +1,288 @@
+---
+interface Props {
+  lang?: "de" | "pl" | "en";
+}
+
+const { lang = "de" } = Astro.props;
+
+const hubs = {
+  de: {
+    heading: "Wähle deinen Kiez:",
+    subtitle: "Unsere 3 lebendigen Begegnungsorte in Berlin – jeder mit eigenem Charme, Kursen und Veranstaltungen.",
+    pankow: {
+      id: "pankow",
+      name: "Pankow",
+      slogan: "Kiez im Grünen & Vereinssitz",
+      address: "Schulzestraße 1, 13187 Berlin",
+      hours: "Di & Do: 14:00 – 18:00 Uhr | Sa: 10:00 – 14:00 Uhr",
+      transit: "S1, S2, S25, S26, S+U Pankow, Tram M1, 50",
+      groups: "Eltern-Kind-Treff, Literaturkreis, Sprachkurse",
+      detailsLink: "/kontakt/#pankow",
+      cta: "Mehr zu Pankow",
+      colorClass: "from-[#2C5E7A]/90 to-[#1A3D52]"
+    },
+    schoeneberg: {
+      id: "schoeneberg",
+      name: "Schöneberg",
+      slogan: "Lebendige Vielfalt & Dialog",
+      address: "Hauptstraße 27, 10827 Berlin",
+      hours: "Mo & Mi: 10:00 – 15:00 Uhr | Fr: 14:00 – 18:00 Uhr",
+      transit: "S1, S41, S42, S46, S+U Yorckstraße / Julius-Leber-Brücke",
+      groups: "Kultur-AG, Sprach-Tandem, Ausstellungen",
+      detailsLink: "/kontakt/#schoeneberg",
+      cta: "Mehr zu Schöneberg",
+      colorClass: "from-[#4A6741]/90 to-[#2F4428]"
+    },
+    koepenick: {
+      id: "koepenick",
+      name: "Köpenick",
+      slogan: "Altstadt am Wasser & Kultur",
+      address: "Grünstraße 16, 12555 Berlin",
+      hours: "Mi & Fr: 12:00 – 18:00 Uhr | Sa: 14:00 – 17:00 Uhr",
+      transit: "S3, S47 S-Bhf Spindlersfeld, Tram 60, 61, 62",
+      groups: "Geschichtsverein, Buchclub, Kids-Klub",
+      detailsLink: "/kontakt/#koepenick",
+      cta: "Mehr zu Köpenick",
+      colorClass: "from-[#8B5A2B]/90 to-[#5C3A1A]"
+    }
+  },
+  pl: {
+    heading: "Wybierz swoją dzielnicę:",
+    subtitle: "Nasze 3 tętniące życiem przestrzenie spotkań w Berlinie – każda z własnym urokiem, kursami i wydarzeniami.",
+    pankow: {
+      id: "pankow",
+      name: "Pankow",
+      slogan: "Zielona dzielnica & Siedziba",
+      address: "Schulzestraße 1, 13187 Berlin",
+      hours: "Wt & Czw: 14:00 – 18:00 | Sob: 10:00 – 14:00",
+      transit: "S1, S2, S25, S26, S+U Pankow, Tram M1, 50",
+      groups: "Spotkania rodziców z dziećmi, Klub literacki",
+      detailsLink: "/pl/kontakt/#pankow",
+      cta: "Więcej o Pankow",
+      colorClass: "from-[#2C5E7A]/90 to-[#1A3D52]"
+    },
+    schoeneberg: {
+      id: "schoeneberg",
+      name: "Schöneberg",
+      slogan: "Żywa różnorodność & Dialog",
+      address: "Hauptstraße 27, 10827 Berlin",
+      hours: "Pon & Śr: 10:00 – 15:00 | Pt: 14:00 – 18:00",
+      transit: "S1, S41, S42, S+U Yorckstraße",
+      groups: "Sekcja kulturalna, Tandem językowy, Wystawy",
+      detailsLink: "/pl/kontakt/#schoeneberg",
+      cta: "Więcej o Schöneberg",
+      colorClass: "from-[#4A6741]/90 to-[#2F4428]"
+    },
+    koepenick: {
+      id: "koepenick",
+      name: "Köpenick",
+      slogan: "Stare miasto nad wodą",
+      address: "Grünstraße 16, 12555 Berlin",
+      hours: "Śr & Pt: 12:00 – 18:00 | Sob: 14:00 – 17:00",
+      transit: "S3, S47 Spindlersfeld, Tram 60, 61, 62",
+      groups: "Klub książki, Warsztaty dla dzieci",
+      detailsLink: "/pl/kontakt/#koepenick",
+      cta: "Więcej o Köpenick",
+      colorClass: "from-[#8B5A2B]/90 to-[#5C3A1A]"
+    }
+  },
+  en: {
+    heading: "Choose your neighborhood hub:",
+    subtitle: "Our 3 community spaces in Berlin – each offering workshops, language exchanges, and cultural events.",
+    pankow: {
+      id: "pankow",
+      name: "Pankow",
+      slogan: "Green Neighborhood & Headquarters",
+      address: "Schulzestraße 1, 13187 Berlin",
+      hours: "Tue & Thu: 2:00 PM – 6:00 PM | Sat: 10:00 AM – 2:00 PM",
+      transit: "S1, S2, S25, S26, S+U Pankow, Tram M1, 50",
+      groups: "Parents & Kids, Literature Circle, Language Courses",
+      detailsLink: "/en/contact/#pankow",
+      cta: "Explore Pankow",
+      colorClass: "from-[#2C5E7A]/90 to-[#1A3D52]"
+    },
+    schoeneberg: {
+      id: "schoeneberg",
+      name: "Schöneberg",
+      slogan: "Vibrant Diversity & Dialogue",
+      address: "Hauptstraße 27, 10827 Berlin",
+      hours: "Mon & Wed: 10:00 AM – 3:00 PM | Fri: 2:00 PM – 6:00 PM",
+      transit: "S1, S41, S42, S+U Yorckstraße",
+      groups: "Culture Group, Language Tandem, Exhibitions",
+      detailsLink: "/en/contact/#schoeneberg",
+      cta: "Explore Schöneberg",
+      colorClass: "from-[#4A6741]/90 to-[#2F4428]"
+    },
+    koepenick: {
+      id: "koepenick",
+      name: "Köpenick",
+      slogan: "Historic Waterfront District",
+      address: "Grünstraße 16, 12555 Berlin",
+      hours: "Wed & Fri: 12:00 PM – 6:00 PM | Sat: 2:00 PM – 5:00 PM",
+      transit: "S3, S47 Spindlersfeld, Tram 60, 61, 62",
+      groups: "Book Club, Kids Crafts & Games",
+      detailsLink: "/en/contact/#koepenick",
+      cta: "Explore Köpenick",
+      colorClass: "from-[#8B5A2B]/90 to-[#5C3A1A]"
+    }
+  }
+};
+
+const current = hubs[lang] || hubs.de;
+const hubList = [current.pankow, current.schoeneberg, current.koepenick];
+---
+
+<section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto" aria-labelledby="kiezhub-title">
+  
+  <div class="text-center max-w-2xl mx-auto mb-10">
+    <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#FF758F] text-xs font-bold uppercase tracking-wider mb-3">
+      📍 3 Standorte in Berlin
+    </span>
+    <h2 id="kiezhub-title" class="font-serif text-3xl sm:text-5xl font-bold text-[#1D1B1A] dark:text-[#F5F0EE] tracking-tight mb-3">
+      {current.heading}
+    </h2>
+    <p class="font-sans text-base sm:text-lg text-[#5B403D] dark:text-[#D4C5C2] leading-relaxed">
+      {current.subtitle}
+    </p>
+
+    <!-- Interactive Filter Tabs -->
+    <div class="inline-flex p-1.5 rounded-full bg-[#F2ECE4] dark:bg-[#2A2725] border border-[#E2D8CC] dark:border-[#3A3532] mt-6 shadow-sm gap-1" role="tablist" aria-label="Standort Filter">
+      <button
+        type="button"
+        id="kiez-tab-all"
+        role="tab"
+        aria-selected="true"
+        class="kiez-tab-btn active px-4 py-2 rounded-full font-bold text-xs sm:text-sm transition-all bg-[#8B1E2D] text-white shadow-sm cursor-pointer"
+        data-target="all"
+      >
+        Alle Standorte
+      </button>
+      <button
+        type="button"
+        id="kiez-tab-pankow"
+        role="tab"
+        aria-selected="false"
+        class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
+        data-target="pankow"
+      >
+        Pankow 🌿
+      </button>
+      <button
+        type="button"
+        id="kiez-tab-schoeneberg"
+        role="tab"
+        aria-selected="false"
+        class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
+        data-target="schoeneberg"
+      >
+        Schöneberg ☕
+      </button>
+      <button
+        type="button"
+        id="kiez-tab-koepenick"
+        role="tab"
+        aria-selected="false"
+        class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
+        data-target="koepenick"
+      >
+        Köpenick ⛵
+      </button>
+    </div>
+  </div>
+
+  <!-- 3 Hub Cards Grid -->
+  <div id="kiez-cards-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {hubList.map((hub) => (
+      <article
+        class={`kiez-hub-card relative bg-white dark:bg-[#22201E] border border-[#E2D8CC] dark:border-[#3A3532] rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(42,36,33,0.06)] hover:shadow-[0_12px_32px_rgba(42,36,33,0.14)] transition-all duration-300 flex flex-col`}
+        data-hub={hub.id}
+      >
+        <!-- Header Banner with Atmospheric Theme -->
+        <div class={`p-6 bg-gradient-to-br ${hub.colorClass} text-white relative`}>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-white/80 block mb-1">
+            {hub.slogan}
+          </span>
+          <h3 class="font-serif text-2xl font-bold tracking-tight">
+            Unser Hub in {hub.name}
+          </h3>
+          <p class="text-xs text-white/90 mt-1 flex items-center gap-1.5 font-medium">
+            <span>📍 {hub.address}</span>
+          </p>
+        </div>
+
+        <!-- Body Details -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-6">
+          
+          <div class="space-y-4">
+            <!-- Öffnungszeiten -->
+            <div class="bg-[#FAF5EB] dark:bg-[#2A2725] border border-[#E8DFC8]/60 dark:border-[#3A3532] rounded-2xl p-4">
+              <span class="text-[11px] font-bold text-[#8B1E2D] dark:text-[#FF758F] uppercase tracking-wider block mb-1">
+                🕒 Öffnungszeiten
+              </span>
+              <p class="font-sans text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] font-medium leading-relaxed">
+                {hub.hours}
+              </p>
+            </div>
+
+            <!-- Anbindung & Gruppen -->
+            <div class="space-y-2.5 text-xs sm:text-sm text-[#5B403D] dark:text-[#D4C5C2]">
+              <div class="flex items-start gap-2">
+                <span class="font-bold text-[#1D1B1A] dark:text-[#F5F0EE] shrink-0">🚆 S-Bahn:</span>
+                <span class="leading-tight">{hub.transit}</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="font-bold text-[#1D1B1A] dark:text-[#F5F0EE] shrink-0">👥 Gruppen:</span>
+                <span class="leading-tight">{hub.groups}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="pt-4 border-t border-[#E2D8CC] dark:border-[#3A3532]">
+            <a
+              href={hub.detailsLink}
+              class="w-full py-3 px-4 rounded-full bg-[#FAF5EB] hover:bg-[#8B1E2D] text-[#8B1E2D] hover:text-white dark:bg-[#2A2725] dark:text-[#FF758F] dark:hover:bg-[#8B1E2D] dark:hover:text-white border border-[#E2D8CC] dark:border-[#3A3532] font-bold text-xs sm:text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-sm"
+            >
+              <span>{hub.cta}</span>
+              <span class="group-hover/btn:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+
+        </div>
+      </article>
+    ))}
+  </div>
+
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".kiez-tab-btn");
+    const cards = document.querySelectorAll(".kiez-hub-card");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("data-target");
+
+        // Update active tab styles
+        tabs.forEach((t) => {
+          t.setAttribute("aria-selected", "false");
+          t.className = "kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer";
+        });
+
+        tab.setAttribute("aria-selected", "true");
+        tab.className = "kiez-tab-btn active px-4 py-2 rounded-full font-bold text-xs sm:text-sm transition-all bg-[#8B1E2D] text-white shadow-sm cursor-pointer";
+
+        // Filter cards
+        cards.forEach((card) => {
+          const hubId = card.getAttribute("data-hub");
+          if (target === "all" || hubId === target) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      });
+    });
+  });
+</script>

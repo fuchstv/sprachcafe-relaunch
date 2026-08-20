@@ -3,8 +3,8 @@ title:
   de: "Dla Maluszków (do 1,5 r.ż.), ich Mam & Tatusiów | PL"
   pl: "Dla Maluszków (do 1,5 r.ż.), ich Mam & Tatusiów | PL"
   en: "Dla Maluszków (do 1,5 r.ż.), ich Mam & Tatusiów | PL"
-date: 2026-11-10T08:15:00.000Z
-endDate: 2026-11-10T09:00:00.000Z
+date: 2026-11-10T09:15:00.000Z
+endDate: 2026-11-10T10:00:00.000Z
 locationRef: "schoeneberg"
 targetAudience:
   de: "Kinder & Eltern"

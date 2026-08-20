@@ -3,8 +3,8 @@ title:
   de: "SprachCamp Herbst für Kinder"
   pl: "SprachCamp Herbst für Kinder"
   en: "SprachCamp Herbst für Kinder"
-date: 2026-10-22T07:00:00.000Z
-endDate: 2026-10-22T14:00:00.000Z
+date: 2026-10-22T09:00:00.000Z
+endDate: 2026-10-22T16:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Kinder & Eltern"

@@ -3,8 +3,8 @@ title:
   de: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
   pl: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
   en: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
-date: 2026-09-16T15:00:00.000Z
-endDate: 2026-09-16T15:45:00.000Z
+date: 2026-09-16T17:00:00.000Z
+endDate: 2026-09-16T17:45:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Kinder & Eltern"

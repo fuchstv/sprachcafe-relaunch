@@ -3,8 +3,8 @@ title:
   de: "Warsztaty kulinarno-literackie dla rodzin z dziećmi (4+) | PL"
   pl: "Warsztaty kulinarno-literackie dla rodzin z dziećmi (4+) | PL"
   en: "Warsztaty kulinarno-literackie dla rodzin z dziećmi (4+) | PL"
-date: 2026-10-10T09:00:00.000Z
-endDate: 2026-10-10T12:00:00.000Z
+date: 2026-10-10T11:00:00.000Z
+endDate: 2026-10-10T14:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Kinder & Eltern"

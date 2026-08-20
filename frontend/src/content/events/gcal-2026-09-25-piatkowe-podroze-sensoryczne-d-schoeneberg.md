@@ -3,8 +3,8 @@ title:
   de: "Piątkowe podróże sensoryczne - dla dzieci lat 1-3"
   pl: "Piątkowe podróże sensoryczne - dla dzieci lat 1-3"
   en: "Piątkowe podróże sensoryczne - dla dzieci lat 1-3"
-date: 2026-09-25T14:10:00.000Z
-endDate: 2026-09-25T14:55:00.000Z
+date: 2026-09-25T16:10:00.000Z
+endDate: 2026-09-25T16:55:00.000Z
 locationRef: "schoeneberg"
 targetAudience:
   de: "Kinder & Eltern"

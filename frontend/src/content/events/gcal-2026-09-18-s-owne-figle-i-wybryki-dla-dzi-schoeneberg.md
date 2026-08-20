@@ -3,8 +3,8 @@ title:
   de: "\"Słowne Figle i Wybryki\" - dla dzieci lat 3-6 lat"
   pl: "\"Słowne Figle i Wybryki\" - dla dzieci lat 3-6 lat"
   en: "\"Słowne Figle i Wybryki\" - dla dzieci lat 3-6 lat"
-date: 2026-09-18T15:00:00.000Z
-endDate: 2026-09-18T15:45:00.000Z
+date: 2026-09-18T17:00:00.000Z
+endDate: 2026-09-18T17:45:00.000Z
 locationRef: "schoeneberg"
 targetAudience:
   de: "Kinder & Eltern"

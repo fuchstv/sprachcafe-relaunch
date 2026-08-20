@@ -147,9 +147,9 @@ const labels = {
 const current = labels[lang] || labels.de;
 ---
 
-<div class="membership-form-container bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_25px_rgba(51,49,48,0.06)] max-w-4xl mx-auto my-12" id="mitglied-form">
+<div class="membership-form-container bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_25px_rgba(51,49,48,0.06)] max-w-4xl mx-auto my-12" id="mitglied-form">
   <div class="mb-8 text-center sm:text-left">
-    <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
+    <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
       {current.badge}
     </span>
     <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">{current.title}</h2>
@@ -185,33 +185,33 @@ const current = labels[lang] || labels.de;
     
     <!-- 1. Allgemeine Angaben -->
     <div class="space-y-4 pt-2">
-      <h3 class="font-serif text-xl font-bold text-[#8B263E] dark:text-[#ff758f] border-b border-[#e7e1df] dark:border-[#363230] pb-2">
+      <h3 class="font-serif text-xl font-bold text-[#8B1E2D] dark:text-[#ff758f] border-b border-[#E2D8CC] dark:border-[#363230] pb-2">
         {current.generalTitle}
       </h3>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="sm:col-span-2">
           <label for="member-fullname" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.nameLabel} <span class="text-[#8B263E]">*</span>
+            {current.nameLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <input
             type="text"
             id="member-fullname"
             required
             placeholder={current.namePlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
         <div>
           <label for="member-birthdate" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.birthLabel} <span class="text-[#8B263E]">*</span>
+            {current.birthLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <input
             type="date"
             id="member-birthdate"
             required
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
@@ -223,59 +223,59 @@ const current = labels[lang] || labels.de;
             type="text"
             id="member-occupation"
             placeholder={current.occupationPlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
         <div class="sm:col-span-2">
           <label for="member-street" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.streetLabel} <span class="text-[#8B263E]">*</span>
+            {current.streetLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <input
             type="text"
             id="member-street"
             required
             placeholder={current.streetPlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
         <div>
           <label for="member-zip" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.zipLabel} <span class="text-[#8B263E]">*</span>
+            {current.zipLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <input
             type="text"
             id="member-zip"
             required
             placeholder={current.zipPlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
         <div>
           <label for="member-city" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.cityLabel} <span class="text-[#8B263E]">*</span>
+            {current.cityLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <input
             type="text"
             id="member-city"
             required
             placeholder={current.cityPlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
         <div>
           <label for="member-email" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.emailLabel} <span class="text-[#8B263E]">*</span>
+            {current.emailLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <input
             type="email"
             id="member-email"
             required
             placeholder={current.emailPlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
 
@@ -287,7 +287,7 @@ const current = labels[lang] || labels.de;
             type="tel"
             id="member-phone"
             placeholder={current.phonePlaceholder}
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           />
         </div>
       </div>
@@ -295,19 +295,19 @@ const current = labels[lang] || labels.de;
 
     <!-- 2. Art der Mitgliedschaft & Stufe -->
     <div class="space-y-4 pt-4">
-      <h3 class="font-serif text-xl font-bold text-[#8B263E] dark:text-[#ff758f] border-b border-[#e7e1df] dark:border-[#363230] pb-2">
+      <h3 class="font-serif text-xl font-bold text-[#8B1E2D] dark:text-[#ff758f] border-b border-[#E2D8CC] dark:border-[#363230] pb-2">
         {current.typeTitle}
       </h3>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label for="member-type" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.typeLabel} <span class="text-[#8B263E]">*</span>
+            {current.typeLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <select
             id="member-type"
             required
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           >
             <option value="ordentlich">{current.typeOrdentlich}</option>
             <option value="foerdernd">{current.typeFoerdernd}</option>
@@ -316,12 +316,12 @@ const current = labels[lang] || labels.de;
 
         <div>
           <label for="member-tier" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-            {current.tierLabel} <span class="text-[#8B263E]">*</span>
+            {current.tierLabel} <span class="text-[#8B1E2D]">*</span>
           </label>
           <select
             id="member-tier"
             required
-            class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+            class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
           >
             <option value="Silver">{current.tierSilver}</option>
             <option value="Gold" selected>{current.tierGold}</option>
@@ -334,7 +334,7 @@ const current = labels[lang] || labels.de;
 
     <!-- 3. Weitere Angaben -->
     <div class="space-y-4 pt-4">
-      <h3 class="font-serif text-xl font-bold text-[#8B263E] dark:text-[#ff758f] border-b border-[#e7e1df] dark:border-[#363230] pb-2">
+      <h3 class="font-serif text-xl font-bold text-[#8B1E2D] dark:text-[#ff758f] border-b border-[#E2D8CC] dark:border-[#363230] pb-2">
         {current.additionalTitle}
       </h3>
 
@@ -344,7 +344,7 @@ const current = labels[lang] || labels.de;
         </label>
         <select
           id="member-how"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         >
           {current.howOptions.map((opt) => (
             <option value={opt}>{opt}</option>
@@ -360,14 +360,14 @@ const current = labels[lang] || labels.de;
           id="member-support"
           rows="3"
           placeholder={current.supportPlaceholder}
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         ></textarea>
       </div>
     </div>
 
     <!-- 4. Zustimmungen & Legal -->
     <div class="space-y-4 pt-4">
-      <h3 class="font-serif text-xl font-bold text-[#8B263E] dark:text-[#ff758f] border-b border-[#e7e1df] dark:border-[#363230] pb-2">
+      <h3 class="font-serif text-xl font-bold text-[#8B1E2D] dark:text-[#ff758f] border-b border-[#E2D8CC] dark:border-[#363230] pb-2">
         {current.consentTitle}
       </h3>
 
@@ -377,10 +377,10 @@ const current = labels[lang] || labels.de;
             type="checkbox"
             id="consent-statute"
             required
-            class="mt-1 w-4 h-4 rounded text-[#8B263E] focus:ring-[#8B263E]"
+            class="mt-1 w-4 h-4 rounded text-[#8B1E2D] focus:ring-[#8B1E2D]"
           />
           <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">
-            {current.statuteConsent} <span class="text-[#8B263E]">*</span> (<a href="/downloads/Satzung-SCP-12.06.2020.pdf" target="_blank" class="underline text-[#8B263E] dark:text-[#ff758f]">Satzungs-PDF lesen</a>)
+            {current.statuteConsent} <span class="text-[#8B1E2D]">*</span> (<a href="/downloads/Satzung-SCP-12.06.2020.pdf" target="_blank" class="underline text-[#8B1E2D] dark:text-[#ff758f]">Satzungs-PDF lesen</a>)
           </span>
         </label>
 
@@ -389,10 +389,10 @@ const current = labels[lang] || labels.de;
             type="checkbox"
             id="consent-privacy"
             required
-            class="mt-1 w-4 h-4 rounded text-[#8B263E] focus:ring-[#8B263E]"
+            class="mt-1 w-4 h-4 rounded text-[#8B1E2D] focus:ring-[#8B1E2D]"
           />
           <span class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">
-            {current.privacyConsent} <span class="text-[#8B263E]">*</span>
+            {current.privacyConsent} <span class="text-[#8B1E2D]">*</span>
           </span>
         </label>
       </div>
@@ -403,7 +403,7 @@ const current = labels[lang] || labels.de;
       <button
         type="submit"
         id="member-submit-btn"
-        class="w-full py-4 px-6 rounded-xl bg-[#8B263E] text-white font-bold text-base hover:bg-[#6b1d30] transition-colors shadow-lg flex items-center justify-center gap-2"
+        class="w-full py-4 px-6 rounded-xl bg-[#8B1E2D] text-white font-bold text-base hover:bg-[#6b1d30] transition-colors shadow-lg flex items-center justify-center gap-2"
       >
         <span>{current.submitBtn}</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>

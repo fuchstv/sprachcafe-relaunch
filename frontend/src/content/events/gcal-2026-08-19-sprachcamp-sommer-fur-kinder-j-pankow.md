@@ -3,8 +3,8 @@ title:
   de: "SprachCamp Sommer für Kinder J."
   pl: "SprachCamp Sommer für Kinder J."
   en: "SprachCamp Sommer für Kinder J."
-date: 2026-08-19T07:00:00.000Z
-endDate: 2026-08-19T14:00:00.000Z
+date: 2026-08-19T09:00:00.000Z
+endDate: 2026-08-19T16:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Kinder & Eltern"

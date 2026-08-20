@@ -66,3 +66,10 @@ temp/
 playwright-report/
 test-results/
 blob-report/
+
+# Stitch Designs & Assets
+docs/stitch-designs/
+docs/STITCH_DESIGNS.md
+*stitch-designs*
+*STITCH_DESIGNS*
+

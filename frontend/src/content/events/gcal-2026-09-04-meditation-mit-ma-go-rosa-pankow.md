@@ -3,8 +3,8 @@ title:
   de: "Meditation mit Małgo Rosa"
   pl: "Meditation mit Małgo Rosa"
   en: "Meditation mit Małgo Rosa"
-date: 2026-09-04T16:00:00.000Z
-endDate: 2026-09-04T17:00:00.000Z
+date: 2026-09-04T18:00:00.000Z
+endDate: 2026-09-04T19:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Erwachsene & Familien"

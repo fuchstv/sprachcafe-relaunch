@@ -3,8 +3,8 @@ title:
   de: "Frühstück auf Polnisch+ | Śniadanie po polsku"
   pl: "Frühstück auf Polnisch+ | Śniadanie po polsku"
   en: "Frühstück auf Polnisch+ | Śniadanie po polsku"
-date: 2026-11-06T09:00:00.000Z
-endDate: 2026-11-06T11:00:00.000Z
+date: 2026-11-06T10:00:00.000Z
+endDate: 2026-11-06T12:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Erwachsene & Familien"

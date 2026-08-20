@@ -8,9 +8,9 @@ const {
 } = Astro.props;
 ---
 
-<div class="application-form-wrapper bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)] max-w-3xl mx-auto">
+<div class="application-form-wrapper bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)] max-w-3xl mx-auto">
   <div class="mb-8 text-center sm:text-left">
-    <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
+    <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
       Mitmachen & Engagieren
     </span>
     <h2 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">Mitgliedsantrag & Bewerbung</h2>
@@ -47,12 +47,12 @@ const {
     <!-- Application Type Selection -->
     <div>
       <label for="app-type" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-        Art der Bewerbung / des Antrags <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
+        Art der Bewerbung / des Antrags <span class="text-[#8B1E2D] dark:text-[#ff758f]">*</span>
       </label>
       <select
         id="app-type"
         required
-        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+        class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
       >
         <option value="mitgliedsantrag" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Mitgliedsantrag (Verein) - SprachCafé Polnisch e.V.</option>
         <option value="ehrenamt" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Ehrenamtliches Engagement (Sprachbegleitung, Events)</option>
@@ -64,27 +64,27 @@ const {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label for="first-name" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-          Vorname <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
+          Vorname <span class="text-[#8B1E2D] dark:text-[#ff758f]">*</span>
         </label>
         <input
           type="text"
           id="first-name"
           required
           placeholder="z. B. Anna"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         />
       </div>
 
       <div>
         <label for="last-name" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-          Nachname <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
+          Nachname <span class="text-[#8B1E2D] dark:text-[#ff758f]">*</span>
         </label>
         <input
           type="text"
           id="last-name"
           required
           placeholder="z. B. Kowalska"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         />
       </div>
     </div>
@@ -93,14 +93,14 @@ const {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label for="email" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-          E-Mail-Adresse <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
+          E-Mail-Adresse <span class="text-[#8B1E2D] dark:text-[#ff758f]">*</span>
         </label>
         <input
           type="email"
           id="email"
           required
           placeholder="anna@example.com"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         />
       </div>
 
@@ -112,7 +112,7 @@ const {
           type="tel"
           id="phone"
           placeholder="+49 170 1234567"
-          class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         />
       </div>
     </div>
@@ -124,7 +124,7 @@ const {
       </label>
       <select
         id="location-pref"
-        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+        class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
       >
         <option value="Egal" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Egal / Flexibel</option>
         <option value="Pankow" class="bg-white dark:bg-[#2a2725] text-[#1d1b1a] dark:text-[#f5f0ee]">Pankow</option>
@@ -136,14 +136,14 @@ const {
     <!-- Motivation / Message -->
     <div>
       <label for="motivation" class="block text-xs font-bold text-[#1d1b1a] dark:text-[#f5f0ee] uppercase tracking-wider mb-2">
-        Motivation & Nachricht <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
+        Motivation & Nachricht <span class="text-[#8B1E2D] dark:text-[#ff758f]">*</span>
       </label>
       <textarea
         id="motivation"
         required
         rows="4"
         placeholder="Stellen Sie sich kurz vor und beschreiben Sie Ihr Interesse..."
-        class="w-full px-4 py-3 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B263E] leading-relaxed"
+        class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] leading-relaxed"
       ></textarea>
     </div>
 
@@ -153,10 +153,10 @@ const {
         type="checkbox"
         id="privacy-consent"
         required
-        class="mt-1 w-4 h-4 text-[#8B263E] dark:text-[#ff758f] bg-[#f8f2f0] dark:bg-[#2a2725] border-[#e7e1df] dark:border-[#363230] rounded focus:ring-[#8B263E]"
+        class="mt-1 w-4 h-4 text-[#8B1E2D] dark:text-[#ff758f] bg-[#FAF5EB] dark:bg-[#2a2725] border-[#E2D8CC] dark:border-[#363230] rounded focus:ring-[#8B1E2D]"
       />
       <label for="privacy-consent" class="text-xs text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-        Ich stimme der Verarbeitung meiner angegebenen Daten gemäß der <a href="#privacy" class="text-[#8B263E] dark:text-[#ff758f] underline">Datenschutzerklärung</a> zur Bearbeitung des Antrags zu. <span class="text-[#8B263E] dark:text-[#ff758f]">*</span>
+        Ich stimme der Verarbeitung meiner angegebenen Daten gemäß der <a href="#privacy" class="text-[#8B1E2D] dark:text-[#ff758f] underline">Datenschutzerklärung</a> zur Bearbeitung des Antrags zu. <span class="text-[#8B1E2D] dark:text-[#ff758f]">*</span>
       </label>
     </div>
 
@@ -165,7 +165,7 @@ const {
       <button
         type="button"
         id="submit-btn"
-        class="w-full py-4 px-6 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold text-base transition-all shadow-md flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+        class="w-full py-4 px-6 rounded-full bg-[#8B1E2D] hover:bg-[#6b1d30] text-white font-bold text-base transition-all shadow-md flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
       >
         <span id="btn-text">Antrag kostenfrei übermitteln &rarr;</span>
         <span id="btn-spinner" class="hidden border-2 border-white border-t-transparent rounded-full w-5 h-5 animate-spin"></span>

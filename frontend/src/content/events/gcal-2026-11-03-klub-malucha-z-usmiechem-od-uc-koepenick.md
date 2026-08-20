@@ -3,8 +3,8 @@ title:
   de: "Klub Malucha „Z uśmiechem od ucha do ucha\" lat 1-3"
   pl: "Klub Malucha „Z uśmiechem od ucha do ucha\" lat 1-3"
   en: "Klub Malucha „Z uśmiechem od ucha do ucha\" lat 1-3"
-date: 2026-11-03T15:00:00.000Z
-endDate: 2026-11-03T15:45:00.000Z
+date: 2026-11-03T16:00:00.000Z
+endDate: 2026-11-03T16:45:00.000Z
 locationRef: "koepenick"
 targetAudience:
   de: "Kinder & Eltern"

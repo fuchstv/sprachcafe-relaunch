@@ -3,8 +3,8 @@ title:
   de: "Kreatives Schreiben - mehrsprachige SchreibWerkstatt"
   pl: "Kreatives Schreiben - mehrsprachige SchreibWerkstatt"
   en: "Kreatives Schreiben - mehrsprachige SchreibWerkstatt"
-date: 2026-09-05T13:00:00.000Z
-endDate: 2026-09-05T16:00:00.000Z
+date: 2026-09-05T15:00:00.000Z
+endDate: 2026-09-05T18:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Erwachsene & Familien"

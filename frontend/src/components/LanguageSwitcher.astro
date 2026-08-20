@@ -11,7 +11,7 @@ const pathname = Astro.url.pathname;
 const t = useTranslations(currentLang);
 ---
 
-<nav class="inline-flex items-center bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-full p-1 shadow-sm" aria-label={t('lang.switch')}>
+<nav class="inline-flex items-center bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-full p-1 shadow-sm" aria-label={t('lang.switch')}>
   <ul class="flex items-center gap-1 list-none m-0 p-0">
     {Object.entries(languages).map(([code, langInfo]) => {
       const targetLang = code as LanguageCode;
@@ -23,10 +23,10 @@ const t = useTranslations(currentLang);
           <a
             href={targetUrl}
             class:list={[
-              'flex items-center gap-1 px-2.5 py-1 rounded-full text-xs transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#8B263E]',
+              'flex items-center gap-1 px-2.5 py-1 rounded-full text-xs transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]',
               isActive
-                ? 'bg-[#8B263E] text-white font-bold shadow-sm'
-                : 'text-[#1d1b1a] dark:text-[#f5f0ee] hover:bg-[#8B263E]/10 font-semibold'
+                ? 'bg-[#8B1E2D] text-white font-bold shadow-sm'
+                : 'text-[#1d1b1a] dark:text-[#f5f0ee] hover:bg-[#8B1E2D]/10 font-semibold'
             ]}
             aria-current={isActive ? 'page' : undefined}
             title={langInfo.name}
