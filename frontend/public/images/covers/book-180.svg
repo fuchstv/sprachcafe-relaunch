@@ -31,11 +31,11 @@
   <text x="300" y="256" text-anchor="middle" fill="#FAF5EB" font-family="sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">Dla Dzieci &amp; Młodzieży</text>
 
   <!-- Author Section -->
-  <text x="300" y="325" text-anchor="middle" fill="#90E0EF" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1">Diabeł Boruta</text>
+  <text x="300" y="325" text-anchor="middle" fill="#90E0EF" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1">Andrzej Fonfara (il.)</text>
 
   <!-- Title Section -->
   <g>
-    <text x="300" y="380" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">Książka</text>
+      <text x="300" y="380" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">Diabeł Boruta</text>
   </g>
 
   <!-- Divider Line -->
@@ -44,7 +44,7 @@
 
   <!-- Publication Details Bottom -->
   <g transform="translate(300, 680)">
-    <text x="0" y="0" text-anchor="middle" fill="#FAF5EB" fill-opacity="0.9" font-family="sans-serif" font-size="14" font-weight="500">Podsiedlik-Raniowski (Andrzej Fonfara)</text>
+    <text x="0" y="0" text-anchor="middle" fill="#FAF5EB" fill-opacity="0.9" font-family="sans-serif" font-size="14" font-weight="500">Podsiedlik-Raniowski</text>
     <text x="0" y="28" text-anchor="middle" fill="#90E0EF" font-family="monospace" font-size="13" font-weight="700" letter-spacing="1">Sygnatura: DZ-0030</text>
     
   </g>

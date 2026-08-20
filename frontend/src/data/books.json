@@ -721,7 +721,7 @@
   },
   {
     "id": "book-61",
-    "title": " Reemer Katarzyna\"",
+    "title": "Reemer Katarzyna\"",
     "author": "\"Sar Krystyna",
     "isbn": "ATUT",
     "language": "PL",
@@ -2053,15 +2053,15 @@
   },
   {
     "id": "book-172",
-    "title": "",
-    "author": "4-6 lat",
+    "title": "Książka dla dzieci (4-6 lat)",
+    "author": "Unbekannter Autor",
     "isbn": "",
     "language": "PL",
     "category": "dzieciece",
     "location": "Pankow",
     "status": "verfuegbar",
     "cover": "/images/covers/book-172.svg",
-    "description": "„” autorstwa 4-6 lat to wartościowa pozycja z kanonu literatury dostępna w Hausbibliothek SprachCafé Polnisch. Gatunek: Literatura piękna.\n\nZusammenfassung (DE): „“ von 4-6 lat. Ein polnisches Werk (Literatura piękna), verfügbar zur Ausleihe in der Hausbibliothek Berlin-Pankow."
+    "description": "„Książka dla dzieci (4-6 lat)” to wartościowa pozycja z kanonu literatury dziecięcej dostępna w Hausbibliothek SprachCafé Polnisch. Gatunek: Literatura dziecięca.\n\nZusammenfassung (DE): „Książka dla dzieci (4-6 lat)“. Ein polnisches Kinderbuch (Altersgruppe 4-6 Jahre), verfügbar zur Ausleihe in der Hausbibliothek Berlin-Pankow."
   },
   {
     "id": "book-173",
@@ -2149,15 +2149,15 @@
   },
   {
     "id": "book-180",
-    "title": "",
-    "author": "Diabeł Boruta",
+    "title": "Diabeł Boruta",
+    "author": "Andrzej Fonfara (il.)",
     "isbn": "",
     "language": "PL",
     "category": "dzieciece",
     "location": "Pankow",
     "status": "verfuegbar",
     "cover": "/images/covers/book-180.svg",
-    "description": "„” autorstwa Diabeł Boruta to wartościowa pozycja z kanonu literatury dostępna w Hausbibliothek SprachCafé Polnisch. Gatunek: Literatura piękna. (Wydawnictwo: Podsiedlik-Raniowski. Rok wydania: Andrzej Fonfara.)\n\nZusammenfassung (DE): „“ von Diabeł Boruta. Ein polnisches Werk (Literatura piękna), verfügbar zur Ausleihe in der Hausbibliothek Berlin-Pankow."
+    "description": "„Diabeł Boruta” (il. Andrzej Fonfara) to wartościowa pozycja z kanonu literatury dziecięcej dostępna w Hausbibliothek SprachCafé Polnisch. Gatunek: Baśń polska / Literatura dziecięca. (Wydawnictwo: Podsiedlik-Raniowski.)\n\nZusammenfassung (DE): „Diabeł Boruta“ (Illustrationen: Andrzej Fonfara). Eine polnische Volkssage / Kinderbuch, verfügbar zur Ausleihe in der Hausbibliothek Berlin-Pankow."
   },
   {
     "id": "book-181",
@@ -4417,7 +4417,7 @@
   },
   {
     "id": "book-369",
-    "title": " Huppert Lena\"",
+    "title": "Huppert Lena\"",
     "author": "\"Nolden Annette",
     "isbn": "Świat Książki",
     "language": "PL",
@@ -4741,7 +4741,7 @@
   },
   {
     "id": "book-396",
-    "title": " Domagalik Małgorzata\"",
+    "title": "Domagalik Małgorzata\"",
     "author": "\"Wiśniewski Janusz Leon",
     "isbn": "W.A.B.",
     "language": "PL",

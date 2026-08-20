@@ -31,11 +31,12 @@
   <text x="300" y="256" text-anchor="middle" fill="#FAF5EB" font-family="sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">Dla Dzieci &amp; Młodzieży</text>
 
   <!-- Author Section -->
-  <text x="300" y="325" text-anchor="middle" fill="#90E0EF" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1">4-6 lat</text>
+  <text x="300" y="325" text-anchor="middle" fill="#90E0EF" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1">Unbekannter Autor</text>
 
   <!-- Title Section -->
   <g>
-    <text x="300" y="380" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">Książka</text>
+      <text x="300" y="380" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">Książka dla dzieci</text>
+      <text x="300" y="424" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">(4-6 lat)</text>
   </g>
 
   <!-- Divider Line -->

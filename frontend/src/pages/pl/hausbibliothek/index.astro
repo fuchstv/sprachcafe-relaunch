@@ -139,8 +139,8 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
         return (
           <div
             class="book-card bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-            data-title={book.title.toLowerCase()}
-            data-author={book.author.toLowerCase()}
+            data-title={(book.title || '').toLowerCase()}
+            data-author={(book.author || '').toLowerCase()}
             data-isbn={book.isbn ? book.isbn.toLowerCase() : ''}
             data-language={book.language}
             data-category={book.category}

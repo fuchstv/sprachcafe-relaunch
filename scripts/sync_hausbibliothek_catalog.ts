@@ -302,10 +302,23 @@ export async function fetchLibraryCatalog(): Promise<ExportedBookItem[]> {
         if (categoryName === 'kryminal_sensacja') categoryName = 'Kriminalroman';
         if (categoryName === 'reportaz_historia') categoryName = 'Geschichte & Reportage';
 
+        const rawTitle = (item.title || '').trim();
+        const rawAuthor = (item.author || '').trim();
+        let bookTitle = rawTitle;
+        let bookAuthor = rawAuthor || 'Unbekannter Autor';
+        if (!bookTitle) {
+          if (bookAuthor && bookAuthor !== 'Unbekannter Autor') {
+            bookTitle = bookAuthor;
+            bookAuthor = 'Unbekannter Autor';
+          } else {
+            bookTitle = `Katalogbuch #${numericId}`;
+          }
+        }
+
         return {
           id: `book-${numericId}`,
-          title: item.title,
-          author: item.author || 'Unbekannter Autor',
+          title: bookTitle,
+          author: bookAuthor,
           isbn: item.isbn || '',
           language: language,
           category: categoryName,
@@ -470,10 +483,23 @@ export async function runLibrarySync(): Promise<LibrarySyncReport> {
       });
     }
 
+    const rawTitle = (book.title || '').trim();
+    const rawAuthor = (book.author || '').trim();
+    let bookTitle = rawTitle;
+    let bookAuthor = rawAuthor || 'Unbekannter Autor';
+    if (!bookTitle) {
+      if (bookAuthor && bookAuthor !== 'Unbekannter Autor') {
+        bookTitle = bookAuthor;
+        bookAuthor = 'Unbekannter Autor';
+      } else {
+        bookTitle = `Katalogbuch ${book.id}`;
+      }
+    }
+
     processedBooks.push({
       id: book.id,
-      title: book.title,
-      author: book.author,
+      title: bookTitle,
+      author: bookAuthor,
       isbn: book.isbn || '',
       language: lang,
       category: cat,
