@@ -1,8 +1,8 @@
 ---
 name:
-  de: "SprachCafé Schöneberg"
-  pl: "SprachCafé Schöneberg"
-  en: "SprachCafé Schöneberg"
+  de: "Standort Schöneberg"
+  pl: "Oddział Schöneberg"
+  en: "Schöneberg Location"
 address:
   street: "Hauptstraße 121 A / Gotenstr. 45"
   zip: "10827"
@@ -13,13 +13,13 @@ openingHours:
   pl: "Otwarte podczas zapowiedzianych wydarzeń i spotkań."
   en: "Open during scheduled events and meetups."
 description:
-  de: "Stadtteilzentrum & KiezRaum Schöneberg für Sprachabende und Kulturveranstaltungen."
-  pl: "Centrum dzielnicowe i KiezRaum Schöneberg na wieczory językowe i wydarzenia kulturalne."
-  en: "Community center & neighborhood space in Schöneberg for language evenings and cultural events."
+  de: "Stadtteilzentrum & KiezRaum Schöneberg für Sprachabende, Kulturveranstaltungen und Austausch."
+  pl: "Centrum dzielnicowe i KiezRaum Schöneberg na wieczory językowe, spotkania i wydarzenia kulturalne."
+  en: "Community center & neighborhood space in Schöneberg for language evenings, meetups, and cultural events."
 directions:
-  de: "S-Bahn S1 bis Julius-Leber-Brücke oder U7 bis Kleistpark."
-  pl: "S-Bahn S1 do stacji Julius-Leber-Brücke lub U7 do Kleistpark."
-  en: "S-Bahn S1 to Julius-Leber-Brücke or U7 to Kleistpark."
-email: "schoeneberg@sprachcafe-polnisch.org"
+  de: "Hauptstraße 121 A: S-Bahnhof Schöneberg; Gotenstr. 45: Bahnhof Südkreuz."
+  pl: "Hauptstraße 121 A: stacja S-Bahn Schöneberg; Gotenstr. 45: dworzec Südkreuz."
+  en: "Hauptstraße 121 A: S-Bahn station Schöneberg; Gotenstr. 45: Südkreuz station."
+email: "suedenberlins@sprachcafe-polnisch.org"
 image: "/images/hero/hero-collage-2.avif"
 ---

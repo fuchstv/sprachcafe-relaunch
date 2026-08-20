@@ -1,8 +1,8 @@
 ---
 name:
-  de: "SprachCafé Köpenick"
-  pl: "SprachCafé Köpenick"
-  en: "SprachCafé Köpenick"
+  de: "Standort Köpenick"
+  pl: "Oddział Köpenick"
+  en: "Köpenick Location"
 address:
   street: "Am Wiesengraben 7a"
   zip: "12557"
@@ -13,13 +13,12 @@ openingHours:
   pl: "Spotkania sąsiedzkie Wiesentreff: otwarte podczas wydarzeń."
   en: "Neighborhood meetup Wiesentreff: open during events."
 description:
-  de: "Nachbarschaftstreff Wiesentreff in Köpenick für Familienkreise und Sprachausleihangebote."
-  pl: "Spotkania sąsiedzkie Wiesentreff w Köpenick dla rodzin i wypożyczalni książek."
-  en: "Neighborhood meetup space Wiesentreff in Köpenick for families and book lending."
+  de: "Nachbarschaftstreff Wiesentreff in Köpenick für Familienkreise und Sprachangebote."
+  pl: "Spotkania sąsiedzkie Wiesentreff w Köpenick dla rodzin i warsztatów językowych."
+  en: "Neighborhood meetup space Wiesentreff in Köpenick for families and language workshops."
 directions:
-  de: "Tram 62 bis Am Wiesengraben oder Bus 165."
-  pl: "Tramwaj 62 do przystanku Am Wiesengraben lub autobus 165."
-  en: "Tram 62 to Am Wiesengraben or Bus 165."
-email: "koepenick@sprachcafe-polnisch.org"
+  de: "Tram 62 bis Zur Nachtheide."
+  pl: "Tramwaj 62 do przystanku Zur Nachtheide."
+  en: "Tram 62 to Zur Nachtheide."
 image: "/images/hero/hero-collage-3.avif"
 ---

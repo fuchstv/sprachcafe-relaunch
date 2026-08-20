@@ -20,7 +20,7 @@ const allBooks = await getBooks();
 const featuredBooks = allBooks.slice(0, maxBooks);
 
 const headingTitle = title || (lang === "pl" ? "Nowości na półce" : lang === "en" ? "New on the Bookshelf" : "Neu im Regal");
-const headingSubtitle = subtitle || (lang === "pl" ? "Odkryj najnowsze tytuły w naszej dwujęzycznej bibliotece." : lang === "en" ? "Discover recent additions to our bilingual library." : "Entdecke neue Werke, Romane und Kinderbücher in unserer zweisprachigen Hausbibliothek.");
+const headingSubtitle = subtitle || (lang === "pl" ? "Odkryj najnowsze tytuły w naszej dwujęzycznej Bibliotece Domowej w oddziale Pankow." : lang === "en" ? "Discover recent additions to our bilingual House Library at our Pankow location." : "Entdecke neue Werke, Romane und Kinderbücher in unserer zweisprachigen Hausbibliothek am Standort Pankow.");
 const viewAllText = lang === "pl" ? "Cały katalog (400+ książek)" : lang === "en" ? "View full catalog (400+ books)" : "Zum Gesamtkatalog (400+ Bücher)";
 const catalogLink = lang === "pl" ? "/pl/hausbibliothek/" : lang === "en" ? "/en/hausbibliothek/" : "/hausbibliothek/";
 ---

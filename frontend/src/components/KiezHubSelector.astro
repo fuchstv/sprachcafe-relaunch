@@ -16,6 +16,24 @@ const colorClasses: Record<string, string> = {
   koepenick: "from-[#8B5A2B]/95 to-[#5C3A1A]",
 };
 
+const hubBadges: Record<string, Record<string, string>> = {
+  pankow: {
+    de: "📚 Mit Hausbibliothek & Café",
+    pl: "📚 Z Biblioteką Domową & Kawiarnią",
+    en: "📚 With House Library & Café",
+  },
+  schoeneberg: {
+    de: "☕ KiezRaum & Sprachabende",
+    pl: "☕ KiezRaum & Wieczory językowe",
+    en: "☕ Community Space & Language Nights",
+  },
+  koepenick: {
+    de: "⛵ Wiesentreff & Familienkreise",
+    pl: "⛵ Wiesentreff & Grupy rodzinne",
+    en: "⛵ Wiesentreff & Family Circles",
+  },
+};
+
 const hubList = desiredLocationSlugs
   .map((slug) => locationsCollection.find((loc) => loc.slug === slug))
   .filter((loc): loc is NonNullable<typeof loc> => Boolean(loc))
@@ -26,9 +44,10 @@ const hubList = desiredLocationSlugs
     const openingHours = data.openingHours[lang] || data.openingHours.de;
     const directions = data.directions ? (data.directions[lang] || data.directions.de) : "";
     const description = data.description ? (data.description[lang] || data.description.de) : "";
-    const contactEmail = data.email || "kontakt@sprachcafe-polnisch.org";
+    const contactEmail = data.email || "";
     const mapUrl = data.address.mapUrl;
     const detailsLink = lang === "pl" ? `/pl/kontakt/#${loc.slug}` : lang === "en" ? `/en/kontakt/#${loc.slug}` : `/kontakt/#${loc.slug}`;
+    const badgeText = hubBadges[loc.slug]?.[lang] || hubBadges[loc.slug]?.de || "";
 
     return {
       id: loc.slug,
@@ -40,6 +59,7 @@ const hubList = desiredLocationSlugs
       contactEmail,
       mapUrl,
       detailsLink,
+      badgeText,
       colorClass: colorClasses[loc.slug] || "from-[#8B1E2D]/90 to-[#6E1420]",
     };
   });
@@ -47,9 +67,12 @@ const hubList = desiredLocationSlugs
 const headings = {
   de: {
     badge: "📍 3 Standorte in Berlin",
-    title: "Unsere Standorte & Kiez-Hubs",
-    subtitle: "Begegnungsorte für Sprache, Kultur und Gemeinschaft in Pankow, Schöneberg und Köpenick.",
+    title: "Unsere Standorte in Berlin",
+    subtitle: "Standort Pankow (mit Hausbibliothek), Standort Schöneberg und Standort Köpenick – Räume für Sprache, Kultur und lebendige Gemeinschaft.",
     all: "Alle Standorte",
+    tabPankow: "Standort Pankow 🌿",
+    tabSchoeneberg: "Standort Schöneberg ☕",
+    tabKoepenick: "Standort Köpenick ⛵",
     hoursLabel: "🕒 Öffnungszeiten & Treffen",
     transitLabel: "🚆 Anbindung:",
     emailLabel: "✉️ E-Mail:",
@@ -58,9 +81,12 @@ const headings = {
   },
   pl: {
     badge: "📍 3 lokalizacje w Berlinie",
-    title: "Nasze lokalizacje i przestrzenie sąsiedzkie",
-    subtitle: "Miejsca spotkań dla języka, kultury i społeczności w dzielnicach Pankow, Schöneberg i Köpenick.",
+    title: "Nasze lokalizacje w Berlinie",
+    subtitle: "Oddział Pankow (z Biblioteką Domową), Oddział Schöneberg i Oddział Köpenick – przestrzenie dla języka, kultury i społeczności.",
     all: "Wszystkie lokalizacje",
+    tabPankow: "Oddział Pankow 🌿",
+    tabSchoeneberg: "Oddział Schöneberg ☕",
+    tabKoepenick: "Oddział Köpenick ⛵",
     hoursLabel: "🕒 Godziny otwarcia & Spotkania",
     transitLabel: "🚆 Dojazd:",
     emailLabel: "✉️ E-mail:",
@@ -69,9 +95,12 @@ const headings = {
   },
   en: {
     badge: "📍 3 Berlin Locations",
-    title: "Our Locations & Neighborhood Hubs",
-    subtitle: "Community spaces for language, culture, and connection in Pankow, Schöneberg, and Köpenick.",
+    title: "Our Locations in Berlin",
+    subtitle: "Pankow Location (with House Library), Schöneberg Location, and Köpenick Location – spaces for language, culture, and community.",
     all: "All Locations",
+    tabPankow: "Standort Pankow 🌿",
+    tabSchoeneberg: "Standort Schöneberg ☕",
+    tabKoepenick: "Standort Köpenick ⛵",
     hoursLabel: "🕒 Opening Hours & Meetups",
     transitLabel: "🚆 Transit:",
     emailLabel: "✉️ Email:",
@@ -97,7 +126,7 @@ const current = headings[lang] || headings.de;
     </p>
 
     <!-- Interactive Filter Tabs -->
-    <div class="inline-flex p-1.5 rounded-full bg-[#F2ECE4] dark:bg-[#2A2725] border border-[#E2D8CC] dark:border-[#3A3532] mt-6 shadow-sm gap-1" role="tablist" aria-label="Standort Filter">
+    <div class="inline-flex flex-wrap justify-center p-1.5 rounded-full bg-[#F2ECE4] dark:bg-[#2A2725] border border-[#E2D8CC] dark:border-[#3A3532] mt-6 shadow-sm gap-1" role="tablist" aria-label="Standort Filter">
       <button
         type="button"
         id="kiez-tab-all"
@@ -116,7 +145,7 @@ const current = headings[lang] || headings.de;
         class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
         data-target="pankow"
       >
-        Pankow 🌿
+        {current.tabPankow}
       </button>
       <button
         type="button"
@@ -126,7 +155,7 @@ const current = headings[lang] || headings.de;
         class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
         data-target="schoeneberg"
       >
-        Schöneberg ☕
+        {current.tabSchoeneberg}
       </button>
       <button
         type="button"
@@ -136,7 +165,7 @@ const current = headings[lang] || headings.de;
         class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
         data-target="koepenick"
       >
-        Köpenick ⛵
+        {current.tabKoepenick}
       </button>
     </div>
   </div>
@@ -151,7 +180,7 @@ const current = headings[lang] || headings.de;
         <!-- Header Banner with Atmospheric Theme -->
         <div class={`p-6 bg-gradient-to-br ${hub.colorClass} text-white relative`}>
           <span class="text-[11px] font-bold uppercase tracking-widest text-white/80 block mb-1">
-            SprachCafé &amp; Hausbibliothek
+            {hub.badgeText}
           </span>
           <h3 class="font-serif text-2xl font-bold tracking-tight">
             {hub.name}
@@ -190,14 +219,14 @@ const current = headings[lang] || headings.de;
                   <span class="leading-relaxed">{hub.directions}</span>
                 </div>
               )}
-              {hub.contactEmail && (
+              {hub.contactEmail ? (
                 <div class="flex items-center gap-2 pt-1">
                   <span class="font-bold text-[#1D1B1A] dark:text-[#F5F0EE] shrink-0">{current.emailLabel}</span>
                   <a href={`mailto:${hub.contactEmail}`} class="text-[#8B1E2D] dark:text-[#FF758F] hover:underline font-semibold">
                     {hub.contactEmail}
                   </a>
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
 
