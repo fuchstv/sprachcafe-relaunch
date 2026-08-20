@@ -1,8 +1,8 @@
 # Hausbibliothek Read-Only Catalog Sync Report
 
 - **Mode**: LIVE BUILD SYNC
-- **Timestamp**: 2026-08-20T11:53:55.970Z
-- **Source Export API**: `http://localhost:8080/api/export/books`
+- **Timestamp**: 2026-08-20T13:01:56.374Z
+- **Source Export API**: `https://hausbibliothek.org/api/books?limit=500`
 - **Target File**: `/home/ubuntu/sprachcafe-relaunch/frontend/src/data/books.json`
 
 ## Catalog Statistics
@@ -20,17 +20,18 @@
 - **verfuegbar**: 401
 
 ### Categories
-- **Belletristik**: 1
-- **Belytrystyka polska**: 76
-- **Belytrystyka zagraniczna**: 52
-- **Biografien**: 21
-- **Kinder- & Jugendbuch**: 75
-- **Science Fiction & Fantasy**: 7
-- **Geschichte**: 61
-- **Kriminalroman**: 34
+- **Deutschsprachige Literatur**: 1
+- **Polnische Belletristik**: 76
+- **belytrystyka_zagraniczna**: 52
+- **biografie**: 21
+- **dzieciece**: 55
+- **fantasy_scifi**: 7
+- **historyczne**: 61
+- **kryminal_thriller**: 34
+- **mlodziezowe_young_adult**: 20
 - **Poesie**: 28
-- **Poradniki | Popularnonaukowe**: 22
-- **Reportagen**: 24
+- **poradniki_popularnonaukowe**: 22
+- **reportaze_podroznicze**: 24
 
 ## ISBN Validation Warnings
 
@@ -42,8 +43,8 @@
 | `book-6` | Nic | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-41` | Biurwa | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-46` | Kwestia ceny | `978-830280-7219-0` | Unzulässige Zeichen oder Länge (14 Zeichen statt 10 oder 13) |
-| `book-61` | Reemer Katarzyna" | `ATUT` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
-| `book-74` | Samotność w sieci | `Prószyński i S-ka"` | Unzulässige Zeichen oder Länge (15 Zeichen statt 10 oder 13) |
+| `book-61` |  Reemer Katarzyna" | `ATUT` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
+| `book-74` | Samotność w sieci | ` Prószyński i S-ka"` | Unzulässige Zeichen oder Länge (15 Zeichen statt 10 oder 13) |
 | `book-98` | Masz nową wiadomość | `83-839371-66-9` | Unzulässige Zeichen oder Länge (11 Zeichen statt 10 oder 13) |
 | `book-118` | Kompleks Portnoya | `978-83-08-05475-0` | Ungültige Prüfziffer (Erwartet: 8, Ist: 0) |
 | `book-128` | Królowa serc | `N/A` | ISBN ist leer oder nicht angegeben |
@@ -68,7 +69,7 @@
 | `book-169` | Marta Tychmanowicz (tł.) | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-170` | Patrycja Zarawska | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-171` | Patrycja Zarawska (tł.) | `N/A` | ISBN ist leer oder nicht angegeben |
-| `book-172` | 4-6 lat | `N/A` | ISBN ist leer oder nicht angegeben |
+| `book-172` |  | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-173` | Beata Ostrowicka | `2009` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
 | `book-174` | Zofia Stanecka (a) | `2011` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
 | `book-175` | Jan Brzechwa | `N/A` | ISBN ist leer oder nicht angegeben |
@@ -76,7 +77,7 @@
 | `book-177` | Dorota Krassowska | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-178` | Phoebe Gilman (a) | `2015` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
 | `book-179` | Charles perrault (a) | `N/A` | ISBN ist leer oder nicht angegeben |
-| `book-180` | Diabeł Boruta | `N/A` | ISBN ist leer oder nicht angegeben |
+| `book-180` |  | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-181` | Karla Kuskin (a) | `2017` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
 | `book-182` | Wiktor Laskowski (a) | `2016` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
 | `book-183` | Arianna Candell (a) | `2004` | Unzulässige Zeichen oder Länge (4 Zeichen statt 10 oder 13) |
@@ -129,12 +130,12 @@
 | `book-333` | Kolory | `978-83-919140-1-6` | Ungültige Prüfziffer (Erwartet: 4, Ist: 6) |
 | `book-337` | To lubię… | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-354` | Mantry | `978-83-934228-9` | Unzulässige Zeichen oder Länge (12 Zeichen statt 10 oder 13) |
-| `book-369` | Huppert Lena" | `Świat Książki` | Unzulässige Zeichen oder Länge (12 Zeichen statt 10 oder 13) |
+| `book-369` |  Huppert Lena" | `Świat Książki` | Unzulässige Zeichen oder Länge (12 Zeichen statt 10 oder 13) |
 | `book-371` | Polska filozofia człowieka | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-373` | Po drugiej stronie lustra | `N/A` | ISBN ist leer oder nicht angegeben |
 | `book-375` | Świętowanie Życia | `978-83-08-08803` | Unzulässige Zeichen oder Länge (12 Zeichen statt 10 oder 13) |
 | `book-392` | Być Polakiem w Niemczech | `83-87668-05-3` | Ungültige ISBN-10 Prüfziffer (Modulo 11 Fehlschlag) |
-| `book-396` | Domagalik Małgorzata" | `W.A.B.` | Unzulässige Zeichen oder Länge (3 Zeichen statt 10 oder 13) |
+| `book-396` |  Domagalik Małgorzata" | `W.A.B.` | Unzulässige Zeichen oder Länge (3 Zeichen statt 10 oder 13) |
 
 ---
 *Note: The Library App (hausbibliothek.org) remains the permanent single source of truth for loan transactions, user accounts, and active reservations.*
