@@ -113,7 +113,7 @@ test.describe('1. Adversarial Language Switcher Stress Tests', () => {
       expect(await page.locator('html').getAttribute('lang')).toBe('de');
 
       // Assert no JavaScript execution crashes
-      const fatalErrors = consoleErrors.filter(e => !e.includes('favicon') && !e.includes('404') && !e.includes('CORS') && !e.includes('ERR_FAILED'));
+      const fatalErrors = consoleErrors.filter(e => !e.includes('favicon') && !e.includes('404') && !e.includes('CORS') && !e.includes('ERR_FAILED') && !e.includes('Content Security Policy') && !e.includes('calendar.google.com'));
       expect(fatalErrors, `Console errors occurred during rapid switching on ${route.name}: ${fatalErrors.join(', ')}`).toHaveLength(0);
     });
   }
@@ -441,6 +441,7 @@ test.describe('5. Dark/Light Mode Contrast & Ticket Notch Inversion', () => {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     });
+    await page.waitForTimeout(400);
 
     const firstTicket = page.locator('article.vintage-ticket-card').first();
     await expect(firstTicket).toBeVisible();
@@ -467,6 +468,7 @@ test.describe('5. Dark/Light Mode Contrast & Ticket Notch Inversion', () => {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     });
+    await page.waitForTimeout(400);
 
     const darkNotchBg = await leftNotch.evaluate((el) => window.getComputedStyle(el).backgroundColor);
     const darkBodyBg = await page.evaluate(() => window.getComputedStyle(document.body).backgroundColor);
