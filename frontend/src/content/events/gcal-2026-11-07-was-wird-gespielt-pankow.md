@@ -3,8 +3,8 @@ title:
   de: "Was wird gespielt?"
   pl: "Was wird gespielt?"
   en: "Was wird gespielt?"
-date: 2026-11-07T10:00:00.000Z
-endDate: 2026-11-07T12:00:00.000Z
+date: 2026-11-07T11:00:00.000Z
+endDate: 2026-11-07T13:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Kinder & Eltern"

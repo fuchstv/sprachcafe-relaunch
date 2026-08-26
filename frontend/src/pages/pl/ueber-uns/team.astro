@@ -1,11 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 const lang = 'pl';
 
 const allTeam = await getCollection('team');
-const sortedTeam = allTeam.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+const sortedTeam = allTeam.sort((a: CollectionEntry<'team'>, b: CollectionEntry<'team'>) => (a.data.order || 99) - (b.data.order || 99));
 
 const sections = [
   {
@@ -13,56 +13,56 @@ const sections = [
     title: 'Zarząd Stowarzyszenia',
     subtitle: 'Kierownictwo strategiczne, koordynacja i reprezentacja stowarzyszenia',
     icon: '🏛️',
-    members: sortedTeam.filter((m) => m.data.category === 'vorstand')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'vorstand')
   },
   {
     id: 'verwaltung',
     title: 'Administracja, Finanse i IT',
     subtitle: 'Koordynacja projektów, księgowość, organizacja i infrastruktura cyfrowa',
     icon: '💼',
-    members: sortedTeam.filter((m) => m.data.category === 'verwaltung')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'verwaltung')
   },
   {
     id: 'paedagogik',
     title: 'Zespół Pedagogiczny i Edukacja Językowa',
     subtitle: 'Wczesna edukacja, Klub Malucha, grupy dziecięce i kursy języka polskiego',
     icon: '🎓',
-    members: sortedTeam.filter((m) => m.data.category === 'paedagogik')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'paedagogik')
   },
   {
     id: 'literatur',
     title: 'Literatura i Kreatywne Pisanie',
     subtitle: 'Spotkania autorskie, warsztaty literackie i programy kulturalne',
     icon: '📖',
-    members: sortedTeam.filter((m) => m.data.category === 'literatur')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'literatur')
   },
   {
     id: 'kunst',
     title: 'Sztuka, Galeria i Kultura',
     subtitle: 'Wystawy, warsztaty artystyczne i spotkania międzynarodowe',
     icon: '🎨',
-    members: sortedTeam.filter((m) => m.data.category === 'kunst')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'kunst')
   },
   {
     id: 'business',
     title: 'Rynek Pracy, Biznes i Coaching',
     subtitle: 'Reorientacja zawodowa, warsztaty AI i całościowe wsparcie doradcze',
     icon: '💡',
-    members: sortedTeam.filter((m) => m.data.category === 'business')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'business')
   },
   {
     id: 'technik',
     title: 'Technika i Obsługa Sceniczna',
     subtitle: 'Zarządzanie budynkiem przy Schulzestraße oraz technika dźwiękowa i sceniczna',
     icon: '🛠️',
-    members: sortedTeam.filter((m) => m.data.category === 'technik')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'technik')
   },
   {
     id: 'bfd',
     title: 'Wolontariat i Służba Obywatelska (BFD)',
     subtitle: 'Aktywne wsparcie w kawiarni, przy wydarzeniach i w bibliotece domowej',
     icon: '🤝',
-    members: sortedTeam.filter((m) => m.data.category === 'bfd')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'bfd')
   }
 ];
 

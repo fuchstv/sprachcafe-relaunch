@@ -3,8 +3,8 @@ title:
   de: "ZAWODOWY RESTART | PL DE"
   pl: "ZAWODOWY RESTART | PL DE"
   en: "ZAWODOWY RESTART | PL DE"
-date: 2026-10-07T07:00:00.000Z
-endDate: 2026-10-07T09:30:00.000Z
+date: 2026-10-07T09:00:00.000Z
+endDate: 2026-10-07T11:30:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Erwachsene & Familien"

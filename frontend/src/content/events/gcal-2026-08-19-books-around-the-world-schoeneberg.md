@@ -3,8 +3,8 @@ title:
   de: "Books Around the World"
   pl: "Books Around the World"
   en: "Books Around the World"
-date: 2026-08-19T17:00:00.000Z
-endDate: 2026-08-19T18:30:00.000Z
+date: 2026-08-19T19:00:00.000Z
+endDate: 2026-08-19T20:30:00.000Z
 locationRef: "schoeneberg"
 targetAudience:
   de: "Erwachsene & Familien"

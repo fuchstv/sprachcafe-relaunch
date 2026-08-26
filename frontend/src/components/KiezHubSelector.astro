@@ -1,0 +1,311 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { type LanguageCode } from "../i18n/ui";
+
+interface Props {
+  lang?: LanguageCode;
+}
+
+const { lang = "de" } = Astro.props;
+
+const locationsCollection = await getCollection("locations");
+const desiredLocationSlugs = ["pankow", "schoeneberg", "koepenick"];
+
+const colorClasses: Record<string, string> = {
+  pankow: "from-[#2C5E7A]/95 to-[#1A3D52]",
+  schoeneberg: "from-[#4A6741]/95 to-[#2F4428]",
+  koepenick: "from-[#8B5A2B]/95 to-[#5C3A1A]",
+};
+
+const hubIllustrations: Record<string, string> = {
+  pankow: "/images/illustrations/kiez-pankow.webp",
+  schoeneberg: "/images/illustrations/kiez-schoeneberg.webp",
+  koepenick: "/images/illustrations/kiez-koepenick.webp",
+};
+
+const hubBadges: Record<string, Record<string, string>> = {
+  pankow: {
+    de: "📚 Mit Hausbibliothek & Café",
+    pl: "📚 Z Biblioteką Domową & Kawiarnią",
+    en: "📚 With House Library & Café",
+  },
+  schoeneberg: {
+    de: "☕ KiezRaum & Sprachabende",
+    pl: "☕ KiezRaum & Wieczory językowe",
+    en: "☕ Community Space & Language Nights",
+  },
+  koepenick: {
+    de: "⛵ Wiesentreff & Familienkreise",
+    pl: "⛵ Wiesentreff & Grupy rodzinne",
+    en: "⛵ Wiesentreff & Family Circles",
+  },
+};
+
+const hubList = desiredLocationSlugs
+  .map((slug) => locationsCollection.find((loc: CollectionEntry<"locations">) => loc.slug === slug))
+  .filter((loc): loc is NonNullable<typeof loc> => Boolean(loc))
+  .map((loc: CollectionEntry<"locations">) => {
+    const data = loc.data;
+    const name = data.name[lang] || data.name.de;
+    const address = `${data.address.street}, ${data.address.zip} ${data.address.city}`;
+    const openingHours = data.openingHours[lang] || data.openingHours.de;
+    const directions = data.directions ? (data.directions[lang] || data.directions.de) : "";
+    const description = data.description ? (data.description[lang] || data.description.de) : "";
+    const contactEmail = data.email || "";
+    const mapUrl = data.address.mapUrl;
+    const detailsLink = lang === "pl" ? `/pl/kontakt/#${loc.slug}` : lang === "en" ? `/en/kontakt/#${loc.slug}` : `/kontakt/#${loc.slug}`;
+    const badgeText = hubBadges[loc.slug]?.[lang] || hubBadges[loc.slug]?.de || "";
+    const illustration = hubIllustrations[loc.slug] || "/images/illustrations/kiez-pankow.webp";
+
+    return {
+      id: loc.slug,
+      name,
+      address,
+      openingHours,
+      directions,
+      description,
+      contactEmail,
+      mapUrl,
+      detailsLink,
+      badgeText,
+      illustration,
+      colorClass: colorClasses[loc.slug] || "from-[#8B1E2D]/90 to-[#6E1420]",
+    };
+  });
+
+const headings = {
+  de: {
+    badge: "📍 3 Standorte in Berlin",
+    title: "Unsere Standorte in Berlin",
+    subtitle: "Standort Pankow (mit Hausbibliothek), Standort Schöneberg und Standort Köpenick – Räume für Sprache, Kultur und lebendige Gemeinschaft.",
+    all: "Alle Standorte",
+    tabPankow: "Standort Pankow 🌿",
+    tabSchoeneberg: "Standort Schöneberg ☕",
+    tabKoepenick: "Standort Köpenick ⛵",
+    hoursLabel: "🕒 Öffnungszeiten & Treffen",
+    transitLabel: "🚆 Anbindung:",
+    emailLabel: "✉️ E-Mail:",
+    mapBtn: "In Google Maps öffnen",
+    cta: "Kontakt & Anfahrt",
+  },
+  pl: {
+    badge: "📍 3 lokalizacje w Berlinie",
+    title: "Nasze lokalizacje w Berlinie",
+    subtitle: "Oddział Pankow (z Biblioteką Domową), Oddział Schöneberg i Oddział Köpenick – przestrzenie dla języka, kultury i społeczności.",
+    all: "Wszystkie lokalizacje",
+    tabPankow: "Oddział Pankow 🌿",
+    tabSchoeneberg: "Oddział Schöneberg ☕",
+    tabKoepenick: "Oddział Köpenick ⛵",
+    hoursLabel: "🕒 Godziny otwarcia & Spotkania",
+    transitLabel: "🚆 Dojazd:",
+    emailLabel: "✉️ E-mail:",
+    mapBtn: "Otwórz w Google Maps",
+    cta: "Kontakt i dojazd",
+  },
+  en: {
+    badge: "📍 3 Berlin Locations",
+    title: "Our Locations in Berlin",
+    subtitle: "Pankow Location (with House Library), Schöneberg Location, and Köpenick Location – spaces for language, culture, and community.",
+    all: "All Locations",
+    tabPankow: "Standort Pankow 🌿",
+    tabSchoeneberg: "Standort Schöneberg ☕",
+    tabKoepenick: "Standort Köpenick ⛵",
+    hoursLabel: "🕒 Opening Hours & Meetups",
+    transitLabel: "🚆 Transit:",
+    emailLabel: "✉️ Email:",
+    mapBtn: "Open in Google Maps",
+    cta: "Contact & Directions",
+  },
+};
+
+const current = headings[lang] || headings.de;
+---
+
+<section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto" aria-labelledby="kiezhub-title">
+  
+  <div class="text-center max-w-2xl mx-auto mb-10">
+    <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#FF758F] text-xs font-bold uppercase tracking-wider mb-3">
+      {current.badge}
+    </span>
+    <h2 id="kiezhub-title" class="font-serif text-3xl sm:text-5xl font-bold text-[#1D1B1A] dark:text-[#F5F0EE] tracking-tight mb-3">
+      {current.title}
+    </h2>
+    <p class="font-sans text-base sm:text-lg text-[#5B403D] dark:text-[#D4C5C2] leading-relaxed">
+      {current.subtitle}
+    </p>
+
+    <!-- Interactive Filter Tabs -->
+    <div class="inline-flex flex-wrap justify-center p-1.5 rounded-full bg-[#F2ECE4] dark:bg-[#2A2725] border border-[#E2D8CC] dark:border-[#3A3532] mt-6 shadow-sm gap-1" role="tablist" aria-label="Standort Filter">
+      <button
+        type="button"
+        id="kiez-tab-all"
+        role="tab"
+        aria-selected="true"
+        class="kiez-tab-btn active px-4 py-2 rounded-full font-bold text-xs sm:text-sm transition-all bg-[#8B1E2D] text-white shadow-sm cursor-pointer"
+        data-target="all"
+      >
+        {current.all}
+      </button>
+      <button
+        type="button"
+        id="kiez-tab-pankow"
+        role="tab"
+        aria-selected="false"
+        class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
+        data-target="pankow"
+      >
+        {current.tabPankow}
+      </button>
+      <button
+        type="button"
+        id="kiez-tab-schoeneberg"
+        role="tab"
+        aria-selected="false"
+        class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
+        data-target="schoeneberg"
+      >
+        {current.tabSchoeneberg}
+      </button>
+      <button
+        type="button"
+        id="kiez-tab-koepenick"
+        role="tab"
+        aria-selected="false"
+        class="kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer"
+        data-target="koepenick"
+      >
+        {current.tabKoepenick}
+      </button>
+    </div>
+  </div>
+
+  <!-- 3 Hub Cards Grid -->
+  <div id="kiez-cards-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {hubList.map((hub) => (
+      <article
+        class="kiez-hub-card relative bg-white dark:bg-[#22201E] border border-[#E2D8CC] dark:border-[#3A3532] rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(42,36,33,0.06)] hover:shadow-[0_12px_32px_rgba(42,36,33,0.14)] transition-all duration-300 flex flex-col group"
+        data-hub={hub.id}
+      >
+        <!-- Architectural Illustration Header -->
+        <div class="h-44 sm:h-48 overflow-hidden relative bg-[#24201E]">
+          <img
+            src={hub.illustration}
+            alt={hub.name}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          
+          <div class="absolute bottom-3 left-4 right-4 text-white">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-white/90 bg-[#8B1E2D]/80 backdrop-blur-sm px-2.5 py-0.5 rounded-full inline-block mb-1 border border-white/20">
+              {hub.badgeText}
+            </span>
+            <h3 class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white drop-shadow-sm">
+              {hub.name}
+            </h3>
+            <p class="text-xs text-white/90 flex items-center gap-1 font-medium mt-0.5">
+              <span>📍 {hub.address}</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Body Details -->
+        <div class="p-6 flex flex-col flex-grow justify-between space-y-6">
+          
+          <div class="space-y-4">
+            <!-- Description -->
+            {hub.description && (
+              <p class="font-sans text-xs sm:text-sm text-[#5B403D] dark:text-[#D4C5C2] leading-relaxed">
+                {hub.description}
+              </p>
+            )}
+
+            <!-- Öffnungszeiten -->
+            <div class="bg-[#FAF5EB] dark:bg-[#2A2725] border border-[#E8DFC8]/60 dark:border-[#3A3532] rounded-2xl p-4 shadow-sm">
+              <span class="text-[11px] font-bold text-[#8B1E2D] dark:text-[#FF758F] uppercase tracking-wider block mb-1.5">
+                {current.hoursLabel}
+              </span>
+              <p class="font-sans text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] font-medium leading-relaxed whitespace-pre-line">
+                {hub.openingHours}
+              </p>
+            </div>
+
+            <!-- Anbindung & Kontakt -->
+            <div class="space-y-2 text-xs sm:text-sm text-[#5B403D] dark:text-[#D4C5C2]">
+              {hub.directions && (
+                <div class="flex items-start gap-2">
+                  <span class="font-bold text-[#1D1B1A] dark:text-[#F5F0EE] shrink-0">{current.transitLabel}</span>
+                  <span class="leading-relaxed">{hub.directions}</span>
+                </div>
+              )}
+              {hub.contactEmail ? (
+                <div class="flex items-center gap-2 pt-1">
+                  <span class="font-bold text-[#1D1B1A] dark:text-[#F5F0EE] shrink-0">{current.emailLabel}</span>
+                  <a href={`mailto:${hub.contactEmail}`} class="text-[#8B1E2D] dark:text-[#FF758F] hover:underline font-semibold">
+                    {hub.contactEmail}
+                  </a>
+                </div>
+              ) : null}
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 border-t border-[#E2D8CC] dark:border-[#3A3532] flex flex-col gap-2">
+            <a
+              href={hub.detailsLink}
+              class="w-full py-3 px-4 rounded-full bg-[#8B1E2D] hover:bg-[#6E1420] text-white font-bold text-xs sm:text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
+            >
+              <span>{current.cta}</span>
+              <span class="group-hover/btn:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>
+            </a>
+
+            {hub.mapUrl && (
+              <a
+                href={hub.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-2 px-4 rounded-full bg-[#FAF5EB] dark:bg-[#2A2725] hover:bg-[#E2D8CC] dark:hover:bg-[#363230] text-[#5B403D] dark:text-[#D4C5C2] text-xs font-semibold text-center transition-colors flex items-center justify-center gap-1.5"
+              >
+                <span>🗺️ {current.mapBtn} &nearr;</span>
+              </a>
+            )}
+          </div>
+
+        </div>
+      </article>
+    ))}
+  </div>
+
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".kiez-tab-btn");
+    const cards = document.querySelectorAll(".kiez-hub-card");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("data-target");
+
+        // Update active tab styles
+        tabs.forEach((t) => {
+          t.setAttribute("aria-selected", "false");
+          t.className = "kiez-tab-btn px-4 py-2 rounded-full font-semibold text-xs sm:text-sm text-[#1D1B1A] dark:text-[#F5F0EE] hover:text-[#8B1E2D] transition-all cursor-pointer";
+        });
+
+        tab.setAttribute("aria-selected", "true");
+        tab.className = "kiez-tab-btn active px-4 py-2 rounded-full font-bold text-xs sm:text-sm transition-all bg-[#8B1E2D] text-white shadow-sm cursor-pointer";
+
+        // Filter cards
+        cards.forEach((card) => {
+          const hubId = card.getAttribute("data-hub");
+          if (target === "all" || hubId === target) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      });
+    });
+  });
+</script>

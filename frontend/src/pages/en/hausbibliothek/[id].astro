@@ -22,14 +22,17 @@ const numericBookId = book.id.replace('book-', '');
 const appLangParam = 'de';
 const deepLinkBookUrl = `https://hausbibliothek.org/#/books/${numericBookId}?lang=${appLangParam}`;
 
+const safeTitle = book.title?.trim() || 'Catalog Book';
+const safeAuthor = book.author?.trim() || 'Unknown author';
+
 // Schema.org Book JSON-LD
 const bookJsonLd = {
   "@context": "https://schema.org",
   "@type": "Book",
-  "name": book.title,
+  "name": safeTitle,
   "author": {
     "@type": "Person",
-    "name": book.author
+    "name": safeAuthor
   },
   "isbn": book.isbn || undefined,
   "inLanguage": book.language === 'DE' ? 'de' : book.language === 'PL' ? 'pl' : 'en',
@@ -49,8 +52,8 @@ const bookJsonLd = {
 ---
 
 <Layout
-  title={`${book.title} — House Library`}
-  description={`Details and borrowing information for ${book.title} by ${book.author}.`}
+  title={`${safeTitle} — House Library`}
+  description={`Details and borrowing information for ${safeTitle} by ${safeAuthor}.`}
   image={book.cover}
   type="book"
   lang={lang}

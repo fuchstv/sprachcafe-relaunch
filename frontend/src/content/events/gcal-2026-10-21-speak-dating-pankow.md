@@ -3,8 +3,8 @@ title:
   de: "SPEAK-DATING"
   pl: "SPEAK-DATING"
   en: "SPEAK-DATING"
-date: 2026-10-21T17:00:00.000Z
-endDate: 2026-10-21T18:30:00.000Z
+date: 2026-10-21T19:00:00.000Z
+endDate: 2026-10-21T20:30:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Erwachsene & Familien"

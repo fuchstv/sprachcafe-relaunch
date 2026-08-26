@@ -3,8 +3,8 @@ title:
   de: "Klub Starszaka „Bajki i Szajki”- dla Dzieci 4-6 lat"
   pl: "Klub Starszaka „Bajki i Szajki”- dla Dzieci 4-6 lat"
   en: "Klub Starszaka „Bajki i Szajki”- dla Dzieci 4-6 lat"
-date: 2026-11-17T16:00:00.000Z
-endDate: 2026-11-17T16:45:00.000Z
+date: 2026-11-17T17:00:00.000Z
+endDate: 2026-11-17T17:45:00.000Z
 locationRef: "koepenick"
 targetAudience:
   de: "Kinder & Eltern"

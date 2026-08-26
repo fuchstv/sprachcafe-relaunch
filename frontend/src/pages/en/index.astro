@@ -1,114 +1,121 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import HeroSection from '../../components/HeroSection.astro';
-import LocationOpeningHoursCard from '../../components/LocationOpeningHoursCard.astro';
-import TestimonialGrid from '../../components/TestimonialGrid.astro';
-import LibraryReferralSection from '../../components/LibraryReferralSection.astro';
-import { getCollection } from 'astro:content';
-import { useTranslations } from '../../i18n/utils';
+import Layout from "../../layouts/Layout.astro";
+import HeroSection from "../../components/HeroSection.astro";
+import VintageEventTicketCard from "../../components/VintageEventTicketCard.astro";
+import BookshelfWidget from "../../components/BookshelfWidget.astro";
+import KiezHubSelector from "../../components/KiezHubSelector.astro";
+import TestimonialGrid from "../../components/TestimonialGrid.astro";
+import { getCollection } from "astro:content";
 
-const lang = 'en';
-const t = useTranslations(lang);
+const lang = "en";
 
-const locationsCollection = await getCollection('locations');
-const desiredLocationSlugs = ['pankow', 'schoeneberg', 'koepenick'];
-const locations = desiredLocationSlugs
-  .map((slug) => locationsCollection.find((loc) => loc.slug === slug))
-  .filter((loc): loc is NonNullable<typeof loc> => Boolean(loc))
-  .map((loc) => ({
-    id: loc.slug,
-    name: loc.data.name[lang] || loc.data.name.de,
-    address: `${loc.data.address.street}, ${loc.data.address.zip} ${loc.data.address.city}`,
-    openingHours: loc.data.openingHours[lang] || loc.data.openingHours.de,
-    contactEmail: loc.data.email,
-    mapUrl: loc.data.address.mapUrl,
+function stripHtml(html: string): string {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]*>?/gm, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#039;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const allEvents = await getCollection("events");
+const now = new Date();
+
+// Filter for upcoming events (event is upcoming if its end date or start date is >= now)
+const upcomingEvents = allEvents.filter((e) => {
+  const eventEnd = e.data.endDate ? new Date(e.data.endDate) : new Date(e.data.date);
+  return eventEnd.getTime() >= now.getTime();
+});
+
+// Sort by date ascending (closest upcoming first) and pick 3 events
+const sortedEvents = (upcomingEvents.length > 0 ? upcomingEvents : allEvents)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
+  .slice(0, 3)
+  .map((e) => ({
+    slug: e.slug,
+    title: e.data.title[lang] || e.data.title.de,
+    date_start: e.data.date,
+    location: e.data.locationRef,
+    language: e.data.language.join(", ").toUpperCase(),
+    target_group: e.data.targetAudience[lang] || e.data.targetAudience.de,
+    description: stripHtml(e.data.description[lang] || e.data.description.de),
+    image: e.data.image.src || "/images/events/event-sprachabend.webp",
   }));
 ---
 
 <Layout
   title="SprachCafé Polnisch — Meeting Place for Language, Community & Culture in Berlin"
-  description="SprachCafé Polnisch e.V. is a non-profit community hub for German-Polish culture, multilingualism, and intercultural dialogue in Pankow, Schöneberg, and Köpenick."
+  description="SprachCafé Polnisch e.V. is a bilingual cultural and community center for German-Polish language, literature, and intercultural exchange in Berlin (Pankow, Schöneberg, Köpenick)."
   lang={lang}
 >
-  <!-- Hero Section with Collage -->
+  
+  <!-- 1. Hero Section -->
   <HeroSection
     title="Welcome to SprachCafé Polnisch"
-    subtitle="Immerse yourself in German and Polish language and culture. Practice, connect, and build community across Berlin (Pankow, Schöneberg, and Köpenick)."
-    badge="Official Association Platform"
+    subtitle="Your bilingual cultural and community center. Explore German and Polish language, literature, and vibrant community in the heart of Berlin."
+    badge="☕ Open & Welcome"
     primaryCtaText="Explore Upcoming Events"
     primaryCtaLink="/en/events/"
     secondaryCtaText="House Library Catalog"
     secondaryCtaLink="/en/hausbibliothek/"
+    lang={lang}
   />
 
-  <!-- Library Referral Section -->
-  <LibraryReferralSection lang={lang} />
-
-  <!-- Locations & Opening Hours Grid -->
+  <!-- 2. Upcoming Events with Vintage Ticket Cards (Stitch Widget) -->
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
-    <div class="mb-10 text-center">
-      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
-        Our 3 Berlin Locations
-      </span>
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
-        Opening Hours &amp; Addresses
-      </h2>
+    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#FF758F] text-xs font-bold uppercase tracking-wider mb-2">
+          🎟️ Culture & Schedule
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1D1B1A] dark:text-[#F5F0EE] tracking-tight">
+          Upcoming Events & Meetups
+        </h2>
+        <p class="font-sans text-sm sm:text-base text-[#5B403D] dark:text-[#D4C5C2] mt-1">
+          Join our readings, language tandems, concerts, and workshops.
+        </p>
+      </div>
+
+      <a
+        href="/en/events/"
+        class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#3A3532] text-[#8B1E2D] dark:text-[#FF758F] font-bold text-xs sm:text-sm hover:border-[#8B1E2D] hover:bg-[#FAF5EB] transition-all shadow-sm group shrink-0"
+      >
+        <span>Full Calendar Schedule</span>
+        <span class="group-hover:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {locations.map((loc) => (
-        <LocationOpeningHoursCard
-          id={loc.id}
-          location={loc.name}
-          address={loc.address}
-          openingHours={loc.openingHours}
-          contactEmail={loc.contactEmail}
-          mapUrl={loc.mapUrl}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {sortedEvents.map((event) => (
+        <VintageEventTicketCard
+          slug={event.slug}
+          title={event.title}
+          dateStart={event.date_start}
+          location={event.location}
+          language={event.language}
+          targetGroup={event.target_group}
+          description={event.description}
+          image={event.image}
+          lang={lang}
         />
       ))}
     </div>
   </section>
 
-  <!-- 2026 Community Calendar Section -->
-  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
-    <div class="bg-gradient-to-br from-[#8B263E]/10 via-white dark:via-[#22201e] to-[#8B263E]/5 border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12 shadow-sm">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-8 space-y-4">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
-            📅 Publication &amp; Calendar
-          </span>
-          <h2 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
-            Our 2026 Community Calendar!
-          </h2>
-          <p class="font-sans text-sm sm:text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-            This year's calendar, designed by our young cafe artists, is a vibrant celebration of imagination, creativity, and bilingual dialogue. Download the free digital edition or visit us in Pankow to pick up a printed copy.
-          </p>
-          <div class="pt-2 flex flex-wrap items-center gap-4">
-            <a
-              href="/en/events/"
-              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B263E] text-white font-bold text-sm hover:bg-[#6b1d30] transition-colors shadow-sm"
-            >
-              <span>Explore Event Calendar &rarr;</span>
-            </a>
-            <a
-              href="/en/mitmachen/"
-              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold text-sm hover:bg-[#f8f2f0] dark:hover:bg-[#363230] transition-colors"
-            >
-              <span>Get Involved</span>
-            </a>
-          </div>
-        </div>
-        <div class="lg:col-span-4 flex justify-center">
-          <div class="p-6 bg-white dark:bg-[#1e1c1a] border border-[#e7e1df] dark:border-[#363230] rounded-2xl text-center shadow-sm space-y-3">
-            <span class="text-4xl">🎨</span>
-            <h3 class="font-serif font-bold text-lg text-[#1d1b1a] dark:text-[#f5f0ee]">Art &amp; Handicrafts</h3>
-            <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">Supported by the Federal Foreign Office and KoKoPol.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- 3. Wooden Bookshelf (Stitch Widget) -->
+  <BookshelfWidget
+    lang={lang}
+    title="New on the Bookshelf"
+    subtitle="Over 400 bilingual books, novels, and children's literature in our house library."
+  />
 
-  <!-- Testimonials Grid -->
+  <!-- 4. Neighborhood Hub Selector (Stitch Widget) -->
+  <KiezHubSelector lang={lang} />
+
+  <!-- 5. Testimonial & Community Grid -->
   <TestimonialGrid lang={lang} />
+
 </Layout>

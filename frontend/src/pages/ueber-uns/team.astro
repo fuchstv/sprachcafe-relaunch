@@ -1,11 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 const lang = 'de';
 
 const allTeam = await getCollection('team');
-const sortedTeam = allTeam.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+const sortedTeam = allTeam.sort((a: CollectionEntry<'team'>, b: CollectionEntry<'team'>) => (a.data.order || 99) - (b.data.order || 99));
 
 const sections = [
   {
@@ -13,56 +13,56 @@ const sections = [
     title: 'Vereinsvorstand',
     subtitle: 'Strategische Leitung, Koordination und Vertretung des Vereins',
     icon: '🏛️',
-    members: sortedTeam.filter((m) => m.data.category === 'vorstand')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'vorstand')
   },
   {
     id: 'verwaltung',
     title: 'Verwaltung, Finanzen & IT',
     subtitle: 'Projektkoordination, Buchhaltung, Vereinsorganisation und digitale Infrastruktur',
     icon: '💼',
-    members: sortedTeam.filter((m) => m.data.category === 'verwaltung')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'verwaltung')
   },
   {
     id: 'paedagogik',
     title: 'Pädagogisches Team & Sprachbegleitung',
     subtitle: 'Frühförderung, Klub Malucha, Kindergruppen und Polnischkurse',
     icon: '🎓',
-    members: sortedTeam.filter((m) => m.data.category === 'paedagogik')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'paedagogik')
   },
   {
     id: 'literatur',
     title: 'Literatur & Kreatives Schreiben',
     subtitle: 'Autorenlesungen, Schreibwerkstätten und literarische Kulturprogramme',
     icon: '📖',
-    members: sortedTeam.filter((m) => m.data.category === 'literatur')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'literatur')
   },
   {
     id: 'kunst',
     title: 'Kunst, Galerie & Kultur',
     subtitle: 'Ausstellungen, künstlerische Workshops und internationale Begegnungen',
     icon: '🎨',
-    members: sortedTeam.filter((m) => m.data.category === 'kunst')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'kunst')
   },
   {
     id: 'business',
     title: 'Arbeitsmarkt, Business & Coaching',
     subtitle: 'Berufliche Neuorientierung, KI-Workshops und ganzheitliche Begleitung',
     icon: '💡',
-    members: sortedTeam.filter((m) => m.data.category === 'business')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'business')
   },
   {
     id: 'technik',
     title: 'Haustechnik & Veranstaltungstechnik',
     subtitle: 'Facility Management in der Schulzestraße sowie Ton- und Bühnentechnik',
     icon: '🛠️',
-    members: sortedTeam.filter((m) => m.data.category === 'technik')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'technik')
   },
   {
     id: 'bfd',
     title: 'Bundesfreiwilligendienst (BFD)',
     subtitle: 'Aktive Unterstützung im Café, bei Veranstaltungen und in der Hausbibliothek',
     icon: '🤝',
-    members: sortedTeam.filter((m) => m.data.category === 'bfd')
+    members: sortedTeam.filter((m: CollectionEntry<'team'>) => m.data.category === 'bfd')
   }
 ];
 

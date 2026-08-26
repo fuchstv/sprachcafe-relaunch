@@ -15,7 +15,7 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
 
 <Layout
   title="House Library Catalog — SprachCafé Polnisch"
-  description="Explore the digital catalog of the House Library at SprachCafé Polnisch e.V. across Pankow, Schöneberg, and Köpenick. Over 400 bilingual books."
+  description="Explore the digital catalog of the House Library at SprachCafé Polnisch e.V. at our Pankow location (Schulzestr. 1). Over 400 bilingual books."
   lang={lang}
 >
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
@@ -46,7 +46,7 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
       <div class="lg:col-span-7 space-y-4">
         <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">House Library Catalog</h1>
         <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl leading-relaxed">
-          Browse our literary collection across Pankow, Schöneberg, and Köpenick locations. Over 400 bilingual works, novels, non-fiction, storytelling, and children's literature.
+          Browse our literary collection at our House Library in Berlin-Pankow (Schulzestr. 1). Over 400 bilingual works, novels, non-fiction, storytelling, and children's literature.
         </p>
         <div class="bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] rounded-xl px-4 py-2 text-xs text-[#5b403d] dark:text-[#d4c5c2] inline-block space-y-1">
           <div class="flex items-center gap-1.5">
@@ -139,8 +139,8 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
         return (
           <div
             class="book-card bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-            data-title={book.title.toLowerCase()}
-            data-author={book.author.toLowerCase()}
+            data-title={(book.title || '').toLowerCase()}
+            data-author={(book.author || '').toLowerCase()}
             data-isbn={book.isbn ? book.isbn.toLowerCase() : ''}
             data-language={book.language}
             data-category={book.category}

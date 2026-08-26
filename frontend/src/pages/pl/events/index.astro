@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import VintageEventTicketCard from '../../../components/VintageEventTicketCard.astro';
 import { getCollection } from 'astro:content';
 
 const lang = 'pl';
@@ -17,7 +18,17 @@ function stripHtml(html: string): string {
 }
 
 const collectionEvents = await getCollection('events');
-const events = collectionEvents.map((e) => ({
+const now = new Date();
+
+const upcomingEvents = collectionEvents.filter((e) => {
+  const eventEnd = e.data.endDate ? new Date(e.data.endDate) : new Date(e.data.date);
+  return eventEnd.getTime() >= now.getTime();
+});
+
+const sortedEvents = (upcomingEvents.length > 0 ? upcomingEvents : collectionEvents)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const events = sortedEvents.map((e) => ({
   slug: e.slug,
   title: e.data.title[lang] || e.data.title.de,
   date_start: e.data.date,
@@ -40,7 +51,7 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
 >
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
     <div class="mb-10 text-center sm:text-left">
-      <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+      <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
         Kalendarz na żywo &amp; Synchronizacja
       </span>
       <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-3">Wydarzenia i Spotkania</h1>
@@ -55,14 +66,14 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
         <button
           type="button"
           id="tab-main-cal"
-          class="px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#8B263E] text-white shadow-md flex items-center gap-2 cursor-pointer"
+          class="px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#8B1E2D] text-white shadow-md flex items-center gap-2 cursor-pointer"
         >
           <span>📅 Wszystkie wydarzenia &amp; SprachCafés</span>
         </button>
         <button
           type="button"
           id="tab-kids-cal"
-          class="px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] flex items-center gap-2 cursor-pointer"
+          class="px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B1E2D] flex items-center gap-2 cursor-pointer"
         >
           <span>🎈 SprachCafé dla dzieci i rodziców</span>
         </button>
@@ -74,13 +85,13 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
           <div class="flex items-center justify-between mb-4">
             <h2 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] flex items-center gap-2">
               <span>📅 Kalendarz Google:</span>
-              <span class="text-[#8B263E] dark:text-[#ff758f] text-base font-normal">Wszystkie lokalizacje (Pankow, Schöneberg, Köpenick)</span>
+              <span class="text-[#8B1E2D] dark:text-[#ff758f] text-base font-normal">Wszystkie lokalizacje (Pankow, Schöneberg, Köpenick)</span>
             </h2>
             <a
               href={mainCalendarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-xs text-[#8B263E] dark:text-[#ff758f] hover:underline hidden sm:inline-flex items-center gap-1 font-semibold"
+              class="text-xs text-[#8B1E2D] dark:text-[#ff758f] hover:underline hidden sm:inline-flex items-center gap-1 font-semibold"
             >
               Otwórz w Kalendarzu Google &nearr;
             </a>
@@ -101,9 +112,9 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
       <!-- Kids Calendar Container -->
       <div id="container-kids-cal" class="mt-6 hidden">
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
-          <div class="mb-4 p-3.5 bg-[#8B263E]/10 border border-[#8B263E]/20 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="mb-4 p-3.5 bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h2 class="font-serif text-base font-bold text-[#8B263E] dark:text-[#ff758f]">
+              <h2 class="font-serif text-base font-bold text-[#8B1E2D] dark:text-[#ff758f]">
                 🎈 Specjalna strona: Dzieci i Rodzice
               </h2>
               <p class="text-xs text-[#5b403d] dark:text-[#d4c5c2]">
@@ -112,7 +123,7 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
             </div>
             <a
               href="/pl/events/kinder-und-eltern/"
-              class="px-4 py-2 rounded-xl bg-[#8B263E] text-white text-xs font-bold hover:bg-[#6b1d30] transition-colors whitespace-nowrap text-center shadow-sm"
+              class="px-4 py-2 rounded-xl bg-[#8B1E2D] text-white text-xs font-bold hover:bg-[#6e1420] transition-colors whitespace-nowrap text-center shadow-sm"
             >
               Do oferty dla dzieci i rodziców &rarr;
             </a>
@@ -132,61 +143,32 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
       </div>
     </div>
 
-    <!-- Section Heading for Synchronized CMS Events -->
-    <div class="mt-16 mb-8 border-t border-[#e7e1df] dark:border-[#363230] pt-12">
-      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
-        Najbliższe wydarzenia z kalendarza
-      </h2>
-      <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2]">
-        Poniżej znajduje się zestawienie najbliższych zaplanowanych warsztatów i spotkań.
-      </p>
-    </div>
-
-    <!-- Event Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {events.slice(0, 12).map((event) => (
-        <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="h-44 overflow-hidden relative bg-[#8B263E]/10">
-              <img
-                src={event.image}
-                alt={event.title}
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
-                {event.location}
-              </span>
-            </div>
-
-            <div class="p-5">
-              <div class="flex items-center gap-2 text-xs text-[#8B263E] dark:text-[#ff758f] font-bold mb-2">
-                <span>📅 {new Date(event.date_start).toLocaleDateString('pl-PL', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
-                <span>•</span>
-                <span>{new Date(event.date_start).toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })}</span>
-              </div>
-
-              <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2 line-clamp-2">
-                {event.title}
-              </h3>
-
-              <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] line-clamp-3 leading-relaxed mb-4">
-                {event.description}
-              </p>
-            </div>
-          </div>
-
-          <div class="p-5 pt-0">
-            <a
-              href={`/pl/events/${event.slug}/`}
-              class="block w-full py-2.5 text-center text-xs font-bold rounded-xl bg-[#f8f2f0] dark:bg-[#2a2725] text-[#8B263E] dark:text-[#ff758f] hover:bg-[#8B263E] hover:text-white transition-all border border-[#e7e1df] dark:border-[#363230]"
-            >
-              Szczegóły wydarzenia &rarr;
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
+    <!-- Featured Events Grid (Symmetric with German page using VintageEventTicketCard) -->
+    {events.length > 0 && (
+      <div class="mt-16 pt-12 border-t border-[#E2D8CC] dark:border-[#363230]">
+        <div class="mb-8">
+          <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#FF758F] text-xs font-bold uppercase tracking-wider mb-2">
+            🎟️ Wyróżnione spotkania
+          </span>
+          <h2 class="font-serif text-3xl font-bold text-[#1D1B1A] dark:text-[#F5F0EE]">Najbliższe wydarzenia</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <VintageEventTicketCard
+              slug={event.slug}
+              title={event.title}
+              dateStart={event.date_start}
+              location={event.location}
+              language={event.language}
+              targetGroup={event.target_group}
+              description={event.description}
+              image={event.image}
+              lang={lang}
+            />
+          ))}
+        </div>
+      </div>
+    )}
   </section>
 
   <!-- Interactive tab switching script -->
@@ -200,15 +182,15 @@ const kidsCalendarUrl = "https://calendar.google.com/calendar/embed?height=600&w
       if (!tabMain || !tabKids || !conMain || !conKids) return;
 
       tabMain.addEventListener('click', () => {
-        tabMain.className = 'px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#8B263E] text-white shadow-md flex items-center gap-2 cursor-pointer';
-        tabKids.className = 'px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] flex items-center gap-2 cursor-pointer';
+        tabMain.className = 'px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#8B1E2D] text-white shadow-md flex items-center gap-2 cursor-pointer';
+        tabKids.className = 'px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B1E2D] flex items-center gap-2 cursor-pointer';
         conMain.classList.remove('hidden');
         conKids.classList.add('hidden');
       });
 
       tabKids.addEventListener('click', () => {
-        tabKids.className = 'px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#8B263E] text-white shadow-md flex items-center gap-2 cursor-pointer';
-        tabMain.className = 'px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] flex items-center gap-2 cursor-pointer';
+        tabKids.className = 'px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200 bg-[#8B1E2D] text-white shadow-md flex items-center gap-2 cursor-pointer';
+        tabMain.className = 'px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B1E2D] flex items-center gap-2 cursor-pointer';
         conKids.classList.remove('hidden');
         conMain.classList.add('hidden');
       });

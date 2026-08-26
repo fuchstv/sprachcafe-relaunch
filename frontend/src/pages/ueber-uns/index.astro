@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 
 const lang = 'de';
 ---
@@ -14,7 +13,7 @@ const lang = 'de';
     
     <!-- Hero Header -->
     <header class="max-w-4xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-sm font-semibold">
         <span>🏡 Ort der Begegnung seit 2008</span>
       </div>
 
@@ -22,7 +21,7 @@ const lang = 'de';
         Über uns
       </h1>
 
-      <p class="font-sans text-xl sm:text-2xl text-[#8B263E] dark:text-[#ff758f] font-serif italic max-w-3xl mx-auto leading-relaxed">
+      <p class="font-sans text-xl sm:text-2xl text-[#8B1E2D] dark:text-[#ff758f] font-serif italic max-w-3xl mx-auto leading-relaxed">
         „Wir freuen uns auf Euch, auf den gemeinsamen Dialog und den Genuss der besonderen Atmosphäre. Seid herzlich willkommen: Zum Verweilen und Mitmachen!“
       </p>
     </header>
@@ -30,7 +29,7 @@ const lang = 'de';
     <!-- SECTION 1: Unsere Orte in Berlin (Pankow, Schöneberg, Köpenick) -->
     <section class="space-y-10">
       <div class="text-center max-w-3xl mx-auto">
-        <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
           Standorte in Berlin
         </span>
         <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
@@ -46,29 +45,29 @@ const lang = 'de';
             <div class="h-44 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230]">
               <img
                 src="/images/hero/header-general.jpg"
-                alt="SprachCafé Pankow in der Schulzestraße 1"
+                alt="Standort Pankow in der Schulzestraße 1"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
 
             <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase">
-                📍 Pankow
+              <span class="px-3 py-1 rounded-full bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase">
+                📍 Standort Pankow
               </span>
-              <span class="text-xs font-semibold text-[#8B263E] dark:text-[#ff758f]">Hauptstandort</span>
+              <span class="text-xs font-semibold text-[#8B1E2D] dark:text-[#ff758f]">Hauptstandort & Hausbibliothek</span>
             </div>
 
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
-              SprachCafé in Berlin-Pankow
+              Standort Pankow
             </h3>
 
-            <p class="font-sans text-sm font-semibold text-[#8B263E] dark:text-[#ff758f]">
-              bei sich zu Hause: Schulzestr. 1, 13187 Berlin, direkt an der S1 / Wollankstr.
+            <p class="font-sans text-sm font-semibold text-[#8B1E2D] dark:text-[#ff758f]">
+              Schulzestr. 1, 13187 Berlin
             </p>
 
             <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-              Seit Januar 2018 haben wir hier unseren eigenen Ort, direkt an der S1 Bhf Wollankstraße, im Norden Berlins. Die Lage im ehemaligen Mauerstreifen hat für uns einen symbolischen Charakter: Hier sind wir echte Brückenbauer*innen zwischen Ost und West, zwischen Sprachen, Kulturen, Generationen ❤️🩵💚
+              Seit Januar 2018 haben wir hier unseren Hauptstandort mit Hausbibliothek, Begegnungsraum und Terrasse. Direkt an der S-Bahn Wollankstraße gelegen, sind wir ein lebendiger Treffpunkt im Norden Berlins ❤️🩵💚
             </p>
           </div>
 
@@ -77,19 +76,23 @@ const lang = 'de';
               <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🕒 Öffnungszeiten:</span>
               <span>Mo–Fr 10:00 – 18:00 Uhr (bei Veranstaltungen länger)</span>
             </div>
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🚆 Anbindung:</span>
+              <span>S1, S25, S85 bis Wollankstraße (Ausgang Schulzestr.), ca. 280 m zu Fuß</span>
+            </div>
             <div class="flex items-center justify-between pt-2">
               <a
                 href="https://maps.google.com/?q=Schulzestr.+1,+13187+Berlin"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B1E2D] dark:text-[#ff758f] hover:underline"
               >
                 <span>🗺️ Auf Karte zeigen</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               </a>
               <a
                 href="mailto:kontakt@sprachcafe-polnisch.org"
-                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B1E2D] dark:text-[#ff758f] hover:underline"
               >
                 <span>✉️ E-Mail</span>
               </a>
@@ -103,50 +106,54 @@ const lang = 'de';
             <div class="h-44 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230]">
               <img
                 src="/images/hero/hero-collage-2.avif"
-                alt="SprachCafé Schöneberg Treffen und Dialog"
+                alt="Standort Schöneberg Treffen und Dialog"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
 
             <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase">
-                📍 Schöneberg
+              <span class="px-3 py-1 rounded-full bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase">
+                📍 Standort Schöneberg
               </span>
-              <span class="text-xs font-semibold text-[#1b5e20] dark:text-[#4ade80] bg-[#1b5e20]/10 px-2 py-0.5 rounded-full">NEU</span>
+              <span class="text-xs font-semibold text-[#1b5e20] dark:text-[#4ade80] bg-[#1b5e20]/10 px-2 py-0.5 rounded-full">KiezRaum</span>
             </div>
 
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
-              SprachCafé in Berlin-Schöneberg
+              Standort Schöneberg
             </h3>
 
-            <p class="font-sans text-sm font-semibold text-[#8B263E] dark:text-[#ff758f]">
-              c/o Stadtteilzentrum Schöneberg, Hauptstraße 121 A, 10827 Berlin
+            <p class="font-sans text-sm font-semibold text-[#8B1E2D] dark:text-[#ff758f]">
+              Hauptstraße 121 A / Gotenstr. 45, 10827 Berlin
             </p>
 
             <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-              Es ist ein neuer Ort für die Nachbarschaft im Süden der Stadt. Wir bleiben treu unserer Community hier und freuen uns auf neue Synergien 🩵❤️💚 <br /><span class="text-xs text-[#5b403d]/80 dark:text-[#d4c5c2]/80 mt-1 block">(April 2023 bis Februar 2026 waren wir in der Gotenstr. 45, 10829 Berlin, am Südkreuz).</span>
+              Stadtteilzentrum & KiezRaum Schöneberg für Sprachabende, Treffen und Kulturveranstaltungen im Süden der Stadt 🩵❤️💚
             </p>
           </div>
 
           <div class="pt-6 mt-6 border-t border-[#e7e1df] dark:border-[#363230] space-y-3 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
             <div class="flex items-start gap-2">
               <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🕒 Treffen:</span>
-              <span>Während der angekündigten Veranstaltungen & Kurse</span>
+              <span>Während der angekündigten Veranstaltungen & Treffen</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🚆 Anbindung:</span>
+              <span>Hauptstraße 121 A: S-Bhf Schöneberg; Gotenstr. 45: Bhf Südkreuz</span>
             </div>
             <div class="flex items-center justify-between pt-2">
               <a
                 href="https://maps.google.com/?q=Hauptstraße+121A,+10827+Berlin"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B1E2D] dark:text-[#ff758f] hover:underline"
               >
                 <span>🗺️ Auf Karte zeigen</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               </a>
               <a
-                href="mailto:schoeneberg@sprachcafe-polnisch.org"
-                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                href="mailto:suedenberlins@sprachcafe-polnisch.org"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B1E2D] dark:text-[#ff758f] hover:underline"
               >
                 <span>✉️ E-Mail</span>
               </a>
@@ -160,29 +167,29 @@ const lang = 'de';
             <div class="h-44 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230]">
               <img
                 src="/images/hero/hero-collage-3.avif"
-                alt="SprachCafé Köpenick Treffen und Aktivitäten"
+                alt="Standort Köpenick Treffen und Aktivitäten"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
 
             <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase">
-                📍 Köpenick
+              <span class="px-3 py-1 rounded-full bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase">
+                📍 Standort Köpenick
               </span>
-              <span class="text-xs font-semibold text-[#1b5e20] dark:text-[#4ade80] bg-[#1b5e20]/10 px-2 py-0.5 rounded-full">NEU</span>
+              <span class="text-xs font-semibold text-[#1b5e20] dark:text-[#4ade80] bg-[#1b5e20]/10 px-2 py-0.5 rounded-full">Wiesentreff</span>
             </div>
 
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
-              SprachCafé in Berlin-Köpenick
+              Standort Köpenick
             </h3>
 
-            <p class="font-sans text-sm font-semibold text-[#8B263E] dark:text-[#ff758f]">
+            <p class="font-sans text-sm font-semibold text-[#8B1E2D] dark:text-[#ff758f]">
               c/o Nachbarschaftstreff Wiesentreff, Am Wiesengraben 7a, 12557 Berlin-Köpenick
             </p>
 
             <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
-              Im Süd-Osten der Stadt gelegen. Im Februar 2026 starteten hier die ersten Aktivitäten des SprachCafés. Denn: Auch hier sind unsere Fans 💚❤️🩵
+              Im Süd-Osten der Stadt gelegen für Familienkreise, Workshops und Sprachangebote 💚❤️🩵
             </p>
           </div>
 
@@ -191,21 +198,19 @@ const lang = 'de';
               <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🕒 Treffen:</span>
               <span>Wiesentreff: während der Veranstaltungen geöffnet</span>
             </div>
+            <div class="flex items-start gap-2">
+              <span class="font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">🚆 Anbindung:</span>
+              <span>Tram 62 bis Zur Nachtheide</span>
+            </div>
             <div class="flex items-center justify-between pt-2">
               <a
                 href="https://maps.google.com/?q=Am+Wiesengraben+7a,+12557+Berlin"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
+                class="inline-flex items-center gap-1 font-semibold text-[#8B1E2D] dark:text-[#ff758f] hover:underline"
               >
                 <span>🗺️ Auf Karte zeigen</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              </a>
-              <a
-                href="mailto:koepenick@sprachcafe-polnisch.org"
-                class="inline-flex items-center gap-1 font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline"
-              >
-                <span>✉️ E-Mail</span>
               </a>
             </div>
           </div>
@@ -217,7 +222,7 @@ const lang = 'de';
     <!-- SECTION 2: Bereiche & Aktivitäten im SprachCafé -->
     <section class="space-y-10">
       <div class="text-center max-w-3xl mx-auto">
-        <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
           Unsere Angebote
         </span>
         <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
@@ -231,7 +236,7 @@ const lang = 'de';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- 1. BegegnungsCafé -->
-        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B263E]/50 transition-all flex flex-col justify-between">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B1E2D]/50 transition-all flex flex-col justify-between">
           <div>
             <div class="text-3xl mb-4" aria-hidden="true">☕</div>
             <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
@@ -242,7 +247,7 @@ const lang = 'de';
             </p>
           </div>
           <div class="pt-5 mt-5 border-t border-[#e7e1df] dark:border-[#363230]">
-            <a href="/events/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <a href="/events/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
               <span>Termine & Sprachabende</span>
               <span>&rarr;</span>
             </a>
@@ -250,7 +255,7 @@ const lang = 'de';
         </div>
 
         <!-- 2. Kleiner Laden -->
-        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B263E]/50 transition-all flex flex-col justify-between">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B1E2D]/50 transition-all flex flex-col justify-between">
           <div>
             <div class="text-3xl mb-4" aria-hidden="true">🛍️</div>
             <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
@@ -261,7 +266,7 @@ const lang = 'de';
             </p>
           </div>
           <div class="pt-5 mt-5 border-t border-[#e7e1df] dark:border-[#363230]">
-            <a href="/ueber-uns/kleiner-laden/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <a href="/ueber-uns/kleiner-laden/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
               <span>Sortiment ansehen</span>
               <span>&rarr;</span>
             </a>
@@ -269,7 +274,7 @@ const lang = 'de';
         </div>
 
         <!-- 3. Galerie -->
-        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B263E]/50 transition-all flex flex-col justify-between">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B1E2D]/50 transition-all flex flex-col justify-between">
           <div>
             <div class="text-3xl mb-4" aria-hidden="true">🎨</div>
             <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
@@ -280,7 +285,7 @@ const lang = 'de';
             </p>
           </div>
           <div class="pt-5 mt-5 border-t border-[#e7e1df] dark:border-[#363230]">
-            <a href="/ueber-uns/ausstellungen/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <a href="/ueber-uns/ausstellungen/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
               <span>Ausstellungen entdecken</span>
               <span>&rarr;</span>
             </a>
@@ -288,7 +293,7 @@ const lang = 'de';
         </div>
 
         <!-- 4. Hausbibliothek & Antiquariat -->
-        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B263E]/50 transition-all flex flex-col justify-between">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B1E2D]/50 transition-all flex flex-col justify-between">
           <div>
             <div class="text-3xl mb-4" aria-hidden="true">📚</div>
             <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
@@ -299,7 +304,7 @@ const lang = 'de';
             </p>
           </div>
           <div class="pt-5 mt-5 border-t border-[#e7e1df] dark:border-[#363230]">
-            <a href="/hausbibliothek/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <a href="/hausbibliothek/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
               <span>Online-Katalog aufrufen</span>
               <span>&rarr;</span>
             </a>
@@ -307,7 +312,7 @@ const lang = 'de';
         </div>
 
         <!-- 5. Team-Arbeit -->
-        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B263E]/50 transition-all flex flex-col justify-between md:col-span-2 lg:col-span-2">
+        <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-7 shadow-sm hover:border-[#8B1E2D]/50 transition-all flex flex-col justify-between md:col-span-2 lg:col-span-2">
           <div>
             <div class="text-3xl mb-4" aria-hidden="true">👥</div>
             <h3 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-2">
@@ -318,11 +323,11 @@ const lang = 'de';
             </p>
           </div>
           <div class="pt-5 mt-5 border-t border-[#e7e1df] dark:border-[#363230] flex flex-wrap gap-4">
-            <a href="/ueber-uns/team/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <a href="/ueber-uns/team/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
               <span>Unser Team & Vorstand</span>
               <span>&rarr;</span>
             </a>
-            <a href="/mitmachen/kooperationen/unsere-partner/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
+            <a href="/mitmachen/kooperationen/unsere-partner/" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
               <span>Partnerorganisationen</span>
               <span>&rarr;</span>
             </a>
@@ -333,9 +338,9 @@ const lang = 'de';
     </section>
 
     <!-- SECTION 3: Räume mieten -->
-    <section class="bg-gradient-to-br from-[#8B263E]/10 via-[#8B263E]/5 to-transparent border border-[#8B263E]/20 rounded-3xl p-8 sm:p-12 shadow-sm">
+    <section class="bg-gradient-to-br from-[#8B1E2D]/10 via-[#8B1E2D]/5 to-transparent border border-[#8B1E2D]/20 rounded-3xl p-8 sm:p-12 shadow-sm">
       <div class="max-w-3xl mx-auto text-center space-y-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B263E] text-white text-xs font-bold uppercase tracking-wider">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E2D] text-white text-xs font-bold uppercase tracking-wider">
           <span>🏢 Raumvermietung</span>
         </div>
         <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee]">
@@ -347,13 +352,13 @@ const lang = 'de';
         <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
           <a
             href="mailto:kontakt@sprachcafe-polnisch.org?subject=Raumanfrage%20SprachCaf%C3%A9"
-            class="px-8 py-3.5 rounded-2xl bg-[#8B263E] hover:bg-[#6e1e31] text-white font-bold text-sm sm:text-base transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
+            class="px-8 py-3.5 rounded-2xl bg-[#8B1E2D] hover:bg-[#6e1e31] text-white font-bold text-sm sm:text-base transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
           >
             <span>✉️ Kontaktiere uns!</span>
           </a>
           <a
             href="/kontakt/"
-            class="px-8 py-3.5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-sm sm:text-base transition-all shadow-sm inline-flex items-center gap-2"
+            class="px-8 py-3.5 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B1E2D] font-bold text-sm sm:text-base transition-all shadow-sm inline-flex items-center gap-2"
           >
             <span>Kontaktformular öffnen</span>
           </a>
@@ -364,7 +369,7 @@ const lang = 'de';
     <!-- SECTION 4: Menschen schaffen Orte … (Was gebraucht wird & Mitmachen) -->
     <section class="space-y-8">
       <div class="max-w-3xl">
-        <span class="inline-block px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-3">
           Gemeinschaft & Engagement
         </span>
         <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
@@ -432,13 +437,13 @@ const lang = 'de';
       <div class="pt-2 flex flex-wrap items-center gap-4">
         <a
           href="/mitmachen/"
-          class="px-7 py-3 rounded-2xl bg-[#8B263E] hover:bg-[#6e1e31] text-white font-bold text-sm transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
+          class="px-7 py-3 rounded-2xl bg-[#8B1E2D] hover:bg-[#6e1e31] text-white font-bold text-sm transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
         >
           <span>❤️ Mach mit!</span>
         </a>
         <a
           href="mailto:kontakt@sprachcafe-polnisch.org?subject=Mitmachen%20im%20SprachCaf%C3%A9"
-          class="px-7 py-3 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B263E] font-bold text-sm transition-all shadow-sm inline-flex items-center gap-2"
+          class="px-7 py-3 rounded-2xl bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] hover:border-[#8B1E2D] font-bold text-sm transition-all shadow-sm inline-flex items-center gap-2"
         >
           <span>✉️ Kontakt aufnehmen</span>
         </a>
@@ -454,27 +459,27 @@ const lang = 'de';
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <a href="/ueber-uns/mission/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B263E] transition-all">
+        <a href="/ueber-uns/mission/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B1E2D] transition-all">
           <span class="text-3xl block mb-3">🎯</span>
-          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">Mission & Werte</h4>
+          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B1E2D] dark:group-hover:text-[#ff758f] transition-colors">Mission & Werte</h4>
           <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] mt-2">Geschichte ab 2008 & Kernwerte des Vereins</p>
         </a>
 
-        <a href="/ueber-uns/team/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B263E] transition-all">
+        <a href="/ueber-uns/team/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B1E2D] transition-all">
           <span class="text-3xl block mb-3">👥</span>
-          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">Team & Vorstand</h4>
+          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B1E2D] dark:group-hover:text-[#ff758f] transition-colors">Team & Vorstand</h4>
           <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] mt-2">Vorstand, Verwaltung & Pädagog:innen</p>
         </a>
 
-        <a href="/ueber-uns/frequently-asked-questions/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B263E] transition-all">
+        <a href="/ueber-uns/frequently-asked-questions/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B1E2D] transition-all">
           <span class="text-3xl block mb-3">❓</span>
-          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">Häufige Fragen (FAQ)</h4>
+          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B1E2D] dark:group-hover:text-[#ff758f] transition-colors">Häufige Fragen (FAQ)</h4>
           <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] mt-2">Antworten zu Öffnungszeiten & Kursen</p>
         </a>
 
-        <a href="/mitmachen/mitglied-werden/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B263E] transition-all">
+        <a href="/mitmachen/mitglied-werden/" class="group p-6 bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl shadow-sm hover:border-[#8B1E2D] transition-all">
           <span class="text-3xl block mb-3">❤️</span>
-          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B263E] dark:group-hover:text-[#ff758f] transition-colors">Mitglied werden</h4>
+          <h4 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] group-hover:text-[#8B1E2D] dark:group-hover:text-[#ff758f] transition-colors">Mitglied werden</h4>
           <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2] mt-2">Beitragsstufen & Online-Antrag</p>
         </a>
       </div>

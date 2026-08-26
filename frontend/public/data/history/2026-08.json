@@ -4,8 +4,8 @@
   "monatNum": 8,
   "monatName": "August",
   "events": {
-    "total": 8,
-    "kinder": 5,
+    "total": 6,
+    "kinder": 3,
     "sprachpraxis": 1,
     "kultur": 2,
     "locations": {
@@ -16,9 +16,9 @@
     }
   },
   "headcountEst": {
-    "totalAttendees": 129,
-    "childrenAttendees": 55,
-    "avgPerEvent": 16.1
+    "totalAttendees": 93,
+    "childrenAttendees": 35,
+    "avgPerEvent": 15.5
   },
   "web": {
     "pageViews": 16006,
@@ -29,5 +29,5 @@
     "openRatePct": 48.6,
     "campaignsSent": 2
   },
-  "archivedAt": "2026-08-19T19:33:30.674Z"
+  "archivedAt": "2026-08-26T00:00:16.763Z"
 }

@@ -30,7 +30,7 @@ try {
 }
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
-const LIBRARY_EXPORT_URL = process.env.LIBRARY_APP_EXPORT_URL || 'http://localhost:8080/api/export/books';
+const LIBRARY_EXPORT_URL = process.env.LIBRARY_APP_EXPORT_URL || 'https://hausbibliothek.org/api/books?limit=500';
 const TARGET_DATA_DIR = path.resolve(scriptDir, '../frontend/src/data');
 const TARGET_BOOKS_FILE = path.join(TARGET_DATA_DIR, 'books.json');
 const REPORT_FILE_PATH = path.resolve(scriptDir, 'library-sync-report.md');
@@ -218,8 +218,14 @@ export function getMockExportBooks(): ExportedBookItem[] {
           }
 
           const fullAuthor = autor2 ? `${autor} (${autor2})` : autor;
-          const location = locations[i % locations.length];
+          const location = 'Pankow';
           const status = statuses[i % statuses.length];
+
+          const jpgRel = `/images/covers/book-${i}.jpg`;
+          const svgRel = `/images/covers/book-${i}.svg`;
+          const hasJpg = fs.existsSync(path.resolve(scriptDir, `../frontend/public${jpgRel}`));
+          const hasSvg = fs.existsSync(path.resolve(scriptDir, `../frontend/public${svgRel}`));
+          const localCover = hasJpg ? jpgRel : hasSvg ? svgRel : '';
 
           books.push({
             id: `book-${i}`,
@@ -231,8 +237,8 @@ export function getMockExportBooks(): ExportedBookItem[] {
             location: location,
             status: status,
             year: erscheinungsjahr,
-            cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop',
-            description: `Erschienen: ${erscheinungsjahr || 'o.A.'} | Kategorie: ${category}`
+            cover: localCover || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop',
+            description: `Erschienen: ${erscheinungsjahr || 'o.A.'} | Kategorie: ${category} | Hausbibliothek am Standort Pankow`
           });
         }
 
@@ -276,11 +282,52 @@ export async function fetchLibraryCatalog(): Promise<ExportedBookItem[]> {
     const rawList = Array.isArray(resJson) ? resJson : (resJson.data || []);
     if (Array.isArray(rawList) && rawList.length > 0) {
       console.log(`✓ Received ${rawList.length} book records from Library App API.`);
-      return rawList.map((item: any) => ({
-        ...item,
-        status: item.status || item.availability_status || 'verfuegbar',
-        cover: item.cover || item.cover_url || ''
-      }));
+      return rawList.map((item: any) => {
+        const numericId = String(item.id).replace('book-', '');
+        const jpgRel = `/images/covers/book-${numericId}.jpg`;
+        const svgRel = `/images/covers/book-${numericId}.svg`;
+        const hasJpg = fs.existsSync(path.resolve(scriptDir, `../frontend/public${jpgRel}`));
+        const hasSvg = fs.existsSync(path.resolve(scriptDir, `../frontend/public${svgRel}`));
+        const localCover = hasJpg ? jpgRel : hasSvg ? svgRel : (item.cover_image ? `https://hausbibliothek.org/${item.cover_image}` : item.cover || '');
+
+        const isGerman = (item.category || '').toLowerCase().includes('deutsch') || (item.category || '').toLowerCase().includes('de');
+        const language = item.language || (isGerman ? 'DE' : 'PL');
+
+        let categoryName = item.category || 'Belletristik';
+        if (categoryName === 'belytrystyka_polska') categoryName = 'Polnische Belletristik';
+        if (categoryName === 'deutsch') categoryName = 'Deutschsprachige Literatur';
+        if (categoryName === 'dzieci_mlodziez') categoryName = 'Kinder- & Jugendbuch';
+        if (categoryName === 'biografie_fakt') categoryName = 'Biografien & Sachbuch';
+        if (categoryName === 'poezja') categoryName = 'Poesie';
+        if (categoryName === 'kryminal_sensacja') categoryName = 'Kriminalroman';
+        if (categoryName === 'reportaz_historia') categoryName = 'Geschichte & Reportage';
+
+        const rawTitle = (item.title || '').trim();
+        const rawAuthor = (item.author || '').trim();
+        let bookTitle = rawTitle;
+        let bookAuthor = rawAuthor || 'Unbekannter Autor';
+        if (!bookTitle) {
+          if (bookAuthor && bookAuthor !== 'Unbekannter Autor') {
+            bookTitle = bookAuthor;
+            bookAuthor = 'Unbekannter Autor';
+          } else {
+            bookTitle = `Katalogbuch #${numericId}`;
+          }
+        }
+
+        return {
+          id: `book-${numericId}`,
+          title: bookTitle,
+          author: bookAuthor,
+          isbn: item.isbn || '',
+          language: language,
+          category: categoryName,
+          location: 'Pankow',
+          status: item.availability_status === 'borrowed' ? 'ausgeliehen' : (item.status || 'verfuegbar'),
+          cover: localCover,
+          description: item.description || ''
+        };
+      });
     }
     throw new Error('Received empty response from API');
   } catch (err: any) {
@@ -436,10 +483,23 @@ export async function runLibrarySync(): Promise<LibrarySyncReport> {
       });
     }
 
+    const rawTitle = (book.title || '').trim();
+    const rawAuthor = (book.author || '').trim();
+    let bookTitle = rawTitle;
+    let bookAuthor = rawAuthor || 'Unbekannter Autor';
+    if (!bookTitle) {
+      if (bookAuthor && bookAuthor !== 'Unbekannter Autor') {
+        bookTitle = bookAuthor;
+        bookAuthor = 'Unbekannter Autor';
+      } else {
+        bookTitle = `Katalogbuch ${book.id}`;
+      }
+    }
+
     processedBooks.push({
       id: book.id,
-      title: book.title,
-      author: book.author,
+      title: bookTitle,
+      author: bookAuthor,
       isbn: book.isbn || '',
       language: lang,
       category: cat,

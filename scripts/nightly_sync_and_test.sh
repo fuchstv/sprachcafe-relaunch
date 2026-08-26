@@ -34,6 +34,8 @@ cd "${PROJECT_DIR}"
 log "📡 [1/5] Synchronisiere Google Kalender, Hausbibliothek & Web-Metriken..."
 npx tsx scripts/sync_google_calendars.ts >> "${LOG_FILE}" 2>&1 || log "⚠️ Warnung: Kalender-Sync hatte Warnungen"
 npx tsx scripts/sync_hausbibliothek_catalog.ts >> "${LOG_FILE}" 2>&1 || log "⚠️ Warnung: Bibliotheks-Sync hatte Warnungen"
+cd /home/ubuntu/sprachcafe-team && npx tsx src/scripts/sync_gcal.ts >> "${LOG_FILE}" 2>&1 || true
+cd "${PROJECT_DIR}"
 npx tsx scripts/fetch_cloudflare_analytics.ts >> "${LOG_FILE}" 2>&1 || true
 npx tsx scripts/fetch_mailchimp_metrics.ts >> "${LOG_FILE}" 2>&1 || true
 npx tsx scripts/archive_kpi_snapshots.ts >> "${LOG_FILE}" 2>&1

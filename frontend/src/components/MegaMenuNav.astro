@@ -1,6 +1,6 @@
 ---
 import { type LanguageCode } from '../i18n/ui';
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
 
 interface Props {
   currentLang?: LanguageCode;
@@ -8,37 +8,38 @@ interface Props {
 
 const { currentLang = 'de' } = Astro.props;
 const t = useTranslations(currentLang);
+const l = (p: string) => getLocalizedPath(p, currentLang);
 ---
 
-<nav role="navigation" aria-label="Mega-Menü Navigation" class="relative hidden lg:flex items-center gap-6">
+<nav role="navigation" aria-label={t('menu.main')} class="relative hidden lg:flex items-center gap-6">
   
   <!-- Standorte Mega Dropdown -->
   <div class="relative group">
     <button
       type="button"
-      class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] rounded-md px-2"
       aria-expanded="false"
       aria-haspopup="true"
     >
-      <span>📍 Standorte</span>
+      <span>📍 {t('nav.locations')}</span>
       <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
 
     <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-72">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl space-y-3">
-        <a href="#pankow" class="block p-3 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">📍 Pankow</span>
-          <span class="block text-xs text-brand-text-muted">Schulzestr. 1 (an S1 Wollankstr.) • Mo-Fr 10-18 Uhr</span>
+      <div class="bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl p-3 shadow-xl space-y-2">
+        <a href={l('/kontakt/#pankow')} class="block p-3 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">📍 Pankow</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Schulzestr. 1 (an S1 Wollankstr.)</span>
         </a>
-        <a href="#schoeneberg" class="block p-3 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">📍 Schöneberg</span>
-          <span class="block text-xs text-brand-text-muted">Hauptstr. 121 A & Gotenstr. 45 • Bei Veranstaltungen</span>
+        <a href={l('/kontakt/#schoeneberg')} class="block p-3 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">📍 Schöneberg</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Hauptstr. 121 A &amp; Gotenstr. 45</span>
         </a>
-        <a href="#koepenick" class="block p-3 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">📍 Köpenick</span>
-          <span class="block text-xs text-brand-text-muted">Am Wiesengraben 7a (Wiesentreff) • Bei Veranstaltungen</span>
+        <a href={l('/kontakt/#koepenick')} class="block p-3 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">📍 Köpenick</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Am Wiesengraben 7a (Wiesentreff)</span>
         </a>
       </div>
     </div>
@@ -46,35 +47,35 @@ const t = useTranslations(currentLang);
 
   <!-- Über uns Dropdown -->
   <div class="relative group">
-    <button
-      type="button"
-      class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+    <a
+      href={l('/ueber-uns/')}
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] rounded-md px-2"
       aria-expanded="false"
       aria-haspopup="true"
     >
-      <span>ℹ️ Über uns</span>
+      <span>ℹ️ {t('nav.about')}</span>
       <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
-    </button>
+    </a>
 
     <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-64">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-2xl space-y-1">
-        <a href="/ueber-uns/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">🏢 Über uns (Übersicht)</span>
-          <span class="block text-xs text-brand-text-muted">Verein & 3 Standorte</span>
+      <div class="bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl p-2 shadow-xl space-y-1">
+        <a href={l('/ueber-uns/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.about.overview')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Verein &amp; 3 Standorte</span>
         </a>
-        <a href="/ueber-uns/mission/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">🎯 Mission & Werte</span>
-          <span class="block text-xs text-brand-text-muted">Historie & Leitbild</span>
+        <a href={l('/ueber-uns/mission/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.about.mission')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Historie &amp; Leitbild</span>
         </a>
-        <a href="/ueber-uns/team/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">👥 Team & Vorstand</span>
-          <span class="block text-xs text-brand-text-muted">Unsere Köpfe & Dozierenden</span>
+        <a href={l('/ueber-uns/team/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.about.team')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Vorstand &amp; Mitwirkende</span>
         </a>
-        <a href="/ueber-uns/frequently-asked-questions/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">❓ Häufige Fragen (FAQ)</span>
-          <span class="block text-xs text-brand-text-muted">Auskunft & Öffnungszeiten</span>
+        <a href={l('/ueber-uns/frequently-asked-questions/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.about.faq')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Auskunft &amp; Öffnungszeiten</span>
         </a>
       </div>
     </div>
@@ -84,37 +85,41 @@ const t = useTranslations(currentLang);
   <div class="relative group">
     <button
       type="button"
-      class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] rounded-md px-2"
       aria-expanded="false"
       aria-haspopup="true"
     >
-      <span>✨ Entdecken</span>
+      <span>✨ {t('nav.discover')}</span>
       <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
 
     <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-64">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-2xl space-y-1">
-        <a href="/ueber-uns/ausstellungen/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">🎨 Ausstellungen & Galerie</span>
-          <span class="block text-xs text-brand-text-muted">Fotografie, Kunst & Vernissagen</span>
+      <div class="bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl p-2 shadow-xl space-y-1">
+        <a href={l('/ueber-uns/ausstellungen/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.discover.exhibitions')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Fotografie, Kunst &amp; Galerie</span>
         </a>
-        <a href="/mehrsprachigkeit/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">🗣️ Mehrsprachigkeit & Beratung</span>
-          <span class="block text-xs text-brand-text-muted">Zweisprachige Erziehung & Tandems</span>
+        <a href={l('/mehrsprachigkeit/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.discover.multilingual')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Zweisprachige Beratung</span>
         </a>
-        <a href="/ueber-uns/kleiner-laden/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">🛍️ Kleiner Laden</span>
-          <span class="block text-xs text-brand-text-muted">Vereins-Merchandise & Spendenartikel</span>
+        <a href={l('/ueber-uns/kleiner-laden/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.discover.shop')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Vereins-Merchandise</span>
         </a>
-        <a href="/hausbibliothek/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">📚 Hausbibliothek</span>
-          <span class="block text-xs text-brand-text-muted">Zweisprachiges Buchportal</span>
+        <a href={l('/ueber-uns/begegnungscafe/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.discover.cafe')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Kaffee &amp; Austausch</span>
         </a>
-        <a href="/news/" class="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors">
-          <span class="block font-bold text-white text-sm">📰 Aktuelles & Newsletter</span>
-          <span class="block text-xs text-brand-text-muted">Mitteilungen & Berichte aus dem SprachCafé</span>
+        <a href={l('/hausbibliothek/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.discover.library')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Zweisprachiges Buchportal</span>
+        </a>
+        <a href={l('/news/')} class="block p-2.5 rounded-xl hover:bg-[#FAF5EB] dark:hover:bg-[#2A2725] transition-colors">
+          <span class="block font-bold text-[#1D1B1A] dark:text-[#F5F0EE] text-sm">{t('nav.discover.news')}</span>
+          <span class="block text-xs text-[#5B403D] dark:text-[#D4C5C2]">Mitteilungen &amp; Berichte</span>
         </a>
       </div>
     </div>
@@ -122,24 +127,24 @@ const t = useTranslations(currentLang);
 
   <!-- Veranstaltungen Dropdown -->
   <a
-    href="/events/"
-    class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+    href={l('/events/')}
+    class="text-sm font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] rounded-md px-2"
   >
     {t('nav.events')}
   </a>
 
   <!-- News / Aktuelles -->
   <a
-    href="/news/"
-    class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+    href={l('/news/')}
+    class="text-sm font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] rounded-md px-2"
   >
     {t('nav.news')}
   </a>
 
   <!-- Hausbibliothek -->
   <a
-    href="/hausbibliothek/"
-    class="text-sm font-medium text-brand-text-muted hover:text-brand-primary-light transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-brand-focus rounded-md px-2"
+    href={l('/hausbibliothek/')}
+    class="text-sm font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] rounded-md px-2"
   >
     {t('nav.library')}
   </a>

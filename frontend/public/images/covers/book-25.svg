@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="600" height="850">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B1E2D"/>
+      <stop offset="100%" stop-color="#54101B"/>
+    </linearGradient>
+    <pattern id="linen" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.03)" />
+      <circle cx="12" cy="12" r="1" fill="rgba(255,255,255,0.03)" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="850" fill="url(#bg)"/>
+  <rect width="600" height="850" fill="url(#linen)"/>
+
+  <!-- Outer Frame -->
+  <rect x="30" y="30" width="540" height="790" rx="12" fill="none" stroke="#D4AF37" stroke-width="2" stroke-opacity="0.4"/>
+  <rect x="42" y="42" width="516" height="766" rx="8" fill="none" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="6,4"/>
+
+  <!-- Top Emblem / Library Brand -->
+  <g transform="translate(300, 110)">
+    <circle cx="0" cy="0" r="32" fill="rgba(255, 255, 255, 0.15)" stroke="#D4AF37" stroke-width="1.5" stroke-opacity="0.6"/>
+    <text x="0" y="9" text-anchor="middle" font-size="28">📖</text>
+  </g>
+  <text x="300" y="175" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="3">HAUSBIBLIOTHEK SPRACHCAFÉ</text>
+  <text x="300" y="195" text-anchor="middle" fill="#FAF5EB" fill-opacity="0.7" font-family="sans-serif" font-size="11" letter-spacing="1.5">BERLIN-PANKOW</text>
+
+  <!-- Category Tag -->
+  <rect x="180" y="235" width="240" height="32" rx="16" fill="rgba(255, 255, 255, 0.15)" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="300" y="256" text-anchor="middle" fill="#FAF5EB" font-family="sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">Literatura Polska</text>
+
+  <!-- Author Section -->
+  <text x="300" y="325" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1">Huelle Paweł</text>
+
+  <!-- Title Section -->
+  <g>
+    <text x="300" y="380" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">Pierwsza miłość i</text>
+      <text x="300" y="424" text-anchor="middle" fill="#FAF5EB" font-family="'Georgia', 'Literata', serif" font-size="30" font-weight="700" letter-spacing="-0.3">inne opowiadania</text>
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="200" y1="580" x2="400" y2="580" stroke="#D4AF37" stroke-width="1.5" stroke-opacity="0.5"/>
+  <polygon points="300,576 304,580 300,584 296,580" fill="#D4AF37"/>
+
+  <!-- Publication Details Bottom -->
+  <g transform="translate(300, 680)">
+    <text x="0" y="0" text-anchor="middle" fill="#FAF5EB" fill-opacity="0.9" font-family="sans-serif" font-size="14" font-weight="500">Puls Publications (1996)</text>
+    <text x="0" y="28" text-anchor="middle" fill="#D4AF37" font-family="monospace" font-size="13" font-weight="700" letter-spacing="1">Sygnatura: BP-0024</text>
+    <text x="0" y="52" text-anchor="middle" fill="#FAF5EB" fill-opacity="0.6" font-family="monospace" font-size="11">ISBN: 1859170617</text>
+  </g>
+
+</svg>

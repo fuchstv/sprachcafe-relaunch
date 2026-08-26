@@ -6,12 +6,81 @@ title:
 blocks:
   - type: "legal"
     title:
-      de: "Datenschutz auf einen Blick"
-      pl: "Ochrona danych w skrócie"
-      en: "Privacy at a Glance"
+      de: "Informationen über die Verarbeitung personenbezogener Daten (DSGVO / TDDDG)"
+      pl: "Informacje o przetwarzaniu danych osobowych (RODO / TDDDG)"
+      en: "Information on the processing of personal data (GDPR / TDDDG)"
     content:
-      de: "### Allgemein\nDer SprachCafé Polnisch e.V. nimmt den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften (DSGVO) sowie dieser Datenschutzerklärung.\n\n### Datenerfassung auf unserer Website\nFormulardaten aus dem Kontakt- und Bewerbungsformular werden direkt per sicherer M365 Exchange Schnittstelle an den Verein übermittelt und nicht in der Web-Datenbank gespeichert (DSGVO-by-Design)."
-      pl: "### Informacje ogólne\nSprachCafé Polnisch e.V. traktuje ochronę Twoich danych osobowych bardzo poważnie. Przetwarzamy Twoje dane osobowe poufnie i zgodnie z przepisami o ochronie danych (RODO) oraz niniejszą polityką prywatności.\n\n### Gromadzenie danych na naszej stronie\nDane z formularza kontaktowego i zgłoszeniowego są przesyłane bezpośrednio przez bezpieczny interfejs M365 Exchange do stowarzyszenia i nie są zapisywane w bazie danych serwisu."
-      en: "### General\nSprachCafé Polnisch e.V. takes the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with statutory data protection regulations (GDPR) and this privacy policy.\n\n### Data collection on our website\nForm submissions from contact and application forms are directly sent to the association via secure M365 Exchange API and are not saved in any web database (GDPR-by-Design)."
-    lastUpdated: "2026-08-11"
+      de: |
+        ### 1. Verantwortliche Stelle
+        Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der DSGVO ist:
+
+        **SprachCafé Polnisch e.V.**
+        Schulzestr. 1, D-13187 Berlin
+        **Vertreten durch den Vorstand:** Agata Koch (Vorsitzende)
+        **E-Mail:** kontakt@sprachcafe-polnisch.org
+        **Telefon:** +49 160 9968 0059
+
+        ### 2. Privacy by Design: Datensparsame Architektur
+        Unser Webportal und die digitale Hausbibliothek wurden nach dem Prinzip der Datenminimierung (Art. 5 Abs. 1 lit. c DSGVO) konzipiert:
+        - **Keine Tracking-Cookies & keine Werbenetzwerke:** Wir setzen keine Profiling-Dienste oder Drittanbieter-Analysetools (wie Google Analytics oder Meta-Pixel) ein.
+        - **Self-Hosted Assets:** Schriften und Icons werden lokal von unserem eigenen Webserver bereitgestellt. Es findet keine Verbindung zu externen Servern wie Google Fonts statt.
+
+        ### 3. Hosting & Server-Log-Dateien
+        Unser Webserver und Reverse Proxy (Caddy v2) werden auf einem Server von Amazon Web Services (AWS) in **Frankfurt am Main (Deutschland, Region eu-central-1)** betrieben. Sämtliche Datenverarbeitungen verbleiben in der EU.
+        Bei jedem Seitenaufruf werden technisch notwendige Verbindungsdaten (IP-Adresse, Timestamp, URL, HTTP-Statuscode, User-Agent) zur Abwehr von Sicherheitsangriffen erfasst und rollierend für maximal 7 bis 14 Tage gespeichert (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO).
+
+        ### 4. Bibliothekskonto & Ausleihe
+        Bei Registrierung und Nutzung der Hausbibliothek werden Benutzername, E-Mail-Adresse und Passwort (kryptografisch gehasht) sowie Leihhistorien und Vormerkungen ausschließlich zur Abwicklung des Bibliotheksbetriebs verarbeitet (Art. 6 Abs. 1 lit. b DSGVO).
+
+        ### 5. Ihre Rechte als betroffene Person
+        Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie das Recht auf Beschwerde bei der zuständigen Aufsichtsbehörde (Berliner Beauftragte für Datenschutz und Informationsfreiheit).
+      pl: |
+        ### 1. Administrator Danych Osobowych
+        Administratorem danych osobowych na tej stronie internetowej w rozumieniu RODO jest:
+
+        **SprachCafé Polnisch e.V.**
+        Schulzestr. 1, D-13187 Berlin (Niemcy)
+        **Reprezentowane przez Zarząd:** Agata Koch (Przewodnicząca Zarządu)
+        **E-Mail:** kontakt@sprachcafe-polnisch.org
+        **Telefon:** +49 160 9968 0059
+
+        ### 2. Privacy by Design: Bezpieczeństwo i minimalizacja danych
+        Nasz portal oraz cyfrowa Hausbibliothek zostały zaprojektowane zgodnie z zasadą minimalizacji danych (art. 5 ust. 1 lit. c RODO):
+        - **Brak trackerów i reklam:** Nie stosujemy śledzących plików cookies, sieci reklamowych ani narzędzi profilowania (np. Google Analytics, Meta Pixel).
+        - **Lokalne zasoby:** Czcionki i ikony serwowane są bezpośrednio z naszego serwera (brak połączeń z Google Fonts).
+
+        ### 3. Hosting i pliki dziennika serwera (Logi)
+        Serwer oraz reverse proxy (Caddy v2) działają w centrum danych Amazon Web Services (AWS) we **Frankfurcie nad Menem (Niemcy, region eu-central-1)** w granicach UE.
+        Przy każdym połączeniu serwer rejestruje niezbędne dane techniczne (adres IP, data i godzina, wywołany URL, kod HTTP) w celu zapewnienia stabilności i bezpieczeństwa (art. 6 ust. 1 lit. f RODO). Logi są usuwane po 7–14 dniach.
+
+        ### 4. Konto biblioteczne i wypożyczenia
+        Podczas rejestracji i korzystania z Hausbibliothek dane konta (nazwa użytkownika, e-mail, zaszyfrowane hasło) oraz historia wypożyczeń i rezerwacji są przetwarzane wyłącznie w celu obsługi biblioteki (art. 6 ust. 1 lit. b RODO).
+
+        ### 5. Prawa osób, których dane dotyczą
+        Mają Państwo prawo do dostępu do swoich danych (art. 15 RODO), sprostowania (art. 16 RODO), usunięcia („prawo do bycia zapomnianym”, art. 17 RODO), ograniczenia przetwarzania (art. 18 RODO) oraz wniesienia skargi do organu nadzorczego (Berliner Beauftragte für Datenschutz und Informationsfreiheit).
+      en: |
+        ### 1. Data Controller
+        The data controller for this website within the meaning of the GDPR is:
+
+        **SprachCafé Polnisch e.V.**
+        Schulzestr. 1, D-13187 Berlin, Germany
+        **Represented by the Executive Board:** Agata Koch (Chairwoman)
+        **Email:** kontakt@sprachcafe-polnisch.org
+        **Phone:** +49 160 9968 0059
+
+        ### 2. Privacy by Design
+        Our portal and the digital Hausbibliothek are designed in accordance with the data minimization principle (Art. 5 (1) (c) GDPR):
+        - **No tracking cookies & no advertising:** We do not use third-party analytics (like Google Analytics or Meta Pixel) or tracking cookies.
+        - **Self-hosted assets:** All fonts and icons are hosted locally on our server without connecting to external CDN services.
+
+        ### 3. Hosting and Server Logs
+        Our web server (Caddy v2) is hosted on Amazon Web Services (AWS) in **Frankfurt am Main (Germany, eu-central-1)** within the EU.
+        Server log files are processed solely for network security and stability (Art. 6 (1) (f) GDPR) and retention is limited to 7–14 days.
+
+        ### 4. Library Account & Borrowing
+        When creating an account and using the digital Hausbibliothek, user credentials (username, email, cryptographically hashed password) and loan records are processed strictly for library service operations (Art. 6 (1) (b) GDPR).
+
+        ### 5. Your Rights as a Data Subject
+        You have the right to access (Art. 15 GDPR), rectification (Art. 16 GDPR), erasure (Art. 17 GDPR), restriction of processing (Art. 18 GDPR), and the right to lodge a complaint with the relevant supervisory authority.
+    lastUpdated: "2026-08-20"
 ---

@@ -20,15 +20,15 @@ const { items, lang = 'de' } = Astro.props;
     const id = `faq-item-${index}`;
 
     return (
-      <div class="faq-item bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm transition-all duration-200 hover:border-[#8B263E]/40">
+      <div class="faq-item bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl overflow-hidden shadow-sm transition-all duration-200 hover:border-[#8B1E2D]/40">
         <button
           type="button"
           aria-expanded="false"
           aria-controls={id}
-          class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B263E]"
+          class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
         >
           <span>{q}</span>
-          <div class="faq-icon w-8 h-8 rounded-full bg-[#8B263E]/10 text-[#8B263E] dark:text-[#ff758f] flex items-center justify-center shrink-0 transition-transform duration-300">
+          <div class="faq-icon w-8 h-8 rounded-full bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] flex items-center justify-center shrink-0 transition-transform duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 400" width="60" height="400">
+  <defs>
+    <pattern id="notch-dots" x="0" y="0" width="10" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="5" cy="8" r="2" fill="#FAF6EE" opacity="0.9" />
+    </pattern>
+  </defs>
+  
+  <!-- Left ticket notch (Top cutout) -->
+  <path d="M 0,0 C 18,0 30,12 30,30 C 30,48 18,60 0,60 Z" fill="#181615" opacity="0.95" />
+  
+  <!-- Vertical perforated dashed line -->
+  <line x1="30" y1="65" x2="30" y2="335" stroke="#C8BEB2" stroke-width="2.5" stroke-dasharray="6,6" opacity="0.8" />
+  
+  <!-- Left ticket notch (Bottom cutout) -->
+  <path d="M 0,340 C 18,340 30,352 30,370 C 30,388 18,400 0,400 Z" fill="#181615" opacity="0.95" />
+</svg>

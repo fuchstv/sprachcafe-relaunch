@@ -31,6 +31,18 @@ for (const file of htmlFiles) {
   const htmlContent = fs.readFileSync(file, 'utf-8');
   console.log(`Checking ${path.relative(distDir, file)}...`);
 
+  // If page is a redirect stub (e.g. meta refresh), verify redirect accessibility
+  if (htmlContent.includes('http-equiv="refresh"')) {
+    console.log('  ℹ️ Redirect stub detected.');
+    if (htmlContent.includes('<a href=') && htmlContent.includes('lang=')) {
+      console.log('  ✓ Accessible redirect link & lang verified.');
+    } else {
+      console.error(`  ❌ Inaccessible redirect stub in ${file}`);
+      totalErrors++;
+    }
+    continue;
+  }
+
   // 1. Skip Link Check
   if (!htmlContent.includes('href="#main-content"') || !htmlContent.includes('sr-only')) {
     console.error(`  ❌ Missing WCAG Skip-Link in ${file}`);

@@ -1,84 +1,156 @@
 ---
+import { type LanguageCode } from '../i18n/ui';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
 interface Props {
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
   badge?: string;
   primaryCtaText?: string;
   primaryCtaLink?: string;
   secondaryCtaText?: string;
   secondaryCtaLink?: string;
   images?: string[];
+  lang?: LanguageCode;
 }
 
 const {
   title,
   subtitle,
-  badge = "Willkommen im SprachCafé Polnisch",
-  primaryCtaText = "Nächste Termine entdecken",
-  primaryCtaLink = "/events/",
-  secondaryCtaText = "Bibliothekskatalog",
-  secondaryCtaLink = "/hausbibliothek/",
+  badge,
+  primaryCtaText,
+  primaryCtaLink,
+  secondaryCtaText,
+  secondaryCtaLink,
   images = [
     "/images/hero/hero-collage-1.avif",
     "/images/hero/hero-collage-2.avif",
     "/images/hero/hero-collage-3.avif"
-  ]
+  ],
+  lang = "de",
 } = Astro.props;
+
+const t = useTranslations(lang);
+const l = (p: string) => getLocalizedPath(p, lang);
+
+const resolvedTitle = title || t('hero.title');
+const resolvedSubtitle = subtitle || t('hero.subtitle');
+const resolvedBadge = badge || t('hero.badge.default');
+const resolvedPrimaryCtaText = primaryCtaText || t('hero.cta.events');
+const resolvedPrimaryCtaLink = primaryCtaLink || l('/events/');
+const resolvedSecondaryCtaText = secondaryCtaText || t('hero.cta.library');
+const resolvedSecondaryCtaLink = secondaryCtaLink || l('/hausbibliothek/');
+
+const collageAlts = [
+  t('hero.alt.collage1'),
+  t('hero.alt.collage2'),
+  t('hero.alt.collage3')
+];
 ---
 
-<section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<section class="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto overflow-hidden">
+  
+  <!-- Subtle warm ambient background glow (Amber Honey & Polish Carmine) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#D97706]/15 dark:bg-[#D97706]/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-24 w-96 h-96 bg-[#8B1E2D]/15 dark:bg-[#8B1E2D]/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
     
     <!-- Hero Text Content -->
     <div class="lg:col-span-7 text-center lg:text-left">
-      {badge && (
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
-          <span>{badge}</span>
+      
+      <!-- Warm Badge with Icon -->
+      {resolvedBadge && (
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF5EB] dark:bg-[#2A2725] border border-[#E2D8CC] dark:border-[#3A3532] text-[#8B1E2D] dark:text-[#FF758F] text-xs sm:text-sm font-bold mb-6 shadow-sm">
+          <span>{resolvedBadge}</span>
         </div>
       )}
 
-      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-6">
-        {title}
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1D1B1A] dark:text-[#F5F0EE] tracking-tight leading-[1.15] mb-6">
+        {resolvedTitle}
       </h1>
 
-      <p class="font-sans text-lg sm:text-xl text-[#5b403d] dark:text-[#d4c5c2] max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-        {subtitle}
+      <p class="font-sans text-base sm:text-lg lg:text-xl text-[#5B403D] dark:text-[#D4C5C2] max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+        {resolvedSubtitle}
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-        {primaryCtaText && (
+        {resolvedPrimaryCtaText && (
           <a
-            href={primaryCtaLink}
-            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#8B263E] hover:bg-[#6b1d30] text-white font-bold transition-all shadow-md text-center"
+            href={resolvedPrimaryCtaLink}
+            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#8B1E2D] hover:bg-[#6E1420] text-white font-bold transition-all shadow-md text-center flex items-center justify-center gap-2 group text-base focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] focus:ring-offset-2"
           >
-            {primaryCtaText} &rarr;
+            <span>{resolvedPrimaryCtaText}</span>
+            <span class="group-hover:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>
           </a>
         )}
-        {secondaryCtaText && (
+        {resolvedSecondaryCtaText && (
           <a
-            href={secondaryCtaLink}
-            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold hover:border-[#8B263E] transition-all text-center"
+            href={resolvedSecondaryCtaLink}
+            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#3A3532] text-[#1D1B1A] dark:text-[#F5F0EE] font-bold hover:border-[#8B1E2D] hover:bg-[#FAF6EE] dark:hover:bg-[#2A2725] transition-all text-center text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] focus:ring-offset-2"
           >
-            {secondaryCtaText}
+            {resolvedSecondaryCtaText}
           </a>
         )}
       </div>
+
+      <!-- Quick Trust Indicators (Fully Localized) -->
+      <div class="mt-10 pt-6 border-t border-[#E2D8CC]/80 dark:border-[#363230] flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm text-[#5B403D] dark:text-[#D4C5C2]">
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold" aria-hidden="true">✓</span>
+          <span>{t('hero.trust.free')}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold" aria-hidden="true">✓</span>
+          <span>{t('hero.trust.bilingual')}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold" aria-hidden="true">✓</span>
+          <span>{t('hero.trust.locations')}</span>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Image Collage -->
+    <!-- Organic Image Collage with Polish Poster School Cutout Accents -->
     <div class="lg:col-span-5 relative">
-      <div class="grid grid-cols-2 gap-4">
+      <!-- Decorative Polish Poster School artistic paper cutout accent -->
+      <div class="absolute -inset-4 bg-gradient-to-tr from-[#8B1E2D]/10 via-[#D97706]/10 to-transparent rounded-[2.5rem] transform -rotate-2 pointer-events-none" aria-hidden="true"></div>
+      
+      <!-- Vintage Polish Poster School Stamp Watermark Seal -->
+      <div class="absolute -bottom-6 -left-6 w-24 h-24 pointer-events-none opacity-20 dark:opacity-30 z-20" aria-hidden="true">
+        <img src="/images/stamps/stamp-sprachcafe-seal.svg" alt="" class="w-full h-full object-contain transform -rotate-12" />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 relative z-10">
         <div class="space-y-4">
-          <div class="h-48 sm:h-56 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] shadow-md">
-            <img src={images[0]} alt="SprachCafé Begegnung 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          <div class="h-48 sm:h-56 rounded-3xl overflow-hidden border-2 border-white dark:border-[#363230] shadow-[0_8px_25px_rgba(42,36,33,0.12)] bg-[#FAF5EB] dark:bg-[#2A2725]">
+            <img
+              src={images[0]}
+              alt={collageAlts[0]}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="eager"
+            />
           </div>
-          <div class="h-32 sm:h-40 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] shadow-md">
-            <img src={images[1]} alt="SprachCafé Begegnung 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          <div class="h-36 sm:h-44 rounded-3xl overflow-hidden border-2 border-white dark:border-[#363230] shadow-[0_8px_25px_rgba(42,36,33,0.12)] bg-[#FAF5EB] dark:bg-[#2A2725]">
+            <img
+              src={images[1]}
+              alt={collageAlts[1]}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
           </div>
         </div>
-        <div class="pt-8">
-          <div class="h-64 sm:h-72 rounded-2xl overflow-hidden border border-[#e7e1df] dark:border-[#363230] shadow-md">
-            <img src={images[2]} alt="SprachCafé Begegnung 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        <div class="pt-8 space-y-4">
+          <div class="h-64 sm:h-72 rounded-3xl overflow-hidden border-2 border-white dark:border-[#363230] shadow-[0_8px_25px_rgba(42,36,33,0.12)] bg-[#FAF5EB] dark:bg-[#2A2725]">
+            <img
+              src={images[2]}
+              alt={collageAlts[2]}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="eager"
+            />
           </div>
         </div>
       </div>

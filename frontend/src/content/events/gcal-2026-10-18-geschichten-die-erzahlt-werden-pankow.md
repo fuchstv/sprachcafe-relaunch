@@ -3,8 +3,8 @@ title:
   de: "Geschichten, die erzählt werden möchten"
   pl: "Geschichten, die erzählt werden möchten"
   en: "Geschichten, die erzählt werden möchten"
-date: 2026-10-18T08:00:00.000Z
-endDate: 2026-10-18T16:00:00.000Z
+date: 2026-10-18T10:00:00.000Z
+endDate: 2026-10-18T18:00:00.000Z
 locationRef: "pankow"
 targetAudience:
   de: "Erwachsene & Familien"
