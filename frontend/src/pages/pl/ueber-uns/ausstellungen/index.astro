@@ -1,11 +1,21 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 const lang = 'pl';
 
 const exhibitions = await getCollection('exhibitions');
-const sortedExhibitions = exhibitions.sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+const sortedExhibitions = exhibitions
+  .sort((a: CollectionEntry<'exhibitions'>, b: CollectionEntry<'exhibitions'>) => b.data.startDate.getTime() - a.data.startDate.getTime())
+  .map((exhibition: CollectionEntry<'exhibitions'>) => ({
+    slug: exhibition.slug,
+    title: exhibition.data.title[lang] || exhibition.data.title.de,
+    artist: exhibition.data.artist,
+    description: exhibition.data.description[lang] || exhibition.data.description.de,
+    coverImage: exhibition.data.gallery?.[0]?.url || '/images/exhibitions/schulze-gallery.webp',
+    startDateStr: exhibition.data.startDate.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' }),
+    endDateStr: exhibition.data.endDate.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' })
+  }));
 ---
 
 <Layout
@@ -16,7 +26,7 @@ const sortedExhibitions = exhibitions.sort((a, b) => b.data.startDate.getTime() 
   <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
     <!-- Hero Header -->
     <div class="max-w-4xl mx-auto text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] text-sm font-semibold mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-sm font-semibold mb-6">
         <span>🎨 Spotkania poprzez sztukę</span>
       </div>
       <h1 class="font-serif text-4xl sm:text-6xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-6">
@@ -29,54 +39,44 @@ const sortedExhibitions = exhibitions.sort((a, b) => b.data.startDate.getTime() 
 
     <!-- Exhibitions Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-      {sortedExhibitions.map((exhibition) => {
-        const title = exhibition.data.title[lang] || exhibition.data.title.de;
-        const artist = exhibition.data.artist;
-        const description = exhibition.data.description[lang] || exhibition.data.description.de;
-        const coverImage = exhibition.data.gallery?.[0]?.url || '/images/exhibitions/schulze-gallery.webp';
-        const slug = exhibition.slug;
-        const startDateStr = exhibition.data.startDate.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' });
-        const endDateStr = exhibition.data.endDate.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' });
-
-        return (
-          <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="h-56 overflow-hidden relative bg-[#8B263E]/10">
-                <img
-                  src={coverImage}
-                  alt={title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  {startDateStr} – {endDateStr}
-                </div>
-              </div>
-
-              <div class="p-6">
-                <span class="text-xs uppercase tracking-wider font-bold text-[#8B263E] dark:text-[#ff758f]">
-                  Artystka / Artysta: {artist}
-                </span>
-                <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-2 mb-3 group-hover:text-[#8B263E] transition-colors">
-                  {title}
-                </h2>
-                <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] line-clamp-3 leading-relaxed">
-                  {description}
-                </p>
+      {sortedExhibitions.map((exhibition) => (
+        <article class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-56 overflow-hidden relative bg-[#8B1E2D]/10">
+              <img
+                src={exhibition.coverImage}
+                alt={exhibition.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full">
+                {exhibition.startDateStr} – {exhibition.endDateStr}
               </div>
             </div>
 
-            <div class="p-6 pt-0">
-              <a
-                href={`/pl/ueber-uns/ausstellungen/${slug}/`}
-                class="inline-flex items-center gap-2 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] group-hover:underline"
-              >
-                <span>Zobacz wystawę & galerię</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </a>
+            <div class="p-6">
+              <span class="text-xs uppercase tracking-wider font-bold text-[#8B1E2D] dark:text-[#ff758f]">
+                Artystka / Artysta: {exhibition.artist}
+              </span>
+              <h2 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-2 mb-3 group-hover:text-[#8B1E2D] transition-colors">
+                {exhibition.title}
+              </h2>
+              <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] line-clamp-3 leading-relaxed">
+                {exhibition.description}
+              </p>
             </div>
-          </article>
-        );
-      })}
+          </div>
+
+          <div class="p-6 pt-0">
+            <a
+              href={`/pl/ueber-uns/ausstellungen/${exhibition.slug}/`}
+              class="inline-flex items-center gap-2 text-sm font-bold text-[#8B1E2D] dark:text-[#ff758f] group-hover:underline"
+            >
+              <span>Zobacz wystawę & galerię</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 </Layout>

@@ -1,6 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const collectionEvents = await getCollection('events');
@@ -8,6 +8,10 @@ export async function getStaticPaths() {
     params: { slug: entry.slug },
     props: { entry },
   }));
+}
+
+interface Props {
+  entry: CollectionEntry<'events'>;
 }
 
 function stripHtml(html: string): string {

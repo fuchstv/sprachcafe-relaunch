@@ -17,7 +17,17 @@ function stripHtml(html: string): string {
 }
 
 const collectionEvents = await getCollection('events');
-const events = collectionEvents.map((e) => ({
+const now = new Date();
+
+const upcomingEvents = collectionEvents.filter((e) => {
+  const eventEnd = e.data.endDate ? new Date(e.data.endDate) : new Date(e.data.date);
+  return eventEnd.getTime() >= now.getTime();
+});
+
+const sortedEvents = (upcomingEvents.length > 0 ? upcomingEvents : collectionEvents)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const events = sortedEvents.map((e) => ({
   slug: e.slug,
   title: e.data.title[lang] || e.data.title.de,
   date_start: e.data.date,

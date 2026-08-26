@@ -23,5 +23,5 @@ image:
     de: "Klub Starszaka „Bajki i Szajki”- dla Dzieci 4-6 lat"
     pl: "Klub Starszaka „Bajki i Szajki”- dla Dzieci 4-6 lat"
     en: "Klub Starszaka „Bajki i Szajki”- dla Dzieci 4-6 lat"
-isFeatured: false
+isFeatured: true
 ---

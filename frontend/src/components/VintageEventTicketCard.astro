@@ -1,4 +1,7 @@
 ---
+import { type LanguageCode } from '../i18n/ui';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
 interface Props {
   slug: string;
   title: string;
@@ -8,7 +11,7 @@ interface Props {
   targetGroup?: string;
   description?: string;
   image?: string;
-  lang?: "de" | "pl" | "en";
+  lang?: LanguageCode;
 }
 
 const {
@@ -23,30 +26,72 @@ const {
   lang = "de",
 } = Astro.props;
 
+const t = useTranslations(lang);
+const l = (p: string) => getLocalizedPath(p, lang);
+
 const dateObj = new Date(dateStart);
 const dayStr = dateObj.toLocaleDateString(lang === "pl" ? "pl-PL" : lang === "en" ? "en-US" : "de-DE", { day: "2-digit" });
 const monthStr = dateObj.toLocaleDateString(lang === "pl" ? "pl-PL" : lang === "en" ? "en-US" : "de-DE", { month: "short" }).toUpperCase();
 const timeStr = dateObj.toLocaleTimeString(lang === "pl" ? "pl-PL" : lang === "en" ? "en-US" : "de-DE", { hour: "2-digit", minute: "2-digit" });
 
-const detailLink = lang === "pl" ? `/pl/events/${slug}/` : lang === "en" ? `/en/events/${slug}/` : `/events/${slug}/`;
-const ctaText = lang === "pl" ? "Szczegóły" : "Details";
+// Localized time string
+const formattedTime = lang === "de" ? `${timeStr} Uhr` : lang === "pl" ? `godz. ${timeStr}` : timeStr;
+
+// Determine category linocut illustration
+const textForMatching = `${title} ${targetGroup || ''} ${description}`.toLowerCase();
+let categoryLinocut = "/images/illustrations/linocut-tandem.webp";
+
+if (textForMatching.includes("lesung") || textForMatching.includes("buch") || textForMatching.includes("literatur") || textForMatching.includes("książk") || textForMatching.includes("czytan")) {
+  categoryLinocut = "/images/illustrations/linocut-lesung.webp";
+} else if (textForMatching.includes("jazz") || textForMatching.includes("konzert") || textForMatching.includes("musik") || textForMatching.includes("muzyk") || textForMatching.includes("śpiew")) {
+  categoryLinocut = "/images/illustrations/linocut-jazz.webp";
+} else if (textForMatching.includes("kunst") || textForMatching.includes("mal") || textForMatching.includes("ausstellung") || textForMatching.includes("sztuk") || textForMatching.includes("wystaw")) {
+  categoryLinocut = "/images/illustrations/linocut-kunst.webp";
+} else if (textForMatching.includes("kind") || textForMatching.includes("eltern") || textForMatching.includes("dziec") || textForMatching.includes("rodzin") || textForMatching.includes("bajk")) {
+  categoryLinocut = "/images/illustrations/linocut-kinder.webp";
+} else if (textForMatching.includes("film") || textForMatching.includes("kino") || textForMatching.includes("movie") || textForMatching.includes("cinema")) {
+  categoryLinocut = "/images/illustrations/linocut-film.webp";
+} else if (textForMatching.includes("tandem") || textForMatching.includes("sprach") || textForMatching.includes("dialog") || textForMatching.includes("język")) {
+  categoryLinocut = "/images/illustrations/linocut-tandem.webp";
+}
+
+const displayImage = (image && !image.includes("event-sprachabend.webp")) ? image : categoryLinocut;
+const detailLink = l(`/events/${slug}/`);
+
+// Construct Google Calendar Link
+const endDateObj = new Date(dateObj.getTime() + 2 * 60 * 60 * 1000);
+const isoStart = dateObj.toISOString().replace(/-|:|\.\d\d\d/g, "");
+const isoEnd = endDateObj.toISOString().replace(/-|:|\.\d\d\d/g, "");
+const gCalLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${isoStart}/${isoEnd}&details=${encodeURIComponent(description)}&location=${encodeURIComponent(location + ', Berlin')}`;
 ---
 
-<article class="vintage-ticket-card group relative bg-[#FAF5EB] dark:bg-[#22201E] border border-[#E2D8CC] dark:border-[#3A3532] rounded-2xl p-5 sm:p-6 shadow-[0_4px_20px_rgba(42,36,33,0.06)] hover:shadow-[0_8px_30px_rgba(42,36,33,0.12)] transition-all duration-300 flex flex-col justify-between overflow-hidden">
+<article class="vintage-ticket-card group relative bg-[#FAF5EB] dark:bg-[#22201E] border border-[#E2D8CC] dark:border-[#3A3532] rounded-2xl p-5 sm:p-6 shadow-[0_4px_20px_rgba(42,36,33,0.06)] hover:shadow-[0_8px_30px_rgba(42,36,33,0.14)] transition-all duration-300 flex flex-col justify-between overflow-hidden">
   
-  <!-- Subtle Vintage Stamp watermark in background -->
-  <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full border-2 border-dashed border-[#8B1E2D]/10 dark:border-[#FF758F]/10 pointer-events-none flex items-center justify-center opacity-60 group-hover:rotate-12 transition-transform duration-700" aria-hidden="true">
-    <span class="font-serif text-[10px] font-bold tracking-widest text-[#8B1E2D]/20 dark:text-[#FF758F]/20 uppercase transform -rotate-12">SPRACHCAFÉ POLNISCH</span>
+  <!-- Subtle Vintage Stamp Watermark in Background -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none rounded-2xl" aria-hidden="true">
+    <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full border-2 border-dashed border-[#8B1E2D]/10 dark:border-[#FF758F]/10 flex items-center justify-center opacity-60 group-hover:rotate-12 transition-transform duration-700">
+      <img src="/images/stamps/stamp-sprachcafe-seal.svg" alt="" class="w-24 h-24 object-contain opacity-30 transform -rotate-12" />
+    </div>
   </div>
 
-  <!-- Top Row: Date Stamp & Category / Location -->
-  <div class="flex items-start justify-between gap-4 mb-4">
+  <!-- Top Row: Date Stamp & Category Linocut Thumbnail -->
+  <div class="flex items-start justify-between gap-3 mb-4">
     
-    <!-- Date Stamp Box -->
-    <div class="flex flex-col items-center justify-center bg-white dark:bg-[#2A2725] border border-[#DCD3C7] dark:border-[#4A423F] rounded-xl px-3 py-2 shrink-0 shadow-sm text-center min-w-[62px]">
+    <!-- Date Stamp Box (Typewriter Style) -->
+    <div class="flex flex-col items-center justify-center bg-white dark:bg-[#2A2725] border border-[#DCD3C7] dark:border-[#4A423F] rounded-xl px-3 py-2 shrink-0 shadow-sm text-center min-w-[70px]">
       <span class="font-sans text-[11px] font-bold uppercase tracking-wider text-[#8B1E2D] dark:text-[#FF758F]">{monthStr}</span>
       <span class="font-serif text-2xl font-black text-[#1D1B1A] dark:text-[#F5F0EE] leading-none my-0.5">{dayStr}</span>
-      <span class="font-sans text-[10px] text-[#5B403D] dark:text-[#D4C5C2] font-semibold">{timeStr} Uhr</span>
+      <span class="font-sans text-[10px] text-[#5B403D] dark:text-[#D4C5C2] font-semibold">{formattedTime}</span>
+    </div>
+
+    <!-- Polish Poster School Linocut Cultural Artwork Thumbnail -->
+    <div class="w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-xl overflow-hidden border border-[#DCD3C7] dark:border-[#4A423F] bg-[#FAF5EB] dark:bg-[#2A2725] shadow-inner flex items-center justify-center p-1">
+      <img
+        src={displayImage}
+        alt={title}
+        class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
     </div>
 
     <!-- Tags / Metadata -->
@@ -67,11 +112,11 @@ const ctaText = lang === "pl" ? "Szczegóły" : "Details";
     </div>
   </div>
 
-  <!-- Perforated Dashed Divider -->
+  <!-- Perforated Dashed Divider with Scalloped Cutouts -->
   <div class="relative my-3 flex items-center justify-between" aria-hidden="true">
-    <div class="w-3 h-6 -ml-8 bg-[#FAF6EE] dark:bg-[#181615] rounded-r-full border-r border-[#E2D8CC] dark:border-[#3A3532]"></div>
+    <div class="w-3.5 h-7 -ml-5 sm:-ml-6 bg-[#FAF6EE] dark:bg-[#181615] rounded-r-full border-r border-[#E2D8CC] dark:border-[#3A3532] shadow-inner"></div>
     <div class="flex-grow border-b-2 border-dashed border-[#DCD3C7] dark:border-[#4A423F] mx-2 opacity-70"></div>
-    <div class="w-3 h-6 -mr-8 bg-[#FAF6EE] dark:bg-[#181615] rounded-l-full border-l border-[#E2D8CC] dark:border-[#3A3532]"></div>
+    <div class="w-3.5 h-7 -mr-5 sm:-mr-6 bg-[#FAF6EE] dark:bg-[#181615] rounded-l-full border-l border-[#E2D8CC] dark:border-[#3A3532] shadow-inner"></div>
   </div>
 
   <!-- Event Title & Excerpt -->
@@ -89,13 +134,24 @@ const ctaText = lang === "pl" ? "Szczegóły" : "Details";
     )}
   </div>
 
-  <!-- Bottom CTA Row -->
-  <div class="mt-5 pt-3 flex items-center justify-end gap-3 border-t border-[#E8DFC8]/60 dark:border-[#3A3532]">
+  <!-- Bottom CTA & Calendar Action Row -->
+  <div class="mt-5 pt-3 flex items-center justify-between gap-3 border-t border-[#E8DFC8]/60 dark:border-[#3A3532]">
+    <a
+      href={gCalLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 text-xs font-semibold text-[#5B403D] dark:text-[#D4C5C2] hover:text-[#8B1E2D] dark:hover:text-[#FF758F] transition-colors py-1.5 px-2 rounded-lg hover:bg-white/60 dark:hover:bg-[#2A2725]"
+      title="Google Calendar"
+    >
+      <span>📅</span>
+      <span>{t('ticket.addToCalendar')}</span>
+    </a>
+
     <a
       href={detailLink}
-      class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#8B1E2D] hover:bg-[#6E1420] text-white text-xs font-bold transition-all shadow-sm group-hover:shadow group/btn"
+      class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#8B1E2D] hover:bg-[#6E1420] text-white text-xs font-bold transition-all shadow-sm group-hover:shadow group/btn focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
     >
-      <span>{ctaText}</span>
+      <span>{t('ticket.details')}</span>
       <span class="group-hover/btn:translate-x-0.5 transition-transform" aria-hidden="true">&rarr;</span>
     </a>
   </div>

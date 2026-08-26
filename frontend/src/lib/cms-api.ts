@@ -1,5 +1,7 @@
 import type { EventItem, PostItem, BookItem, TeamPartnerItem, PageItem } from '../types/cms';
 
+export type { EventItem, PostItem, BookItem, TeamPartnerItem, PageItem };
+
 // Mock Data Provider for CMS Collections
 
 export const mockEvents: EventItem[] = [
