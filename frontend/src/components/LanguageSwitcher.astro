@@ -11,7 +11,7 @@ const pathname = Astro.url.pathname;
 const t = useTranslations(currentLang);
 ---
 
-<nav class="inline-flex items-center bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-full p-1 shadow-sm" aria-label={t('lang.switch')}>
+<nav class="inline-flex items-center bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-full p-1 shadow-sm" aria-label={t('lang.switch')} data-testid="language-switcher">
   <ul class="flex items-center gap-1 list-none m-0 p-0">
     {Object.entries(languages).map(([code, langInfo]) => {
       const targetLang = code as LanguageCode;

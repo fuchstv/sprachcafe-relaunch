@@ -22,8 +22,16 @@ function stripHtml(html: string): string {
 }
 
 const allEvents = await getCollection("events");
-// Sort by date ascending and pick upcoming 3 events
-const sortedEvents = allEvents
+const now = new Date();
+
+// Filter for upcoming events (event is upcoming if its end date or start date is >= now)
+const upcomingEvents = allEvents.filter((e) => {
+  const eventEnd = e.data.endDate ? new Date(e.data.endDate) : new Date(e.data.date);
+  return eventEnd.getTime() >= now.getTime();
+});
+
+// Sort by date ascending (closest upcoming first) and pick 3 events
+const sortedEvents = (upcomingEvents.length > 0 ? upcomingEvents : allEvents)
   .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
   .slice(0, 3)
   .map((e) => ({

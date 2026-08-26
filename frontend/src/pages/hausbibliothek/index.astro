@@ -67,11 +67,14 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
 
     <!-- Neu im Regal Bookshelf Widget -->
     <div class="mb-12">
-      <BookshelfWidget maxBooks={10} />
+      <BookshelfWidget maxBooks={10} lang="de" />
     </div>
 
-    <!-- Filter UI Elements -->
-    <div class="bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl p-6 mb-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+    <!-- Filter UI Elements with Torn Paper Accent -->
+    <div class="relative bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl p-6 mb-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)] overflow-hidden">
+      <!-- Torn paper top edge texture accent -->
+      <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#8B1E2D] via-[#D97706] to-[#8B1E2D] opacity-80 pointer-events-none" aria-hidden="true"></div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         
         <!-- Text Search -->
@@ -132,12 +135,12 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
       </div>
     </div>
 
-    <!-- Pagefind Body Area for Client-Side Search Indexing -->
+    <!-- Pagefind Body Area for Client-Side Search Indexing (Card Index / Karteikarten Styling) -->
     <div data-pagefind-body>
       <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {books.map((book) => (
           <article
-            class="book-card bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.05)] flex flex-col hover:border-[#8B1E2D]/50 transition-all duration-300"
+            class="book-card relative bg-[#FDFBF7] dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#3A3532] rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(51,49,48,0.06)] hover:shadow-[0_8px_30px_rgba(51,49,48,0.12)] flex flex-col hover:border-[#8B1E2D]/60 transition-all duration-300 group"
             data-book-id={book.id.replace('book-', '')}
             data-title={(book.title || '').toLowerCase()}
             data-author={(book.author || '').toLowerCase()}
@@ -148,14 +151,42 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
             data-status={book.status}
             data-pagefind-filter={`language:${book.language}, category:${book.category}, location:${book.location}, status:${book.status}`}
           >
-            {book.cover && (
-              <div class="h-64 w-full overflow-hidden bg-[#FAF5EB] dark:bg-[#2a2725] flex items-center justify-center p-4">
+            <!-- Card Index Top Tab Line -->
+            <div class="h-1.5 w-full bg-gradient-to-r from-[#E2D8CC] via-[#8B1E2D]/40 to-[#E2D8CC] dark:from-[#3A3532] dark:via-[#FF758F]/40 dark:to-[#3A3532]"></div>
+
+            {book.cover ? (
+              <div class="h-64 w-full overflow-hidden bg-[#FAF5EB] dark:bg-[#2a2725] flex items-center justify-center p-4 relative">
                 <img
                   src={book.cover}
                   alt={`Buchcover: ${book.title}`}
-                  class="h-full object-contain shadow-md hover:scale-105 transition-transform duration-300"
+                  class="h-full object-contain shadow-md group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
+                
+                <!-- Authentic Rubber Stamp Indicator -->
+                <div class="absolute top-2 right-2 flex items-center gap-1 pointer-events-none">
+                  {book.status === 'verfuegbar' ? (
+                    <img src="/images/stamps/stamp-verfuegbar.svg" alt="Verfügbar Stamp" class="h-7 w-auto drop-shadow-sm transform rotate-3" />
+                  ) : book.status === 'ausgeliehen' ? (
+                    <img src="/images/stamps/stamp-ausgeliehen.svg" alt="Ausgeliehen Stamp" class="h-7 w-auto drop-shadow-sm transform -rotate-3" />
+                  ) : (
+                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300">
+                      Reserviert
+                    </span>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div class="h-44 w-full bg-gradient-to-b from-[#8B1E2D]/10 to-transparent p-4 flex flex-col justify-between relative">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-[#8B1E2D] uppercase tracking-wider">{book.language}</span>
+                  {book.status === 'verfuegbar' ? (
+                    <img src="/images/stamps/stamp-verfuegbar.svg" alt="Verfügbar" class="h-6 w-auto" />
+                  ) : (
+                    <img src="/images/stamps/stamp-ausgeliehen.svg" alt="Ausgeliehen" class="h-6 w-auto" />
+                  )}
+                </div>
+                <div class="font-serif text-base font-bold text-[#1D1B1A] dark:text-[#F5F0EE] line-clamp-2">{book.title}</div>
               </div>
             )}
 
@@ -170,11 +201,11 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
                   book.status === 'ausgeliehen' ? 'bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-300' :
                   'bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300'
                 ]}>
-                  {book.status === 'verfuegbar' ? 'Verfügbar' : book.status === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}
+                  {book.status === 'verfuegbar' ? '✓ Verfügbar' : book.status === 'ausgeliehen' ? 'Ausgeliehen' : 'Reserviert'}
                 </span>
               </div>
 
-              <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] leading-snug mb-1 hover:text-[#8B1E2D] dark:hover:text-[#ff758f] transition-colors">
+              <h3 class="font-serif text-lg font-bold text-[#1d1b1a] dark:text-[#f5f0ee] leading-snug mb-1 group-hover:text-[#8B1E2D] dark:group-hover:text-[#ff758f] transition-colors">
                 <a href={`/hausbibliothek/${book.id}/`}>{book.title}</a>
               </h3>
 
@@ -189,10 +220,12 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
                   <span>Standort:</span>
                   <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">📍 {book.location}</span>
                 </div>
-                <div class="flex justify-between">
-                  <span>ISBN:</span>
-                  <span class="font-mono text-[#5b403d] dark:text-[#d4c5c2]">{book.isbn}</span>
-                </div>
+                {book.isbn && (
+                  <div class="flex justify-between">
+                    <span>ISBN:</span>
+                    <span class="font-mono text-[#5b403d] dark:text-[#d4c5c2]">{book.isbn}</span>
+                  </div>
+                )}
               </div>
             </div>
           </article>
@@ -280,8 +313,10 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
         : 'https://hausbibliothek.org/api/export/books';
 
       fetch(exportUrl)
-        .then(res => res.json())
+        .then(res => res.ok ? res.json() : null)
+        .catch(() => null)
         .then(data => {
+          if (!data) return;
           const booksList = Array.isArray(data) ? data : (data.data || []);
           const statusMap = new Map();
           booksList.forEach(b => {

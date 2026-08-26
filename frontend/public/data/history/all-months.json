@@ -5,8 +5,8 @@
     "monatNum": 8,
     "monatName": "August",
     "events": {
-      "total": 8,
-      "kinder": 5,
+      "total": 6,
+      "kinder": 3,
       "sprachpraxis": 1,
       "kultur": 2,
       "locations": {
@@ -17,9 +17,9 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 129,
-      "childrenAttendees": 55,
-      "avgPerEvent": 16.1
+      "totalAttendees": 93,
+      "childrenAttendees": 35,
+      "avgPerEvent": 15.5
     },
     "web": {
       "pageViews": 16006,
@@ -30,7 +30,7 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-19T19:33:30.674Z"
+    "archivedAt": "2026-08-26T00:00:16.763Z"
   },
   {
     "jahrMonat": "2026-09",
@@ -63,7 +63,7 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-19T19:33:30.675Z"
+    "archivedAt": "2026-08-26T00:00:16.764Z"
   },
   {
     "jahrMonat": "2026-10",
@@ -71,8 +71,8 @@
     "monatNum": 10,
     "monatName": "Oktober",
     "events": {
-      "total": 53,
-      "kinder": 42,
+      "total": 54,
+      "kinder": 43,
       "sprachpraxis": 3,
       "kultur": 8,
       "locations": {
@@ -83,8 +83,8 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 901,
-      "childrenAttendees": 440,
+      "totalAttendees": 919,
+      "childrenAttendees": 450,
       "avgPerEvent": 17
     },
     "web": {
@@ -96,7 +96,7 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-19T19:33:30.675Z"
+    "archivedAt": "2026-08-26T00:00:16.764Z"
   },
   {
     "jahrMonat": "2026-11",
@@ -104,10 +104,10 @@
     "monatNum": 11,
     "monatName": "November",
     "events": {
-      "total": 28,
-      "kinder": 22,
-      "sprachpraxis": 2,
-      "kultur": 4,
+      "total": 37,
+      "kinder": 28,
+      "sprachpraxis": 3,
+      "kultur": 6,
       "locations": {
         "pankow": 0,
         "schoeneberg": 0,
@@ -116,9 +116,9 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 474,
-      "childrenAttendees": 230,
-      "avgPerEvent": 16.9
+      "totalAttendees": 621,
+      "childrenAttendees": 295,
+      "avgPerEvent": 16.8
     },
     "web": {
       "pageViews": 17562,
@@ -129,6 +129,6 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-19T19:33:30.675Z"
+    "archivedAt": "2026-08-26T00:00:16.764Z"
   }
 ]
