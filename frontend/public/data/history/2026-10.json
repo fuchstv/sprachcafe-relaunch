@@ -4,8 +4,8 @@
   "monatNum": 10,
   "monatName": "Oktober",
   "events": {
-    "total": 54,
-    "kinder": 43,
+    "total": 58,
+    "kinder": 47,
     "sprachpraxis": 3,
     "kultur": 8,
     "locations": {
@@ -16,9 +16,9 @@
     }
   },
   "headcountEst": {
-    "totalAttendees": 919,
-    "childrenAttendees": 450,
-    "avgPerEvent": 17
+    "totalAttendees": 991,
+    "childrenAttendees": 490,
+    "avgPerEvent": 17.1
   },
   "web": {
     "pageViews": 17043,
@@ -29,5 +29,5 @@
     "openRatePct": 48.6,
     "campaignsSent": 2
   },
-  "archivedAt": "2026-08-26T00:00:16.764Z"
+  "archivedAt": "2026-08-27T00:00:17.690Z"
 }
