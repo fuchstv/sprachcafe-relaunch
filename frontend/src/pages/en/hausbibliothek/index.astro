@@ -271,9 +271,7 @@ const statuses = Array.from(new Set(books.map(b => b.status)));
       });
 
       // Live Availability Hydration
-      const exportUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? 'http://localhost:8080/api/export/books'
-        : 'https://hausbibliothek.org/api/export/books';
+      const exportUrl = 'https://hausbibliothek.org/api/export/books';
 
       fetch(exportUrl)
         .then(res => res.json())

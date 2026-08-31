@@ -4,10 +4,10 @@
   "monatNum": 8,
   "monatName": "August",
   "events": {
-    "total": 6,
-    "kinder": 3,
-    "sprachpraxis": 1,
-    "kultur": 2,
+    "total": 1,
+    "kinder": 0,
+    "sprachpraxis": 0,
+    "kultur": 1,
     "locations": {
       "pankow": 0,
       "schoeneberg": 0,
@@ -16,9 +16,9 @@
     }
   },
   "headcountEst": {
-    "totalAttendees": 93,
-    "childrenAttendees": 35,
-    "avgPerEvent": 15.5
+    "totalAttendees": 14,
+    "childrenAttendees": 3,
+    "avgPerEvent": 14
   },
   "web": {
     "pageViews": 16006,
@@ -29,5 +29,5 @@
     "openRatePct": 48.6,
     "campaignsSent": 2
   },
-  "archivedAt": "2026-08-26T00:00:16.763Z"
+  "archivedAt": "2026-08-31T00:00:17.213Z"
 }

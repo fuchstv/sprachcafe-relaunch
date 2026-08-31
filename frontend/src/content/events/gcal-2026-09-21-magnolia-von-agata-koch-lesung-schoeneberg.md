@@ -3,8 +3,8 @@ title:
   de: "\"Magnolia\" von Agata Koch - Lesung & Bilderreise"
   pl: "\"Magnolia\" von Agata Koch - Lesung & Bilderreise"
   en: "\"Magnolia\" von Agata Koch - Lesung & Bilderreise"
-date: 2026-10-05T15:00:00.000Z
-endDate: 2026-10-05T17:00:00.000Z
+date: 2026-09-21T15:00:00.000Z
+endDate: 2026-09-21T17:00:00.000Z
 locationRef: "schoeneberg"
 targetAudience:
   de: "Erwachsene & Familien"

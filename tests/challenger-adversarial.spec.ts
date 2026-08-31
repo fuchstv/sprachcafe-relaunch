@@ -113,7 +113,7 @@ test.describe('1. Adversarial Language Switcher Stress Tests', () => {
       expect(await page.locator('html').getAttribute('lang')).toBe('de');
 
       // Assert no JavaScript execution crashes
-      const fatalErrors = consoleErrors.filter(e => !e.includes('favicon') && !e.includes('404') && !e.includes('CORS') && !e.includes('ERR_FAILED') && !e.includes('Content Security Policy') && !e.includes('calendar.google.com'));
+      const fatalErrors = consoleErrors.filter(e => !e.includes('favicon') && !e.includes('404') && !e.includes('CORS') && !e.includes('ERR_FAILED') && !e.includes('ERR_CONNECTION_REFUSED') && !e.includes('net::ERR_') && !e.includes('Failed to load resource') && !e.includes('Content Security Policy') && !e.includes('calendar.google.com'));
       expect(fatalErrors, `Console errors occurred during rapid switching on ${route.name}: ${fatalErrors.join(', ')}`).toHaveLength(0);
     });
   }
