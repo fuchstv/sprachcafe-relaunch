@@ -4,10 +4,10 @@
   "monatNum": 10,
   "monatName": "Oktober",
   "events": {
-    "total": 58,
-    "kinder": 47,
+    "total": 67,
+    "kinder": 57,
     "sprachpraxis": 3,
-    "kultur": 8,
+    "kultur": 7,
     "locations": {
       "pankow": 0,
       "schoeneberg": 0,
@@ -16,9 +16,9 @@
     }
   },
   "headcountEst": {
-    "totalAttendees": 991,
-    "childrenAttendees": 490,
-    "avgPerEvent": 17.1
+    "totalAttendees": 1157,
+    "childrenAttendees": 588,
+    "avgPerEvent": 17.3
   },
   "web": {
     "pageViews": 17043,
@@ -29,5 +29,5 @@
     "openRatePct": 48.6,
     "campaignsSent": 2
   },
-  "archivedAt": "2026-08-27T00:00:17.690Z"
+  "archivedAt": "2026-08-31T00:00:17.214Z"
 }

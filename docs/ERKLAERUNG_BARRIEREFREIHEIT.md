@@ -49,7 +49,6 @@ Haben Sie Barrieren beim Zugang zu Inhalten auf unserer Website festgestellt ode
 
 ### 📬 Direkte Anlaufstelle für Barriere-Meldungen:
 * **E-Mail für Barriere-Meldungen:** [kontakt@sprachcafe-polnisch.org](mailto:kontakt@sprachcafe-polnisch.org?subject=Barriere%20melden%20-%20SprachCaf%C3%A9%20Polnisch) (Betreff: *„Barriere melden“*)
-* **Telefon:** [+49 30 89642057](tel:+493089642057)
 * **Postanschrift:** SprachCafé Polnisch e.V., Schulzestraße 1, 13187 Berlin (Pankow)
 * **👤 Zuständige Ansprechpersonen:** Vorstand (Agata Koch, Elke Albers) in enger Abstimmung mit der Web-Redaktion
 

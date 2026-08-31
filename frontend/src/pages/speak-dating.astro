@@ -1,0 +1,461 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VintageEventTicketCard from '../components/VintageEventTicketCard.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'de';
+
+// 1. Fetch live Speak-Dating events from the Astro Events Collection
+const allEvents = await getCollection('events');
+const now = new Date();
+
+function stripHtml(html: string): string {
+  if (!html) return '';
+  return html
+    .replace(/<[^>]*>?/gm, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Filter for Speak-Dating specific events (upcoming or past fallback)
+const speakDatingEvents = allEvents.filter((e) => {
+  const title = (e.data.title.de || e.data.title.pl || e.data.title.en || '').toLowerCase();
+  const slug = e.slug.toLowerCase();
+  return title.includes('speak-dating') || title.includes('speak dating') || slug.includes('speak-dating');
+});
+
+const upcomingSpeakDating = speakDatingEvents
+  .filter((e) => {
+    const eventEnd = e.data.endDate ? new Date(e.data.endDate) : new Date(e.data.date);
+    return eventEnd.getTime() >= now.getTime();
+  })
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+// Fallback to recent events if none upcoming
+const displayEvents = (upcomingSpeakDating.length > 0 ? upcomingSpeakDating : speakDatingEvents)
+  .slice(0, 3)
+  .map((e) => ({
+    slug: e.slug,
+    title: e.data.title[lang] || e.data.title.de,
+    date_start: e.data.date,
+    location: e.data.locationRef,
+    language: e.data.language.join(', ').toUpperCase(),
+    target_group: e.data.targetAudience[lang] || e.data.targetAudience.de,
+    description: stripHtml(e.data.description[lang] || e.data.description.de),
+    image: e.data.image?.src || '/images/illustrations/linocut-tandem.webp',
+  }));
+
+// 2. Structured Data (Schema.org)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EventSeries",
+  "name": "SPEAK-DATING im SprachCafé Polnisch e.V.",
+  "description": "Ungezwungener Sprachaustausch und Tandem-Abende für Polnisch, Deutsch und Englisch in Berlin-Pankow.",
+  "eventSchedule": {
+    "@type": "Schedule",
+    "repeatFrequency": "P2W",
+    "byDay": "https://schema.org/Wednesday",
+    "startTime": "19:00",
+    "endTime": "20:30"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "SprachCafé Polnisch e.V.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Schulzestraße 1",
+      "addressLocality": "Berlin",
+      "postalCode": "13187",
+      "addressCountry": "DE"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "SprachCafé Polnisch e.V.",
+    "url": "https://xn--sprachcaf-j4a.org"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "description": "Eintritt frei, Spenden erwünscht"
+  }
+};
+
+// 3. FAQ Items
+const faqItems = [
+  {
+    question: {
+      de: "Brauche ich Vorkenntnisse, um beim Speak-Dating mitzumachen?",
+      pl: "Czy muszę posiadać znajomość języka na wysokim poziomie, by wziąć udział?",
+      en: "Do I need advanced language skills to participate in Speak-Dating?"
+    },
+    answer: {
+      de: "Nein, überhaupt nicht! Alle Niveaus von Anfänger:innen (A1) bis zu Muttersprachler:innen sind herzlich willkommen. Unsere zweisprachigen Konversationskarten bieten einfache Impulse für jedes Level.",
+      pl: "Zupełnie nie! Zapraszamy osoby na każdym poziomie zaawansowania – od początkujących (A1) po native speakerów. Nasze karty konwersacyjne zawierają pytania dostosowane do każdego.",
+      en: "Not at all! All language levels from beginners (A1) to native speakers are warmly welcome. Our bilingual prompt cards provide easy inspiration for all levels."
+    }
+  },
+  {
+    question: {
+      de: "Muss ich mich zwingend vorher per E-Mail anmelden?",
+      pl: "Czy muszę się wcześniej zapisać mailowo?",
+      en: "Is prior registration via email mandatory?"
+    },
+    answer: {
+      de: "Eine kurze Anmeldung per E-Mail an speak-dating@sprachcafe-polnisch.org hilft uns bei der Raum- und Tischplanung sehr. Sie können aber auch spontan vorbeikommen, wenn Plätze frei sind.",
+      pl: "Krótkie zgłoszenie mailowe na speak-dating@sprachcafe-polnisch.org ułatwia nam organizację miejsc, ale można również dołączyć spontanicznie.",
+      en: "A quick email registration to speak-dating@sprachcafe-polnisch.org helps us greatly with table planning. Spontaneous drop-ins are also welcome if space permits."
+    }
+  },
+  {
+    question: {
+      de: "Welche Sprachen werden gesprochen?",
+      pl: "W jakich językach rozmawiamy?",
+      en: "Which languages are practiced?"
+    },
+    answer: {
+      de: "Der Schwerpunkt liegt auf Polnisch und Deutsch. Sehr gerne werden aber auch Englisch und andere Sprachen im Tandem gesprochen – je nachdem, welche Sprachinteressierten am Abend vor Ort sind.",
+      pl: "Główny nacisk kładziemy na język polski i niemiecki. Bardzo chętnie praktykujemy również język angielski i inne języki w tandemach.",
+      en: "The main focus is on Polish and German. English and other languages are also enthusiastically practiced depending on who joins that evening."
+    }
+  },
+  {
+    question: {
+      de: "Kostet die Teilnahme etwas?",
+      pl: "Czy udział w spotkaniu jest płatny?",
+      en: "Does participation cost anything?"
+    },
+    answer: {
+      de: "Die Teilnahme ist kostenfrei! Als gemeinnütziger Verein freuen wir uns sehr über eine kleine freiwillige Barspende vor Ort für Kaffee, Tee und Raumkosten.",
+      pl: "Udział jest bezpłatny! Jako stowarzyszenie pożytku publicznego będziemy wdzięczni za dobrowolny datek do puszki na miejscu na kawę, herbatę i utrzymanie lokalu.",
+      en: "Participation is free of charge! As a non-profit association, we greatly appreciate voluntary donations on-site for coffee, tea, and room upkeep."
+    }
+  }
+];
+---
+
+<Layout
+  title="SPEAK-DATING — Sprachaustausch & Tandem | SprachCafé Polnisch e.V."
+  description="SPEAK-DATING in Berlin-Pankow (Schulzestr. 1): Ungezwungener Sprachaustausch für Polnisch, Deutsch & Englisch. Jeden 1. und 3. Mittwoch im Monat. Eintritt frei!"
+  lang={lang}
+  image="/images/illustrations/linocut-tandem.webp"
+  jsonLd={jsonLd}
+>
+  <!-- Hero Section -->
+  <section class="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-sm font-bold tracking-wide uppercase mb-6">
+        <span>🗣️ Offener Sprachaustausch & Tandem</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-6 leading-[1.1]">
+        SPEAK-DATING
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="font-sans text-lg sm:text-2xl text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed max-w-3xl mx-auto mb-8">
+        Lerne neue Sprachen und interessante Menschen kennen – in entspannter Café-Atmosphäre, ohne Leistungsdruck und mit spielerischem Dialog!
+      </p>
+
+      <!-- Trust Badges Bar -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10 text-xs sm:text-sm font-semibold text-[#5b403d] dark:text-[#d4c5c2]">
+        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] shadow-sm">
+          <span>🗓️</span>
+          <span>Jeden 1. & 3. Mittwoch</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] shadow-sm">
+          <span>⏰</span>
+          <span>19:00 – 20:30 Uhr</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] shadow-sm">
+          <span>📍</span>
+          <span>Schulzestr. 1, Berlin-Pankow</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#363230] shadow-sm">
+          <span>🎟️</span>
+          <span>Eintritt frei (Spendenbasis)</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="mailto:speak-dating@sprachcafe-polnisch.org?subject=Anmeldung%20Speak-Dating&body=Hallo%20SprachCaf%C3%A9-Team%2C%0A%0Aich%20m%C3%B6chte%20gerne%20am%20n%C3%A4chsten%20Speak-Dating%20teilnehmen.%0A%0AName%3A%20%0ASprachen%20(die%20ich%20spreche%20%2F%20%C3%BCben%20m%C3%B6chte)%3A%20%0A%0AViele%20Gr%C3%BC%C3%9Fe"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#8B1E2D] hover:bg-[#6E1420] text-white font-bold text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#8B1E2D]"
+        >
+          <span>✉️ Jetzt Platz per E-Mail vormerken</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          href="#termine"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white dark:bg-[#24201E] hover:bg-[#FAF6EE] dark:hover:bg-[#2A2725] text-[#1d1b1a] dark:text-[#f5f0ee] border border-[#E2D8CC] dark:border-[#363230] font-bold text-base shadow-sm transition-all"
+        >
+          <span>📅 Nächste Termine ansehen</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Illustration & Concept Banner -->
+  <section class="py-8 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="bg-[#FAF5EB] dark:bg-[#22201E] border border-[#E2D8CC] dark:border-[#3A3532] rounded-3xl p-8 sm:p-12 shadow-sm flex flex-col md:flex-row items-center gap-8 lg:gap-12">
+      <div class="w-48 h-48 sm:w-60 sm:h-60 shrink-0 rounded-2xl overflow-hidden border border-[#DCD3C7] dark:border-[#4A423F] bg-white dark:bg-[#2A2725] p-3 shadow-inner flex items-center justify-center">
+        <img
+          src="/images/illustrations/linocut-tandem.webp"
+          alt="Holzschnitt Illustration für Sprachtandem"
+          class="w-full h-full object-cover rounded-xl"
+        />
+      </div>
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-[#8B1E2D] dark:text-[#ff758f]">
+          💡 Das Konzept
+        </span>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">
+          Wie funktioniert Speak-Dating?
+        </h2>
+        <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+          „Speak Dating“ ist ein unterhaltsamer Abend in ungezwungener Atmosphäre, der einen unkonventionellen Zugang zum Sprachenlernen ermöglicht. 
+          Die Teilnehmenden finden sich in Zweierpaaren zusammen und führen kurze Gespräche über zufällig gezogene oder selbst gewählte Themen.
+        </p>
+        
+        <!-- 3 Steps Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-white dark:bg-[#2A2725] p-4 rounded-2xl border border-[#E2D8CC] dark:border-[#363230]">
+            <div class="text-2xl mb-2">🎴</div>
+            <h4 class="font-serif font-bold text-sm text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">1. Impuls ziehen</h4>
+            <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">Eine Konversationskarte sorgt für spannenden Gesprächsstoff.</p>
+          </div>
+          <div class="bg-white dark:bg-[#2A2725] p-4 rounded-2xl border border-[#E2D8CC] dark:border-[#363230]">
+            <div class="text-2xl mb-2">⏱️</div>
+            <h4 class="font-serif font-bold text-sm text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">2. Tandem sprechen</h4>
+            <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">10–15 Minuten Austausch auf Polnisch, Deutsch oder Englisch.</p>
+          </div>
+          <div class="bg-white dark:bg-[#2A2725] p-4 rounded-2xl border border-[#E2D8CC] dark:border-[#363230]">
+            <div class="text-2xl mb-2">🔄</div>
+            <h4 class="font-serif font-bold text-sm text-[#1d1b1a] dark:text-[#f5f0ee] mb-1">3. Partner wechseln</h4>
+            <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">Nach dem Gong Plätze tauschen und neue Kontakte knüpfen!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Highlights & Pillars -->
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight mb-4">
+        Warum Speak-Dating im SprachCafé?
+      </h2>
+      <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2]">
+        Keine trockene Grammatik, kein Notendruck – stattdessen echte Begegnungen und authentische Kommunikation.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-2xl bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] flex items-center justify-center text-2xl mb-6">
+          🇵🇱🇩🇪
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">Polnisch & Deutsch</h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Ideal für alle, die Polnisch oder Deutsch im Alltag anwenden wollen. Auch Englisch-Tandems sind jederzeit herzlich willkommen.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-2xl bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] flex items-center justify-center text-2xl mb-6">
+          👩‍🏫
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">Begleitung durch Profis</h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Unsere Abende werden von Lehrerinnen, Übersetzerinnen, Linguistinnen und Muttersprachlerinnen moderiert und begleitet.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-2xl bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] flex items-center justify-center text-2xl mb-6">
+          ☕
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-3">Café-Kultur & Gemeinschaft</h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          Genieße heißen Kaffee, aromatischen Tee und Gebäck in der gemütlichen Atmosphäre unseres Begegnungszentrums in Pankow.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Live Upcoming Dates Section -->
+  <section id="termine" class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto scroll-mt-24">
+    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="inline-block px-3 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider mb-2">
+          📅 Veranstaltungskalender
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">
+          Nächste Speak-Dating Termine
+        </h2>
+        <p class="font-sans text-sm sm:text-base text-[#5b403d] dark:text-[#d4c5c2] mt-1">
+          Regelmäßig jeden 1. und 3. Mittwoch im Monat in Pankow.
+        </p>
+      </div>
+
+      <a
+        href="/events/"
+        class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white dark:bg-[#24201E] border border-[#E2D8CC] dark:border-[#3A3532] text-[#8B1E2D] dark:text-[#ff758f] font-bold text-xs sm:text-sm hover:border-[#8B1E2D] hover:bg-[#FAF5EB] transition-all shadow-sm shrink-0"
+      >
+        <span>Gesamten Kalender öffnen</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+    {displayEvents.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {displayEvents.map((event) => (
+          <VintageEventTicketCard
+            slug={event.slug}
+            title={event.title}
+            dateStart={event.date_start}
+            location={event.location}
+            language={event.language}
+            targetGroup={event.target_group}
+            description={event.description}
+            image={event.image}
+            lang={lang}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 text-center">
+        <p class="font-sans text-base text-[#5b403d] dark:text-[#d4c5c2]">
+          Aktuell werden neue Termine für die nächste Saison eingepflegt. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns direkt per E-Mail!
+        </p>
+      </div>
+    )}
+  </section>
+
+  <!-- Speak-Dating Cards Shop Feature Teaser -->
+  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="bg-gradient-to-br from-[#8B1E2D]/5 via-[#FAF5EB] to-[#8B1E2D]/10 dark:from-[#24201E] dark:via-[#1D1B1A] dark:to-[#2A2725] border border-[#8B1E2D]/20 rounded-3xl p-8 sm:p-12 shadow-sm flex flex-col md:flex-row items-center gap-8">
+      <div class="w-full md:w-1/3 shrink-0 flex items-center justify-center">
+        <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-[#22201e] p-3 border border-[#E2D8CC] dark:border-[#363230]">
+          <img
+            src="/images/shop/laden-artikel-1.webp"
+            alt="Speak-Dating Konversationskarten"
+            class="w-full h-full object-contain"
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-2/3">
+        <span class="px-3 py-1 rounded-full bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase tracking-wider">
+          🛍️ Für Zuhause & Sprachreisen
+        </span>
+        <h3 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-2 mb-4">
+          Die offiziellen Speak-Dating Konversationskarten
+        </h3>
+        <p class="font-sans text-sm sm:text-base text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+          Unser liebevoll gestaltetes, zweisprachiges Kartenset mit spannenden Impulsfragen auf Deutsch und Polnisch. 
+          Perfekt für eigene Sprachtandems, Spieleabende mit Freund:innen oder als Geschenk!
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="font-serif text-xl font-bold text-[#8B1E2D] dark:text-[#ff758f]">
+            12 € <span class="text-xs font-sans text-[#5b403d] dark:text-[#d4c5c2] font-normal">(Spendenbeitrag)</span>
+          </span>
+          <a
+            href="/ueber-uns/kleiner-laden/"
+            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#8B1E2D] hover:bg-[#6E1420] text-white font-bold text-sm transition-all shadow-sm"
+          >
+            <span>Im Kleinen Laden ansehen</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Registration Banner -->
+  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 sm:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      
+      <div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E2D]/10 text-[#8B1E2D] dark:text-[#ff758f] text-xs font-bold uppercase mb-4">
+          📍 Veranstaltungsort
+        </div>
+        <h3 class="font-serif text-3xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+          SprachCafé Polnisch e.V.
+        </h3>
+        <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+          <b>Adresse:</b> Schulzestraße 1, 13187 Berlin-Pankow<br>
+          <b>Anbindung:</b> S+U Pankow (U2, S2, S8, Tram M1, Bus) ca. 6 Min. Fußweg / S Wollankstraße ca. 4 Min. Fußweg.
+        </p>
+
+        <div class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
+          <div class="flex items-center gap-2">
+            <span class="text-base">✉️</span>
+            <span>E-Mail: <a href="mailto:speak-dating@sprachcafe-polnisch.org" class="text-[#8B1E2D] dark:text-[#ff758f] font-bold hover:underline">speak-dating@sprachcafe-polnisch.org</a></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-base">🌐</span>
+            <span>Web: <a href="https://xn--sprachcaf-j4a.org" class="text-[#8B1E2D] dark:text-[#ff758f] font-bold hover:underline">sprachcafé.org</a></span>
+          </div>
+        </div>
+
+        <a
+          href="mailto:speak-dating@sprachcafe-polnisch.org?subject=Anmeldung%20Speak-Dating"
+          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#8B1E2D] hover:bg-[#6E1420] text-white font-bold text-sm shadow-md transition-all"
+        >
+          <span>E-Mail zur Anmeldung senden</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Opening Hours / Notice Box -->
+      <div class="bg-[#FAF5EB] dark:bg-[#2A2725] border border-[#E2D8CC] dark:border-[#363230] rounded-2xl p-6 sm:p-8">
+        <h4 class="font-serif text-xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mb-4">
+          Hinweise für Teilnehmer:innen
+        </h4>
+        <ul class="space-y-3 text-xs sm:text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed">
+          <li class="flex items-start gap-2">
+            <span class="text-[#8B1E2D] dark:text-[#ff758f] font-bold">✓</span>
+            <span><b>Pünktlichkeit:</b> Bitte sei gegen 18:45–18:55 Uhr da, damit wir pünktlich um 19:00 Uhr gemeinsam starten können.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#8B1E2D] dark:text-[#ff758f] font-bold">✓</span>
+            <span><b>Offene Atmosphäre:</b> Niemand wird geprüft – es geht rein um den Spaß an Sprache und neuen Kontakten.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#8B1E2D] dark:text-[#ff758f] font-bold">✓</span>
+            <span><b>Getränke & Snacks:</b> Tee, Kaffee und Gebäck stehen bereit.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8B1E2D] dark:text-[#ff758f]">
+        ❓ Fragen & Antworten
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-2 mb-4">
+        Häufig gestellte Fragen zu Speak-Dating
+      </h2>
+    </div>
+
+    <FaqAccordion items={faqItems} lang={lang} />
+  </section>
+</Layout>

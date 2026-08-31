@@ -4,8 +4,8 @@
   "monatNum": 11,
   "monatName": "November",
   "events": {
-    "total": 44,
-    "kinder": 34,
+    "total": 59,
+    "kinder": 49,
     "sprachpraxis": 3,
     "kultur": 7,
     "locations": {
@@ -16,9 +16,9 @@
     }
   },
   "headcountEst": {
-    "totalAttendees": 743,
-    "childrenAttendees": 358,
-    "avgPerEvent": 16.9
+    "totalAttendees": 1013,
+    "childrenAttendees": 508,
+    "avgPerEvent": 17.2
   },
   "web": {
     "pageViews": 17562,
@@ -29,5 +29,5 @@
     "openRatePct": 48.6,
     "campaignsSent": 2
   },
-  "archivedAt": "2026-08-27T00:00:17.690Z"
+  "archivedAt": "2026-08-31T00:00:17.215Z"
 }

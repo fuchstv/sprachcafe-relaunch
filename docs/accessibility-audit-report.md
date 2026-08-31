@@ -1,7 +1,7 @@
 # ♿ Barrierefreiheits-Prüfbericht (Automatisierter BITV 2.0 / WCAG 2.1 AA Audit)
 
 > **Offizielle Dokumentation für die Erklärung zur Barrierefreiheit (B.2)**  
-> Stand der Prüfung: **27. August 2026**  
+> Stand der Prüfung: **31. August 2026**  
 > Prüfwerkzeug: **axe-core Engine (v4.x)** automatisiert via Playwright Browser-Testsuite  
 > Standard: **WCAG 2.1 Level AA / BITV 2.0 / EN 301 549**
 

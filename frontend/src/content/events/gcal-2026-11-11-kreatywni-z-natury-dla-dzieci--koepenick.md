@@ -1,8 +1,8 @@
 ---
 title:
-  de: "Kreatywni z natury - dla dzieci lat"
-  pl: "Kreatywni z natury - dla dzieci lat"
-  en: "Kreatywni z natury - dla dzieci lat"
+  de: "Kreatywni z natury - dla dzieci 7-12 lat"
+  pl: "Kreatywni z natury - dla dzieci 7-12 lat"
+  en: "Kreatywni z natury - dla dzieci 7-12 lat"
 date: 2026-11-11T16:00:00.000Z
 endDate: 2026-11-11T17:30:00.000Z
 locationRef: "koepenick"
@@ -20,8 +20,8 @@ description:
 image:
   src: "/images/events/kinder-event.svg"
   alt:
-    de: "Kreatywni z natury - dla dzieci lat"
-    pl: "Kreatywni z natury - dla dzieci lat"
-    en: "Kreatywni z natury - dla dzieci lat"
+    de: "Kreatywni z natury - dla dzieci 7-12 lat"
+    pl: "Kreatywni z natury - dla dzieci 7-12 lat"
+    en: "Kreatywni z natury - dla dzieci 7-12 lat"
 isFeatured: false
 ---
