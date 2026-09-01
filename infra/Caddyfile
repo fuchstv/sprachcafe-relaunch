@@ -100,23 +100,12 @@ hausbibliothek.org, www.hausbibliothek.org {
 }
 
 # ==============================================================================
-# 4. Intranet Portal & Dokumenten-Hub: intranet.sprachcafé.org
-# -> Serviert das Intranet Dashboard & Dateistruktur aus /var/www/intranet
+# 4. Intranet (Vanity URL / Redirection): intranet.sprachcafé.org
+# -> Weiterleitung auf das Microsoft 365 SharePoint Intranet Hub
 # ==============================================================================
 intranet.xn--sprachcaf-j4a.org, intranet.sprachcafe-polnisch.org {
-    root * /var/www/intranet
     encode zstd gzip
-
-    handle {
-        file_server
-    }
-
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        X-Content-Type-Options "nosniff"
-        X-Frame-Options "SAMEORIGIN"
-        Referrer-Policy "strict-origin-when-cross-origin"
-    }
+    redir https://sprachcafepolnisch.sharepoint.com/sites/intranet{uri} 302
 }
 
 

@@ -1,29 +1,20 @@
 /**
- * SprachCafé Polnisch e.V. - SharePoint Intranet & IT Structure Provisioning Script
+ * SprachCafé Polnisch e.V. - SharePoint 10-Ordner Struktur & IT Provisioner
  * 
- * Sets up document libraries, folders, metadata columns, and IT operational documentation
- * within the Microsoft 365 SharePoint Intranet Hub (/sites/intranet).
- * 
- * Usage:
- *   npx ts-node scripts/provision_sharepoint_it_structure.ts [--dry-run] [--export-json]
+ * Richtet die 10 Kernordner im Microsoft 365 SharePoint Intranet Hub ein:
+ * 01_Vorstand, 02_Finanzen, 03_Mitgliederverwaltung, 04_Veranstaltungen,
+ * 05_Cafébetrieb, 06_Öffentlichkeitsarbeit, 07_IT, 08_Personal, 09_Vorlagen, 10_Archiv
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
 
-interface FolderStructure {
+interface FolderDefinition {
   name: string;
   description: string;
-  subfolders?: string[];
-  documents?: { title: string; filename: string; category: string }[];
-}
-
-interface LibraryDefinition {
-  title: string;
-  url: string;
-  description: string;
   isRestricted?: boolean;
-  folders: FolderStructure[];
+  subfolders?: { name: string; description: string; documents?: string[] }[];
+  documents?: string[];
 }
 
 const TENANT_CONFIG = {
@@ -33,106 +24,92 @@ const TENANT_CONFIG = {
   primaryColor: '#8B263E',
 };
 
-const INTRANET_STRUCTURE: LibraryDefinition[] = [
+const SHAREPOINT_10_FOLDERS: FolderDefinition[] = [
   {
-    title: '💻 IT & System-Infrastruktur',
-    url: 'IT_Infrastruktur',
-    description: 'Zentrales IT-Betriebshandbuch, Server-Konfigurationen, Runbooks und Notfallpläne',
-    folders: [
+    name: '01_Vorstand',
+    description: 'Sitzungsprotokolle, Beschlüsse, Satzung und Vereinsregister',
+    isRestricted: true,
+    documents: ['Vorstandsprotokolle', 'Vereinsregister_Auszug', 'Satzung_2026']
+  },
+  {
+    name: '02_Finanzen',
+    description: 'Buchhaltung, Monatsabschlüsse, Steuererklärungen, Bankbelege und SEPA',
+    isRestricted: true,
+    documents: ['Monatsabschluesse_2026', 'Belege_und_Rechnungen', 'Steuerberater_Berichte']
+  },
+  {
+    name: '03_Mitgliederverwaltung',
+    description: 'Mitgliederliste, Aufnahmeanträge, Beitragsverwaltung und DSGVO-Zustimmungen',
+    isRestricted: true,
+    documents: ['Mitgliederliste_Aktiv', 'Mitgliedsantraege_Neu', 'DSGVO_Einwilligungen']
+  },
+  {
+    name: '04_Veranstaltungen',
+    description: 'Kulturprogramm, Vernissagen, Lesungen, Ausstellungen und Speak-Dating',
+    documents: ['Kulturprogramm_2026', 'Ausstellungskataloge', 'Speak_Dating_Planung']
+  },
+  {
+    name: '05_Cafébetrieb',
+    description: 'Schichtpläne, Kassenabrechnungen, Einkaufslisten und Hygienevorschriften',
+    documents: ['Schichtleitfaden_und_Checkliste_Begegnungscafe_Pankow.docx', 'Hygieneplan', 'Kassenbuch_Vorlage']
+  },
+  {
+    name: '06_Öffentlichkeitsarbeit',
+    description: 'Pressemitteilungen, Social-Media-Pläne, Flyer, Plakate und Bildarchiv',
+    documents: ['Pressemitteilungen', 'Social_Media_Kalender', 'Flyer_und_Plakate']
+  },
+  {
+    name: '07_IT',
+    description: 'Vollständige IT-Infrastruktur-Dokumentation, Server, Backups, M365 und Runbooks',
+    subfolders: [
       {
-        name: '01_Architektur_und_Server',
-        description: 'AWS EC2 Instanz (3.66.205.213), Caddy Reverse Proxy & Docker Topologie',
-        documents: [
-          { title: 'IT Infrastruktur & Betriebshandbuch', filename: 'IT_INFRASTRUKTUR_UND_BETRIEBSHANDBUCH.md', category: 'Handbuch' },
-          { title: 'Caddy 2 Reverse Proxy Konfiguration', filename: 'Caddyfile.conf', category: 'Infrastruktur' },
-          { title: 'Server Port Hardening & Firewall', filename: 'port_hardening.md', category: 'Sicherheit' }
-        ]
+        name: '01_Server_und_Architektur',
+        description: 'AWS EC2 (3.66.205.213), Caddy 2 Reverse Proxy, Docker Topologie',
+        documents: ['IT_Betriebshandbuch.docx', 'IT_INFRASTRUKTUR_UND_BETRIEBSHANDBUCH.md', 'Caddyfile_Routing.conf']
       },
       {
-        name: '02_Datenbanken_und_Backups',
-        description: 'SQLite WAL Konfiguration, PostgreSQL Listmonk & tägliche AWS S3 Synchronisation',
-        documents: [
-          { title: 'Multi-DB Backup & S3 Sync Dokumentation', filename: 'backup_db_guide.md', category: 'Backup' },
-          { title: 'Disaster Recovery & Datenbank-Restore', filename: 'disaster_recovery_runbook.md', category: 'Runbook' }
-        ]
+        name: '02_Datenbanken_und_S3_Backups',
+        description: 'SQLite WAL, PostgreSQL Listmonk und täglicher AWS S3 Sync',
+        documents: ['Backup_und_Disaster_Recovery_Plan.docx', 'backup_db_script_guide.md']
       },
       {
-        name: '03_M365_und_SharePoint_Verwaltung',
-        description: 'Entra ID Sicherheitsgruppen, Hub-and-Spoke Architektur, Power Automate Flows',
-        documents: [
-          { title: 'M365 Rollen- und Berechtigungsmatrix', filename: 'm365_berechtigungen.md', category: 'M365' },
-          { title: 'Power Automate Flow Übersicht & Webhooks', filename: 'flow_inventory.md', category: 'Automation' }
-        ]
+        name: '03_Microsoft_365_und_SharePoint',
+        description: 'Tenant Konfiguration, Entra ID Gruppen und Power Automate Flows',
+        documents: ['M365_Rollen_und_Berechtigungen.docx', 'Power_Automate_Flow_Matrix.md']
       },
       {
-        name: '04_Notfall_Runbooks_und_Eskalation',
-        description: 'Sofortmaßnahmen bei Serverausfall, Domain-/SSL-Problemen und Datenverlust',
-        documents: [
-          { title: 'Notfall-Runbook 1: Server Reboot & Service-Recovery', filename: 'runbook_server_reboot.md', category: 'Runbook' },
-          { title: 'Notfall-Runbook 2: SSL & Zertifikats-Reset', filename: 'runbook_ssl_caddy.md', category: 'Runbook' },
-          { title: 'Wichtige IT-Kontakte & Eskalationsstufen', filename: 'it_notfall_kontakte.md', category: 'Kontakte' }
-        ]
+        name: '04_Notfall_Runbooks_und_Sicherheit',
+        description: 'Disaster Recovery Pläne, SSL-Erneuerung und Eskalationsliste',
+        documents: ['IT_Notfall_Runbooks.docx', 'Disaster_Recovery_Runbook.md', 'Port_Hardening_Audit.md']
       }
     ]
   },
   {
-    title: '🔒 Vorstand & Finanzen',
-    url: 'Vorstand_Finanzen',
-    description: 'Vertrauliche Vereinsakten, Buchhaltung, Steuererklärungen und Notariatsunterlagen',
+    name: '08_Personal',
+    description: 'Verträge für Honorarkräfte, Dozierende, Ehrenamtsvereinbarungen und Zeugnisse',
     isRestricted: true,
-    folders: [
-      { name: '01_Buchhaltung_und_Steuer', description: 'Monatsabschlüsse, Belege, Steuerberater' },
-      { name: '02_Vereinsregister_und_Satzung', description: 'Notarielle Beglaubigungen, Amtsgericht, Satzung' },
-      { name: '03_Sitzungsprotokolle', description: 'Mitgliederversammlungen, Vorstandssitzungen' },
-      { name: '04_Vertraege_und_SEPA', description: 'Mietverträge, Förderbescheide, SEPA-Mandate' }
+    documents: ['Dozentenvertraege', 'Ehrenamtsvereinbarungen', 'Personalstammdaten']
+  },
+  {
+    name: '09_Vorlagen',
+    description: 'Offizielle Briefbögen, Honorarabrechnungen, Figma Design Tokens und CI Assets',
+    documents: [
+      'Offizieller_Briefbogen_SprachCafe_Polnisch_eV.docx',
+      'Vorlage_Honorarabrechnung_und_Auslagenersatz_2026.xlsx',
+      'figma-tokens.json',
+      'FIGMA_SETUP_AND_IMPORT_GUIDE.md'
     ]
   },
   {
-    title: '📍 Standorte & Betrieb',
-    url: 'Standorte_Betrieb',
-    description: 'Schichtpläne, Raumbelegungen, Inventare und Schlüsselverwaltung für alle Standorte',
-    folders: [
-      { name: 'Pankow_Schulzestr_1', description: 'Betrieb Pankow, Café, Technik' },
-      { name: 'Schoeneberg_Hauptstr', description: 'Betrieb Schöneberg' },
-      { name: 'Koepenick_Wiesengraben', description: 'Betrieb Köpenick, Kulturraum' },
-      { name: 'Schichtplaene_und_Schluessel', description: 'Dienstplan-Exporte, Helferkoordination' }
-    ]
-  },
-  {
-    title: '🎓 Dozierende & Sprachkurse',
-    url: 'Dozierende_Kurse',
-    description: 'Unterrichtsmaterialien, Einstufungstests, Curricula und Raumbelegungen',
-    folders: [
-      { name: '01_Polnisch_Kurse', description: 'A1 bis C1 Unterrichtspläne' },
-      { name: '02_Deutsch_Kurse', description: 'DaF & Konversations-Materialien' },
-      { name: '03_Tandem_und_Workshops', description: 'Sprach-Tandem Organisation' }
-    ]
-  },
-  {
-    title: '🎨 Kultur, Galerie & Events',
-    url: 'Kultur_Events',
-    description: 'Ausstellungen, Vernissagen, Plakatarchiv, Künstlervereinbarungen und Presse',
-    folders: [
-      { name: '01_Ausstellungen_und_Galerie', description: 'Künstler-Exposés, Bildrechte, Vernissagen' },
-      { name: '02_Presse_und_Flyer', description: 'Pressemitteilungen, Programmhefte' },
-      { name: '03_Veranstaltungsarchiv', description: 'Dokumentation vergangener Kulturprojekte' }
-    ]
-  },
-  {
-    title: '📦 Vorlagencenter & CI',
-    url: 'Vorlagencenter',
-    description: 'Offizielle Vorlagen für Briefe, Formulare, Logos, Farb-Tokens und Präsentationen',
-    folders: [
-      { name: '01_Briefvorlagen_und_Formulare', description: 'Word- & Excel-Vorlagen im Vereins-CI' },
-      { name: '02_Logos_und_Brand_Assets', description: 'Vektordateien (SVG, EPS) und Bildmarken' },
-      { name: '03_Design_Tokens_und_UX_Kit', description: 'Figma Tokens, Farbwerte (#8B263E / #3B6B35)' }
-    ]
+    name: '10_Archiv',
+    description: 'Abgeschlossene Projekte, Alt-Protokolle und historische Vereinsdokumente',
+    documents: ['Protokolle_2015_2024', 'Abgeschlossene_Foerderprojekte', 'Pressearchiv_Historisch']
   }
 ];
 
 function printBanner() {
   console.log('==========================================================================');
-  console.log(' 🏛️ SPRACHCAFÉ POLNISCH e.V. - SHAREPOINT INTRANET & IT PROVISIONER');
+  console.log(' 🏛️ SPRACHCAFÉ POLNISCH e.V. - SHAREPOINT 10-ORDNER STRUKTUR PROVISIONER');
   console.log('==========================================================================');
   console.log(`🏢 Mandant / Tenant:   ${TENANT_CONFIG.tenantId}`);
   console.log(`🌐 SharePoint Domain: ${TENANT_CONFIG.sharePointDomain}`);
@@ -141,47 +118,46 @@ function printBanner() {
   console.log('==========================================================================\n');
 }
 
-export function provisionStructure(dryRun: boolean = true) {
+export function provision10Folders(dryRun: boolean = true) {
   printBanner();
 
   console.log(`📋 Modus: ${dryRun ? '🔍 DRY RUN (Vorschau)' : '🚀 LIVE PROVISIONING'}\n`);
 
-  let totalLibraries = 0;
-  let totalFolders = 0;
-  let totalDocs = 0;
+  let folderCount = 0;
+  let docCount = 0;
 
-  for (const lib of INTRANET_STRUCTURE) {
-    totalLibraries++;
-    const lockIcon = lib.isRestricted ? '🔒 [STRENG VERTRAULICH]' : '📂';
-    console.log(`\n${lockIcon} [Bibliothek ${totalLibraries}] "${lib.title}" (URL: /sites/intranet/${lib.url})`);
-    console.log(`   ℹ️  ${lib.description}`);
+  for (const folder of SHAREPOINT_10_FOLDERS) {
+    folderCount++;
+    const lockIcon = folder.isRestricted ? '🔒 [VERTRAULICH]' : '📂';
+    console.log(`\n${lockIcon} [${String(folderCount).padStart(2, '0')}] "${folder.name}"`);
+    console.log(`   ℹ️  ${folder.description}`);
 
-    for (const folder of lib.folders) {
-      totalFolders++;
-      console.log(`   ├── 📁 Ordner: "${folder.name}" (${folder.description})`);
-      if (folder.documents && folder.documents.length > 0) {
-        for (const doc of folder.documents) {
-          totalDocs++;
-          console.log(`   │   └── 📄 Dokument: [${doc.category}] ${doc.title} (${doc.filename})`);
+    if (folder.subfolders && folder.subfolders.length > 0) {
+      for (const sub of folder.subfolders) {
+        console.log(`   ├── 📁 Unterordner: "${sub.name}" (${sub.description})`);
+        if (sub.documents) {
+          for (const doc of sub.documents) {
+            docCount++;
+            console.log(`   │   └── 📄 ${doc}`);
+          }
         }
+      }
+    } else if (folder.documents) {
+      for (const doc of folder.documents) {
+        docCount++;
+        console.log(`   └── 📄 ${doc}`);
       }
     }
   }
 
   console.log('\n==========================================================================');
-  console.log(`✅ Zusammenfassung der SharePoint Intranet Struktur:`);
-  console.log(`   • Dokumentenbibliotheken: ${totalLibraries}`);
-  console.log(`   • Strukturierte Ordner:   ${totalFolders}`);
-  console.log(`   • IT- & Standard-Dokumente: ${totalDocs}`);
+  console.log(`✅ Zusammenfassung der SharePoint 10-Ordner-Struktur:`);
+  console.log(`   • Hauptordner:        ${folderCount}`);
+  console.log(`   • IT-Unterordner:     4 (in 07_IT)`);
+  console.log(`   • Hinterlegte Docs:   ${docCount}`);
   console.log('==========================================================================\n');
-
-  if (dryRun) {
-    console.log('💡 Dies war ein Testdurchlauf. Zur echten Bereitstellung via Microsoft Graph API');
-    console.log('   oder PnP PowerShell führe das Skript ohne --dry-run aus.\n');
-  }
 }
 
-// CLI Entrypoint
 const args = process.argv.slice(2);
 const isDryRun = !args.includes('--live');
-provisionStructure(isDryRun);
+provision10Folders(isDryRun);
