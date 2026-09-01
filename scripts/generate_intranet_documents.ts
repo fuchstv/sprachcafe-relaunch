@@ -11,8 +11,13 @@ const BASE_OUT = path.resolve(process.cwd(), 'intranet-content');
 const VORLAGEN_DIR = path.join(BASE_OUT, 'Vorlagencenter');
 const STANDORTE_DIR = path.join(BASE_OUT, 'Standorte_und_Schichten');
 const NEWS_DIR = path.join(BASE_OUT, 'News_und_Ankuendigungen');
+const IT_DIR = path.join(BASE_OUT, 'IT_Infrastruktur');
+const IT_SERVER_DIR = path.join(IT_DIR, '01_Architektur_und_Server');
+const IT_DB_DIR = path.join(IT_DIR, '02_Datenbanken_und_Backups');
+const IT_M365_DIR = path.join(IT_DIR, '03_M365_und_SharePoint_Verwaltung');
+const IT_RUNBOOKS_DIR = path.join(IT_DIR, '04_Notfall_Runbooks_und_Eskalation');
 
-[VORLAGEN_DIR, STANDORTE_DIR, NEWS_DIR].forEach(dir => {
+[VORLAGEN_DIR, STANDORTE_DIR, NEWS_DIR, IT_DIR, IT_SERVER_DIR, IT_DB_DIR, IT_M365_DIR, IT_RUNBOOKS_DIR].forEach(dir => {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
 
@@ -323,6 +328,85 @@ async function createNewsArticles() {
   }
 }
 
+// ----------------------------------------------------------------------------
+// 5. IT-Infrastruktur & Betriebsdokumente (.docx & .md)
+// ----------------------------------------------------------------------------
+async function createITDocuments() {
+  // 1. IT Handbuch Docx
+  const doc1 = new Document({
+    sections: [{
+      children: [
+        burgundyHeading('SprachCafé Polnisch e.V. – IT-Betriebshandbuch', HeadingLevel.HEADING_1),
+        new Paragraph({
+          children: [
+            new TextRun({ text: 'Mandant: b745a80a-f682-45e4-ba2e-d48bbd9e703d • Server: AWS EC2 3.66.205.213\n\n', italics: true, color: '595959' }),
+            new TextRun({ text: '1. Server & Reverse Proxy: Caddy 2 mit automatischem TLS (Let\'s Encrypt) für sprachcafé.org, beta.sprachcafe-polnisch.org, hausbibliothek.org, team.sprachcafé.org, kurse.sprachcafé.org, newsletter.sprachcafé.org.\n\n' }),
+            new TextRun({ text: '2. Applikationen: Astro 5 SSG, Hausbibliothek (PHP 8.4 + SQLite WAL), Dienstplan Node.js (Port 3200), Kurse Fastify (Port 3300), Listmonk Newsletter (Port 9000).\n\n' }),
+            new TextRun({ text: '3. Backups: Tägliche atomare SQLite Online Backups & S3 Sync nach s3://sprachcafe-backups-secure/.\n\n' }),
+            new TextRun({ text: '4. M365 Intranet: Hub Site sprachcafepolnisch.sharepoint.com/sites/intranet mit rollenbasierter Entra ID Rechteverwaltung.\n' })
+          ]
+        })
+      ]
+    }]
+  });
+  const buf1 = await Packer.toBuffer(doc1);
+  fs.writeFileSync(path.join(IT_SERVER_DIR, 'IT_Betriebshandbuch.docx'), buf1);
+  fs.copyFileSync(path.resolve(process.cwd(), 'docs/IT_INFRASTRUKTUR_UND_BETRIEBSHANDBUCH.md'), path.join(IT_SERVER_DIR, 'IT_INFRASTRUKTUR_UND_BETRIEBSHANDBUCH.md'));
+  console.log('✓ IT-Dokumente erstellt: 01_Architektur_und_Server');
+
+  // 2. Backup Plan Docx
+  const doc2 = new Document({
+    sections: [{
+      children: [
+        burgundyHeading('Backup- & Disaster-Recovery-Plan', HeadingLevel.HEADING_1),
+        new Paragraph({
+          children: [
+            new TextRun({ text: 'Multi-Database Backup Strategie & S3 Offsite Synchronisation\n\n', italics: true, color: '595959' }),
+            new TextRun({ text: '• SQLite Online Backup API ohne Tabellensperren\n• PostgreSQL 17 pg_dump Kompression\n• 30 Tage lokale Vorhaltezeit\n• AWS S3 Bucket: s3://sprachcafe-backups-secure/ (eu-central-1)\n' })
+          ]
+        })
+      ]
+    }]
+  });
+  const buf2 = await Packer.toBuffer(doc2);
+  fs.writeFileSync(path.join(IT_DB_DIR, 'Backup_und_Disaster_Recovery_Plan.docx'), buf2);
+  console.log('✓ IT-Dokumente erstellt: 02_Datenbanken_und_Backups');
+
+  // 3. M365 Berechtigungen Docx
+  const doc3 = new Document({
+    sections: [{
+      children: [
+        burgundyHeading('Microsoft 365 & SharePoint Rollen- & Berechtigungsmatrix', HeadingLevel.HEADING_1),
+        new Paragraph({
+          children: [
+            new TextRun({ text: 'Sicherheitsgruppen: SG-SprachCafe-Vorstand, SG-SprachCafe-Standortleitung, SG-SprachCafe-Dozierende, SG-SprachCafe-Ehrenamtliche.\n' })
+          ]
+        })
+      ]
+    }]
+  });
+  const buf3 = await Packer.toBuffer(doc3);
+  fs.writeFileSync(path.join(IT_M365_DIR, 'M365_Rollen_und_Berechtigungen.docx'), buf3);
+  console.log('✓ IT-Dokumente erstellt: 03_M365_und_SharePoint_Verwaltung');
+
+  // 4. Notfall-Runbooks Docx
+  const doc4 = new Document({
+    sections: [{
+      children: [
+        burgundyHeading('IT Notfall-Runbooks & Eskalation', HeadingLevel.HEADING_1),
+        new Paragraph({
+          children: [
+            new TextRun({ text: 'Sofortmaßnahmen bei Ausfall:\n1. Server Reboot: docker compose up -d\n2. S3 Restore: aws s3 sync s3://sprachcafe-backups-secure/ /home/ubuntu/backups/restore/\n3. SSL Reset: docker exec caddy caddy reload\n' })
+          ]
+        })
+      ]
+    }]
+  });
+  const buf4 = await Packer.toBuffer(doc4);
+  fs.writeFileSync(path.join(IT_RUNBOOKS_DIR, 'IT_Notfall_Runbooks.docx'), buf4);
+  console.log('✓ IT-Dokumente erstellt: 04_Notfall_Runbooks_und_Eskalation');
+}
+
 async function main() {
   console.log('================================================================');
   console.log(' 📄 GENERIERE INTRANET OFFICE DOKUMENTE & VORLAGEN');
@@ -332,6 +416,7 @@ async function main() {
   await createExpenseSheet();
   await createShiftGuide();
   await createNewsArticles();
+  await createITDocuments();
 
   console.log('\n================================================================');
   console.log(' 🎉 ALLE INTRANET DOKUMENTE WURDEN ERFOLGREICH GENERIERT!');
