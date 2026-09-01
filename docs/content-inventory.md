@@ -108,8 +108,8 @@ Dieses Dokument erfasst den vollständigen Bestand der noch aus der Live-WordPre
 - **Inhalte**:
   - Informationen zu Ehrenamt, Praktikum, Mitgliedschaft, Kooperationen und Spenden.
 - **Referenzierte Downloads & Dokumente**:
-  - 📄 **Vereinssatzung**: `https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/Satzung-SCP-12.06.2020.pdf`
-  - 📄 **Mitgliedsantrag-Formular**: `https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/Mitgliedsantrag-SCP.pdf`
+  - 📄 **Vereinssatzung**: `/downloads/Satzung-SCP-12.06.2020.pdf`
+  - 📄 **Mitgliedsantrag-Formular**: `https://sprachcafe-media-storage.s3.eu-central-1.amazonaws.com/uploads/wp-migration/2021/01/Eintrittsformular-03.2020-1.pdf`
 - **Sprachvarianten**:
   - 🇩🇪 DE: `https://sprachcafe-polnisch.org/mitmachen/`
   - 🇵🇱 PL: `https://sprachcafe-polnisch.org/pl/dolacz-do-nas/`

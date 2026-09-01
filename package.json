@@ -17,6 +17,7 @@
     "server:health": "bash scripts/server_maintenance.sh --health-check",
     "server:maintenance": "sudo bash scripts/server_maintenance.sh --full",
     "test:ops-alert": "npx tsx scripts/test_ops_email_alert.ts",
+    "validate:media": "npx tsx scripts/validate_media_s3_links.ts",
     "test:e2e": "npx playwright test"
   },
   "dependencies": {
