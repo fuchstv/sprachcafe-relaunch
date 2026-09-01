@@ -12,6 +12,7 @@
     "archive:kpi": "npx tsx scripts/archive_kpi_snapshots.ts",
     "build:reports": "npx tsx scripts/fetch_cloudflare_analytics.ts && npx tsx scripts/fetch_mailchimp_metrics.ts && npx tsx scripts/archive_kpi_snapshots.ts && npx tsx scripts/generate_powerbi_previews.ts",
     "provision:it-structure": "npx tsx scripts/provision_sharepoint_it_structure.ts",
+    "deploy:ops-flow": "npx tsx scripts/deploy_ops_flow_cli.ts",
     "server:check": "bash scripts/server_maintenance.sh --check-only",
     "server:health": "bash scripts/server_maintenance.sh --health-check",
     "server:maintenance": "sudo bash scripts/server_maintenance.sh --full",
