@@ -1,7 +1,7 @@
 # ✉️ Power Automate E-Mail Flows für Server-Wartung, Updates & Reboots
 
 > **Zweck:**  
-> Dieser Leitfaden beschreibt die Einrichtung und den Betrieb der automatisierten **E-Mail-Benachrichtigungen via Microsoft Power Automate**, damit der IT-Administrator (`p_fuchs@sprachcafe-polnisch.org`) bei Server-Wartungen, Kernel-Upgrades, Reboot-Bedarf und Störungen sofort einen **strukturierten Überblick erhält** über:
+> Dieser Leitfaden beschreibt die Einrichtung und den Betrieb der automatisierten **E-Mail-Benachrichtigungen via Microsoft Power Automate**, damit der IT-Administrator (`p.fuchs@sprachcafe-polnisch.org`) bei Server-Wartungen, Kernel-Upgrades, Reboot-Bedarf und Störungen sofort einen **strukturierten Überblick erhält** über:
 > 1. **Was getan wurde** (z.B. durchgeführte Backups, installierte APT-Pakete, Neustarts).
 > 2. **Den aktuellen System-Health-Status** (Erreichbarkeit aller 5 Web-Endpunkte, SQLite DB-Integrität, RAM-Auslastung).
 > 3. **Was noch zu wissen / zu tun ist** (z.B. anstehende Reboots im Wartungsfenster oder erforderliche Freigaben).
@@ -36,7 +36,7 @@ flowchart LR
     end
 
     subgraph Admin [📬 Postfach des IT-Admins]
-        Action --> Inbox["p_fuchs@sprachcafe-polnisch.org"]
+        Action --> Inbox["p.fuchs@sprachcafe-polnisch.org"]
     end
 ```
 
@@ -127,7 +127,7 @@ Wird keine URL konfiguriert, loggt das Skript die Meldung lokal, ohne abzubreche
 4. Trigger wählen: **Beim Empfang einer HTTP-Anforderung** (Method: `POST`).
 5. Klicke auf *„Beispielnutzdaten zum Generieren eines Schemas verwenden“* und füge das obige JSON-Beispiel ein.
 6. Neue Aktion hinzufügen: **E-Mail senden (V2)** (Office 365 Outlook):
-   - **An:** `p_fuchs@sprachcafe-polnisch.org`
+   - **An:** `p.fuchs@sprachcafe-polnisch.org`
    - **Betreff:** `[SprachCafé Ops] @{triggerBody()?['severity']}: @{triggerBody()?['summary']}`
    - **Textkörper:** HTML-Vorlage aus [`scripts/flows/flow-server-ops-alert.json`](file:///home/ubuntu/sprachcafe-relaunch/scripts/flows/flow-server-ops-alert.json).
 7. Flow speichern und die generierte **HTTP-POST-URL** kopieren.

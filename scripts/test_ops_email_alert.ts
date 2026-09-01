@@ -66,7 +66,7 @@ async function main() {
 
     if (res.ok) {
       console.log(`✅ E-Mail Flow erfolgreich ausgelöst! (Status: ${res.status})`);
-      console.log('📬 Die E-Mail sollte in wenigen Sekunden im Postfach von p_fuchs@sprachcafe-polnisch.org eintreffen.');
+      console.log('📬 Die E-Mail sollte in wenigen Sekunden im Postfach von p.fuchs@sprachcafe-polnisch.org eintreffen.');
     } else {
       console.error(`❌ Fehler bei Webhook-Auslösung (HTTP ${res.status}):`, await res.text());
     }
