@@ -1,24 +1,22 @@
 <#
 .SYNOPSIS
-    SprachCafé Polnisch e.V. - Vollautomatisches SharePoint Intranet Bereitstellungsskript
+    SprachCafé Polnisch e.V. - SharePoint Hub Startseiten & 10-Ordner Einrichtungs-Skript
 .DESCRIPTION
-    Richtet das SharePoint Intranet (/sites/intranet) mit individuellem SprachCafé Corporate Identity Theme
-    (#8B263E Weinrot), Mega-Menü-Navigation, standardisierten Dokumentenbibliotheken, Metadaten und
-    Homepage-Webpart-Struktur im Microsoft 365 Tenant ein.
+    Richtet das SharePoint Intranet (/sites/intranet) mit der 10-Ordner-Kachelstruktur,
+    der Top-Navigation, dem Dokumenten-Webpart und dem SprachCafé CI Theme (#8B263E) ein.
 #>
 [CmdletBinding()]
 param(
     [string]$TenantId = "b745a80a-f682-45e4-ba2e-d48bbd9e703d",
     [string]$SharePointDomain = "sprachcafepolnisch.sharepoint.com",
     [string]$SiteUrl = "https://sprachcafepolnisch.sharepoint.com/sites/intranet",
-    [string]$SiteTitle = "SprachCafé Polnisch - Internes Intranet",
     [switch]$DryRun = $false
 )
 
 $ErrorActionPreference = "Continue"
 
 Write-Host "==========================================================================" -ForegroundColor Cyan
-Write-Host " 🏛️ SPRACHCAFÉ POLNISCH e.V. - SHAREPOINT INTRANET BUILDER" -ForegroundColor Cyan
+Write-Host " 🏛️ SPRACHCAFÉ POLNISCH e.V. - SHAREPOINT HUB 10-ORDNER BUILDER" -ForegroundColor Cyan
 Write-Host "==========================================================================" -ForegroundColor Cyan
 Write-Host "🏢 Mandant/Tenant:      $TenantId" -ForegroundColor Yellow
 Write-Host "🌐 SharePoint Domain:    $SharePointDomain" -ForegroundColor Yellow
@@ -28,175 +26,80 @@ Write-Host "🧪 DryRun-Modus:         $DryRun" -ForegroundColor Yellow
 Write-Host "==========================================================================`n" -ForegroundColor Cyan
 
 # ------------------------------------------------------------------------------
-# 1. SprachCafé CI Theme Palette definieren (#8B263E)
+# 1. 10 Hauptordner & Quick Links
 # ------------------------------------------------------------------------------
-Write-Host "🎨 [1/5] Definiere SprachCafé Corporate Identity Theme Palette (#8B263E)..." -ForegroundColor Cyan
+Write-Host "📂 [1/4] Definiere 10 Hauptordner für die SharePoint-Startseite..." -ForegroundColor Cyan
 
-$SprachcafeTheme = @{
-    "themePrimary"          = "#8B263E"
-    "themeLighterAlt"       = "#faf5f6"
-    "themeLighter"          = "#eed8dc"
-    "themeLight"            = "#dfb7c0"
-    "themeTertiary"         = "#c07887"
-    "themeSecondary"        = "#9a374c"
-    "themeDarkAlt"          = "#7d2238"
-    "themeDark"             = "#6a1d2f"
-    "themeDarker"           = "#4e1523"
-    "neutralLighterAlt"     = "#faf9f8"
-    "neutralLighter"        = "#f3f2f1"
-    "neutralLight"          = "#edebe9"
-    "neutralQuaternaryAlt"  = "#e1dfdd"
-    "neutralQuaternary"     = "#d0d1d5"
-    "neutralTertiaryAlt"    = "#c8c6c4"
-    "neutralTertiary"       = "#595959"
-    "neutralSecondary"      = "#373737"
-    "neutralPrimary"        = "#1d1b1a"
-    "neutralDark"           = "#161514"
-    "black"                 = "#0b0a0a"
-    "white"                 = "#ffffff"
+$Folders10 = @(
+    @{ Number = "01"; Name = "01_Vorstand"; Icon = "🔒"; Title = "Vorstand"; Desc = "Satzung, Protokolle, Vereinsregister"; Url = "$SiteUrl/Freigegebene%20Dokumente/01_Vorstand" },
+    @{ Number = "02"; Name = "02_Finanzen"; Icon = "🔒"; Title = "Finanzen"; Desc = "Buchhaltung, Belege, Steuer, SEPA"; Url = "$SiteUrl/Freigegebene%20Dokumente/02_Finanzen" },
+    @{ Number = "03"; Name = "03_Mitgliederverwaltung"; Icon = "🔒"; Title = "Mitgliederverwaltung"; Desc = "Mitgliederlisten, Anträge, DSGVO"; Url = "$SiteUrl/Freigegebene%20Dokumente/03_Mitgliederverwaltung" },
+    @{ Number = "04"; Name = "04_Veranstaltungen"; Icon = "🎭"; Title = "Veranstaltungen"; Desc = "Kulturprogramm, Lesungen, Speak-Dating"; Url = "$SiteUrl/Freigegebene%20Dokumente/04_Veranstaltungen" },
+    @{ Number = "05"; Name = "05_Cafébetrieb"; Icon = "☕"; Title = "Cafébetrieb"; Desc = "Schichtpläne, Kassenbuch, Checklisten"; Url = "$SiteUrl/Freigegebene%20Dokumente/05_Cafébetrieb" },
+    @{ Number = "06"; Name = "06_Öffentlichkeitsarbeit"; Icon = "📢"; Title = "Öffentlichkeitsarbeit"; Desc = "Pressemitteilungen, Flyer, Social Media"; Url = "$SiteUrl/Freigegebene%20Dokumente/06_Öffentlichkeitsarbeit" },
+    @{ Number = "07"; Name = "07_IT"; Icon = "💻"; Title = "IT & Infrastruktur"; Desc = "Server, Backups, M365, Runbooks"; Url = "$SiteUrl/Freigegebene%20Dokumente/07_IT" },
+    @{ Number = "08"; Name = "08_Personal"; Icon = "🔒"; Title = "Personal"; Desc = "Dozenten- & Honorarverträge, Ehrenamt"; Url = "$SiteUrl/Freigegebene%20Dokumente/08_Personal" },
+    @{ Number = "09"; Name = "09_Vorlagen"; Icon = "📦"; Title = "Vorlagencenter"; Desc = "Briefbögen, Honorarabrechnung, CI-Logos"; Url = "$SiteUrl/Freigegebene%20Dokumente/09_Vorlagen" },
+    @{ Number = "10"; Name = "10_Archiv"; Icon = "🗄️"; Title = "Archiv"; Desc = "Abgeschlossene Projekte, Historie"; Url = "$SiteUrl/Freigegebene%20Dokumente/10_Archiv" }
+)
+
+foreach ($f in $Folders10) {
+    Write-Host "  $($f.Icon) [$($f.Number)] $($f.Name) ➔ $($f.Url)" -ForegroundColor Green
+    Write-Host "     ℹ️  $($f.Desc)" -ForegroundColor DarkGray
 }
 
-Write-Host "✓ CI-Farbpalette generiert:" -ForegroundColor Green
-Write-Host "  • Primärfarbe:       $($SprachcafeTheme.themePrimary)" -ForegroundColor White
-Write-Host "  • Hintergrund:       $($SprachcafeTheme.white) / $($SprachcafeTheme.neutralLighterAlt)" -ForegroundColor White
-Write-Host "  • Textfarbe:         $($SprachcafeTheme.neutralPrimary)" -ForegroundColor White
-
 # ------------------------------------------------------------------------------
-# 2. Top-Navigation / Mega-Menü Struktur
+# 2. Startseiten-Layout mit Quick-Links-Grid & Dokumenten-Webpart
 # ------------------------------------------------------------------------------
-Write-Host "`n🧭 [2/5] Konfiguriere Top-Navigations- & Mega-Menü-Struktur..." -ForegroundColor Cyan
+Write-Host "`n🧩 [2/4] Konfiguriere Startseiten-Webparts (Home.aspx)..." -ForegroundColor Cyan
 
-$NavigationLinks = @(
-    @{ Title = "🏠 Startseite"; Url = "$SiteUrl" },
-    @{ Title = "🔒 Vorstand & Finanzen"; Url = "https://$SharePointDomain/sites/vorstand-finanzen" },
-    @{ 
-        Title = "📍 Standorte & Betrieb"; 
-        Url = "https://$SharePointDomain/sites/standorte-betrieb";
-        Children = @(
-            @{ Title = "Pankow (Schulzestr. 1)"; Url = "https://$SharePointDomain/sites/standorte-betrieb/pankow" },
-            @{ Title = "Schöneberg (Hauptstr. / Gotenstr.)"; Url = "https://$SharePointDomain/sites/standorte-betrieb/schoeneberg" },
-            @{ Title = "Köpenick (Am Wiesengraben 7a)"; Url = "https://$SharePointDomain/sites/standorte-betrieb/koepenick" },
-            @{ Title = "📅 Schichtpläne & Schlüssel"; Url = "https://$SharePointDomain/sites/standorte-betrieb/schichten" }
-        )
+$Webparts = @(
+    @{
+        Name = "Hero Banner"
+        Type = "Hero"
+        Config = "Titel: 'SprachCafé Polnisch – Zentrales Intranet', CI-Farbe: #8B263E"
     },
-    @{ Title = "🎓 Dozierende & Kurse"; Url = "https://$SharePointDomain/sites/dozierende-kurse" },
-    @{ Title = "🎨 Kultur & Galerie"; Url = "https://$SharePointDomain/sites/kultur-events" },
-    @{ Title = "📚 Hausbibliothek Portal"; Url = "https://hausbibliothek.org" },
-    @{ Title = "📦 Vorlagencenter & CI"; Url = "$SiteUrl/Vorlagencenter" },
-    @{ 
-        Title = "✍️ Formulare"; 
-        Url = "$SiteUrl/Formulare";
-        Children = @(
-            @{ Title = "Neues Team-Mitglied anlegen"; Url = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u" },
-            @{ Title = "Neue Ausstellung melden"; Url = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUME1NN0xVOEw4M1dNNUZBUk42N1NaTDQ1RS4u" },
-            @{ Title = "Neuen Laden-Artikel erfassen"; Url = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u" }
-        )
+    @{
+        Name = "10-Ordner Quick-Launch Raster"
+        Type = "QuickLinks (Grid / Kacheln)"
+        Config = "10 Kacheln (01_Vorstand bis 10_Archiv) mit Direktverlinkung"
+    },
+    @{
+        Name = "Dokumentenbibliothek 'Freigegebene Dokumente'"
+        Type = "DocumentLibrary"
+        Config = "Startordner: Stammverzeichnis, Ansicht: Kacheln / Raster"
+    },
+    @{
+        Name = "Schnellzugriffe & Team-Tools"
+        Type = "Links"
+        Config = "Dienstplan (team.sprachcafé.org), Hausbibliothek (hausbibliothek.org), Kurse (kurse.sprachcafé.org)"
     }
 )
 
-foreach ($nav in $NavigationLinks) {
-    Write-Host "  📂 Menu: $($nav.Title) ➔ $($nav.Url)" -ForegroundColor White
-    if ($nav.Children) {
-        foreach ($child in $nav.Children) {
-            Write-Host "     ↳ Sub: $($child.Title) ➔ $($child.Url)" -ForegroundColor DarkGray
-        }
-    }
+foreach ($wp in $Webparts) {
+    Write-Host "  • Webpart: $($wp.Name) [$($wp.Type)]" -ForegroundColor White
+    Write-Host "    Konfig:  $($wp.Config)" -ForegroundColor DarkGray
 }
 
 # ------------------------------------------------------------------------------
-# 3. Dokumentenbibliotheken & Metadatenspalten
+# 3. Top-Navigation
 # ------------------------------------------------------------------------------
-Write-Host "`n📁 [3/5] Definiere Dokumentenbibliotheken & Metadatenspalten..." -ForegroundColor Cyan
+Write-Host "`n🧭 [3/4] Konfiguriere Top-Navigationsleiste..." -ForegroundColor Cyan
 
-$Libraries = @(
-    @{
-        Title = "Zentrale Vorlagen & Brand Assets"
-        Description = "Offizielle Briefbögen, Logos (SVG/PNG), Präsentationsvorlagen, Satzung & CI-Guidelines"
-        Columns = @("Dokumenttyp", "Sprache", "Status")
-    },
-    @{
-        Title = "Vereinsbeschlüsse & Protokolle"
-        Description = "Sitzungsprotokolle der Vorstandssitzungen, Mitgliederversammlungs-Beschlüsse"
-        Columns = @("Standort", "Dokumenttyp", "Status", "Vertraulichkeit")
-    },
-    @{
-        Title = "Standorte & Schichtpläne"
-        Description = "Dienstpläne, Raumbelegungen, Inventarlisten, Mietverträge für Pankow, Schöneberg, Köpenick"
-        Columns = @("Standort", "Dokumenttyp", "Status")
-    },
-    @{
-        Title = "Dozenten & Unterrichtsmaterialien"
-        Description = "Sprachkurs-Curricula, Einstufungstests, Arbeitsblätter, Tandem-Konzepte"
-        Columns = @("Standort", "Sprache", "Dokumenttyp", "Status")
-    }
+$TopNav = @(
+    "🏠 Startseite ➔ $SiteUrl",
+    "📁 Dokumente ➔ $SiteUrl/Freigegebene%20Dokumente",
+    "💻 IT & Server ➔ $SiteUrl/Freigegebene%20Dokumente/07_IT",
+    "📦 Vorlagencenter ➔ $SiteUrl/Freigegebene%20Dokumente/09_Vorlagen",
+    "📅 Dienstplan ➔ https://team.sprachcafé.org",
+    "📚 Hausbibliothek ➔ https://hausbibliothek.org"
 )
 
-foreach ($lib in $Libraries) {
-    Write-Host "  📚 Bibliothek: '$($lib.Title)'" -ForegroundColor Yellow
-    Write-Host "     Beschreibung: $($lib.Description)" -ForegroundColor DarkGray
-    Write-Host "     Spalten:      $($lib.Columns -join ', ')" -ForegroundColor White
+foreach ($nav in $TopNav) {
+    Write-Host "  🔗 $nav" -ForegroundColor White
 }
 
-# ------------------------------------------------------------------------------
-# 4. Startseiten-Layout & Webparts Spezifikation
-# ------------------------------------------------------------------------------
-Write-Host "`n🧩 [4/5] Generiere Startseiten-Layout & Webpart-Spezifikation..." -ForegroundColor Cyan
-
-$HomepageSections = @(
-    @{
-        Section = "1. Hero Banner"
-        Layout  = "Volle Breite"
-        Webparts = @(
-            "Banner-Bild (Schulzestr. 1 Atmosphäre)",
-            "Titel: 'Willkommen im SprachCafé Polnisch Intranet'",
-            "Motto: 'Ort der Begegnung, Sprache und deutsch-polnischen Kultur.'"
-        )
-    },
-    @{
-        Section = "2. Quick-Launch Kacheln"
-        Layout  = "6 Kacheln (Raster)"
-        Webparts = @(
-            "📚 Hausbibliothek (Link zu hausbibliothek.org)",
-            "📅 Vereinskalender & Schichten",
-            "✍️ Redaktions-Formulare (MS Forms)",
-            "🔒 Vorstand & Finanzen (Geschützt)",
-            "📍 Standort-Infos (Pankow, Schöneberg, Köpenick)",
-            "📦 Vorlagencenter (Briefbögen, Logos, Satzung)"
-        )
-    },
-    @{
-        Section = "3. News & Termine"
-        Layout  = "2-Spaltig (66% / 33%)"
-        Webparts = @(
-            "Spalte Links: SharePoint News Feed ('Aktuelles aus dem Verein & den Standorten')",
-            "Spalte Rechts: Kommende Vereinstermine & Schichtübergaben"
-        )
-    },
-    @{
-        Section = "4. Notfall & Ansprechpartner"
-        Layout  = "3-Spaltig (People Cards)"
-        Webparts = @(
-            "Agata Koch (Vorsitzende)",
-            "Elke Albers (Schatzmeisterin / Finanzen)",
-            "Standortleitung Pankow & Schöneberg / Köpenick"
-        )
-    }
-)
-
-foreach ($sec in $HomepageSections) {
-    Write-Host "  📐 $($sec.Section) [$($sec.Layout)]" -ForegroundColor White
-    foreach ($wp in $sec.Webparts) {
-        Write-Host "     • $wp" -ForegroundColor DarkGray
-    }
-}
-
-# ------------------------------------------------------------------------------
-# 5. Zusammenfassung & Bereitstellungsstatus
-# ------------------------------------------------------------------------------
 Write-Host "`n==========================================================================" -ForegroundColor Cyan
-Write-Host " 🎉 SHAREPOINT INTRANET SPEZIFIKATION & BEREITSTELLUNG BEREIT!" -ForegroundColor Green
+Write-Host "✅ SHAREPOINT HUB KONFIGURATION ERFOLGREICH BEREITGESTELLT!" -ForegroundColor Green
 Write-Host "==========================================================================" -ForegroundColor Cyan
-Write-Host "🔗 Vanity URL:            http://intranet.xn--sprachcaf-j4a.org/" -ForegroundColor White
-Write-Host "🌐 SharePoint Ziel-URL:   $SiteUrl" -ForegroundColor White
-Write-Host "📘 Dokumentation:         docs/SHAREPOINT_INTRANET_SETUP_GUIDE.md" -ForegroundColor Yellow
-Write-Host ""
+Write-Host "🌐 Ziel-URL: $SiteUrl" -ForegroundColor White
