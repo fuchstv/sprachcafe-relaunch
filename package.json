@@ -11,6 +11,7 @@
     "enrich:library": "npx tsx scripts/enrich_hausbibliothek_catalog.ts",
     "archive:kpi": "npx tsx scripts/archive_kpi_snapshots.ts",
     "build:reports": "npx tsx scripts/fetch_cloudflare_analytics.ts && npx tsx scripts/fetch_mailchimp_metrics.ts && npx tsx scripts/archive_kpi_snapshots.ts && npx tsx scripts/generate_powerbi_previews.ts",
+    "provision:it-structure": "npx tsx scripts/provision_sharepoint_it_structure.ts",
     "test:e2e": "npx playwright test"
   },
   "dependencies": {
