@@ -100,12 +100,12 @@ hausbibliothek.org, www.hausbibliothek.org {
 }
 
 # ==============================================================================
-# 4. Intranet (Vanity URL / Redirection): intranet.sprachcafé.org
-# -> Weiterleitung auf das Microsoft 365 SharePoint Intranet Hub
+# 4. Intranet (Direkte Bibliotheks-Weiterleitung): intranet.sprachcafé.org
+# -> Weiterleitung direkt in die SharePoint Dokumentenbibliothek (Freigegebene Dokumente)
 # ==============================================================================
 intranet.xn--sprachcaf-j4a.org, intranet.sprachcafe-polnisch.org {
     encode zstd gzip
-    redir https://sprachcafepolnisch.sharepoint.com/sites/intranet{uri} 302
+    redir https://sprachcafepolnisch.sharepoint.com/sites/intranet/Freigegebene%20Dokumente{uri} 302
 }
 
 
