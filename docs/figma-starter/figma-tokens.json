@@ -1,0 +1,66 @@
+{
+  "global": {
+    "color": {
+      "brand": {
+        "primary": { "value": "#8B1E2D", "type": "color", "description": "Deep Polish Carmine - WCAG AA > 6:1" },
+        "primary-hover": { "value": "#6E1420", "type": "color", "description": "Darker Carmine for Hover/Active" },
+        "primary-light": { "value": "#FF758F", "type": "color", "description": "Bright Carmine for Dark Mode accents" },
+        "secondary": { "value": "#3B6B35", "type": "color", "description": "Warm Olive / Sage Green" },
+        "secondary-hover": { "value": "#2D5428", "type": "color", "description": "Dark Olive for Hover" },
+        "secondary-light": { "value": "#78B871", "type": "color", "description": "Light Olive for Dark Mode" },
+        "amber": { "value": "#D97706", "type": "color", "description": "Warm Amber Honey" },
+        "marker": { "value": "#F2B705", "type": "color", "description": "Text highlight marker yellow" }
+      },
+      "surface": {
+        "paper": { "value": "#FDFBF7", "type": "color", "description": "Warm Paper White (Cards / Inputs)" },
+        "bg": { "value": "#FAF6EE", "type": "color", "description": "Café Cream Main Background" },
+        "container": { "value": "#F2ECE4", "type": "color", "description": "Container / Section Background" },
+        "dim": { "value": "#DED9D7", "type": "color", "description": "Muted container background" },
+        "dark": { "value": "#181615", "type": "color", "description": "Dark Charcoal for Dark Mode / Footer" },
+        "dark-surface": { "value": "#24201E", "type": "color", "description": "Dark Mode Card Surface" }
+      },
+      "text": {
+        "main": { "value": "#1D1B1A", "type": "color", "description": "High contrast body text (WCAG AAA)" },
+        "muted": { "value": "#5B403D", "type": "color", "description": "Secondary / Subtitle text" },
+        "inverse": { "value": "#F5F0EE", "type": "color", "description": "White/cream text on dark backgrounds" }
+      },
+      "border": {
+        "default": { "value": "#E2D8CC", "type": "color", "description": "Subtle card and divider border" },
+        "dark": { "value": "#363230", "type": "color", "description": "Border in dark mode" }
+      }
+    },
+    "fontFamilies": {
+      "heading": { "value": "Literata", "type": "fontFamilies", "description": "Headings & Brand Title Serif" },
+      "body": { "value": "Plus Jakarta Sans", "type": "fontFamilies", "description": "UI, Navigation & Body Sans" }
+    },
+    "borderRadius": {
+      "none": { "value": "0px", "type": "borderRadius" },
+      "sm": { "value": "4px", "type": "borderRadius" },
+      "md": { "value": "8px", "type": "borderRadius" },
+      "lg": { "value": "12px", "type": "borderRadius" },
+      "xl": { "value": "16px", "type": "borderRadius" },
+      "2xl": { "value": "24px", "type": "borderRadius" },
+      "full": { "value": "9999px", "type": "borderRadius" }
+    },
+    "spacing": {
+      "1": { "value": "4px", "type": "spacing" },
+      "2": { "value": "8px", "type": "spacing" },
+      "3": { "value": "12px", "type": "spacing" },
+      "4": { "value": "16px", "type": "spacing" },
+      "6": { "value": "24px", "type": "spacing" },
+      "8": { "value": "32px", "type": "spacing" },
+      "12": { "value": "48px", "type": "spacing" },
+      "16": { "value": "64px", "type": "spacing" }
+    },
+    "boxShadow": {
+      "card": {
+        "value": { "x": "0", "y": "2", "blur": "8", "spread": "0", "color": "rgba(29, 27, 26, 0.06)", "type": "dropShadow" },
+        "type": "boxShadow"
+      },
+      "card-hover": {
+        "value": { "x": "0", "y": "8", "blur": "24", "spread": "0", "color": "rgba(29, 27, 26, 0.12)", "type": "dropShadow" },
+        "type": "boxShadow"
+      }
+    }
+  }
+}
