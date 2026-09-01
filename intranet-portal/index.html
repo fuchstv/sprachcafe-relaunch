@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de" class="h-full bg-[#FAF6EE]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SprachCafé Polnisch – Internes Intranet & Dokumenten-Hub</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#8B263E',
+              'primary-hover': '#6E1420',
+              secondary: '#3B6B35',
+              'secondary-hover': '#2D5428',
+              amber: '#D97706',
+              bg: '#FAF6EE',
+              surface: '#FDFBF7',
+              container: '#F2ECE4',
+              dark: '#181615',
+              text: '#1D1B1A',
+              'text-muted': '#5B403D',
+              border: '#E2D8CC'
+            }
+          },
+          fontFamily: {
+            serif: ['Literata', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1D1B1A; }
+    h1, h2, h3, .font-serif { font-family: 'Literata', Georgia, serif; }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-[#FAF6EE] text-[#1D1B1A]">
+
+  <!-- Top Announcement / Auth Bar -->
+  <header class="bg-[#181615] text-stone-200 text-xs py-2 px-4 border-b border-stone-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium">M365 Tenant: sprachcafepolnisch.sharepoint.com</span>
+        <span class="text-stone-500">|</span>
+        <span>EC2 Server: 3.66.205.213</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://sprachcafepolnisch.sharepoint.com/sites/intranet" target="_blank" class="hover:text-amber-400 transition inline-flex items-center gap-1 font-semibold">
+          <span>In Microsoft SharePoint öffnen</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Navigation Header -->
+  <div class="bg-[#8B263E] text-white shadow-lg border-b-4 border-amber-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/20 text-amber-300 text-xs font-semibold tracking-wide uppercase mb-3">
+            <span>🏛️ SprachCafé Polnisch e.V.</span>
+            <span>•</span>
+            <span>Internes Intranet & Dokumenten-Hub</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold font-serif tracking-tight">
+            Willkommen im Team-Intranet
+          </h1>
+          <p class="mt-2 text-stone-200 text-sm sm:text-base max-w-2xl">
+            Zentrale Plattform für alle Dokumente, Vorlagen, IT-Runbooks, Schichtpläne und vereinsweiten Arbeitsbereiche.
+          </p>
+        </div>
+        <!-- Quick App Buttons -->
+        <div class="flex flex-wrap gap-2.5">
+          <a href="https://team.sprachcafé.org" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-3.5 py-2 rounded-lg text-xs font-semibold backdrop-blur transition flex items-center gap-2 shadow-sm">
+            <span>📅 Dienstplan</span>
+          </a>
+          <a href="https://hausbibliothek.org" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-3.5 py-2 rounded-lg text-xs font-semibold backdrop-blur transition flex items-center gap-2 shadow-sm">
+            <span>📚 Hausbibliothek</span>
+          </a>
+          <a href="https://kurse.sprachcafé.org" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-3.5 py-2 rounded-lg text-xs font-semibold backdrop-blur transition flex items-center gap-2 shadow-sm">
+            <span>🎓 Kursverwaltung</span>
+          </a>
+          <a href="https://newsletter.sprachcafé.org" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-3.5 py-2 rounded-lg text-xs font-semibold backdrop-blur transition flex items-center gap-2 shadow-sm">
+            <span>✉️ Newsletter</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="mt-8 max-w-2xl">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Ordner, Dokumente, IT-Runbooks oder Vorlagen durchsuchen..." 
+            class="w-full bg-[#FDFBF7] text-[#1D1B1A] placeholder-stone-400 pl-11 pr-4 py-3 rounded-xl shadow-md border border-[#E2D8CC] focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm font-medium"
+            oninput="filterContent()"
+          >
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Quick Action / Forms Section -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold font-serif text-[#8B263E] flex items-center gap-2">
+          <span>⚡</span>
+          <span>Häufig genutzte Formulare & Schnellzugriffe</span>
+        </h2>
+        <span class="text-xs text-stone-500 font-medium">Microsoft Forms & Workflows</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdURTBESVhTRldGWFhTNzk2QTZFQTdaNTIxRC4u" target="_blank" class="bg-[#FDFBF7] p-4 rounded-xl border border-[#E2D8CC] hover:border-[#8B263E] hover:shadow-md transition group">
+          <div class="w-9 h-9 rounded-lg bg-[#8B263E]/10 text-[#8B263E] flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-105 transition">👤</div>
+          <h3 class="font-bold text-sm text-[#1D1B1A] group-hover:text-[#8B263E] transition">Neues Teammitglied anlegen</h3>
+          <p class="text-xs text-stone-600 mt-1">Onboarding für Haupt- und Ehrenamtliche erfassen</p>
+        </a>
+
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUME1NN0xVOEw4M1dNNUZBUk42N1NaTDQ1RS4u" target="_blank" class="bg-[#FDFBF7] p-4 rounded-xl border border-[#E2D8CC] hover:border-[#8B263E] hover:shadow-md transition group">
+          <div class="w-9 h-9 rounded-lg bg-emerald-700/10 text-emerald-800 flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-105 transition">🎨</div>
+          <h3 class="font-bold text-sm text-[#1D1B1A] group-hover:text-[#8B263E] transition">Neue Ausstellung melden</h3>
+          <p class="text-xs text-stone-600 mt-1">Galerie- und Vernissage-Daten einreichen</p>
+        </a>
+
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=CqhFt4L25EW6LtSLvZ5wPZc9f-Yj5GpMoZYjm79OAKdUOEpWQUM5SVhJU1Y4RkVBOEkwNTY5UFRQVS4u" target="_blank" class="bg-[#FDFBF7] p-4 rounded-xl border border-[#E2D8CC] hover:border-[#8B263E] hover:shadow-md transition group">
+          <div class="w-9 h-9 rounded-lg bg-amber-600/10 text-amber-700 flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-105 transition">🛍️</div>
+          <h3 class="font-bold text-sm text-[#1D1B1A] group-hover:text-[#8B263E] transition">Neuen Laden-Artikel erfassen</h3>
+          <p class="text-xs text-stone-600 mt-1">Bücher, Kunsthandwerk & Souvenirs inventarisieren</p>
+        </a>
+
+        <a href="06_Vorlagencenter_CI/Vorlage_Honorarabrechnung_und_Auslagenersatz_2026.xlsx" download class="bg-[#FDFBF7] p-4 rounded-xl border border-[#E2D8CC] hover:border-emerald-700 hover:shadow-md transition group">
+          <div class="w-9 h-9 rounded-lg bg-emerald-600/10 text-emerald-700 flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-105 transition">💶</div>
+          <h3 class="font-bold text-sm text-[#1D1B1A] group-hover:text-emerald-800 transition">Honorarabrechnung 2026</h3>
+          <p class="text-xs text-stone-600 mt-1">Excel-Vorlage für Dozierende herunterladen (.xlsx)</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Document Libraries / Folders Section -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-bold font-serif text-[#8B263E] flex items-center gap-2">
+            <span>📁</span>
+            <span>Vollständige Ordnerstruktur & Dokumenten-Bibliotheken</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-stone-600 mt-1">Alle 6 zentralen Bereiche auf einen Blick mit Direkt-Download und Dokumentation.</p>
+        </div>
+      </div>
+
+      <!-- 6 Libraries Grid -->
+      <div id="librariesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: IT & Infrastruktur -->
+        <div class="library-card bg-[#FDFBF7] rounded-2xl border border-[#E2D8CC] shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-[#181615] text-white p-4 border-b border-stone-800 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl">💻</span>
+              <h3 class="font-bold text-base font-serif">01_IT_Infrastruktur</h3>
+            </div>
+            <span class="text-[10px] bg-stone-800 text-amber-300 font-bold px-2 py-0.5 rounded">Core IT</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 01_Architektur_und_Server
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="01_IT_Infrastruktur/01_Architektur_und_Server/IT_INFRASTRUKTUR_UND_BETRIEBSHANDBUCH.md" target="_blank" class="hover:text-[#8B263E] underline flex items-center gap-1">📄 IT-Betriebshandbuch (.md)</a></li>
+                  <li><a href="01_IT_Infrastruktur/01_Architektur_und_Server/IT_Betriebshandbuch.docx" download class="hover:text-[#8B263E] underline flex items-center gap-1">📄 IT-Betriebshandbuch (.docx)</a></li>
+                </ul>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 02_Datenbanken_und_Backups
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="01_IT_Infrastruktur/02_Datenbanken_und_Backups/Backup_und_Disaster_Recovery_Plan.docx" download class="hover:text-[#8B263E] underline flex items-center gap-1">📄 Backup & S3 Sync Plan (.docx)</a></li>
+                </ul>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 03_M365_SharePoint_Verwaltung
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="01_IT_Infrastruktur/03_M365_und_SharePoint_Verwaltung/M365_Rollen_und_Berechtigungen.docx" download class="hover:text-[#8B263E] underline flex items-center gap-1">📄 Rollen- & Berechtigungsmatrix (.docx)</a></li>
+                </ul>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 04_Notfall_Runbooks_Eskalation
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="01_IT_Infrastruktur/04_Notfall_Runbooks_und_Eskalation/IT_Notfall_Runbooks.docx" download class="hover:text-[#8B263E] underline flex items-center gap-1">🚨 5 Notfall-Runbooks (.docx)</a></li>
+                </ul>
+              </div>
+            </div>
+            <a href="https://sprachcafepolnisch.sharepoint.com/sites/intranet" target="_blank" class="w-full bg-[#181615] hover:bg-stone-800 text-stone-200 text-xs py-2 px-3 rounded-lg font-medium text-center transition flex items-center justify-center gap-1.5">
+              <span>In SharePoint öffnen</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Vorstand & Finanzen -->
+        <div class="library-card bg-[#FDFBF7] rounded-2xl border border-[#E2D8CC] shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-[#8B263E] text-white p-4 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl">🔒</span>
+              <h3 class="font-bold text-base font-serif">02_Vorstand_Finanzen</h3>
+            </div>
+            <span class="text-[10px] bg-red-900 text-red-200 font-bold px-2 py-0.5 rounded border border-red-700">Vertraulich</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 01_Buchhaltung_und_Steuer
+                </div>
+                <p class="pl-5 text-stone-500">Monatsabschlüsse, Belege, Steuerberaterberichte</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 02_Vereinsregister_und_Satzung
+                </div>
+                <p class="pl-5 text-stone-500">Notarielle Urkunden, Amtsgerichtsauszüge, Satzung</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 03_Sitzungsprotokolle
+                </div>
+                <p class="pl-5 text-stone-500">Mitgliederversammlungen, Vorstandsbeschlüsse</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 04_Vertraege_und_SEPA
+                </div>
+                <p class="pl-5 text-stone-500">Mietverträge, Förderbescheide, SEPA-Mandate</p>
+              </div>
+            </div>
+            <a href="https://sprachcafepolnisch.sharepoint.com/sites/vorstand-finanzen" target="_blank" class="w-full bg-[#8B263E] hover:bg-[#6E1420] text-white text-xs py-2 px-3 rounded-lg font-medium text-center transition flex items-center justify-center gap-1.5">
+              <span>Vorstandsbereich öffnen (SSO)</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Standorte & Betrieb -->
+        <div class="library-card bg-[#FDFBF7] rounded-2xl border border-[#E2D8CC] shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-[#3B6B35] text-white p-4 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl">📍</span>
+              <h3 class="font-bold text-base font-serif">03_Standorte_Betrieb</h3>
+            </div>
+            <span class="text-[10px] bg-emerald-900 text-emerald-200 font-bold px-2 py-0.5 rounded">3 Standorte</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> Pankow (Schulzestr. 1)
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="03_Standorte_Betrieb/Schichtleitfaden_und_Checkliste_Begegnungscafe_Pankow.docx" download class="hover:text-[#8B263E] underline flex items-center gap-1">📄 Schichtleitfaden & Checkliste (.docx)</a></li>
+                </ul>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> Schöneberg (Hauptstr.)
+                </div>
+                <p class="pl-5 text-stone-500">Kurse & Familienangebote Schöneberg</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> Köpenick (Am Wiesengraben 7a)
+                </div>
+                <p class="pl-5 text-stone-500">Hausbibliothek & Kulturangebote Köpenick</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> Schichtpläne & Schlüssel
+                </div>
+                <p class="pl-5 text-stone-500">Dienstplan-Exporte und Raumschlüssel-Listen</p>
+              </div>
+            </div>
+            <a href="https://team.sprachcafé.org" target="_blank" class="w-full bg-[#3B6B35] hover:bg-[#2D5428] text-white text-xs py-2 px-3 rounded-lg font-medium text-center transition flex items-center justify-center gap-1.5">
+              <span>Zum Dienstplan-Portal</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4: Dozierende & Kurse -->
+        <div class="library-card bg-[#FDFBF7] rounded-2xl border border-[#E2D8CC] shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-sky-800 text-white p-4 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl">🎓</span>
+              <h3 class="font-bold text-base font-serif">04_Dozierende_Kurse</h3>
+            </div>
+            <span class="text-[10px] bg-sky-950 text-sky-200 font-bold px-2 py-0.5 rounded">Sprachschule</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 01_Polnisch_Kurse
+                </div>
+                <p class="pl-5 text-stone-500">Curricula & Übungsblätter A1 bis C1</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 02_Deutsch_Kurse (DaF)
+                </div>
+                <p class="pl-5 text-stone-500">Unterrichtsmaterialien für Deutschlernende</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 03_Tandem_und_Workshops
+                </div>
+                <p class="pl-5 text-stone-500">Einstufungstests & Tandem-Vermittlung</p>
+              </div>
+            </div>
+            <a href="https://kurse.sprachcafé.org" target="_blank" class="w-full bg-sky-800 hover:bg-sky-900 text-white text-xs py-2 px-3 rounded-lg font-medium text-center transition flex items-center justify-center gap-1.5">
+              <span>Kurs-Portal öffnen</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 5: Kultur, Galerie & Events -->
+        <div class="library-card bg-[#FDFBF7] rounded-2xl border border-[#E2D8CC] shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-amber-700 text-white p-4 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl">🎨</span>
+              <h3 class="font-bold text-base font-serif">05_Kultur_Galerie</h3>
+            </div>
+            <span class="text-[10px] bg-amber-950 text-amber-200 font-bold px-2 py-0.5 rounded">Events & Kunst</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 01_Ausstellungen_und_Galerie
+                </div>
+                <p class="pl-5 text-stone-500">Vernissagen-Exposés, Bildrechte & Verträge</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 02_Presse_und_Flyer
+                </div>
+                <p class="pl-5 text-stone-500">Pressemitteilungen, Programmhefte & Plakate</p>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 03_Veranstaltungsarchiv
+                </div>
+                <p class="pl-5 text-stone-500">Rückblicke & Bildmaterial vergangener Jahre</p>
+              </div>
+            </div>
+            <a href="https://sprachcafepolnisch.sharepoint.com/sites/kultur-events" target="_blank" class="w-full bg-amber-700 hover:bg-amber-800 text-white text-xs py-2 px-3 rounded-lg font-medium text-center transition flex items-center justify-center gap-1.5">
+              <span>Kulturbereich in SharePoint</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 6: Vorlagencenter & CI -->
+        <div class="library-card bg-[#FDFBF7] rounded-2xl border border-[#E2D8CC] shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-purple-900 text-white p-4 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl">📦</span>
+              <h3 class="font-bold text-base font-serif">06_Vorlagencenter_CI</h3>
+            </div>
+            <span class="text-[10px] bg-purple-950 text-purple-200 font-bold px-2 py-0.5 rounded">CI & Vorlagen</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3 text-xs">
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 01_Briefvorlagen_und_Formulare
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="06_Vorlagencenter_CI/Offizieller_Briefbogen_SprachCafe_Polnisch_eV.docx" download class="hover:text-[#8B263E] underline flex items-center gap-1">📄 Offizieller Briefbogen (.docx)</a></li>
+                  <li><a href="06_Vorlagencenter_CI/Vorlage_Honorarabrechnung_und_Auslagenersatz_2026.xlsx" download class="hover:text-[#8B263E] underline flex items-center gap-1">💶 Honorarabrechnung (.xlsx)</a></li>
+                </ul>
+              </div>
+
+              <div class="folder-group">
+                <div class="font-semibold text-stone-800 flex items-center gap-1.5 text-xs mb-1">
+                  <span>📂</span> 02_Design_Tokens_und_UX_Kit
+                </div>
+                <ul class="pl-5 space-y-1 text-stone-600">
+                  <li><a href="06_Vorlagencenter_CI/figma-tokens.json" target="_blank" class="hover:text-[#8B263E] underline flex items-center gap-1">🎨 Figma Tokens JSON</a></li>
+                  <li><a href="06_Vorlagencenter_CI/FIGMA_SETUP_AND_IMPORT_GUIDE.md" target="_blank" class="hover:text-[#8B263E] underline flex items-center gap-1">📖 Figma Import Guide (.md)</a></li>
+                </ul>
+              </div>
+            </div>
+            <a href="06_Vorlagencenter_CI/Offizieller_Briefbogen_SprachCafe_Polnisch_eV.docx" download class="w-full bg-purple-900 hover:bg-purple-950 text-white text-xs py-2 px-3 rounded-lg font-medium text-center transition flex items-center justify-center gap-1.5">
+              <span>Briefbogen herunterladen</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#181615] text-stone-400 text-xs py-8 border-t border-stone-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="font-bold text-stone-200">SprachCafé Polnisch e.V. • Internes Team-Intranet</p>
+        <p class="text-[11px] text-stone-500 mt-0.5">Schulzestr. 1, 13187 Berlin | Amtsgericht Charlottenburg VR 32800 B</p>
+      </div>
+      <div class="flex items-center space-x-6 text-stone-400">
+        <a href="https://sprachcafepolnisch.sharepoint.com/sites/intranet" target="_blank" class="hover:text-white transition">SharePoint Hub</a>
+        <a href="https://team.sprachcafé.org" target="_blank" class="hover:text-white transition">Dienstplan</a>
+        <a href="https://hausbibliothek.org" target="_blank" class="hover:text-white transition">Hausbibliothek</a>
+        <a href="https://sprachcafé.org" target="_blank" class="hover:text-white transition">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterContent() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.library-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(q)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

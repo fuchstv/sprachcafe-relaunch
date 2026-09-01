@@ -1,7 +1,6 @@
 # Caddyfile - Central Reverse Proxy & Automatic TLS Configuration
-# Automatic TLS via Let's Encrypt / ACME
 {
-	email admin@sprachcafe-polnisch.org
+    email admin@sprachcafe-polnisch.org
 }
 
 # ==============================================================================
@@ -9,208 +8,180 @@
 # -> Statische Dateien aus /var/www/production
 # ==============================================================================
 sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www.xn--sprachcaf-j4a.org {
-	root * /var/www/production
-	encode zstd gzip
+    root * /var/www/production
+    encode zstd gzip
 
-	# ==============================================================================
-	# 301 Redirect Map: Legacy WordPress URLs -> Astro Routes (Phase 6.1)
-	# ==============================================================================
+    # 301 Redirects & Mappings
+    redir /erfolgreicher-relaunch/ /posts/erfolgreicher-relaunch-webportal 301
+    redir /erfolgreicher-relaunch /posts/erfolgreicher-relaunch-webportal 301
+    redir /neue-buchbestaende-koepenick/ /posts/neue-buchbestaende-koepenick 301
+    redir /neue-buchbestaende-koepenick /posts/neue-buchbestaende-koepenick 301
+    redir /de/ / 301
+    redir /de / 301
+    redir /veranstaltungen/ /events/ 301
+    redir /veranstaltungen /events/ 301
+    redir /bibliothek/ /hausbibliothek/ 301
+    redir /bibliothek /hausbibliothek/ 301
+    redir /2026/02/speak-dating-3/ /speak-dating/ 301
+    redir /2026/02/speak-dating-3 /speak-dating/ 301
+    redir /2024/12/speak-dating-2/ /speak-dating/ 301
+    redir /2024/12/speak-dating-2 /speak-dating/ 301
 
-	# 1. Date-based Post Permalinks (/YYYY/MM/DD/slug & /YYYY/MM/slug)
-	@wp_date_day path_regexp wp_date_day ^/(\d{4})/(\d{2})/(\d{2})/(.+?)/?$
-	redir @wp_date_day /posts/{re.wp_date_day.4} 301
+    # Mailchimp Webhook Endpoint (GET Handshake & POST Events)
+    handle /api/webhooks/mailchimp* {
+        header Content-Type "application/json; charset=utf-8"
+        respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
+    }
+    handle /api/mailchimp-webhook* {
+        header Content-Type "application/json; charset=utf-8"
+        respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
+    }
 
-	@wp_date_month path_regexp wp_date_month ^/(\d{4})/(\d{2})/(.+?)/?$
-	redir @wp_date_month /posts/{re.wp_date_month.3} 301
+    # Basic Auth Protection for /reports/*
+    basic_auth /reports/* {
+        philipp $2a$14$DIRdKlU/PFEaHNqQb3FoS.9nR2sPHunOLWfctslP0O030QXWzeeiC
+    }
 
-	# 2. Multilingual Legacy Post Permalinks (/(de|pl|en)/YYYY/MM/slug)
-	@wp_lang_date path_regexp wp_lang_date ^/(de|pl|en)/(\d{4})/(\d{2})/(.+?)/?$
-	redir @wp_lang_date /{re.wp_lang_date.1}/posts/{re.wp_lang_date.4} 301
+    handle {
+        file_server
+    }
 
-	# 3. Specific WordPress Post & Article Slugs Mappings
-	redir /erfolgreicher-relaunch/ /posts/erfolgreicher-relaunch-webportal 301
-	redir /erfolgreicher-relaunch /posts/erfolgreicher-relaunch-webportal 301
-	redir /neue-buchbestaende-koepenick/ /posts/neue-buchbestaende-koepenick 301
-	redir /neue-buchbestaende-koepenick /posts/neue-buchbestaende-koepenick 301
-	redir /pl/udany-relaunch/ /posts/erfolgreicher-relaunch-webportal 301
-	redir /pl/udany-relaunch /posts/erfolgreicher-relaunch-webportal 301
-	redir /de/ / 301
-	redir /de / 301
-
-	# 4. Legacy Categories, Tags, Authors & RSS Feeds
-	@wp_categories path_regexp wp_cats ^/category/(.+?)/?$
-	redir @wp_categories /posts/ 301
-
-	@wp_tags path_regexp wp_tags ^/tag/(.+?)/?$
-	redir @wp_tags /posts/ 301
-
-	@wp_authors path_regexp wp_authors ^/author/(.+?)/?$
-	redir @wp_authors /posts/ 301
-
-	@wp_feeds path_regexp wp_feeds ^/(feed|rss|rss2|atom)/?$
-	redir @wp_feeds /posts/ 301
-
-	# 5. Legacy Pages & Content Sections to Astro Routes
-	redir /projekte/ /posts/ 301
-	redir /projekte /posts/ 301
-	redir /de/projekte/ /posts/ 301
-	redir /de/projekte /posts/ 301
-	redir /freiwillig/ /mitmachen/ 301
-	redir /freiwillig /mitmachen/ 301
-	redir /ehrenamt/ /mitmachen/ 301
-	redir /ehrenamt /mitmachen/ 301
-	redir /engagiere-dich-als-freiwilliger/ /mitmachen/ 301
-	redir /engagiere-dich-als-freiwilliger /mitmachen/ 301
-	redir /test-engagiere-dich-als-freiwilliger/ /mitmachen/ 301
-	redir /test-engagiere-dich-als-freiwilliger /mitmachen/ 301
-	redir /veranstaltungen/ /events/ 301
-	redir /veranstaltungen /events/ 301
-	redir /bibliothek/ /hausbibliothek/ 301
-	redir /bibliothek /hausbibliothek/ 301
-
-	# 6. Legacy WordPress Admin & System Endpoints
-	redir /wp-admin* https://admin.sprachcafe-polnisch.org 301
-	redir /wp-login.php https://admin.sprachcafe-polnisch.org 301
-
-	# 7. Mailchimp Webhook Endpoint (GET Handshake & POST Events)
-	handle /api/webhooks/mailchimp* {
-		header Content-Type "application/json; charset=utf-8"
-		respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
-	}
-	handle /api/mailchimp-webhook* {
-		header Content-Type "application/json; charset=utf-8"
-		respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
-	}
-
-	# Basic Auth Protection for /reports/*
-	basic_auth /reports/* {
-		philipp $2a$14$DIRdKlU/PFEaHNqQb3FoS.9nR2sPHunOLWfctslP0O030QXWzeeiC
-	}
-
-	handle {
-		file_server
-	}
-
-	# Security Headers for Production
-	header {
-		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-		X-Content-Type-Options "nosniff"
-		X-Frame-Options "DENY"
-		Referrer-Policy "strict-origin-when-cross-origin"
-	}
-
-	log {
-		output file /var/log/caddy/production_access.log
-		format json
-	}
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
 }
 
 # ==============================================================================
-# 2. CMS / Admin Interface (Production): admin.sprachcafe-polnisch.org
-# -> Forced HTTPS, Token Auth Passthrough & Optional IP-Whitelist Directive
+# 2. Beta / Staging Environment: beta.sprachcafe-polnisch.org
+# -> Staging / Beta Statische Dateien aus /var/www/beta
 # ==============================================================================
-admin.sprachcafe-polnisch.org {
-	encode zstd gzip
+beta.sprachcafe-polnisch.org, http://3.66.205.213 {
+    root * /var/www/beta
+    encode zstd gzip
 
-	# --------------------------------------------------------------------------
-	# OPTIONALE IP-WHITELIST DIREKTIVE (Auskommentierte Option für den produktiven Einsatz)
-	# Schränkt den CMS-Adminzugriff auf autorisierte IPs/Vereinsbüro/VPN ein.
-	# Zum Aktivieren der IP-Sperre einfach die nachfolgenden Zeilen einkommentieren:
-	# --------------------------------------------------------------------------
-	# @admin_whitelist {
-	# 	not client_ip 192.168.1.0/24 203.0.113.50 127.0.0.1
-	# }
-	# respond @admin_whitelist "403 Forbidden - CMS Admin Access Restricted by IP Whitelist" 403
+    # Basic Auth Protection for /reports/*
+    basic_auth /reports/* {
+        philipp $2a$14$DIRdKlU/PFEaHNqQb3FoS.9nR2sPHunOLWfctslP0O030QXWzeeiC
+    }
 
-	# --------------------------------------------------------------------------
-	# Token-Authentifizierung-Passthrough & Dynamic Header Forwarding zum CMS Backend
-	# Transparente Weiterleitung aller Authorization-Header (Bearer Tokens & JWTs)
-	# --------------------------------------------------------------------------
-	# Headless CMS decommissioned - return 503 Service Unavailable
-	respond "503 Service Unavailable - CMS Admin Interface decommissioned" 503
+    handle {
+        file_server
+    }
 
-	# Forced HTTPS Security Headers (HSTS Preload, No-Sniff, Frame Deny)
-	header {
-		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-		X-Content-Type-Options "nosniff"
-		X-Frame-Options "DENY"
-		Referrer-Policy "strict-origin-when-cross-origin"
-	}
-
-	log {
-		output file /var/log/caddy/admin_access.log
-		format json
-	}
+    header {
+        X-Robots-Tag "noindex, nofollow, noarchive"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+    }
 }
 
 # ==============================================================================
-# 3. Beta / Staging Environment: beta.sprachcafe-polnisch.org
-# -> Staging-Proxy auf Port 3000 (separater Build-Ordner / Staging)
-# ==============================================================================
-beta.sprachcafe-polnisch.org {
-	root * /var/www/beta
-	encode zstd gzip
-
-	# Basic Auth Protection for /reports/*
-	basic_auth /reports/* {
-		philipp $2a$14$DIRdKlU/PFEaHNqQb3FoS.9nR2sPHunOLWfctslP0O030QXWzeeiC
-	}
-
-	handle {
-		file_server
-	}
-
-	# Roboter-Indizierung für Staging unterbinden
-	header {
-		X-Robots-Tag "noindex, nofollow, noarchive"
-		X-Content-Type-Options "nosniff"
-		X-Frame-Options "DENY"
-	}
-
-	log {
-		output file /var/log/caddy/beta_access.log
-		format json
-	}
-}
-
-# ==============================================================================
-# 4. Hausbibliothek (Dauerhafter Proxy für Bibliotheks-App): hausbibliothek.org
-# -> Proxy auf Port 8080 (Bibliotheks-App mit Nutzerkonten, Ausleihe, Admin-Dashboard)
-# HINWEIS: Explizite Proxy-Header X-Forwarded-Proto, X-Forwarded-For, X-Forwarded-Host
-# für Session-Cookies / CSRF Validation in Phase L.9
+# 3. Hausbibliothek (Proxy): hausbibliothek.org
 # ==============================================================================
 hausbibliothek.org, www.hausbibliothek.org {
-	encode zstd gzip
+    root * /usr/share/caddy
+    encode zstd gzip
 
-	reverse_proxy 127.0.0.1:8080 {
-		header_up Host {host}
-		header_up X-Real-IP {remote_host}
-	}
+    handle /api/* {
+        reverse_proxy backend:80
+    }
 
-	header {
-		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-		X-Content-Type-Options "nosniff"
-		X-Frame-Options "SAMEORIGIN"
-	}
+    handle /uploads/* {
+        reverse_proxy backend:80
+    }
 
-	log {
-		output file /var/log/caddy/hausbibliothek_access.log
-		format json
-	}
+    handle {
+        try_files {path} /index.html
+        file_server
+    }
 }
 
 # ==============================================================================
-# 5. Intranet (Vanity URL / Redirection): intranet.sprachcafé.org
-# -> Weiterleitung auf das zentrale Microsoft 365 SharePoint Intranet Hub
+# 4. Intranet Portal & Dokumenten-Hub: intranet.sprachcafé.org
+# -> Serviert das Intranet Dashboard & Dateistruktur aus /var/www/intranet
 # ==============================================================================
-intranet.xn--sprachcaf-j4a.org {
-	encode zstd gzip
-	redir https://sprachcafepolnisch.sharepoint.com/sites/intranet{uri} 302
+intranet.xn--sprachcaf-j4a.org, intranet.sprachcafe-polnisch.org {
+    root * /var/www/intranet
+    encode zstd gzip
+
+    handle {
+        file_server
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
 }
 
-intranet.sprachcafe-polnisch.org {
-	encode zstd gzip
-	redir https://sprachcafepolnisch.sharepoint.com/sites/intranet{uri} 302
+
+# ==============================================================================
+# 5. Team- & Dienstplan Web-App: team.sprachcafé.org
+# -> Proxy auf Node.js Service (Port 3200)
+# ==============================================================================
+team.xn--sprachcaf-j4a.org {
+    encode zstd gzip
+
+    reverse_proxy 172.18.0.1:3200
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Robots-Tag "noindex, nofollow, noarchive"
+    }
 }
+
+# ==============================================================================
+# 6. Kurs- & Camp-Portal (PWA): kurse.sprachcafe-polnisch.org & kurse.sprachcafé.org
+# -> Proxy auf Fastify Service (Port 3300) mit WebSocket- & PWA-Unterstützung
+# ==============================================================================
+kurse.sprachcafe-polnisch.org, kurse.xn--sprachcaf-j4a.org {
+    encode zstd gzip
+
+    reverse_proxy 172.18.0.1:3300 {
+        flush_interval -1
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+}
+
+# ==============================================================================
+# 7. Newsletter & Abonnenten-Portal: newsletter.sprachcafe-polnisch.org & newsletter.sprachcafé.org
+# -> Proxy auf Listmonk Service (Port 9000)
+# ==============================================================================
+newsletter.sprachcafe-polnisch.org, newsletter.xn--sprachcaf-j4a.org {
+    encode zstd gzip
+
+    reverse_proxy 172.18.0.1:9000
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+}
+
+# ==============================================================================
+# 8. Speak-Dating Domain (Permanent 301 Redirect): speak-dating.org
+# -> Weiterleitung auf den Innovations-Hub
+# ==============================================================================
+speak-dating.org, www.speak-dating.org {
+    encode zstd gzip
+    redir https://xn--sprachcaf-j4a.org/speak-dating/ 301
+}
+
+
+
 
 
