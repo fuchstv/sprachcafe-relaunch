@@ -6,7 +6,7 @@
     "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
     "displayName": "SprachCafé - Ehrenamt & Praktikum (Teams an Agata Koch & Mail an kontakt@)",
     "state": "Started",
-    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/11/workflows/230c5da119164e9fb4cedf5a6b9391bd/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ejIxs0QS0CujO8veZr6JTb8A5IQl3ZOtYXP8CQRA7zI",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/11/workflows/230c5da119164e9fb4cedf5a6b9391bd/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=PLACEHOLDER_FLOW_SECRET_SIGNATURE",
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",

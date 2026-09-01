@@ -73,3 +73,16 @@ docs/STITCH_DESIGNS.md
 *stitch-designs*
 *STITCH_DESIGNS*
 
+# Confidential Intranet & Private Content (M365 / SharePoint Only)
+intranet-content/
+intranet-portal/
+*.zip
+*.tar.gz
+*.tgz
+*.bak
+*.backup
+*.dump
+docs/*.zip
+backups/
+
+

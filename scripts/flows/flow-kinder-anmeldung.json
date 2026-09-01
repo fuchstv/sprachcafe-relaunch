@@ -6,7 +6,7 @@
     "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
     "displayName": "SprachCafé - Anmeldung Kinder & Eltern (MS Teams an Agata Koch)",
     "state": "Started",
-    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/04/workflows/2654d01ee53146a3b6906f7d4cec2ab1/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=yRf_6IcNJXkpPo9LKVIsPue_tBQ6DIFXl65f-olH8QM",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/04/workflows/2654d01ee53146a3b6906f7d4cec2ab1/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=PLACEHOLDER_FLOW_SECRET_SIGNATURE",
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",

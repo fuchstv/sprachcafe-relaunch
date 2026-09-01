@@ -6,7 +6,7 @@
     "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
     "displayName": "SprachCafé - Kontaktanfrage (Teams an Agata Koch & Mail an kontakt@)",
     "state": "Started",
-    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/16/workflows/6ed5943cba294ab8b56cbe50beedee96/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Z1MGh9psUCx0erxh9HG32l-aO9v1veLYpmnk5dWnJAM",
+    "triggerUrl": "https://defaultb745a80af68245e4ba2ed48bbd9e70.3d.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/16/workflows/6ed5943cba294ab8b56cbe50beedee96/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=PLACEHOLDER_FLOW_SECRET_SIGNATURE",
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
