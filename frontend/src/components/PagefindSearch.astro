@@ -104,7 +104,7 @@ const { placeholder = "Suchen Sie nach Events, Büchern, Themen..." } = Astro.pr
       pagefind = await import('/pagefind/pagefind.js');
       await pagefind.init();
     } catch (e) {
-      console.log('Pagefind static index loading or fallback mode:', e);
+      console.warn('Pagefind static index loading or fallback mode:', e);
     }
 
     async function performSearch() {
