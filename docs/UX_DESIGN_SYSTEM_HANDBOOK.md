@@ -1,7 +1,7 @@
 # 🎨 SprachCafé Polnisch – UX Design System & Designer Handoff Handbook
 
 > **Zweck dieses Handbuchs:**  
-> Dieses Dokument definiert das branchenübliche Kollaborations- und Design-System für SprachCafé Polnisch (`https://sprachcafé.org` / `https://xn--sprachcaf-j4a.org/`). Es ermöglicht unserer UX-Designerin, in **Figma** frei, kreativ und konsistent zu entwerfen, während Entwickler und die **Antigravity AI** die Entwürfe mit 100%iger Präzision in sauberen, barrierefreien **Astro + Tailwind CSS** Code übersetzen.
+> Dieses Dokument definiert das branchenübliche Kollaborations- und Design-System für SprachCafé Polnisch (`https://sprachcafé.org` / `https://xn--sprachcaf-j4a.org/`). Es ermöglicht unserer UX-Designerin, in **Figma** frei, kreativ und konsistent zu entwerfen, während Entwickler die Entwürfe mit 100%iger Präzision in sauberen, barrierefreien **Astro + Tailwind CSS** Code übersetzen.
 
 ---
 
@@ -207,5 +207,3 @@ Wenn du einen neuen Entwurf in Figma fertigstellst, prüfe kurz diese Checkliste
 
 ---
 
-> 💡 **Tipp für das Team:**  
-> Sobald ein Figma-Link im Chat geteilt wird, kann die KI sofort den entsprechenden Astro-Code generieren, validieren und per `./scripts/deploy.sh beta` auf die Staging-URL bringen!
