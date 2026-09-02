@@ -19,28 +19,28 @@ const jsonLd = {
         'name': 'Członkostwo Silver',
         'price': '50.00',
         'priceCurrency': 'EUR',
-        'description': 'Roczna składka dla osób indywidualnych i wspierających'
+        'description': 'Składka roczna dla osób prywatnych & rodzin'
       },
       {
         '@type': 'Offer',
         'name': 'Członkostwo Gold',
         'price': '120.00',
         'priceCurrency': 'EUR',
-        'description': 'Roczna składka dla rodzin i zaangażowanych członków'
+        'description': 'Składka roczna dla osób prywatnych & rodzin, małych przedsiębiorców i freelancerów'
       },
       {
         '@type': 'Offer',
         'name': 'Członkostwo Platinum',
         'price': '200.00',
         'priceCurrency': 'EUR',
-        'description': 'Roczna składka dla mecenasów kultury'
+        'description': 'Składka roczna dla osób prywatnych & rodzin, małych przedsiębiorców i freelancerów'
       },
       {
         '@type': 'Offer',
         'name': 'Członkostwo Firmowe',
         'priceSpecification': {
           '@type': 'PriceSpecification',
-          'description': 'Indywidualna składka roczna dla firm i partnerów'
+          'description': 'Zindywidualizowana składka roczna dla firm po uzgodnieniu'
         }
       }
     ]
@@ -154,7 +154,7 @@ const jsonLd = {
               Wybierz poziom
             </h3>
             <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">
-              Zdecyduj o odpowiedniej dla Ciebie rocznej składce (Silver, Gold, Platinum lub Firmowe).
+              Wybierz poziom: Srebrny, Złoty, Platynowy, dla firm. Poniżej przedstawiamy zalety poszczególnych poziomów.
             </p>
           </div>
           <a href="#stufen" class="inline-flex items-center gap-2 text-sm font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline">
@@ -175,11 +175,11 @@ const jsonLd = {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
         <!-- Silver -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Osoby indywidualne</span>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Dla osób prywatnych &amp; rodzin</span>
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Silver</h3>
             <div class="mb-6">
               <span class="font-serif text-4xl font-bold text-[#8B263E] dark:text-[#ff758f]">50 €</span>
@@ -187,21 +187,21 @@ const jsonLd = {
             </div>
             <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Prawo głosu na Walnym Zgromadzeniu (członkostwo zwyczajne)
+                <span class="text-[#8B263E] font-bold">✓</span> Możliwość budowania kontaktów poprzez networking w społeczności Kafejki
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Bezpłatny dostęp do Biblioteki Domowej
+                <span class="text-[#8B263E] font-bold">✓</span> 5% zniżki na płatne wydarzenia Kafejki
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> 10% zniżki na płatne warsztaty
+                <span class="text-[#8B263E] font-bold">✓</span> Karnet na 4 kawy w roku
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Biuletyn informacyjny stowarzyszenia
+                <span class="text-[#8B263E] font-bold">✓</span> Karta członkowska
               </li>
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Wybierz Silver
@@ -214,7 +214,7 @@ const jsonLd = {
             Polecane
           </div>
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-white/80">Rodziny i Zaangażowani</span>
+            <span class="text-xs uppercase tracking-wider font-semibold text-white/80">Dla osób prywatnych &amp; rodzin, małych przedsiębiorców i freelancerów</span>
             <h3 class="font-serif text-2xl font-bold mt-1 mb-4">Gold</h3>
             <div class="mb-6">
               <span class="font-serif text-4xl font-bold text-white">120 €</span>
@@ -222,21 +222,27 @@ const jsonLd = {
             </div>
             <ul class="space-y-3 text-sm text-white/90 mb-8">
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Wszystkie korzyści poziomu Silver
+                <span class="text-[#ff758f] font-bold">✓</span> 1 własne spotkanie w pomieszczeniach SCP rocznie gratis (do 6 godz.)
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Bezpłatny wstęp na wybrane wydarzenia kulturalne
+                <span class="text-[#ff758f] font-bold">✓</span> Darmowa reklama na stronie internetowej i w mediach społecznościowych (wpis + logo): newsletter oraz posty na FB (10 grup) i Instagramie
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Pierwszeństwo wypożyczeń z Biblioteki Domowej
+                <span class="text-[#ff758f] font-bold">✓</span> Wsparcie przy budowaniu kontaktów poprzez networking w społeczności Kafejki
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Zaproszenia na ekskluzywne spotkania członkowskie
+                <span class="text-[#ff758f] font-bold">✓</span> 10% zniżki na płatne wydarzenia Kafejki
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Karnet na 8 kaw w roku
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Karta członkowska
               </li>
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl bg-white text-[#8B263E] font-bold hover:bg-slate-100 transition-colors shadow-md"
           >
             Wybierz Gold
@@ -246,7 +252,7 @@ const jsonLd = {
         <!-- Platinum -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Mecenasi Kultury</span>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Dla osób prywatnych &amp; rodzin, małych przedsiębiorców i freelancerów</span>
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Platinum</h3>
             <div class="mb-6">
               <span class="font-serif text-4xl font-bold text-[#8B263E] dark:text-[#ff758f]">200 €</span>
@@ -254,21 +260,30 @@ const jsonLd = {
             </div>
             <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Wszystkie korzyści poziomu Gold
+                <span class="text-[#8B263E] font-bold">✓</span> 2 własne spotkania w pomieszczeniach SCP rocznie gratis (do 6 godz. każde)
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Gwarantowane miejsca na półkoloniach i warsztatach dla dzieci
+                <span class="text-[#8B263E] font-bold">✓</span> Darmowa reklama na stronie internetowej i w mediach społecznościowych (wpis + logo): newsletter oraz posty na FB (10 grup) i Instagramie
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Imienne wyróżnienie na ścianie mecenasów (opcjonalnie)
+                <span class="text-[#8B263E] font-bold">✓</span> Bezpłatny udział w tematycznym networkingu aktywnych Członków (4 x w roku)
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Zaproszenie na coroczne przyjęcie dziękczynne
+                <span class="text-[#8B263E] font-bold">✓</span> Wsparcie przy budowaniu kontaktów poprzez networking w społeczności Kafejki
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> 15% zniżki na płatne wydarzenia Kafejki
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Karnet na 10 kaw w roku
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Karta członkowska
               </li>
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Wybierz Platinum
@@ -278,31 +293,24 @@ const jsonLd = {
         <!-- Członkostwo Firmowe -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Firmy i Partnerzy</span>
-            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Firmowe</h3>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Dla firm</span>
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Dla firm</h3>
             <div class="mb-6">
-              <span class="font-serif text-3xl font-bold text-[#8B263E] dark:text-[#ff758f]">Indywidualnie</span>
+              <span class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">Zindywidualizowana</span>
+              <span class="text-sm text-[#5b403d] dark:text-[#d4c5c2]">po uzgodnieniu</span>
             </div>
-            <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Prezentacja logo na stronie internetowej i podczas wydarzeń
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Wsparcie dwujęzycznych projektów dziecięcych
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Wystawianie zaświadczeń o darowiznach (Spendenbescheinigung)
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Dedykowany program partnerstwa
-              </li>
-            </ul>
+            <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+              Indywidualnie dopasowany model sponsoringu i współpracy dla przedsiębiorstw, instytucji i partnerów wspierających.
+            </p>
+            <p class="text-xs text-[#5b403d]/80 dark:text-[#d4c5c2]/80 italic border-t border-[#e7e1df] dark:border-[#363230] pt-4 mb-8">
+              SprachCafé rozpatruje wnioski o wynajem/sponsoring indywidualnie i zastrzega sobie prawo do zmiany powyższej oferty.
+            </p>
           </div>
           <a
             href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
-            Napisz do nas
+            Zapytaj o ofertę dla firm
           </a>
         </div>
       </div>

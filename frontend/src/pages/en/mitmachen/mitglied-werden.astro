@@ -19,28 +19,28 @@ const jsonLd = {
         'name': 'Silver Membership',
         'price': '50.00',
         'priceCurrency': 'EUR',
-        'description': 'Annual fee for individuals & supporters'
+        'description': 'Annual fee for individuals and families'
       },
       {
         '@type': 'Offer',
         'name': 'Gold Membership',
         'price': '120.00',
         'priceCurrency': 'EUR',
-        'description': 'Annual fee for families & committed supporters'
+        'description': 'Annual fee for individuals, families, small business owners / freelancers'
       },
       {
         '@type': 'Offer',
         'name': 'Platinum Membership',
         'price': '200.00',
         'priceCurrency': 'EUR',
-        'description': 'Annual fee for cultural patrons'
+        'description': 'Annual fee for individuals, families, small business owners / freelancers'
       },
       {
         '@type': 'Offer',
         'name': 'Corporate Membership',
         'priceSpecification': {
           '@type': 'PriceSpecification',
-          'description': 'Custom annual contribution for companies and partners'
+          'description': 'Tailored annual contribution for companies, subject to agreement'
         }
       }
     ]
@@ -154,7 +154,7 @@ const jsonLd = {
               Select Tier
             </h3>
             <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-6">
-              Select your preferred contribution level (Silver, Gold, Platinum, or Corporate).
+              Then choose your tier: Silver, Gold, Platinum, for Companies. Discover the benefits of each tier below.
             </p>
           </div>
           <a href="#stufen" class="inline-flex items-center gap-2 text-sm font-semibold text-[#8B263E] dark:text-[#ff758f] hover:underline">
@@ -175,11 +175,11 @@ const jsonLd = {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
         <!-- Silver -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Individuals</span>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">For individuals and families</span>
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Silver</h3>
             <div class="mb-6">
               <span class="font-serif text-4xl font-bold text-[#8B263E] dark:text-[#ff758f]">50 €</span>
@@ -187,21 +187,21 @@ const jsonLd = {
             </div>
             <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Voting rights at General Assembly (active members)
+                <span class="text-[#8B263E] font-bold">✓</span> Opportunities to network within the SCP community
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Free access to House Library (Hausbibliothek)
+                <span class="text-[#8B263E] font-bold">✓</span> 5% discount on SCP events with an attendance fee
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> 10% discount on workshops
+                <span class="text-[#8B263E] font-bold">✓</span> Discount card for 4 free coffees per year
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Regular association newsletter
+                <span class="text-[#8B263E] font-bold">✓</span> Membership card
               </li>
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Select Silver
@@ -214,7 +214,7 @@ const jsonLd = {
             Recommended
           </div>
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-white/80">Families & Supporters</span>
+            <span class="text-xs uppercase tracking-wider font-semibold text-white/80">For individuals, families, small business owners / freelancers</span>
             <h3 class="font-serif text-2xl font-bold mt-1 mb-4">Gold</h3>
             <div class="mb-6">
               <span class="font-serif text-4xl font-bold text-white">120 €</span>
@@ -222,21 +222,27 @@ const jsonLd = {
             </div>
             <ul class="space-y-3 text-sm text-white/90 mb-8">
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> All Silver tier benefits
+                <span class="text-[#ff758f] font-bold">✓</span> 1 event held at SCP premises free of charge (max. 6 hours)
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Free entry to selected cultural events
+                <span class="text-[#ff758f] font-bold">✓</span> Free advertising on website &amp; social media (listing + logo): newsletter &amp; email invitation + FB/IG posts
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Priority book borrowing in library
+                <span class="text-[#ff758f] font-bold">✓</span> Networking support within the SCP community
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#ff758f] font-bold">✓</span> Invitations to exclusive member meetups
+                <span class="text-[#ff758f] font-bold">✓</span> 10% discount on SCP events with an attendance fee
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Discount card for 8 free coffees per year
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#ff758f] font-bold">✓</span> Membership card
               </li>
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl bg-white text-[#8B263E] font-bold hover:bg-slate-100 transition-colors shadow-md"
           >
             Select Gold
@@ -246,7 +252,7 @@ const jsonLd = {
         <!-- Platinum -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Cultural Patrons</span>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">For individuals, families, small business owners / freelancers</span>
             <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Platinum</h3>
             <div class="mb-6">
               <span class="font-serif text-4xl font-bold text-[#8B263E] dark:text-[#ff758f]">200 €</span>
@@ -254,21 +260,30 @@ const jsonLd = {
             </div>
             <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> All Gold tier benefits
+                <span class="text-[#8B263E] font-bold">✓</span> 2 events held at SCP premises free of charge (up to 6 hours each)
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Priority reservations for children's camps & workshops
+                <span class="text-[#8B263E] font-bold">✓</span> Free advertising on website &amp; social media (listing + logo): newsletter &amp; email invitation + FB/IG posts
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Name listing on Patron Wall (optional)
+                <span class="text-[#8B263E] font-bold">✓</span> Free attendance at themed networking events for active members: 4 x per year
               </li>
               <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Invitation to annual appreciation reception
+                <span class="text-[#8B263E] font-bold">✓</span> Networking support within the SCP community
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> 15% discount on SCP events with an attendance fee
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Discount card for 10 free coffees per year
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#8B263E] font-bold">✓</span> Membership card
               </li>
             </ul>
           </div>
           <a
-            href="#ueberweisung"
+            href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
             Select Platinum
@@ -278,31 +293,24 @@ const jsonLd = {
         <!-- Corporate Membership -->
         <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all">
           <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">Companies & Partners</span>
-            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">Corporate</h3>
+            <span class="text-xs uppercase tracking-wider font-semibold text-[#5b403d] dark:text-[#d4c5c2]">For Companies</span>
+            <h3 class="font-serif text-2xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] mt-1 mb-4">For Companies</h3>
             <div class="mb-6">
-              <span class="font-serif text-3xl font-bold text-[#8B263E] dark:text-[#ff758f]">Custom</span>
+              <span class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">Tailored</span>
+              <span class="text-sm text-[#5b403d] dark:text-[#d4c5c2]">subject to agreement</span>
             </div>
-            <ul class="space-y-3 text-sm text-[#5b403d] dark:text-[#d4c5c2] mb-8">
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Logo placement on website & at major events
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Sponsorship of bilingual children projects
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Tax-deductible donation receipts (Spendenbescheinigung)
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[#8B263E] font-bold">✓</span> Customized partnership packages
-              </li>
-            </ul>
+            <p class="text-sm text-[#5b403d] dark:text-[#d4c5c2] leading-relaxed mb-6">
+              Tailored annual contribution and custom partnership packages for companies, institutions, and supporting partners.
+            </p>
+            <p class="text-xs text-[#5b403d]/80 dark:text-[#d4c5c2]/80 italic border-t border-[#e7e1df] dark:border-[#363230] pt-4 mb-8">
+              SprachCafé assesses rental/sponsoring applications individually and reserves the right to modify the offer.
+            </p>
           </div>
           <a
             href="#mitglied-form"
             class="w-full text-center px-4 py-3 rounded-xl border border-[#8B263E] text-[#8B263E] dark:text-[#ff758f] font-semibold hover:bg-[#8B263E] hover:text-white transition-colors"
           >
-            Contact Us
+            Inquire for Companies
           </a>
         </div>
       </div>
