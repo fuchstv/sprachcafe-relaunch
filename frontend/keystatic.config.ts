@@ -52,7 +52,21 @@ export default config({
         description: fields.text({ label: 'Kurzbeschreibung', multiline: true }),
         sourceUrl: fields.text({ label: 'Quell-Link' }),
         campaignId: fields.text({ label: 'Kampagnen-ID' }),
-        content: fields.markdoc({ label: 'Inhalt / Artikel', extension: 'md' }),
+        image: fields.image({
+          label: 'Beitragsbild / Titelbild hochladen',
+          directory: 'public/images/news',
+          publicPath: '/images/news/',
+        }),
+        content: fields.markdoc({
+          label: 'Inhalt / Artikel',
+          extension: 'md',
+          options: {
+            image: {
+              directory: 'public/images/content',
+              publicPath: '/images/content/',
+            },
+          },
+        }),
       },
     }),
     team: collection({
@@ -84,7 +98,11 @@ export default config({
         contact: fields.object({
           email: fields.text({ label: 'E-Mail-Adresse' }),
         }),
-        photo: fields.text({ label: 'Pfad zum Porträtfoto' }),
+        photo: fields.image({
+          label: 'Porträtfoto hochladen',
+          directory: 'public/images/team',
+          publicPath: '/images/team/',
+        }),
         bio: fields.object({
           de: fields.text({ label: 'Kurzbiografie (Deutsch)', multiline: true }),
           pl: fields.text({ label: 'Kurzbiografie (Polnisch)', multiline: true }),
@@ -117,7 +135,11 @@ export default config({
           pl: fields.text({ label: 'Preis PL' }),
           en: fields.text({ label: 'Preis EN' }),
         }),
-        image: fields.text({ label: 'Bild-Pfad' }),
+        image: fields.image({
+          label: 'Produktbild hochladen',
+          directory: 'public/images/shop',
+          publicPath: '/images/shop/',
+        }),
         availability: fields.select({
           label: 'Verfügbarkeit',
           options: [
@@ -153,7 +175,11 @@ export default config({
         }),
         gallery: fields.array(
           fields.object({
-            url: fields.text({ label: 'Bild URL' }),
+            url: fields.image({
+              label: 'Ausstellungsbild hochladen',
+              directory: 'public/images/exhibitions',
+              publicPath: '/images/exhibitions/',
+            }),
             caption: fields.object({
               de: fields.text({ label: 'Caption DE' }),
               pl: fields.text({ label: 'Caption PL' }),
