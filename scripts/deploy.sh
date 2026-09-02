@@ -22,12 +22,17 @@ npm run build
 cd "$REPO_ROOT"
 
 # 2. Deploy to Beta (/var/www/beta or /opt/sprachcafe/beta)
+DIST_SRC="$REPO_ROOT/frontend/dist"
+if [ -d "$REPO_ROOT/frontend/dist/client" ]; then
+    DIST_SRC="$REPO_ROOT/frontend/dist/client"
+fi
+
 if [[ "$TARGET" == "beta" || "$TARGET" == "all" ]]; then
     BETA_DIR="/var/www/beta"
     if [ -d "$BETA_DIR" ] || [ -d "/opt/sprachcafe/beta" ]; then
         echo "📂 Deploying build artifacts to Beta ($BETA_DIR)..."
         mkdir -p "$BETA_DIR"
-        rsync -rtv --delete --no-owner --no-group "$REPO_ROOT/frontend/dist/" "$BETA_DIR/"
+        rsync -rtv --delete --no-owner --no-group "$DIST_SRC/" "$BETA_DIR/"
         echo "✅ Beta deployment completed!"
     else
         echo "ℹ️ Local directory $BETA_DIR not found. (Build artifacts stored in frontend/dist)."
@@ -40,7 +45,7 @@ if [[ "$TARGET" == "production" || "$TARGET" == "all" ]]; then
     if [ -d "$PROD_DIR" ] || [ -d "/opt/sprachcafe/production" ]; then
         echo "📂 Deploying build artifacts to Production ($PROD_DIR)..."
         mkdir -p "$PROD_DIR"
-        rsync -rtv --delete --no-owner --no-group "$REPO_ROOT/frontend/dist/" "$PROD_DIR/"
+        rsync -rtv --delete --no-owner --no-group "$DIST_SRC/" "$PROD_DIR/"
         echo "✅ Production deployment completed!"
     else
         echo "ℹ️ Local directory $PROD_DIR not found. (Build artifacts stored in frontend/dist)."
