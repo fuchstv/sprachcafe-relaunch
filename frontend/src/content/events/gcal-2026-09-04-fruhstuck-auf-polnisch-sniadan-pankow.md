@@ -23,5 +23,5 @@ image:
     de: "Frühstück auf Polnisch+ | Śniadanie po polsku"
     pl: "Frühstück auf Polnisch+ | Śniadanie po polsku"
     en: "Frühstück auf Polnisch+ | Śniadanie po polsku"
-isFeatured: false
+isFeatured: true
 ---

@@ -30,7 +30,7 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-31T00:00:17.213Z"
+    "archivedAt": "2026-09-02T00:00:16.297Z"
   },
   {
     "jahrMonat": "2026-09",
@@ -38,8 +38,8 @@
     "monatNum": 9,
     "monatName": "September",
     "events": {
-      "total": 58,
-      "kinder": 45,
+      "total": 57,
+      "kinder": 44,
       "sprachpraxis": 4,
       "kultur": 9,
       "locations": {
@@ -50,8 +50,8 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 980,
-      "childrenAttendees": 473,
+      "totalAttendees": 962,
+      "childrenAttendees": 463,
       "avgPerEvent": 16.9
     },
     "web": {
@@ -63,7 +63,7 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-31T00:00:17.214Z"
+    "archivedAt": "2026-09-02T00:00:16.297Z"
   },
   {
     "jahrMonat": "2026-10",
@@ -96,7 +96,7 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-31T00:00:17.214Z"
+    "archivedAt": "2026-09-02T00:00:16.298Z"
   },
   {
     "jahrMonat": "2026-11",
@@ -129,6 +129,6 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-08-31T00:00:17.215Z"
+    "archivedAt": "2026-09-02T00:00:16.298Z"
   }
 ]

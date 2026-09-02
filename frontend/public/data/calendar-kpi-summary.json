@@ -258,5 +258,31 @@
     "kategorie": "Kunst, Kultur & Literatur",
     "projekt": "Regulärer Vereinsbetrieb",
     "anzahlVeranstaltungen": 1
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "koepenick",
+    "standortName": "Köpenick",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Kinder & Eltern",
+    "kategorie": "Kinder & Familie",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 1
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "schoeneberg",
+    "standortName": "Schöneberg",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Kinder & Eltern",
+    "kategorie": "Kinder & Familie",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 1
   }
 ]

@@ -1,7 +1,7 @@
 # Hausbibliothek Read-Only Catalog Sync Report
 
 - **Mode**: LIVE BUILD SYNC
-- **Timestamp**: 2026-08-31T21:46:11.317Z
+- **Timestamp**: 2026-09-02T16:12:49.094Z
 - **Source Export API**: `https://hausbibliothek.org/api/books?limit=500`
 - **Target File**: `/home/ubuntu/sprachcafe-relaunch/frontend/src/data/books.json`
 

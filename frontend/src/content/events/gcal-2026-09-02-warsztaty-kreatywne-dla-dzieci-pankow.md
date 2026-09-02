@@ -23,5 +23,5 @@ image:
     de: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
     pl: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
     en: "Warsztaty kreatywne dla dzieci w wieku 4–6 lat"
-isFeatured: false
+isFeatured: true
 ---
