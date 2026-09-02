@@ -29,7 +29,7 @@ export default config({
       path: 'src/content/news/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.text({ label: 'Titel' }),
+        title: fields.slug({ name: { label: 'Titel' } }),
         date: fields.date({ label: 'Datum' }),
         language: fields.select({
           label: 'Sprache',
@@ -52,25 +52,29 @@ export default config({
         description: fields.text({ label: 'Kurzbeschreibung', multiline: true }),
         sourceUrl: fields.text({ label: 'Quell-Link' }),
         campaignId: fields.text({ label: 'Kampagnen-ID' }),
-        content: fields.markdoc({ label: 'Inhalt / Artikel' }),
+        content: fields.markdoc({ label: 'Inhalt / Artikel', extension: 'md' }),
       },
     }),
     team: collection({
       label: 'Team & Vorstand',
       slugField: 'name',
       path: 'src/content/team/*',
-      format: { data: 'yaml' },
+      format: { contentField: 'content' },
       schema: {
-        name: fields.text({ label: 'Vollständiger Name' }),
+        name: fields.slug({ name: { label: 'Vollständiger Name' } }),
         category: fields.select({
           label: 'Kategorie',
           options: [
             { label: 'Vorstand', value: 'vorstand' },
-            { label: 'Büroleitung & Koordination', value: 'leitung' },
-            { label: 'Kursleitung / Dozent*in', value: 'kursleitung' },
-            { label: 'Ehrenamt / Team', value: 'team' },
+            { label: 'Verwaltung / Koordination', value: 'verwaltung' },
+            { label: 'Pädagogik / Kurse', value: 'paedagogik' },
+            { label: 'Kunst & Kultur', value: 'kunst' },
+            { label: 'Literatur & Sprache', value: 'literatur' },
+            { label: 'Technik & IT', value: 'technik' },
+            { label: 'Business & Partnerschaften', value: 'business' },
+            { label: 'BFD & Freiwillige', value: 'bfd' },
           ],
-          defaultValue: 'team',
+          defaultValue: 'paedagogik',
         }),
         role: fields.object({
           de: fields.text({ label: 'Rolle (Deutsch)' }),
@@ -79,8 +83,6 @@ export default config({
         }),
         contact: fields.object({
           email: fields.text({ label: 'E-Mail-Adresse' }),
-          phone: fields.text({ label: 'Telefonnummer' }),
-          linkedin: fields.text({ label: 'LinkedIn-Profil' }),
         }),
         photo: fields.text({ label: 'Pfad zum Porträtfoto' }),
         bio: fields.object({
@@ -89,25 +91,33 @@ export default config({
           en: fields.text({ label: 'Kurzbiografie (Englisch)', multiline: true }),
         }),
         order: fields.integer({ label: 'Sortierreihenfolge', defaultValue: 10 }),
+        content: fields.markdoc({ label: 'Zusatzinformationen / Freitext', extension: 'md' }),
       },
     }),
     shopItems: collection({
       label: 'Vereinsshop / Kiosk',
-      slugField: 'order',
+      slugField: 'slug',
       path: 'src/content/shopItems/*',
-      format: { data: 'yaml' },
+      format: { contentField: 'content' },
       schema: {
+        slug: fields.text({ label: 'Slug / Kennung' }),
         order: fields.integer({ label: 'Artikelnummer / Reihenfolge', defaultValue: 1 }),
         name: fields.object({
           de: fields.text({ label: 'Artikelname (Deutsch)' }),
           pl: fields.text({ label: 'Artikelname (Polnisch)' }),
           en: fields.text({ label: 'Artikelname (Englisch)' }),
         }),
+        description: fields.object({
+          de: fields.text({ label: 'Beschreibung DE', multiline: true }),
+          pl: fields.text({ label: 'Beschreibung PL', multiline: true }),
+          en: fields.text({ label: 'Beschreibung EN', multiline: true }),
+        }),
         priceDisplay: fields.object({
           de: fields.text({ label: 'Preis (z. B. 2,50 €)' }),
           pl: fields.text({ label: 'Preis PL' }),
           en: fields.text({ label: 'Preis EN' }),
         }),
+        image: fields.text({ label: 'Bild-Pfad' }),
         availability: fields.select({
           label: 'Verfügbarkeit',
           options: [
@@ -118,22 +128,17 @@ export default config({
           ],
           defaultValue: 'in_stock',
         }),
-        description: fields.object({
-          de: fields.text({ label: 'Beschreibung DE', multiline: true }),
-          pl: fields.text({ label: 'Beschreibung PL', multiline: true }),
-          en: fields.text({ label: 'Beschreibung EN', multiline: true }),
-        }),
-        image: fields.text({ label: 'Bild-Pfad' }),
         orderLink: fields.text({ label: 'Bestelllink / PayPal' }),
+        content: fields.markdoc({ label: 'Details / Notizen', extension: 'md' }),
       },
     }),
     exhibitions: collection({
       label: 'Ausstellungen & Kunst',
       slugField: 'artist',
       path: 'src/content/exhibitions/*',
-      format: { data: 'yaml' },
+      format: { contentField: 'content' },
       schema: {
-        artist: fields.text({ label: 'Künstler*in' }),
+        artist: fields.slug({ name: { label: 'Künstler*in' } }),
         title: fields.object({
           de: fields.text({ label: 'Titel DE' }),
           pl: fields.text({ label: 'Titel PL' }),
@@ -146,6 +151,23 @@ export default config({
           pl: fields.text({ label: 'Beschreibung PL', multiline: true }),
           en: fields.text({ label: 'Beschreibung EN', multiline: true }),
         }),
+        gallery: fields.array(
+          fields.object({
+            url: fields.text({ label: 'Bild URL' }),
+            caption: fields.object({
+              de: fields.text({ label: 'Caption DE' }),
+              pl: fields.text({ label: 'Caption PL' }),
+              en: fields.text({ label: 'Caption EN' }),
+            }),
+            alt: fields.object({
+              de: fields.text({ label: 'Alt DE' }),
+              pl: fields.text({ label: 'Alt PL' }),
+              en: fields.text({ label: 'Alt EN' }),
+            }),
+          }),
+          { label: 'Bildergalerie' }
+        ),
+        content: fields.markdoc({ label: 'Details / Begleittext', extension: 'md' }),
       },
     }),
   },
