@@ -135,10 +135,75 @@ const lang = 'de';
         </p>
       </section>
 
-      <!-- 5. Hausbibliothek -->
+      <!-- 5. Mitglieder-App & Digitaler Mitgliedsausweis -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          5. Digitale Hausbibliothek (`hausbibliothek.org`)
+          5. SprachCafé Mitglieder-App, digitaler Mitgliedsausweis &amp; Google Wallet
+        </h2>
+        <p>
+          Zur Ausübung der satzungsmäßigen Mitgliedschaftsrechte, zur Nutzung des digitalen Mitgliedsausweises sowie zur Einlösung und Nachverfolgung satzungsmäßiger Vereinsvorteile (wie jährliche Freikontingente im Café, Ermäßigungen bei Veranstaltungen und die kostenfreie Nutzung der Hausbibliothek) stellt der Verein seinen Mitgliedern eine webbasierte Ausweisplattform (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org/member/activate</code>) sowie die native Android-App <strong>„SprachCafé Mitglied“</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">org.sprachcafe.member</code>) zur Verfügung.
+        </p>
+
+        <h3 class="font-bold text-base pt-2">a) Verarbeitete Datenkategorien</h3>
+        <p class="text-sm">
+          Im Rahmen der digitalen Ausweisverwaltung und der App-Nutzung verarbeiten wir folgende personenbezogene Daten:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Mitglieder-Stammdaten:</strong> Vorname, Nachname, E-Mail-Adresse, Telefonnummer (sofern angegeben), Mitgliedsnummer (z. B. <code>SCP-10001</code>), Mitgliedsstatus (aktiv/ausstehend) und Beitragsstatus.</li>
+          <li><strong>Mitgliedsstufe &amp; Berechtigungen:</strong> Zugeordnete Mitgliedsstufe (Silver, Gold, Platinum oder Firmenmitgliedschaft), Eintritts- und Gültigkeitsdatum sowie hinterlegter Veranstaltungsrabattsatz.</li>
+          <li><strong>Guthaben- &amp; Einlösedaten:</strong> Jährliches Freikaffee-Kontingent, verbleibendes Restguthaben sowie protokollierte Einlösevorgänge (Zeitstempel, bezogenes Freikontingent, Kassen-Sitzungs-ID).</li>
+          <li><strong>Sicherheits- &amp; Prüftoken:</strong> Kryptografischer Einladungstoken (Magic Link) und dynamisch generierter QR-Verifizierungstoken (<code>SCP-MEMBER:&lt;Nummer&gt;:&lt;Token&gt;</code>) zur fälschungssicheren Erkennung an der Kasse und im Bibliotheksbetrieb.</li>
+        </ul>
+
+        <h3 class="font-bold text-base pt-2">b) Zwecke &amp; Rechtsgrundlagen der Verarbeitung</h3>
+        <ul class="list-disc list-inside space-y-1.5 text-sm pl-2">
+          <li><strong>Erfüllung des Mitgliedschaftsverhältnisses (Art. 6 Abs. 1 lit. b DSGVO):</strong> Die Bereitstellung des digitalen Mitgliedsausweises, die Authentifizierung per Einladungs-Token, die Anzeige von Kontingenten sowie die Einlösung von Vergünstigungen dienen unmittelbar der Begründung, Durchführung und Abwicklung der satzungsmäßigen Mitgliedschaft.</li>
+          <li><strong>Steuer- und abgabenrechtliche Nachweisführung (Art. 6 Abs. 1 lit. c DSGVO i.V.m. § 147 AO &amp; GoBD):</strong> Bei der Einlösung von Sachleistungen (z. B. 0,00 € Freikaffee-Abrechnung) erfolgt eine GoBD-konforme Buchung im digitalen Vereinskassenbuch, um den satzungsgemäßen Mitteleinsatz und die Gemeinnützigkeit gegenüber dem Finanzamt lückenlos nachzuweisen.</li>
+        </ul>
+
+        <h3 class="font-bold text-base pt-2">c) Lokale Speicherung in der Android-App (Offline-Fähigkeit)</h3>
+        <p class="text-sm">
+          Die Android-App „SprachCafé Mitglied“ speichert die Ausweisdaten und das Restguthaben verschlüsselt im geschützten App-Speicherbereich Ihres Endgeräts (Android SharedPreferences). Dies ermöglicht das Vorzeigen des Ausweises und Scannen des QR-Codes auch ohne aktive Internetverbindung. Die Daten werden gelöscht, wenn Sie sich in der App abmelden oder die App deinstallieren.
+        </p>
+
+        <h3 class="font-bold text-base pt-2">d) Optionale Google Wallet Integration</h3>
+        <p class="text-sm">
+          Sie haben die Möglichkeit, Ihren digitalen Mitgliedsausweis mit nur einem Klick zu <strong>Google Wallet</strong> (Dienstanbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland bzw. Google LLC, USA) hinzuzufügen.
+        </p>
+        <div class="p-4 rounded-2xl bg-[#f8f2f0] dark:bg-[#2a2725] border border-[#e7e1df] dark:border-[#363230] text-sm space-y-2">
+          <p>
+            <strong>Freiwilligkeit &amp; Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):</strong> Die Nutzung von Google Wallet ist vollkommen freiwillig. Eine Übertragung der Ausweis-Metadaten (Name, Mitgliedsnummer, Stufe, Gültigkeit, QR-Code) an Google erfolgt <em>ausschließlich dann, wenn Sie aktiv auf die Schaltfläche „Zu Google Wallet hinzufügen“ klicken</em>.
+          </p>
+          <p>
+            <strong>Datenverarbeitung durch Google:</strong> Nach dem Hinzufügen wird der Pass in Ihrem persönlichen Google-Konto gespeichert. Auf die weitere Datenverarbeitung durch Google haben wir keinen Einfluss. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#8B263E] dark:text-[#ff758f] underline font-semibold">Datenschutzerklärung von Google</a>. Sie können den Ausweis jederzeit direkt in der Google Wallet App auf Ihrem Smartphone entfernen.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. Vorstands- und Kassenverwaltung mit Microsoft Entra ID -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. Vorstandsverwaltung &amp; Betriebssysteme (`team.sprachcafe-polnisch.org`)
+        </h2>
+        <p class="text-sm">
+          Für die interne Einsatzplanung, den Kassenbetrieb und die administrative Mitgliederverwaltung betreibt der Verein unter <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org</code> ein internes Teamportal.
+        </p>
+
+        <h3 class="font-bold text-base pt-1">Microsoft Entra ID (Single Sign-On / SSO für den Vorstand)</h3>
+        <p class="text-sm">
+          Der Zugriff auf sensible Verwaltungsbereiche (Mitgliederlisten, Finanz- und Kassenbücher, Systemkonfiguration) ist passwortlos abgesichert und ausschließlich autorisierten Vorstandsmitgliedern über <strong>Microsoft Entra ID</strong> (Microsoft Ireland Operations Ltd.) vorbehalten.
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Verarbeitete Daten bei der Anmeldung:</strong> Organisations-E-Mail-Adresse (<code>@sprachcafe-polnisch.org</code>), Name, Microsoft Tenant-ID (<code>b745a80a-f682-45e4-ba2e-d48bbd9e703d</code>) sowie Anmelde-Tokens (OAuth 2.0 / JWT).</li>
+          <li><strong>Zweck &amp; Rechtsgrundlage:</strong> Gewährleistung der IT-Sicherheit, Schutz vor unbefugtem Datenzugriff und Durchsetzung strenger Zugriffskontrollen gemäß <strong>Art. 32 DSGVO</strong> sowie unser berechtigtes Interesse an einer sicheren Vereinsorganisation gem. <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>.</li>
+          <li><strong>Sitzungs-Cookies:</strong> Zur Aufrechterhaltung der authentifizierten Sitzung wird ein kryptografisch signiertes, zeitlich befristetes Session-Cookie (<code class="text-xs font-mono">admin_session</code>, HttpOnly, SameSite) gesetzt (gem. § 25 Abs. 2 Nr. 2 TDDDG).</li>
+        </ul>
+      </section>
+
+      <!-- 7. Hausbibliothek -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          7. Digitale Hausbibliothek (`hausbibliothek.org`)
         </h2>
         <p>
           Das SprachCafé Polnisch betreibt unter <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> eine eigenständige Webanwendung zur Verwaltung des zweisprachigen Buchbestands und des digitalen Leihbetriebs.
@@ -151,10 +216,10 @@ const lang = 'de';
         </ul>
       </section>
 
-      <!-- 6. Google Calendar & AWS S3 -->
+      <!-- 8. Google Calendar & AWS S3 -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          6. Termin-Synchronisation &amp; Cloud-Speicher
+          8. Termin-Synchronisation &amp; Cloud-Speicher
         </h2>
         <div class="space-y-3 text-sm">
           <p>
@@ -166,20 +231,20 @@ const lang = 'de';
         </div>
       </section>
 
-      <!-- 7. Externe Links zu Social Media -->
+      <!-- 9. Externe Links zu Social Media -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          7. Links zu Social-Media-Profilen
+          9. Links zu Social-Media-Profilen
         </h2>
         <p class="text-sm">
           Auf unserer Website verlinken wir auf unsere offiziellen Vereinskanäle bei <strong>Facebook, Instagram, YouTube, LinkedIn und TikTok</strong>. Wir binden <em>keine dynamischen Social-Plugins</em> (wie Like- oder Share-Buttons) ein, die bereits beim Laden der Seite Daten an die Plattformbetreiber übermitteln. Ein Datenaustausch mit den jeweiligen Plattformen findet erst statt, wenn Sie aktiv auf den entsprechenden Link klicken und zu dem Drittanbieter weitergeleitet werden.
         </p>
       </section>
 
-      <!-- 8. Rechte der betroffenen Personen -->
+      <!-- 10. Rechte der betroffenen Personen -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          8. Ihre Rechte als betroffene Person
+          10. Ihre Rechte als betroffene Person
         </h2>
         <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen der DSGVO jederzeit folgende Rechte:</p>
         
@@ -226,9 +291,9 @@ const lang = 'de';
         </div>
       </section>
 
-      <!-- 9. Stand & Aktualität -->
+      <!-- 11. Stand & Aktualität -->
       <section class="text-xs text-[#5b403d] dark:text-[#d4c5c2] space-y-1">
-        <p><strong>Stand dieser Datenschutzerklärung:</strong> August 2026</p>
+        <p><strong>Stand dieser Datenschutzerklärung:</strong> September 2026</p>
         <p>Wir behalten uns vor, diese Datenschutzerklärung bei technischen Änderungen unseres Webangebots oder bei veränderten gesetzlichen Vorgaben anzupassen.</p>
       </section>
 

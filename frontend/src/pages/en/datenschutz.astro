@@ -105,20 +105,49 @@ const lang = 'en';
         </p>
       </section>
 
-      <!-- 5. House Library -->
+      <!-- 5. Member App & Digital Membership Card -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          5. House Library (`hausbibliothek.org`)
+          5. Member App, Digital Membership Card &amp; Google Wallet
+        </h2>
+        <p class="text-sm">
+          To facilitate statutory membership rights, verify digital membership passes, and manage membership benefits (such as annual free coffee quotas, event discounts, and free library access), the association provides a web portal (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org/member/activate</code>) and the dedicated Android application <strong>„SprachCafé Mitglied“</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">org.sprachcafe.member</code>).
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Categories of Processed Data:</strong> First and last name, email address, phone number (if provided), member number (e.g. <code>SCP-10001</code>), membership tier (Silver, Gold, Platinum, Company), contribution status, free coffee quota allocation/redemptions, and dynamic QR verification tokens.</li>
+          <li><strong>Legal Basis:</strong> Fulfillment of membership contract and rights (Art. 6(1)(b) GDPR) and statutory financial recordkeeping obligations (Art. 6(1)(c) GDPR).</li>
+          <li><strong>On-Device Local Storage:</strong> The Android app stores pass data locally and encrypted (Android SharedPreferences) to allow offline pass presentation and scanning.</li>
+          <li><strong>Optional Google Wallet Integration:</strong> Exporting the pass to Google Wallet is entirely voluntary and only initiated upon explicit user interaction (Art. 6(1)(a) GDPR).</li>
+        </ul>
+      </section>
+
+      <!-- 6. Management & POS System with Microsoft Entra ID -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. Board Administration &amp; POS Operations (`team.sprachcafe-polnisch.org`)
+        </h2>
+        <p class="text-sm">
+          Administrative access to membership rosters, financial records, and POS audits is restricted and passwordlessly protected using <strong>Microsoft Entra ID (Single Sign-On)</strong> for authorized board members only.
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Legal Basis:</strong> IT security and data protection under Art. 32 GDPR as well as legitimate organizational interests under Art. 6(1)(f) GDPR.</li>
+        </ul>
+      </section>
+
+      <!-- 7. House Library -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          7. House Library (`hausbibliothek.org`)
         </h2>
         <p>
           The House Library platform at <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> manages book loans and reader accounts. Reader accounts inactive for more than 24 months are routinely deleted in accordance with data erasure obligations (Art. 17 GDPR).
         </p>
       </section>
 
-      <!-- 6. Data Subject Rights -->
+      <!-- 8. Data Subject Rights -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          6. Your Rights Under GDPR
+          8. Your Rights Under GDPR
         </h2>
         <p>You have the right to access (Art. 15 GDPR), rectify (Art. 16 GDPR), erase (Art. 17 GDPR), restrict processing (Art. 18 GDPR), receive data portability (Art. 20 GDPR), and object to processing (Art. 21 GDPR).</p>
         <p class="text-sm pt-2">
@@ -126,11 +155,11 @@ const lang = 'en';
         </p>
       </section>
 
-      <!-- 7. Supervisory Authority -->
+      <!-- 9. Supervisory Authority -->
       <section class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
         <p><strong>Competent Data Protection Supervisory Authority:</strong></p>
         <p>Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin, Email: mailbox@datenschutz-berlin.de</p>
-        <p class="pt-2"><strong>Last updated:</strong> August 2026</p>
+        <p class="pt-2"><strong>Last updated:</strong> September 2026</p>
       </section>
 
     </div>
