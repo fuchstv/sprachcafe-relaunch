@@ -8,9 +8,9 @@ description:
   pl: "Autorski dwujęzyczny zestaw kart z pytaniami po polsku i niemiecku do tandemu językowego i gier towarzyskich."
   en: "Exclusive bilingual card set with prompt questions in German and Polish for language tandems and game nights."
 priceDisplay:
-  de: "12 € (Spendenbeitrag)"
-  pl: "12 € (darowizna)"
-  en: "12 € (donation)"
+  de: "20 € (Spendenbeitrag)"
+  pl: "20 € (darowizna)"
+  en: "20 € (donation)"
 image: "/images/shop/laden-artikel-1.webp"
 availability: "in_stock"
 order: 1

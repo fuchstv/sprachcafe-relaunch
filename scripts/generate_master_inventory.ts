@@ -57,7 +57,7 @@ export async function generateMasterWorkbook() {
     [13, 'Snacks & Gebäck', 'Schokoriegel klein / Prinz Polo', 'Stk', 0.50, 0.20, 'Wirtschaftlicher Geschäftsbetrieb', '< 5 Riegel'],
     [14, 'Snacks & Gebäck', 'Schokoriegel groß', 'Stk', 1.00, 0.45, 'Wirtschaftlicher Geschäftsbetrieb', '< 3 Riegel'],
     [15, 'Kleiner Laden', 'T-Shirts (Vereins-Design S–XXL)', 'Stk', 20.00, 8.50, 'Wirtschaftlicher Geschäftsbetrieb', 'Keine Geringf. (alle zählen)'],
-    [16, 'Kleiner Laden', 'Speak-Dating Kartenspiel (zweisprachig)', 'Set', 12.00, 4.20, 'Zweckbetrieb / Merch', 'Keine Geringf. (alle zählen)'],
+    [16, 'Kleiner Laden', 'Speak-Dating Kartenspiel (zweisprachig)', 'Set', 20.00, 4.20, 'Zweckbetrieb / Merch', 'Keine Geringf. (alle zählen)'],
     [17, 'Spenden & Sonstiges', 'Spende (Bücher, Bibliothek, Allgemein)', 'Vorgang', 0.00, 0.00, 'Ideeller Bereich / Spende', 'Keine Inventurware'],
     [18, 'Spenden & Sonstiges', 'Andere Einnahmen', 'Vorgang', 0.00, 0.00, 'Nach Zweck zuzuordnen', 'Keine Inventurware']
   ];
