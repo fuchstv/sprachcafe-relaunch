@@ -27,7 +27,10 @@ import { execFileSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DIST_DIR = path.resolve(__dirname, '../frontend/dist');
+const RAW_DIST_DIR = path.resolve(__dirname, '../frontend/dist');
+const DIST_DIR = fs.existsSync(path.join(RAW_DIST_DIR, 'client'))
+  ? path.join(RAW_DIST_DIR, 'client')
+  : RAW_DIST_DIR;
 const PORT = 8089;
 const HOST = '127.0.0.1';
 const PRIMARY_DOMAIN = 'xn--sprachcaf-j4a.org'; // sprachcafé.org

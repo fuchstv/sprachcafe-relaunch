@@ -18,7 +18,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DIST_DIR = path.resolve(__dirname, '../frontend/dist');
+const RAW_DIST_DIR = path.resolve(__dirname, '../frontend/dist');
+const DIST_DIR = fs.existsSync(path.join(RAW_DIST_DIR, 'client'))
+  ? path.join(RAW_DIST_DIR, 'client')
+  : RAW_DIST_DIR;
 
 /**
  * Recursively find all .html files in directory

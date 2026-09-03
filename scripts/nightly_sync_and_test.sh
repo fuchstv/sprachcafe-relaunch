@@ -48,8 +48,13 @@ npm run build >> "${LOG_FILE}" 2>&1
 
 # 3. Live-Deployment
 log "🚀 [3/5] Synchronisiere Produktions- & Beta-Instanzen..."
-rsync -rtvz --delete --no-owner --no-group "${PROJECT_DIR}/frontend/dist/" /var/www/production/ >> "${LOG_FILE}" 2>&1
-rsync -rtvz --delete --no-owner --no-group "${PROJECT_DIR}/frontend/dist/" /var/www/beta/ >> "${LOG_FILE}" 2>&1
+DIST_SRC="${PROJECT_DIR}/frontend/dist"
+if [ -d "${PROJECT_DIR}/frontend/dist/client" ]; then
+    DIST_SRC="${PROJECT_DIR}/frontend/dist/client"
+fi
+rsync -rtvz --delete --no-owner --no-group "${DIST_SRC}/" /var/www/production/ >> "${LOG_FILE}" 2>&1
+rsync -rtvz --delete --no-owner --no-group "${DIST_SRC}/" /var/www/beta/ >> "${LOG_FILE}" 2>&1
+sudo systemctl restart sprachcafe-beta.service >> "${LOG_FILE}" 2>&1 || true
 
 # 4. Automatisierte Tests
 log "🧪 [4/5] Führe automatisierte Qualitäts- & Regressionstests aus..."
