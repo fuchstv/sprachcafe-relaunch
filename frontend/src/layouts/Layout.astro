@@ -2,6 +2,7 @@
 import { type LanguageCode } from '../i18n/ui';
 import { getHreflangLinks, useTranslations, getLocalizedPath } from '../i18n/utils';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
 import '../styles/fonts.css';
 
 interface Props {
@@ -416,6 +417,9 @@ const altLocales = ['de_DE', 'pl_PL', 'en_US'].filter(l => l !== ogLocale);
 
       </div>
     </footer>
+
+    <!-- Scroll to top floating action button -->
+    <ScrollToTop lang={lang} />
 
     <!-- Theme Switcher & Mobile Menu Script -->
     <script is:inline>

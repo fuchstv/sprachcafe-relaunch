@@ -79,6 +79,7 @@ export const ui = {
     'footer.privacy': 'Datenschutz',
     'footer.imprint': 'Impressum',
     'footer.accessibility': 'Barrierefreiheit',
+    'scroll.top': 'Nach oben scrollen',
   },
   pl: {
     'nav.home': 'Strona główna',
@@ -150,6 +151,7 @@ export const ui = {
     'footer.privacy': 'Ochrona danych',
     'footer.imprint': 'Impressum',
     'footer.accessibility': 'Deklaracja dostępności',
+    'scroll.top': 'Przewiń do góry',
   },
   en: {
     'nav.home': 'Home',
@@ -221,5 +223,6 @@ export const ui = {
     'footer.privacy': 'Privacy Policy',
     'footer.imprint': 'Imprint',
     'footer.accessibility': 'Accessibility Statement',
+    'scroll.top': 'Scroll to top',
   }
 } as const;
