@@ -3,8 +3,8 @@ title: "Was wird gespielt? W co gramy? - 10.10.2026 - Zapraszamy do Pankow!"
 date: 2026-09-26
 language: "pl"
 description: "Was wird gespielt? W co gramy? - 10.10.2026 - Zapraszamy do Pankow!"
-sourceUrl: "https://mailchi.mp/b7911c47d95f/was-wird-gespielt-w-co-gramy-10102026-zapraszamy-do-pankow"
-campaignId: "a1f9aec947"
+sourceUrl: "https://mailchi.mp/810ac2a4bea2/was-wird-gespielt-w-co-gramy-10102026-zapraszamy-do-pankow-17998754"
+campaignId: "611a204355"
 type: "newsletter"
 ---
 
