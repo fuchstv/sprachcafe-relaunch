@@ -3,8 +3,8 @@ title: "Was wird gespielt? W co gramy? - 10.10.2026 - Zapraszamy do Pankow!"
 date: 2026-09-26
 language: "de"
 description: "Was wird gespielt? W co gramy? - 10.10.2026 - Zapraszamy do Pankow!"
-sourceUrl: "https://mailchi.mp/b7911c47d95f/was-wird-gespielt-w-co-gramy-10102026-zapraszamy-do-pankow"
-campaignId: "a1f9aec947"
+sourceUrl: "https://mailchi.mp/810ac2a4bea2/was-wird-gespielt-w-co-gramy-10102026-zapraszamy-do-pankow-17998754"
+campaignId: "611a204355"
 type: "newsletter"
 ---
 
@@ -15,7 +15,7 @@ Chris Sieger (DE)</strong></span></p>
 <br>
 <strong><span ><span >Spotkamy się</span></span></strong><br>
 <br>
-<span ><span style="color:#cc0000"><span ><strong>📅 w sobotę, 10 października 2026, godz. 11:00 - 13:00&nbsp;<br>
+<span ><span style="color:#cc0000"><span ><strong>📅 w sobotę, 10 października 2026, godz. 17:00 - 19:00&nbsp;<br>
 📍 SprachCafé Polnisch, Schulzestr. 1, 13187 Berlin-Pankow</strong></span></span></span><br>
 &nbsp;</p>
 
@@ -75,7 +75,7 @@ Schulzestraße 1&nbsp;<br>
 Ihr möchtet neue Menschen kennenlernen, Euer Deutsch oder/und Polnisch verbessern, und das in einer&nbsp;herzlichen Atmosphäre? Dann lasst uns zusammen spielerisch Deutsch/Polnisch üben!<br>
 Unser SprachCafé Polnisch ist bunt und lebendig: Hier treffen verschiedene Sprachen, Kulturen und Erfahrungen aufeinander. Ob groß oder klein – alle sind willkommen!<br>
 <br>
-Am 10.10.2026 spielen wir gemeinsam Gesellschaftsspiele&nbsp;und schaffen somit einen offenen Raum, in dem <strong>Deutsch /&nbsp;Polnisch&nbsp;</strong>auf natürliche Art lebendig&nbsp;wird. Dabei soll das Lernen kommunikativ, fröhlich und mit viel Spaß verbunden sein.<br>
+<strong>Am 10.10.2026 </strong>spielen wir gemeinsam Gesellschaftsspiele&nbsp;und schaffen somit einen offenen Raum, in dem <strong>Deutsch /&nbsp;Polnisch&nbsp;</strong>auf natürliche Art lebendig&nbsp;wird. Dabei soll das Lernen kommunikativ, fröhlich und mit viel Spaß verbunden sein.<br>
 Ihr dürft gerne Eure Lieblingsspiele mitbringen – miteinander wollen wir eine angenehme Zeit verbringen, im Austausch sein und uns mit unseren Mitmenschen und deren Kulturen verbinden.<br>
 <br>
 Natürlich gibt es auch kalte und warme Getränke sowie Kuchen – weil Sprachen lernen&nbsp;auch genüsslich sein darf!</span></span><br>
@@ -85,7 +85,7 @@ Natürlich gibt es auch kalte und warme Getränke sowie Kuchen – weil Sprachen
 <p ><br>
 <strong><span ><span >Wir sehen uns</span></span></strong><br>
 <br>
-<span ><strong><span style="color:#cc0000"><span >📅 am Samstag, dem 10. Oktober&nbsp;2026, 11:00 - 13:00 Uhr<br>
+<span ><strong><span style="color:#cc0000"><span >📅 am Samstag, dem 10. Oktober&nbsp;2026, 17:00 - 19:00 Uhr<br>
 📍 im SprachCafé Polnisch, Schulzestr. 1, 13187 Berlin-Pankow</span></span></strong></span><br>
 &nbsp;</p>
 
