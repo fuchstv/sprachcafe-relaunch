@@ -1,8 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../components/DynamicPageRenderer.astro';
 
 const lang = 'de';
 ---
+
+<DynamicPageRenderer slug="begegnungscafe" lang={lang} defaultTitle="Das BegegnungsCafé" badge="Raum für Begegnung & Kultur">
 
 <Layout
   title="BegegnungsCafé — SprachCafé Polnisch e.V."
@@ -84,3 +87,4 @@ const lang = 'de';
 
   </div>
 </Layout>
+</DynamicPageRenderer>

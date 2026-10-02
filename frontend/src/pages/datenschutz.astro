@@ -68,20 +68,25 @@ const lang = 'de';
         </div>
       </section>
 
-      <!-- 3. Server-Hosting & Log-Dateien -->
+      <!-- 3. Server-Hosting, Cloudflare Edge & Log-Dateien -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          3. Hosting &amp; Server-Log-Dateien
+          3. Hosting, Cloudflare Edge-Schutz &amp; Server-Log-Dateien
         </h2>
         
-        <h3 class="font-bold text-base">Hosting bei AWS (Region Frankfurt am Main / Deutschland)</h3>
+        <h3 class="font-bold text-base">Hosting bei Amazon Web Services (AWS EC2 Frankfurt am Main)</h3>
         <p>
-          Unser Webserver und Reverse Proxy (Caddy v2) werden auf einer virtuellen Serverinstanz (AWS Lightsail) von Amazon Web Services EMEA SARL betrieben. Der Serverstandort ist <strong>Frankfurt am Main (`eu-central-1`), Deutschland</strong>. Sämtliche Datenverarbeitungen verbleiben vollständig innerhalb der Europäischen Union. Wir haben mit AWS einen Auftragsverarbeitungsvertrag (Data Processing Addendum, Art. 28 DSGVO) abgeschlossen.
+          Unsere Webserver, Datenbanken und Anwendungsdienste werden auf dedizierten Cloud-Instanzen (Amazon EC2) von <strong>Amazon Web Services EMEA SARL</strong> (38 Avenue John F. Kennedy, L-1855 Luxemburg) betrieben. Der physische Serverstandort ist <strong>Frankfurt am Main (`eu-central-1`), Deutschland</strong>. Sämtliche Datenverarbeitungen verbleiben vollständig innerhalb der Europäischen Union. Wir haben mit AWS einen verbindlichen Auftragsverarbeitungsvertrag (Data Processing Addendum, Art. 28 DSGVO) abgeschlossen.
+        </p>
+
+        <h3 class="font-bold text-base pt-2">Cloudflare Anycast-DNS &amp; Edge-Schutz</h3>
+        <p class="text-sm">
+          Zur Gewährleistung einer schnellen weltweiten DNS-Auflösung, zum Schutz vor Cyberangriffen (DDoS-Abwehr) und zur Ausfallsicherheit nutzen wir das weltweite Netzwerk von <strong>Cloudflare</strong> (Cloudflare Inc., 101 Townsend St, San Francisco, CA 94107, USA bzw. Cloudflare Germany GmbH, Carl-von-Linde-Straße 38, 85716 Unterschleißheim). Die Nameserver unserer Domains werden über Anycast-DNS von Cloudflare bereitgestellt. Technische Netzwerk-Anfragen werden über Cloudflare-Edge-Server in der EU geleitet. Mit Cloudflare besteht ein Auftragsverarbeitungsvertrag gem. Art. 28 DSGVO auf Basis der Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).
         </p>
 
         <h3 class="font-bold text-base pt-2">Server-Log-Dateien (Caddy Reverse Proxy)</h3>
         <p>
-          Bei jedem Aufruf unserer Website erfasst unser Webserver automatisiert technische Verbindungsdaten, die Ihr Browser an uns übermittelt:
+          Bei jedem Aufruf unserer Website erfasst unser Caddy-Webserver automatisiert technische Verbindungsdaten, die Ihr Browser an uns übermittelt:
         </p>
         <ul class="list-disc list-inside space-y-1 text-sm pl-2">
           <li>IP-Adresse des anfragenden Endgeräts</li>
@@ -93,15 +98,15 @@ const lang = 'de';
           <li>Browsertyp, Browserversion und Betriebssystem (User-Agent-String)</li>
         </ul>
         <p class="text-sm pt-1">
-          <strong>Zweck &amp; Rechtsgrundlage:</strong> Die Verarbeitung dieser Daten ist technisch erforderlich, um die Website auszuliefern, die Stabilität und Netzsicherheit zu gewährleisten und Angriffe (z. B. DDoS- oder Brute-Force-Attacken) abzuwehren. Rechtsgrundlage ist unser berechtigtes Interesse gemäß <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> i.V.m. <strong>§ 25 Abs. 2 Nr. 2 TDDDG</strong>.
+          <strong>Zweck &amp; Rechtsgrundlage:</strong> Die Erfassung dieser Daten ist technisch erforderlich, um die Website auszuliefern, die Systemstabilität zu gewährleisten und Angriffe auf unsere Server abzuwehren. Rechtsgrundlage ist unser berechtigtes Interesse gemäß <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> i.V.m. <strong>§ 25 Abs. 2 Nr. 2 TDDDG</strong>.
         </p>
         <p class="text-sm">
-          <strong>Speicherdauer:</strong> Die Log-Dateien werden rollierend für <strong>maximal 7 bis 14 Tage</strong> gespeichert und anschließend automatisiert überschrieben. Eine Zusammenführung dieser Daten mit anderen Datenquellen oder eine Profilbildung findet nicht statt.
+          <strong>Speicherdauer:</strong> Die Log-Dateien werden rollierend für <strong>maximal 7 bis 14 Tage</strong> vorgehalten und anschließend automatisiert überschrieben. Eine Zusammenführung mit anderen Datenquellen oder eine Auswertung zu Marketingzwecken findet nicht statt.
         </p>
 
-        <h3 class="font-bold text-base pt-2">SSL/TLS-Verschlüsselung</h3>
+        <h3 class="font-bold text-base pt-2">SSL/TLS-Verschlüsselung (HTTPS / HTTP/3)</h3>
         <p>
-          Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine moderne TLS-Verschlüsselung (HTTPS) mit HTTP/2 / HTTP/3 und automatischen HSTS-Sicherheitsheadern.
+          Diese Seite nutzt zum Schutz der Datenübertragung eine moderne TLS-Verschlüsselung (HTTPS) mit HTTP/2 und HTTP/3, HSTS-Sicherheitsheadern und automatisch erneuerten TLS-Zertifikaten (Let's Encrypt).
         </p>
       </section>
 
@@ -135,10 +140,35 @@ const lang = 'de';
         </p>
       </section>
 
-      <!-- 5. Mitglieder-App & Digitaler Mitgliedsausweis -->
+      <!-- 5. Newsletter-Abonnement & Double-Opt-In -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          5. SprachCafé Mitglieder-App, digitaler Mitgliedsausweis &amp; Google Wallet
+          5. Newsletter-Abonnement &amp; Themenverteiler
+        </h2>
+        <p>
+          Auf unserer Website bieten wir Ihnen die Möglichkeit, unsere themenspezifischen Vereins-Newsletter (u. a. Allgemeine Vereinsnachrichten, SprachCafé für Kinder und ihre Eltern, Mehrsprachigkeit) kostenfrei zu abonnieren.
+        </p>
+
+        <h3 class="font-bold text-base pt-1">Double-Opt-In-Verfahren &amp; Protokollierung</h3>
+        <p class="text-sm">
+          Die Anmeldung erfolgt stets im sogenannten <strong>Double-Opt-In-Verfahren</strong>: Nach Absenden des Formulars erhalten Sie eine Bestätigungs-E-Mail an die angegebene Adresse, in der Sie um Freischaltung des Abonnements gebeten werden. Erst mit Anklicken des Bestätigungslinks ist die Anmeldung wirksam. Zur rechtlichen Nachweisführung protokollieren wir den Anmelde- und Bestätigungszeitpunkt sowie die dabei verwendete IP-Adresse (gem. Art. 6 Abs. 1 lit. c i.V.m. Art. 7 Abs. 1 DSGVO).
+        </p>
+
+        <h3 class="font-bold text-base pt-1">Versandplattformen (Listmonk auf Vereinsinfrastruktur &amp; Mailchimp)</h3>
+        <p class="text-sm">
+          Der technische Versand erfolgt primär über unsere <strong>vereinsinterne, selbst gehostete Plattform Listmonk</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">newsletter.sprachcafe-polnisch.org</code>), die auf unserem AWS-Server in Frankfurt am Main betrieben wird. Ergänzend für bestehende Mailinglisten nutzen wir <strong>Mailchimp</strong> (Intuit Inc., The Rocket Science Group LLC, 675 Ponce De Leon Ave NE, Suite 5000, Atlanta, GA 30308, USA). Mit Mailchimp besteht ein Auftragsverarbeitungsvertrag auf Grundlage der Standardvertragsklauseln (SCC) der EU-Kommission.
+        </p>
+
+        <h3 class="font-bold text-base pt-1">Widerruf &amp; Abmeldung</h3>
+        <p class="text-sm">
+          Sie können Ihre Einwilligung in den Empfang unseres Newsletters <strong>jederzeit mit Wirkung für die Zukunft widerrufen</strong>. In jedem versandten Newsletter befindet sich hierzu am Ende ein eindeutiger Abmeldelink (Unsubscribe). Alternativ genügt eine formlose E-Mail an <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a>.
+        </p>
+      </section>
+
+      <!-- 6. Mitglieder-App & Digitaler Mitgliedsausweis -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. SprachCafé Mitglieder-App, digitaler Mitgliedsausweis &amp; Google Wallet
         </h2>
         <p>
           Zur Ausübung der satzungsmäßigen Mitgliedschaftsrechte, zur Nutzung des digitalen Mitgliedsausweises sowie zur Einlösung und Nachverfolgung satzungsmäßiger Vereinsvorteile (wie jährliche Freikontingente im Café, Ermäßigungen bei Veranstaltungen und die kostenfreie Nutzung der Hausbibliothek) stellt der Verein seinen Mitgliedern eine webbasierte Ausweisplattform (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org/member/activate</code>) sowie die native Android-App <strong>„SprachCafé Mitglied“</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">org.sprachcafe.member</code>) zur Verfügung.
@@ -180,10 +210,10 @@ const lang = 'de';
         </div>
       </section>
 
-      <!-- 6. Vorstands- und Kassenverwaltung mit Microsoft Entra ID -->
+      <!-- 7. Vorstands- und Kassenverwaltung mit Microsoft Entra ID -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          6. Vorstandsverwaltung &amp; Betriebssysteme (`team.sprachcafe-polnisch.org`)
+          7. Vorstandsverwaltung &amp; Betriebssysteme (`team.sprachcafe-polnisch.org`)
         </h2>
         <p class="text-sm">
           Für die interne Einsatzplanung, den Kassenbetrieb und die administrative Mitgliederverwaltung betreibt der Verein unter <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org</code> ein internes Teamportal.
@@ -200,10 +230,10 @@ const lang = 'de';
         </ul>
       </section>
 
-      <!-- 7. Hausbibliothek -->
+      <!-- 8. Hausbibliothek -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          7. Digitale Hausbibliothek (`hausbibliothek.org`)
+          8. Digitale Hausbibliothek (`hausbibliothek.org`)
         </h2>
         <p>
           Das SprachCafé Polnisch betreibt unter <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> eine eigenständige Webanwendung zur Verwaltung des zweisprachigen Buchbestands und des digitalen Leihbetriebs.
@@ -216,10 +246,10 @@ const lang = 'de';
         </ul>
       </section>
 
-      <!-- 8. Google Calendar & AWS S3 -->
+      <!-- 9. Google Calendar & AWS S3 -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          8. Termin-Synchronisation &amp; Cloud-Speicher
+          9. Termin-Synchronisation &amp; Cloud-Speicher
         </h2>
         <div class="space-y-3 text-sm">
           <p>
@@ -231,20 +261,20 @@ const lang = 'de';
         </div>
       </section>
 
-      <!-- 9. Externe Links zu Social Media -->
+      <!-- 10. Externe Links zu Social Media -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          9. Links zu Social-Media-Profilen
+          10. Links zu Social-Media-Profilen
         </h2>
         <p class="text-sm">
           Auf unserer Website verlinken wir auf unsere offiziellen Vereinskanäle bei <strong>Facebook, Instagram, YouTube, LinkedIn und TikTok</strong>. Wir binden <em>keine dynamischen Social-Plugins</em> (wie Like- oder Share-Buttons) ein, die bereits beim Laden der Seite Daten an die Plattformbetreiber übermitteln. Ein Datenaustausch mit den jeweiligen Plattformen findet erst statt, wenn Sie aktiv auf den entsprechenden Link klicken und zu dem Drittanbieter weitergeleitet werden.
         </p>
       </section>
 
-      <!-- 10. Rechte der betroffenen Personen -->
+      <!-- 11. Rechte der betroffenen Personen -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          10. Ihre Rechte als betroffene Person
+          11. Ihre Rechte als betroffene Person
         </h2>
         <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen der DSGVO jederzeit folgende Rechte:</p>
         
@@ -291,9 +321,9 @@ const lang = 'de';
         </div>
       </section>
 
-      <!-- 11. Stand & Aktualität -->
+      <!-- 12. Stand & Aktualität -->
       <section class="text-xs text-[#5b403d] dark:text-[#d4c5c2] space-y-1">
-        <p><strong>Stand dieser Datenschutzerklärung:</strong> September 2026</p>
+        <p><strong>Stand dieser Datenschutzerklärung:</strong> Oktober 2026</p>
         <p>Wir behalten uns vor, diese Datenschutzerklärung bei technischen Änderungen unseres Webangebots oder bei veränderten gesetzlichen Vorgaben anzupassen.</p>
       </section>
 

@@ -1,9 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import KiezHubSelector from '../../components/KiezHubSelector.astro';
+import DynamicPageRenderer from '../../components/DynamicPageRenderer.astro';
 
 const lang = 'pl';
 ---
+
+<DynamicPageRenderer slug="kontakt" lang={lang} defaultTitle="Kontakt & Informacje" badge="Kontakt i godziny otwarcia">
+  <div slot="after-content" class="space-y-12">
+    <KiezHubSelector lang={lang} />
+    <ContactForm lang={lang} />
+  </div>
 
 <Layout
   title="Kontakt & Godziny otwarcia — SprachCafé Polnisch"
@@ -59,3 +67,4 @@ const lang = 'pl';
     <ContactForm lang={lang} />
   </section>
 </Layout>
+</DynamicPageRenderer>

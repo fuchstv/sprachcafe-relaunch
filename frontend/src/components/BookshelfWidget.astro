@@ -21,8 +21,10 @@ const t = useTranslations(lang);
 const l = (p: string) => getLocalizedPath(p, lang);
 
 const allBooks = await getBooks();
-// Pick the latest/featured books
-const featuredBooks = allBooks.slice(0, maxBooks);
+// Pick the latest added books (highest IDs first)
+const featuredBooks = [...allBooks]
+  .sort((a, b) => (parseInt(b.id.replace(/\D/g, ''), 10) || 0) - (parseInt(a.id.replace(/\D/g, ''), 10) || 0))
+  .slice(0, maxBooks);
 
 const headingTitle = title || t('bookshelf.title');
 const headingSubtitle = subtitle || t('bookshelf.subtitle');

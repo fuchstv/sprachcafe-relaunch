@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import FaqAccordion from '../../../components/FaqAccordion.astro';
+import DynamicPageRenderer from '../../../components/DynamicPageRenderer.astro';
 
 const lang = 'pl';
 
@@ -80,6 +81,8 @@ const faqItems = [
 ];
 ---
 
+<DynamicPageRenderer slug="frequently-asked-questions" lang={lang} defaultTitle="Najczęściej Zadawane Pytania (FAQ)" badge="Pytania i Odpowiedzi">
+
 <Layout
   title="Najczęściej Zadawane Pytania (FAQ) — SprachCafé Polnisch e.V."
   description="Tutaj znajdziesz odpowiedzi na najczęściej zadawane pytania dotyczące godzin otwarcia, kursów językowych, biblioteki domowej i członkostwa w SprachCafé Polnisch e.V."
@@ -118,3 +121,4 @@ const faqItems = [
     </div>
   </section>
 </Layout>
+</DynamicPageRenderer>

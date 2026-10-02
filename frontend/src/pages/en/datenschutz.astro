@@ -68,23 +68,28 @@ const lang = 'en';
         </div>
       </section>
 
-      <!-- 3. Server Hosting & Logs -->
+      <!-- 3. Server Hosting, Cloudflare Edge & Logs -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          3. Hosting &amp; Server Log Files
+          3. Hosting, Cloudflare Edge Protection &amp; Server Logs
         </h2>
         
-        <h3 class="font-bold text-base">Hosting in AWS (Frankfurt Region / Germany)</h3>
+        <h3 class="font-bold text-base">Hosting in Amazon Web Services (AWS EC2 Frankfurt am Main)</h3>
         <p>
-          Our web server and reverse proxy (Caddy v2) are deployed on cloud infrastructure provided by Amazon Web Services EMEA SARL in <strong>Frankfurt am Main (`eu-central-1`), Germany</strong>. All data processing occurs strictly within the European Union.
+          Our web servers, databases, and application services are operated on dedicated cloud instances (Amazon EC2) provided by <strong>Amazon Web Services EMEA SARL</strong> (38 Avenue John F. Kennedy, L-1855 Luxembourg). The physical server location is <strong>Frankfurt am Main (`eu-central-1`), Germany</strong>. All data processing strictly resides within the European Union under a binding Data Processing Addendum (Art. 28 GDPR).
         </p>
 
-        <h3 class="font-bold text-base pt-2">Server Logs</h3>
+        <h3 class="font-bold text-base pt-2">Cloudflare Anycast DNS &amp; Edge Protection</h3>
+        <p class="text-sm">
+          To ensure rapid worldwide DNS resolution, DDoS mitigation, and robust network availability, we use the global infrastructure of <strong>Cloudflare</strong> (Cloudflare Inc., 101 Townsend St, San Francisco, CA 94107, USA / Cloudflare Germany GmbH). Our domains' name servers are provided via Cloudflare Anycast DNS. Network traffic is routed through Cloudflare edge nodes located within the European Union pursuant to EU Standard Contractual Clauses (Art. 46(2)(c) GDPR) and an executed DPA (Art. 28 GDPR).
+        </p>
+
+        <h3 class="font-bold text-base pt-2">Server Logs (Caddy Reverse Proxy)</h3>
         <p>
-          When you access our pages, our server records only technically necessary connection data (IP address, date/timestamp, requested URI, HTTP status code, transferred bytes, and user agent string).
+          When you access our pages, our Caddy web server records only technically necessary connection data (IP address, date/timestamp, requested URI, HTTP status code, transferred bytes, and user agent string).
         </p>
         <p class="text-sm pt-1">
-          <strong>Purpose and Legal Basis:</strong> Ensuring technical stability, performance, and defense against malicious attacks (DDoS). Legal basis: legitimate interest pursuant to <strong>Art. 6(1)(f) GDPR</strong>. Logs are purged on a rolling cycle within <strong>7 to 14 days</strong>.
+          <strong>Purpose and Legal Basis:</strong> Ensuring technical stability, performance, and defense against malicious attacks (DDoS). Legal basis: legitimate interest pursuant to <strong>Art. 6(1)(f) GDPR</strong> and § 25(2)(2) TDDDG. Logs are purged on a rolling cycle within <strong>7 to 14 days</strong>.
         </p>
       </section>
 
@@ -105,10 +110,25 @@ const lang = 'en';
         </p>
       </section>
 
-      <!-- 5. Member App & Digital Membership Card -->
+      <!-- 5. Newsletter Subscription & Double Opt-In -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          5. Member App, Digital Membership Card &amp; Google Wallet
+          5. Newsletter Subscription &amp; Double Opt-In
+        </h2>
+        <p class="text-sm">
+          You may subscribe to our free association newsletters covering upcoming cultural events, SprachCafé for kids and families, and multilingual programs.
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Double Opt-In Procedure:</strong> Registration utilizes a confirmed opt-in procedure. After submitting your request, you will receive an activation email with a confirmation link. The subscription becomes active only once you click this link (Art. 6(1)(a) GDPR).</li>
+          <li><strong>Delivery Infrastructure:</strong> Newsletters are primarily distributed through our <strong>self-hosted Listmonk platform</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">newsletter.sprachcafe-polnisch.org</code>) on our AWS server in Frankfurt, and secondarily via <strong>Mailchimp</strong> (Intuit Inc., USA; under EU Standard Contractual Clauses).</li>
+          <li><strong>Unsubscribe Anytime:</strong> You can withdraw your consent to receive newsletters at any time by clicking the unsubscribe link present in every newsletter footer or by emailing <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a>.</li>
+        </ul>
+      </section>
+
+      <!-- 6. Member App & Digital Membership Card -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. Member App, Digital Membership Card &amp; Google Wallet
         </h2>
         <p class="text-sm">
           To facilitate statutory membership rights, verify digital membership passes, and manage membership benefits (such as annual free coffee quotas, event discounts, and free library access), the association provides a web portal (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org/member/activate</code>) and the dedicated Android application <strong>„SprachCafé Mitglied“</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">org.sprachcafe.member</code>).
@@ -121,10 +141,10 @@ const lang = 'en';
         </ul>
       </section>
 
-      <!-- 6. Management & POS System with Microsoft Entra ID -->
+      <!-- 7. Management & POS System with Microsoft Entra ID -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          6. Board Administration &amp; POS Operations (`team.sprachcafe-polnisch.org`)
+          7. Board Administration &amp; POS Operations (`team.sprachcafe-polnisch.org`)
         </h2>
         <p class="text-sm">
           Administrative access to membership rosters, financial records, and POS audits is restricted and passwordlessly protected using <strong>Microsoft Entra ID (Single Sign-On)</strong> for authorized board members only.
@@ -134,20 +154,20 @@ const lang = 'en';
         </ul>
       </section>
 
-      <!-- 7. House Library -->
+      <!-- 8. House Library -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          7. House Library (`hausbibliothek.org`)
+          8. House Library (`hausbibliothek.org`)
         </h2>
         <p>
           The House Library platform at <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> manages book loans and reader accounts. Reader accounts inactive for more than 24 months are routinely deleted in accordance with data erasure obligations (Art. 17 GDPR).
         </p>
       </section>
 
-      <!-- 8. Data Subject Rights -->
+      <!-- 9. Data Subject Rights -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          8. Your Rights Under GDPR
+          9. Your Rights Under GDPR
         </h2>
         <p>You have the right to access (Art. 15 GDPR), rectify (Art. 16 GDPR), erase (Art. 17 GDPR), restrict processing (Art. 18 GDPR), receive data portability (Art. 20 GDPR), and object to processing (Art. 21 GDPR).</p>
         <p class="text-sm pt-2">
@@ -155,11 +175,11 @@ const lang = 'en';
         </p>
       </section>
 
-      <!-- 9. Supervisory Authority -->
+      <!-- 10. Supervisory Authority -->
       <section class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
         <p><strong>Competent Data Protection Supervisory Authority:</strong></p>
         <p>Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin, Email: mailbox@datenschutz-berlin.de</p>
-        <p class="pt-2"><strong>Last updated:</strong> September 2026</p>
+        <p class="pt-2"><strong>Last updated:</strong> October 2026</p>
       </section>
 
     </div>

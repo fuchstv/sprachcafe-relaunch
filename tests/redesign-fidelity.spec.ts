@@ -119,47 +119,31 @@ test.describe('Tier 1: Symmetrical Route Parity & Link Isolation', () => {
 // ---------------------------------------------------------------------------
 
 test.describe('Tier 2: Core Component Rendering & Stitch Visual Fidelity', () => {
-  test('Homepage: Renders HeroSection with 3-photo collage and Polish Poster warm salon accents', async ({ page }) => {
+  test('Homepage: Renders authentic WordPress frontpage content and testimonial slider', async ({ page }) => {
     // 1. Check German Home
     await page.goto('/');
-    const heroSectionDe = page.locator('section').filter({ has: page.locator('h1') }).first();
-    await expect(heroSectionDe).toBeVisible();
+    const frontpageDe = page.locator('article.wp-frontpage-content').first();
+    await expect(frontpageDe).toBeVisible();
+    await expect(frontpageDe).toContainText('SprachCafé Polnisch');
 
-    const heroH1De = heroSectionDe.locator('h1');
-    await expect(heroH1De).toContainText('SprachCafé Polnisch');
+    // Testimonial slider within frontpage
+    const testimonialsDe = frontpageDe.locator('.testimonial');
+    const countDe = await testimonialsDe.count();
+    expect(countDe, 'Homepage should contain testimonial slides').toBeGreaterThanOrEqual(1);
 
-    // 3-photo collage within hero
-    const heroImagesDe = heroSectionDe.locator('img[src*="/images/hero/"]');
-    const heroImageCountDe = await heroImagesDe.count();
-    expect(heroImageCountDe, 'Homepage hero should contain 3 collage photographs').toBeGreaterThanOrEqual(3);
-
-    // Verify all collage images are loaded and have alt text
-    for (let i = 0; i < heroImageCountDe; i++) {
-      const img = heroImagesDe.nth(i);
-      await expect(img).toBeVisible();
-      const alt = await img.getAttribute('alt');
-      expect(alt, 'Hero image must have non-empty alt text').toBeTruthy();
-    }
-
-    // CTAs inside Hero on German Home
-    const primaryCtaDe = heroSectionDe.locator('a[href="/events/"]').first();
-    const secondaryCtaDe = heroSectionDe.locator('a[href="/hausbibliothek/"]').first();
-    await expect(primaryCtaDe).toBeVisible();
-    await expect(secondaryCtaDe).toBeVisible();
+    // Active slide exists
+    await expect(frontpageDe.locator('.testimonial.active').first()).toBeVisible();
 
     // 2. Check Polish Home
     await page.goto('/pl/');
-    const heroSectionPl = page.locator('section').filter({ has: page.locator('h1') }).first();
-    await expect(heroSectionPl).toBeVisible();
+    const frontpagePl = page.locator('article.wp-frontpage-content').first();
+    await expect(frontpagePl).toBeVisible();
+    await expect(frontpagePl).toContainText('SprachCafé Polnisch');
 
-    const heroH1Pl = heroSectionPl.locator('h1');
-    await expect(heroH1Pl).toContainText('SprachCafé Polnisch');
-
-    // CTAs inside Hero on Polish Home must preserve /pl/ prefix
-    const primaryCtaPl = heroSectionPl.locator('a[href="/pl/events/"]').first();
-    const secondaryCtaPl = heroSectionPl.locator('a[href="/pl/hausbibliothek/"]').first();
-    await expect(primaryCtaPl).toBeVisible();
-    await expect(secondaryCtaPl).toBeVisible();
+    const testimonialsPl = frontpagePl.locator('.testimonial');
+    const countPl = await testimonialsPl.count();
+    expect(countPl, 'Polish Homepage should contain testimonial slides').toBeGreaterThanOrEqual(1);
+    await expect(frontpagePl.locator('.testimonial.active').first()).toBeVisible();
   });
 
   test('Events: BOTH /events/ and /pl/events/ render VintageEventTicketCard with typewriter date stamps and perforated notches', async ({ page }) => {
@@ -211,7 +195,7 @@ test.describe('Tier 2: Core Component Rendering & Stitch Visual Fidelity', () =>
   });
 
   test('Kiez-Hub: Renders 3 location cards (Pankow, Schöneberg, Köpenick) with interactive filter tabs', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/kontakt/');
 
     // Check presence of 3 Kiez cards
     const pankowCard = page.locator('[data-hub="pankow"]').first();

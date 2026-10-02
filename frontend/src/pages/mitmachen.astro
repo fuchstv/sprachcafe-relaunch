@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MembershipForm from '../components/MembershipForm.astro';
 import ApplicationForm from '../components/ApplicationForm.astro';
+import DynamicPageRenderer from '../components/DynamicPageRenderer.astro';
 
 const lang = 'de';
 
@@ -48,6 +49,8 @@ const jsonLd = {
   }
 };
 ---
+
+<DynamicPageRenderer slug="mitmachen" lang={lang} defaultTitle="Mitmachen & Mitglied werden" badge="Gemeinschaft & Kultur mitgestalten">
 
 <Layout
   title="Mitmachen & Mitglied werden — SprachCafé Polnisch e.V."
@@ -429,3 +432,4 @@ const jsonLd = {
     </section>
   </section>
 </Layout>
+</DynamicPageRenderer>

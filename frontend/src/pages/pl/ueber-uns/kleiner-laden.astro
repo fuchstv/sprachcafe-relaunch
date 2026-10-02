@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../../components/DynamicPageRenderer.astro';
 import { getCollection } from 'astro:content';
 
 const lang = 'pl';
@@ -8,6 +9,8 @@ const shopItems = (await getCollection('shopItems')).sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
 );
 ---
+
+<DynamicPageRenderer slug="sklepik" lang={lang} defaultTitle="Sklepik w SprachCafé" badge="Oferta stowarzyszenia & Gadżety">
 
 <Layout
   title="Sklepik — SprachCafé Polnisch e.V."
@@ -105,3 +108,4 @@ const shopItems = (await getCollection('shopItems')).sort(
     </div>
   </section>
 </Layout>
+</DynamicPageRenderer>

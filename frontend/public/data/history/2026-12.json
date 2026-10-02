@@ -1,0 +1,33 @@
+{
+  "jahrMonat": "2026-12",
+  "jahr": 2026,
+  "monatNum": 12,
+  "monatName": "Dezember",
+  "events": {
+    "total": 64,
+    "kinder": 57,
+    "sprachpraxis": 3,
+    "kultur": 3,
+    "locations": {
+      "pankow": 0,
+      "schoeneberg": 0,
+      "koepenick": 0,
+      "online": 0
+    }
+  },
+  "headcountEst": {
+    "totalAttendees": 1101,
+    "childrenAttendees": 578,
+    "avgPerEvent": 17.2
+  },
+  "web": {
+    "pageViews": 18080,
+    "uniqueVisitors": 3843
+  },
+  "newsletter": {
+    "subscribers": 880,
+    "openRatePct": 48.6,
+    "campaignsSent": 2
+  },
+  "archivedAt": "2026-10-02T12:53:06.695Z"
+}

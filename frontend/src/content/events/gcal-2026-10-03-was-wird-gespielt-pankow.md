@@ -23,5 +23,5 @@ image:
     de: "Was wird gespielt?"
     pl: "Was wird gespielt?"
     en: "Was wird gespielt?"
-isFeatured: false
+isFeatured: true
 ---

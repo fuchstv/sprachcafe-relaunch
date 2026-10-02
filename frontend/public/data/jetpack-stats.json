@@ -1,0 +1,1510 @@
+{
+  "metadata": {
+    "blogId": 226858808,
+    "source": "Automattic Jetpack Stats API (csv.php)",
+    "exportedAt": "2026-10-02T12:52:37+00:00",
+    "totalAllTimeViews": 59190,
+    "daysRecorded": 1025,
+    "yearlyTotals": {
+      "2023": 727,
+      "2024": 25790,
+      "2025": 18127,
+      "2026": 14546
+    }
+  },
+  "monthlyViews": [
+    {
+      "jahrMonat": "2023-12",
+      "jahr": 2023,
+      "views": 727,
+      "days": 21
+    },
+    {
+      "jahrMonat": "2024-01",
+      "jahr": 2024,
+      "views": 2916,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2024-02",
+      "jahr": 2024,
+      "views": 2934,
+      "days": 29
+    },
+    {
+      "jahrMonat": "2024-03",
+      "jahr": 2024,
+      "views": 3288,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2024-04",
+      "jahr": 2024,
+      "views": 3698,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2024-05",
+      "jahr": 2024,
+      "views": 2432,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2024-06",
+      "jahr": 2024,
+      "views": 1442,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2024-07",
+      "jahr": 2024,
+      "views": 1141,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2024-08",
+      "jahr": 2024,
+      "views": 1525,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2024-09",
+      "jahr": 2024,
+      "views": 1990,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2024-10",
+      "jahr": 2024,
+      "views": 1884,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2024-11",
+      "jahr": 2024,
+      "views": 1493,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2024-12",
+      "jahr": 2024,
+      "views": 1047,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-01",
+      "jahr": 2025,
+      "views": 2163,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-02",
+      "jahr": 2025,
+      "views": 1512,
+      "days": 28
+    },
+    {
+      "jahrMonat": "2025-03",
+      "jahr": 2025,
+      "views": 1574,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-04",
+      "jahr": 2025,
+      "views": 1097,
+      "days": 28
+    },
+    {
+      "jahrMonat": "2025-05",
+      "jahr": 2025,
+      "views": 1539,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-06",
+      "jahr": 2025,
+      "views": 1374,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2025-07",
+      "jahr": 2025,
+      "views": 1203,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-08",
+      "jahr": 2025,
+      "views": 1111,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-09",
+      "jahr": 2025,
+      "views": 2068,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2025-10",
+      "jahr": 2025,
+      "views": 1474,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2025-11",
+      "jahr": 2025,
+      "views": 1833,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2025-12",
+      "jahr": 2025,
+      "views": 1179,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2026-01",
+      "jahr": 2026,
+      "views": 1645,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2026-02",
+      "jahr": 2026,
+      "views": 2464,
+      "days": 28
+    },
+    {
+      "jahrMonat": "2026-03",
+      "jahr": 2026,
+      "views": 1643,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2026-04",
+      "jahr": 2026,
+      "views": 1070,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2026-05",
+      "jahr": 2026,
+      "views": 1602,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2026-06",
+      "jahr": 2026,
+      "views": 1619,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2026-07",
+      "jahr": 2026,
+      "views": 1070,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2026-08",
+      "jahr": 2026,
+      "views": 1540,
+      "days": 31
+    },
+    {
+      "jahrMonat": "2026-09",
+      "jahr": 2026,
+      "views": 1816,
+      "days": 30
+    },
+    {
+      "jahrMonat": "2026-10",
+      "jahr": 2026,
+      "views": 77,
+      "days": 2
+    }
+  ],
+  "topPosts": [
+    {
+      "postId": 20,
+      "title": "Startseite (Homepage)",
+      "url": "https://sprachcafe-polnisch.org/",
+      "viewsTotal": 8491,
+      "views2026": 3258,
+      "views2025": 4193,
+      "views2024": 1040,
+      "viewsByMonth": {
+        "2026-10": 16,
+        "2026-09": 395,
+        "2026-08": 350,
+        "2026-07": 251,
+        "2026-06": 470,
+        "2026-05": 360,
+        "2026-04": 291,
+        "2026-03": 370,
+        "2026-02": 435,
+        "2026-01": 320,
+        "2025-12": 311,
+        "2025-11": 391,
+        "2025-10": 304,
+        "2025-09": 410,
+        "2025-08": 233,
+        "2025-07": 305,
+        "2025-06": 389,
+        "2025-05": 422,
+        "2025-04": 290,
+        "2025-03": 335,
+        "2025-02": 334,
+        "2025-01": 469,
+        "2024-12": 285,
+        "2024-11": 362,
+        "2024-10": 393
+      }
+    },
+    {
+      "postId": 150,
+      "title": "SprachCafé für Kinder",
+      "url": "https://sprachcafe-polnisch.org/sprachcafe-fuer-kinder/",
+      "viewsTotal": 4159,
+      "views2026": 1673,
+      "views2025": 1988,
+      "views2024": 498,
+      "viewsByMonth": {
+        "2026-10": 6,
+        "2026-09": 193,
+        "2026-08": 171,
+        "2026-07": 92,
+        "2026-06": 131,
+        "2026-05": 178,
+        "2026-04": 124,
+        "2026-03": 194,
+        "2026-02": 434,
+        "2026-01": 150,
+        "2025-12": 94,
+        "2025-11": 203,
+        "2025-10": 154,
+        "2025-09": 300,
+        "2025-08": 87,
+        "2025-07": 94,
+        "2025-06": 139,
+        "2025-05": 193,
+        "2025-04": 84,
+        "2025-03": 170,
+        "2025-02": 179,
+        "2025-01": 291,
+        "2024-12": 127,
+        "2024-11": 184,
+        "2024-10": 187
+      }
+    },
+    {
+      "postId": 133,
+      "title": "Veranstaltungen",
+      "url": "https://sprachcafe-polnisch.org/veranstaltungen/",
+      "viewsTotal": 3353,
+      "views2026": 1574,
+      "views2025": 1365,
+      "views2024": 414,
+      "viewsByMonth": {
+        "2026-10": 4,
+        "2026-09": 130,
+        "2026-08": 133,
+        "2026-07": 119,
+        "2026-06": 219,
+        "2026-05": 207,
+        "2026-04": 138,
+        "2026-03": 190,
+        "2026-02": 220,
+        "2026-01": 214,
+        "2025-12": 96,
+        "2025-11": 126,
+        "2025-10": 110,
+        "2025-09": 153,
+        "2025-08": 96,
+        "2025-07": 84,
+        "2025-06": 93,
+        "2025-05": 167,
+        "2025-04": 83,
+        "2025-03": 85,
+        "2025-02": 114,
+        "2025-01": 158,
+        "2024-12": 85,
+        "2024-11": 178,
+        "2024-10": 151
+      }
+    },
+    {
+      "postId": 0,
+      "title": "Home page",
+      "url": "https://beta.sprachcafe-polnisch.org/",
+      "viewsTotal": 943,
+      "views2026": 321,
+      "views2025": 509,
+      "views2024": 113,
+      "viewsByMonth": {
+        "2026-09": 31,
+        "2026-08": 28,
+        "2026-07": 43,
+        "2026-06": 34,
+        "2026-05": 21,
+        "2026-04": 36,
+        "2026-03": 33,
+        "2026-02": 48,
+        "2026-01": 47,
+        "2025-12": 26,
+        "2025-11": 53,
+        "2025-10": 35,
+        "2025-09": 42,
+        "2025-08": 25,
+        "2025-07": 60,
+        "2025-06": 38,
+        "2025-05": 39,
+        "2025-04": 38,
+        "2025-03": 59,
+        "2025-02": 40,
+        "2025-01": 54,
+        "2024-12": 32,
+        "2024-11": 33,
+        "2024-10": 48
+      }
+    },
+    {
+      "postId": 144,
+      "title": "Wydarzenia",
+      "url": "https://sprachcafe-polnisch.org/pl/wydarzenia/",
+      "viewsTotal": 780,
+      "views2026": 270,
+      "views2025": 446,
+      "views2024": 64,
+      "viewsByMonth": {
+        "2026-09": 24,
+        "2026-08": 12,
+        "2026-07": 15,
+        "2026-06": 12,
+        "2026-05": 23,
+        "2026-04": 15,
+        "2026-03": 47,
+        "2026-02": 54,
+        "2026-01": 68,
+        "2025-12": 17,
+        "2025-11": 48,
+        "2025-10": 38,
+        "2025-09": 32,
+        "2025-08": 36,
+        "2025-07": 45,
+        "2025-06": 57,
+        "2025-05": 24,
+        "2025-04": 33,
+        "2025-03": 46,
+        "2025-02": 34,
+        "2025-01": 36,
+        "2024-12": 19,
+        "2024-11": 21,
+        "2024-10": 24
+      }
+    },
+    {
+      "postId": 22,
+      "title": "pl",
+      "url": "https://sprachcafe-polnisch.org/pl/",
+      "viewsTotal": 735,
+      "views2026": 259,
+      "views2025": 423,
+      "views2024": 53,
+      "viewsByMonth": {
+        "2026-09": 34,
+        "2026-08": 24,
+        "2026-07": 26,
+        "2026-06": 17,
+        "2026-05": 32,
+        "2026-04": 17,
+        "2026-03": 33,
+        "2026-02": 37,
+        "2026-01": 39,
+        "2025-12": 20,
+        "2025-11": 61,
+        "2025-10": 36,
+        "2025-09": 47,
+        "2025-08": 37,
+        "2025-07": 43,
+        "2025-06": 42,
+        "2025-05": 22,
+        "2025-04": 30,
+        "2025-03": 30,
+        "2025-02": 27,
+        "2025-01": 28,
+        "2024-12": 13,
+        "2024-11": 30,
+        "2024-10": 10
+      }
+    },
+    {
+      "postId": 156,
+      "title": "Kafejka dla Dzieci",
+      "url": "https://sprachcafe-polnisch.org/pl/kafejka-dla-dzieci/",
+      "viewsTotal": 604,
+      "views2026": 227,
+      "views2025": 336,
+      "views2024": 41,
+      "viewsByMonth": {
+        "2026-09": 30,
+        "2026-08": 27,
+        "2026-07": 8,
+        "2026-06": 14,
+        "2026-05": 20,
+        "2026-04": 20,
+        "2026-03": 28,
+        "2026-02": 49,
+        "2026-01": 31,
+        "2025-12": 13,
+        "2025-11": 23,
+        "2025-10": 31,
+        "2025-09": 31,
+        "2025-08": 29,
+        "2025-07": 28,
+        "2025-06": 28,
+        "2025-05": 22,
+        "2025-04": 22,
+        "2025-03": 21,
+        "2025-02": 34,
+        "2025-01": 54,
+        "2024-12": 15,
+        "2024-11": 17,
+        "2024-10": 9
+      }
+    },
+    {
+      "postId": 427,
+      "title": "Das Team",
+      "url": "https://sprachcafe-polnisch.org/ueber-uns/team/",
+      "viewsTotal": 582,
+      "views2026": 259,
+      "views2025": 261,
+      "views2024": 62,
+      "viewsByMonth": {
+        "2026-10": 1,
+        "2026-09": 36,
+        "2026-08": 28,
+        "2026-07": 17,
+        "2026-06": 32,
+        "2026-05": 25,
+        "2026-04": 22,
+        "2026-03": 25,
+        "2026-02": 38,
+        "2026-01": 35,
+        "2025-12": 27,
+        "2025-11": 16,
+        "2025-10": 25,
+        "2025-09": 21,
+        "2025-08": 11,
+        "2025-07": 17,
+        "2025-06": 22,
+        "2025-05": 43,
+        "2025-04": 12,
+        "2025-03": 18,
+        "2025-02": 18,
+        "2025-01": 31,
+        "2024-12": 16,
+        "2024-11": 15,
+        "2024-10": 31
+      }
+    },
+    {
+      "postId": 166,
+      "title": "Mitmachen!",
+      "url": "https://sprachcafe-polnisch.org/mitmachen/",
+      "viewsTotal": 526,
+      "views2026": 268,
+      "views2025": 218,
+      "views2024": 40,
+      "viewsByMonth": {
+        "2026-10": 1,
+        "2026-09": 41,
+        "2026-08": 30,
+        "2026-07": 27,
+        "2026-06": 20,
+        "2026-05": 14,
+        "2026-04": 28,
+        "2026-03": 27,
+        "2026-02": 27,
+        "2026-01": 53,
+        "2025-12": 30,
+        "2025-11": 29,
+        "2025-10": 12,
+        "2025-09": 23,
+        "2025-08": 12,
+        "2025-07": 16,
+        "2025-06": 14,
+        "2025-05": 27,
+        "2025-04": 15,
+        "2025-03": 7,
+        "2025-02": 10,
+        "2025-01": 23,
+        "2024-12": 9,
+        "2024-11": 14,
+        "2024-10": 17
+      }
+    },
+    {
+      "postId": 129,
+      "title": "Über uns",
+      "url": "https://sprachcafe-polnisch.org/ueber-uns/",
+      "viewsTotal": 499,
+      "views2026": 214,
+      "views2025": 224,
+      "views2024": 61,
+      "viewsByMonth": {
+        "2026-10": 1,
+        "2026-09": 15,
+        "2026-08": 27,
+        "2026-07": 15,
+        "2026-06": 31,
+        "2026-05": 13,
+        "2026-04": 17,
+        "2026-03": 25,
+        "2026-02": 48,
+        "2026-01": 22,
+        "2025-12": 20,
+        "2025-11": 24,
+        "2025-10": 23,
+        "2025-09": 24,
+        "2025-08": 13,
+        "2025-07": 21,
+        "2025-06": 18,
+        "2025-05": 22,
+        "2025-04": 9,
+        "2025-03": 16,
+        "2025-02": 15,
+        "2025-01": 19,
+        "2024-12": 13,
+        "2024-11": 22,
+        "2024-10": 26
+      }
+    },
+    {
+      "postId": 5164,
+      "title": "SprachCafé im Ohr",
+      "url": "https://sprachcafe-polnisch.org/im-ohr/",
+      "viewsTotal": 449,
+      "views2026": 33,
+      "views2025": 289,
+      "views2024": 127,
+      "viewsByMonth": {
+        "2026-09": 2,
+        "2026-08": 5,
+        "2026-07": 2,
+        "2026-06": 1,
+        "2026-04": 1,
+        "2026-03": 4,
+        "2026-02": 4,
+        "2026-01": 14,
+        "2025-12": 5,
+        "2025-11": 34,
+        "2025-10": 27,
+        "2025-09": 24,
+        "2025-08": 10,
+        "2025-07": 19,
+        "2025-06": 27,
+        "2025-05": 25,
+        "2025-04": 25,
+        "2025-03": 53,
+        "2025-02": 25,
+        "2025-01": 15,
+        "2024-12": 16,
+        "2024-11": 34,
+        "2024-10": 77
+      }
+    },
+    {
+      "postId": 179,
+      "title": "Kontakt",
+      "url": "https://sprachcafe-polnisch.org/kontakt/",
+      "viewsTotal": 415,
+      "views2026": 194,
+      "views2025": 170,
+      "views2024": 51,
+      "viewsByMonth": {
+        "2026-10": 3,
+        "2026-09": 22,
+        "2026-08": 24,
+        "2026-07": 19,
+        "2026-06": 38,
+        "2026-05": 19,
+        "2026-04": 20,
+        "2026-03": 14,
+        "2026-02": 22,
+        "2026-01": 13,
+        "2025-12": 15,
+        "2025-11": 12,
+        "2025-10": 16,
+        "2025-09": 23,
+        "2025-08": 11,
+        "2025-07": 5,
+        "2025-06": 21,
+        "2025-05": 15,
+        "2025-04": 11,
+        "2025-03": 10,
+        "2025-02": 15,
+        "2025-01": 16,
+        "2024-12": 8,
+        "2024-11": 19,
+        "2024-10": 24
+      }
+    },
+    {
+      "postId": 6322,
+      "title": "#6322 (loading title)",
+      "url": "",
+      "viewsTotal": 319,
+      "views2026": 23,
+      "views2025": 230,
+      "views2024": 66,
+      "viewsByMonth": {
+        "2026-07": 2,
+        "2026-06": 1,
+        "2026-04": 4,
+        "2026-03": 4,
+        "2026-02": 3,
+        "2026-01": 9,
+        "2025-12": 5,
+        "2025-11": 15,
+        "2025-10": 38,
+        "2025-09": 17,
+        "2025-08": 10,
+        "2025-07": 17,
+        "2025-06": 33,
+        "2025-05": 19,
+        "2025-04": 12,
+        "2025-03": 21,
+        "2025-02": 16,
+        "2025-01": 27,
+        "2024-12": 8,
+        "2024-11": 34,
+        "2024-10": 24
+      }
+    },
+    {
+      "postId": 231,
+      "title": "Newsletter",
+      "url": "https://sprachcafe-polnisch.org/newsletter/",
+      "viewsTotal": 307,
+      "views2026": 125,
+      "views2025": 138,
+      "views2024": 44,
+      "viewsByMonth": {
+        "2026-10": 3,
+        "2026-09": 20,
+        "2026-08": 7,
+        "2026-07": 12,
+        "2026-06": 28,
+        "2026-05": 8,
+        "2026-04": 7,
+        "2026-03": 14,
+        "2026-02": 12,
+        "2026-01": 14,
+        "2025-12": 9,
+        "2025-11": 19,
+        "2025-10": 8,
+        "2025-09": 21,
+        "2025-08": 6,
+        "2025-07": 4,
+        "2025-06": 9,
+        "2025-05": 9,
+        "2025-04": 8,
+        "2025-03": 8,
+        "2025-02": 11,
+        "2025-01": 26,
+        "2024-12": 11,
+        "2024-11": 15,
+        "2024-10": 18
+      }
+    },
+    {
+      "postId": 24038,
+      "title": "Historie, które chcą być opowiedziane… | Die Geschichten, die erzählt werden möchten… - Programm 03.-05.07.2026 LUBLIN/PL",
+      "url": "https://sprachcafe-polnisch.org/2026/05/24038/",
+      "viewsTotal": 279,
+      "views2026": 279,
+      "views2025": 0,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-10": 2,
+        "2026-09": 3,
+        "2026-08": 13,
+        "2026-07": 79,
+        "2026-06": 93,
+        "2026-05": 89
+      }
+    },
+    {
+      "postId": 297,
+      "title": "Biblioteka",
+      "url": "https://sprachcafe-polnisch.org/pl/o-nas/biblioteka/",
+      "viewsTotal": 277,
+      "views2026": 108,
+      "views2025": 147,
+      "views2024": 22,
+      "viewsByMonth": {
+        "2026-09": 13,
+        "2026-08": 5,
+        "2026-07": 14,
+        "2026-06": 1,
+        "2026-05": 6,
+        "2026-04": 13,
+        "2026-03": 14,
+        "2026-02": 18,
+        "2026-01": 24,
+        "2025-12": 20,
+        "2025-11": 20,
+        "2025-10": 25,
+        "2025-09": 21,
+        "2025-08": 9,
+        "2025-07": 17,
+        "2025-06": 5,
+        "2025-05": 12,
+        "2025-04": 2,
+        "2025-03": 9,
+        "2025-02": 5,
+        "2025-01": 2,
+        "2024-12": 9,
+        "2024-11": 8,
+        "2024-10": 5
+      }
+    },
+    {
+      "postId": 358,
+      "title": "Mitglied werden",
+      "url": "https://sprachcafe-polnisch.org/mitmachen/mitglied-werden/",
+      "viewsTotal": 247,
+      "views2026": 122,
+      "views2025": 99,
+      "views2024": 26,
+      "viewsByMonth": {
+        "2026-10": 1,
+        "2026-09": 11,
+        "2026-08": 8,
+        "2026-07": 7,
+        "2026-06": 22,
+        "2026-05": 23,
+        "2026-04": 17,
+        "2026-03": 9,
+        "2026-02": 14,
+        "2026-01": 10,
+        "2025-12": 16,
+        "2025-11": 7,
+        "2025-10": 10,
+        "2025-09": 10,
+        "2025-08": 4,
+        "2025-07": 11,
+        "2025-06": 3,
+        "2025-05": 10,
+        "2025-04": 7,
+        "2025-03": 3,
+        "2025-02": 9,
+        "2025-01": 9,
+        "2024-12": 6,
+        "2024-11": 8,
+        "2024-10": 12
+      }
+    },
+    {
+      "postId": 4037,
+      "title": "Instagram",
+      "url": "https://sprachcafe-polnisch.org/ig/",
+      "viewsTotal": 207,
+      "views2026": 91,
+      "views2025": 84,
+      "views2024": 32,
+      "viewsByMonth": {
+        "2026-10": 3,
+        "2026-09": 6,
+        "2026-08": 6,
+        "2026-07": 13,
+        "2026-06": 13,
+        "2026-05": 16,
+        "2026-04": 2,
+        "2026-03": 7,
+        "2026-02": 15,
+        "2026-01": 10,
+        "2025-11": 8,
+        "2025-10": 5,
+        "2025-09": 14,
+        "2025-08": 5,
+        "2025-07": 7,
+        "2025-06": 5,
+        "2025-05": 3,
+        "2025-04": 12,
+        "2025-03": 9,
+        "2025-02": 5,
+        "2025-01": 11,
+        "2024-12": 7,
+        "2024-11": 6,
+        "2024-10": 19
+      }
+    },
+    {
+      "postId": 22760,
+      "title": "Klub Malucha „Z uśmiechem od ucha do ucha\" - dla dzieci 1-3 lat",
+      "url": "https://sprachcafe-polnisch.org/2026/02/klub-malucha-z-usmiechem-od-ucha-do-ucha-dla-dzieci-1-3-lat/",
+      "viewsTotal": 191,
+      "views2026": 191,
+      "views2025": 0,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-08": 4,
+        "2026-06": 3,
+        "2026-05": 15,
+        "2026-04": 19,
+        "2026-03": 38,
+        "2026-02": 112
+      }
+    },
+    {
+      "postId": 6369,
+      "title": "SprachCafé auch im Süden Berlins",
+      "url": "https://sprachcafe-polnisch.org/im-suden-berlins/",
+      "viewsTotal": 190,
+      "views2026": 50,
+      "views2025": 97,
+      "views2024": 43,
+      "viewsByMonth": {
+        "2026-09": 1,
+        "2026-07": 5,
+        "2026-06": 13,
+        "2026-05": 7,
+        "2026-04": 5,
+        "2026-03": 10,
+        "2026-02": 6,
+        "2026-01": 3,
+        "2025-12": 7,
+        "2025-11": 12,
+        "2025-10": 6,
+        "2025-09": 11,
+        "2025-08": 4,
+        "2025-07": 7,
+        "2025-06": 11,
+        "2025-05": 12,
+        "2025-04": 6,
+        "2025-03": 5,
+        "2025-02": 3,
+        "2025-01": 13,
+        "2024-12": 8,
+        "2024-11": 20,
+        "2024-10": 15
+      }
+    },
+    {
+      "postId": 267,
+      "title": "Bibliothek",
+      "url": "https://sprachcafe-polnisch.org/ueber-uns/hausbibliothek/",
+      "viewsTotal": 161,
+      "views2026": 87,
+      "views2025": 61,
+      "views2024": 13,
+      "viewsByMonth": {
+        "2026-10": 2,
+        "2026-09": 12,
+        "2026-08": 24,
+        "2026-07": 7,
+        "2026-06": 6,
+        "2026-05": 17,
+        "2026-04": 1,
+        "2026-03": 8,
+        "2026-02": 9,
+        "2026-01": 1,
+        "2025-12": 3,
+        "2025-11": 3,
+        "2025-10": 4,
+        "2025-09": 11,
+        "2025-08": 2,
+        "2025-07": 12,
+        "2025-06": 7,
+        "2025-05": 2,
+        "2025-04": 5,
+        "2025-03": 8,
+        "2025-02": 1,
+        "2025-01": 3,
+        "2024-12": 2,
+        "2024-11": 8,
+        "2024-10": 3
+      }
+    },
+    {
+      "postId": 5311,
+      "title": "SprachCafé im Ohr - Zeitplan | Schedule",
+      "url": "https://sprachcafe-polnisch.org/im-ohr/zeitplan/",
+      "viewsTotal": 152,
+      "views2026": 8,
+      "views2025": 101,
+      "views2024": 43,
+      "viewsByMonth": {
+        "2026-08": 1,
+        "2026-02": 5,
+        "2026-01": 2,
+        "2025-11": 10,
+        "2025-10": 6,
+        "2025-09": 15,
+        "2025-08": 3,
+        "2025-07": 14,
+        "2025-06": 15,
+        "2025-05": 12,
+        "2025-04": 5,
+        "2025-03": 12,
+        "2025-02": 6,
+        "2025-01": 3,
+        "2024-12": 6,
+        "2024-11": 12,
+        "2024-10": 25
+      }
+    },
+    {
+      "postId": 19125,
+      "title": "Midissage der Ausstellung von Wojciech Jaszczyk",
+      "url": "https://sprachcafe-polnisch.org/2025/08/midissage-der-ausstellung-wojciech-jaszczyk/",
+      "viewsTotal": 151,
+      "views2026": 1,
+      "views2025": 150,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-03": 1,
+        "2025-11": 3,
+        "2025-10": 11,
+        "2025-09": 58,
+        "2025-08": 78
+      }
+    },
+    {
+      "postId": 19504,
+      "title": "Czwartkowe podróże sensoryczne - dla dzieci 1-3 lat",
+      "url": "https://sprachcafe-polnisch.org/2025/08/czwartki-sensoryczne/",
+      "viewsTotal": 149,
+      "views2026": 16,
+      "views2025": 133,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-10": 1,
+        "2026-08": 2,
+        "2026-07": 2,
+        "2026-06": 1,
+        "2026-03": 1,
+        "2026-02": 2,
+        "2026-01": 7,
+        "2025-12": 7,
+        "2025-11": 8,
+        "2025-10": 20,
+        "2025-09": 93,
+        "2025-08": 5
+      }
+    },
+    {
+      "postId": 19631,
+      "title": "Muzealne Warsztaty - dla dzieci 6-12 lat",
+      "url": "https://sprachcafe-polnisch.org/2025/08/muzealne-warsztaty-dla-dzieci-8-13-lat/",
+      "viewsTotal": 138,
+      "views2026": 41,
+      "views2025": 97,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-09": 1,
+        "2026-03": 1,
+        "2026-02": 5,
+        "2026-01": 34,
+        "2025-12": 32,
+        "2025-11": 17,
+        "2025-10": 15,
+        "2025-09": 29,
+        "2025-08": 4
+      }
+    },
+    {
+      "postId": 22754,
+      "title": "Łowcy Słów i Przygód - zajęcia dla dzieci 4-6",
+      "url": "https://sprachcafe-polnisch.org/2026/02/lowcy-slow-i-przygod-zajecia-dla-dzieci-4-6/",
+      "viewsTotal": 136,
+      "views2026": 136,
+      "views2025": 0,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-08": 1,
+        "2026-05": 5,
+        "2026-04": 4,
+        "2026-03": 43,
+        "2026-02": 83
+      }
+    },
+    {
+      "postId": 19350,
+      "title": "Warsztaty kreatywne dla dzieci w wieku 3–5 lat",
+      "url": "https://sprachcafe-polnisch.org/2025/08/warsztaty-kreatywne-dla-dzieci-w-wieku-3-5-lat/",
+      "viewsTotal": 130,
+      "views2026": 10,
+      "views2025": 120,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-05": 1,
+        "2026-04": 1,
+        "2026-01": 8,
+        "2025-12": 1,
+        "2025-11": 59,
+        "2025-10": 11,
+        "2025-09": 34,
+        "2025-08": 15
+      }
+    },
+    {
+      "postId": 6265,
+      "title": "#6265 (loading title)",
+      "url": "",
+      "viewsTotal": 128,
+      "views2026": 67,
+      "views2025": 49,
+      "views2024": 12,
+      "viewsByMonth": {
+        "2026-08": 4,
+        "2026-07": 1,
+        "2026-06": 7,
+        "2026-05": 7,
+        "2026-04": 6,
+        "2026-03": 13,
+        "2026-02": 14,
+        "2026-01": 15,
+        "2025-12": 5,
+        "2025-11": 9,
+        "2025-10": 2,
+        "2025-09": 4,
+        "2025-08": 4,
+        "2025-07": 9,
+        "2025-06": 3,
+        "2025-05": 2,
+        "2025-04": 1,
+        "2025-03": 2,
+        "2025-02": 4,
+        "2025-01": 4,
+        "2024-12": 2,
+        "2024-11": 5,
+        "2024-10": 5
+      }
+    },
+    {
+      "postId": 23855,
+      "title": "Dzień Otwartych Drzwi w Kafejce 🍓 Tag der Offen Tür im SprachCafé",
+      "url": "https://sprachcafe-polnisch.org/2026/04/dzien-otwartych-drzwi-w-kafejce-tag-der-offen-tuer-im-sprachcafe/",
+      "viewsTotal": 127,
+      "views2026": 127,
+      "views2025": 0,
+      "views2024": 0,
+      "viewsByMonth": {
+        "2026-06": 10,
+        "2026-05": 106,
+        "2026-04": 11
+      }
+    },
+    {
+      "postId": 114,
+      "title": "Impressum",
+      "url": "https://sprachcafe-polnisch.org/impressum/",
+      "viewsTotal": 123,
+      "views2026": 67,
+      "views2025": 37,
+      "views2024": 19,
+      "viewsByMonth": {
+        "2026-09": 8,
+        "2026-08": 10,
+        "2026-07": 5,
+        "2026-06": 8,
+        "2026-05": 10,
+        "2026-04": 13,
+        "2026-03": 6,
+        "2026-02": 3,
+        "2026-01": 4,
+        "2025-12": 1,
+        "2025-11": 6,
+        "2025-10": 3,
+        "2025-09": 6,
+        "2025-08": 4,
+        "2025-07": 1,
+        "2025-06": 5,
+        "2025-05": 3,
+        "2025-04": 3,
+        "2025-03": 2,
+        "2025-02": 2,
+        "2025-01": 1,
+        "2024-12": 6,
+        "2024-11": 9,
+        "2024-10": 4
+      }
+    }
+  ],
+  "trafficChannels": {
+    "Google Suche & Apps": 8884,
+    "Facebook": 2150,
+    "Instagram": 288,
+    "Newsletter & E-Mail (Mailchimp/Gmail)": 539,
+    "Microsoft & Bing": 271,
+    "Partnernetzwerke & Lokales": 143,
+    "Direkt / Andere Quellen": 270,
+    "KI-Assistenten (ChatGPT)": 35
+  },
+  "topReferrers": [
+    {
+      "domain": "google.com",
+      "exampleUrl": "http://www.google.com/",
+      "viewsTotal": 8616,
+      "views2026": 3726,
+      "views2025": 4064
+    },
+    {
+      "domain": "facebook.com",
+      "exampleUrl": "http://facebook.com/",
+      "viewsTotal": 2150,
+      "views2026": 873,
+      "views2025": 973
+    },
+    {
+      "domain": "us12.campaign-archive.com",
+      "exampleUrl": "https://us12.campaign-archive.com/",
+      "viewsTotal": 347,
+      "views2026": 163,
+      "views2025": 159
+    },
+    {
+      "domain": "l.instagram.com",
+      "exampleUrl": "https://l.instagram.com/",
+      "viewsTotal": 272,
+      "views2026": 108,
+      "views2025": 127
+    },
+    {
+      "domain": "bing.com",
+      "exampleUrl": "https://www.bing.com/",
+      "viewsTotal": 214,
+      "views2026": 70,
+      "views2025": 107
+    },
+    {
+      "domain": "mail.google.com (Gmail App)",
+      "exampleUrl": "http://android-app://com.google.android.gm/",
+      "viewsTotal": 164,
+      "views2026": 112,
+      "views2025": 23
+    },
+    {
+      "domain": "google.de",
+      "exampleUrl": "www.google.de",
+      "viewsTotal": 147,
+      "views2026": 15,
+      "views2025": 81
+    },
+    {
+      "domain": "google.pl",
+      "exampleUrl": "www.google.pl",
+      "viewsTotal": 84,
+      "views2026": 13,
+      "views2025": 63
+    },
+    {
+      "domain": "ntp.msn.com",
+      "exampleUrl": "https://ntp.msn.com/",
+      "viewsTotal": 56,
+      "views2026": 16,
+      "views2025": 21
+    },
+    {
+      "domain": "ecosia.org",
+      "exampleUrl": "https://www.ecosia.org/",
+      "viewsTotal": 52,
+      "views2026": 23,
+      "views2025": 23
+    },
+    {
+      "domain": "berlin.sprachcafe.org",
+      "exampleUrl": "https://berlin.sprachcafe.org/",
+      "viewsTotal": 49,
+      "views2026": 0,
+      "views2025": 36
+    },
+    {
+      "domain": "chatgpt.com",
+      "exampleUrl": "https://chatgpt.com/",
+      "viewsTotal": 35,
+      "views2026": 16,
+      "views2025": 19
+    },
+    {
+      "domain": "mailchi.mp",
+      "exampleUrl": "https://mailchi.mp/",
+      "viewsTotal": 33,
+      "views2026": 11,
+      "views2025": 20
+    },
+    {
+      "domain": "us12.admin.mailchimp.com",
+      "exampleUrl": "https://us12.admin.mailchimp.com/",
+      "viewsTotal": 33,
+      "views2026": 6,
+      "views2025": 24
+    },
+    {
+      "domain": "duckduckgo.com",
+      "exampleUrl": "https://duckduckgo.com/",
+      "viewsTotal": 26,
+      "views2026": 12,
+      "views2025": 12
+    },
+    {
+      "domain": "berlinwarszawa.eu",
+      "exampleUrl": "https://berlinwarszawa.eu/",
+      "viewsTotal": 24,
+      "views2026": 24,
+      "views2025": 0
+    },
+    {
+      "domain": "pankow-weissensee-prenzlauerberg.berlin",
+      "exampleUrl": "https://www.pankow-weissensee-prenzlauerberg.berlin/",
+      "viewsTotal": 23,
+      "views2026": 5,
+      "views2025": 12
+    },
+    {
+      "domain": "poloniaviva.eu",
+      "exampleUrl": "https://poloniaviva.eu/",
+      "viewsTotal": 16,
+      "views2026": 5,
+      "views2025": 10
+    },
+    {
+      "domain": "instagram.com",
+      "exampleUrl": "http://instagram.com/",
+      "viewsTotal": 16,
+      "views2026": 9,
+      "views2025": 4
+    },
+    {
+      "domain": "linkedin.com",
+      "exampleUrl": "https://www.linkedin.com/",
+      "viewsTotal": 15,
+      "views2026": 6,
+      "views2025": 8
+    },
+    {
+      "domain": "sprachcafe.org",
+      "exampleUrl": "https://www.sprachcafe.org/",
+      "viewsTotal": 11,
+      "views2026": 10,
+      "views2025": 1
+    },
+    {
+      "domain": "poczta.wp.pl",
+      "exampleUrl": "https://poczta.wp.pl/",
+      "viewsTotal": 10,
+      "views2026": 1,
+      "views2025": 9
+    },
+    {
+      "domain": "mail.google.com",
+      "exampleUrl": "https://mail.google.com/",
+      "viewsTotal": 8,
+      "views2026": 7,
+      "views2025": 0
+    },
+    {
+      "domain": "de.search.yahoo.com",
+      "exampleUrl": "https://de.search.yahoo.com/",
+      "viewsTotal": 8,
+      "views2026": 2,
+      "views2025": 6
+    },
+    {
+      "domain": "polacywberlinie.de",
+      "exampleUrl": "https://polacywberlinie.de/",
+      "viewsTotal": 7,
+      "views2026": 6,
+      "views2025": 1
+    }
+  ],
+  "clickCategories": {
+    "SharePoint & Anmeldelisten": 66,
+    "Eventbrite Ticket-Buchungen": 84,
+    "Social Media (Instagram/YouTube/FB)": 760,
+    "Downloads (PDF-Kalender/Formulare/Satzung)": 766,
+    "Google Forms": 46,
+    "Externe Partner & Links": 299
+  },
+  "topClicks": [
+    {
+      "url": "https://www.instagram.com/sprachcafepolnisch/",
+      "label": "Instagram SprachCafé Polnisch",
+      "clicksTotal": 323,
+      "clicks2026": 120,
+      "clicks2025": 158
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2025/01/Kalender-SprachCafe-Polnisch-2025-SCiO.pdf",
+      "label": "PDF: Jahreskalender 2025/2026",
+      "clicksTotal": 265,
+      "clicks2026": 0,
+      "clicks2025": 265
+    },
+    {
+      "url": "https://www.facebook.com/sprachcafe.polnisch/",
+      "label": "Facebook Seite & Gruppe",
+      "clicksTotal": 188,
+      "clicks2026": 59,
+      "clicks2025": 99
+    },
+    {
+      "url": "https://www.facebook.com/groups/KafejkaDlaDzieci",
+      "label": "Facebook Seite & Gruppe",
+      "clicksTotal": 109,
+      "clicks2026": 13,
+      "clicks2025": 74
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2025/12/Kalendarz-2025-297x297-wersja-online.pdf",
+      "label": "PDF: Jahreskalender 2025/2026",
+      "clicksTotal": 74,
+      "clicks2026": 74,
+      "clicks2025": 0
+    },
+    {
+      "url": "https://bilingualfamily.eu/de/materialien-fuer-eltern/",
+      "label": "https://bilingualfamily.eu/de/materialien-fuer-eltern/",
+      "clicksTotal": 59,
+      "clicks2026": 5,
+      "clicks2025": 46
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2021/01/Satzung-SCP-12.06.2020.pdf",
+      "label": "PDF Download: Satzung-SCP-12.06.2020.pdf",
+      "clicksTotal": 37,
+      "clicks2026": 16,
+      "clicks2025": 16
+    },
+    {
+      "url": "https://forms.gle/G8zan33Q5GQaFwhj7",
+      "label": "Google Forms Anmeldung",
+      "clicksTotal": 34,
+      "clicks2026": 5,
+      "clicks2025": 23
+    },
+    {
+      "url": "https://sprachcafepolnisch-my.sharepoint.com/:x:/g/personal/p_fuchs_sprachcafe-polnisch_org/IQAIP_CtvRtFSoY0_zOKZA4OAaBP3jr8stTUo6676ZdxC64?e=gPOaW5",
+      "label": "SharePoint Excel Anmeldeliste",
+      "clicksTotal": 32,
+      "clicks2026": 32,
+      "clicks2025": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCAgdsEs-YX_i6tDGbBtEz-w",
+      "label": "YouTube SprachCafé Kanal",
+      "clicksTotal": 29,
+      "clicks2026": 9,
+      "clicks2025": 14
+    },
+    {
+      "url": "https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DR2rXzBT6k7%26fbclid%3DIwAR2GAe0pi2obSFPsG-HFpONy_Ws_s_x5jK_NIJTccdAI6bK896xoNXRVcfQ&h=AT1fLOOahG1W7YjDvzxpgnTHS-nbX5jyfV2ltEaB8ryjjOmd6tlqSwket7DEvRw58a7veR_1ClUPAOBrpdw3HoWUVW4qH3C7YFNkf5H_jfbETuoR67NLXuF2lA&__tn__=q&c[0]=AT20Qtp_jqaTonCt_1uARUUpyn8d4KVwufPpa41OQjvchkc6JbOaf8mXNz1Gtmy8baTwjvXwwi2GqsyD8C-oQKOzuJ8xxmx9T5A25WvCLkS3_oHpTT28VrkgjzEazCwVn8m-a1UBCGR8MVHTs-Vsl9UF2Ffm",
+      "label": "YouTube SprachCafé Kanal",
+      "clicksTotal": 23,
+      "clicks2026": 15,
+      "clicks2025": 3
+    },
+    {
+      "url": "https://www.eventbrite.de/e/muzealne-warsztaty-dla-dzieci-8-13-lat-tickets-1695830959049?aff=oddtdtcreator",
+      "label": "Eventbrite: muzealne-warsztaty-dla-dzieci-8-13-lat-tickets-1695830959049",
+      "clicksTotal": 21,
+      "clicks2026": 4,
+      "clicks2025": 17
+    },
+    {
+      "url": "https://sprachcafepolnisch-my.sharepoint.com/:x:/g/personal/m_pelszyk_sprachcafe-polnisch_org/EVPG3JAChwVCphvcjk4w2z8BsqkcIKlRIKTCEo4KduH2aQ?e=FWzujS",
+      "label": "SharePoint Excel Anmeldeliste",
+      "clicksTotal": 20,
+      "clicks2026": 3,
+      "clicks2025": 16
+    },
+    {
+      "url": "https://zeit-fr-mehrsprachigkeit.podigee.io/",
+      "label": "https://zeit-fr-mehrsprachigkeit.podigee.io/",
+      "clicksTotal": 19,
+      "clicks2026": 0,
+      "clicks2025": 15
+    },
+    {
+      "url": "https://www.youtube.com/@sprachcafepolnischev",
+      "label": "YouTube SprachCafé Kanal",
+      "clicksTotal": 18,
+      "clicks2026": 11,
+      "clicks2025": 5
+    },
+    {
+      "url": "https://web.archive.org/web/20221210011634/http://archiv.sprachcafe-polnisch.org/",
+      "label": "https://web.archive.org/web/20221210011634/http://archiv.sprachcafe-polnisch.org/",
+      "clicksTotal": 18,
+      "clicks2026": 4,
+      "clicks2025": 11
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2022/01/Eintrittsformular-01.2022.pdf",
+      "label": "PDF Download: Eintrittsformular-01.2022.pdf",
+      "clicksTotal": 14,
+      "clicks2026": 3,
+      "clicks2025": 10
+    },
+    {
+      "url": "https://www.bundesfreiwilligendienst.de/",
+      "label": "https://www.bundesfreiwilligendienst.de/",
+      "clicksTotal": 14,
+      "clicks2026": 1,
+      "clicks2025": 8
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2026/02/Form-Kinder-LeRo-KS-Di-4-6-02.2026-Koe.pdf",
+      "label": "PDF Download: Form-Kinder-LeRo-KS-Di-4-6-02.2026-Koe.pdf",
+      "clicksTotal": 13,
+      "clicks2026": 13,
+      "clicks2025": 0
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2026/05/Harmonogram-Zeitplan-Lublin-13.5.pdf",
+      "label": "PDF Download: Harmonogram-Zeitplan-Lublin-13.5.pdf",
+      "clicksTotal": 13,
+      "clicks2026": 13,
+      "clicks2025": 0
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2025/01/Form-Sensor-1-3-Karo-Goten-02.2025.pdf",
+      "label": "PDF Download: Form-Sensor-1-3-Karo-Goten-02.2025.pdf",
+      "clicksTotal": 13,
+      "clicks2026": 0,
+      "clicks2025": 13
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2025/01/Kalendarz-2024-297x297-wersja-on-line.pdf",
+      "label": "PDF Download: Kalendarz-2024-297x297-wersja-on-line.pdf",
+      "clicksTotal": 13,
+      "clicks2026": 0,
+      "clicks2025": 13
+    },
+    {
+      "url": "https://www.facebook.com/weekend.zdrowia",
+      "label": "Facebook Seite & Gruppe",
+      "clicksTotal": 13,
+      "clicks2026": 0,
+      "clicks2025": 0
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2026/02/Form-Kinder-KaZu-2-4-Figle-Fr-02.2026-Schoen.pdf",
+      "label": "PDF Download: Form-Kinder-KaZu-2-4-Figle-Fr-02.2026-Schoen.pdf",
+      "clicksTotal": 12,
+      "clicks2026": 12,
+      "clicks2025": 0
+    },
+    {
+      "url": "https://sprachcafe-polnisch.org/wp-content/uploads/2025/08/Form-Kinder-KaZu-Sue-Czw-1-3-09.2025.pdf",
+      "label": "PDF Download: Form-Kinder-KaZu-Sue-Czw-1-3-09.2025.pdf",
+      "clicksTotal": 12,
+      "clicks2026": 0,
+      "clicks2025": 12
+    }
+  ]
+}

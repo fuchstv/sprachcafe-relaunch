@@ -1,12 +1,12 @@
 [
   {
-    "jahrMonat": "2026-08",
+    "jahrMonat": "2026-09",
     "jahr": 2026,
-    "monatNum": 8,
-    "monatName": "August",
+    "monatNum": 9,
+    "monatName": "September",
     "events": {
-      "total": 1,
-      "kinder": 0,
+      "total": 10,
+      "kinder": 9,
       "sprachpraxis": 0,
       "kultur": 1,
       "locations": {
@@ -17,53 +17,20 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 14,
-      "childrenAttendees": 3,
-      "avgPerEvent": 14
+      "totalAttendees": 176,
+      "childrenAttendees": 93,
+      "avgPerEvent": 17.6
     },
     "web": {
-      "pageViews": 16006,
-      "uniqueVisitors": 3402
-    },
-    "newsletter": {
-      "subscribers": 840,
-      "openRatePct": 48.6,
-      "campaignsSent": 2
-    },
-    "archivedAt": "2026-09-02T00:00:16.297Z"
-  },
-  {
-    "jahrMonat": "2026-09",
-    "jahr": 2026,
-    "monatNum": 9,
-    "monatName": "September",
-    "events": {
-      "total": 57,
-      "kinder": 44,
-      "sprachpraxis": 4,
-      "kultur": 9,
-      "locations": {
-        "pankow": 0,
-        "schoeneberg": 0,
-        "koepenick": 0,
-        "online": 0
-      }
-    },
-    "headcountEst": {
-      "totalAttendees": 962,
-      "childrenAttendees": 463,
-      "avgPerEvent": 16.9
-    },
-    "web": {
-      "pageViews": 16524,
-      "uniqueVisitors": 3512
+      "pageViews": 1816,
+      "uniqueVisitors": 799
     },
     "newsletter": {
       "subscribers": 850,
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-09-02T00:00:16.297Z"
+    "archivedAt": "2026-10-02T12:53:06.693Z"
   },
   {
     "jahrMonat": "2026-10",
@@ -71,10 +38,10 @@
     "monatNum": 10,
     "monatName": "Oktober",
     "events": {
-      "total": 67,
-      "kinder": 57,
+      "total": 75,
+      "kinder": 61,
       "sprachpraxis": 3,
-      "kultur": 7,
+      "kultur": 11,
       "locations": {
         "pankow": 0,
         "schoeneberg": 0,
@@ -83,20 +50,20 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 1157,
-      "childrenAttendees": 588,
-      "avgPerEvent": 17.3
+      "totalAttendees": 1285,
+      "childrenAttendees": 638,
+      "avgPerEvent": 17.1
     },
     "web": {
-      "pageViews": 17043,
-      "uniqueVisitors": 3623
+      "pageViews": 77,
+      "uniqueVisitors": 34
     },
     "newsletter": {
       "subscribers": 860,
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-09-02T00:00:16.298Z"
+    "archivedAt": "2026-10-02T12:53:06.695Z"
   },
   {
     "jahrMonat": "2026-11",
@@ -105,9 +72,9 @@
     "monatName": "November",
     "events": {
       "total": 59,
-      "kinder": 49,
+      "kinder": 50,
       "sprachpraxis": 3,
-      "kultur": 7,
+      "kultur": 6,
       "locations": {
         "pankow": 0,
         "schoeneberg": 0,
@@ -116,8 +83,8 @@
       }
     },
     "headcountEst": {
-      "totalAttendees": 1013,
-      "childrenAttendees": 508,
+      "totalAttendees": 1017,
+      "childrenAttendees": 515,
       "avgPerEvent": 17.2
     },
     "web": {
@@ -129,6 +96,39 @@
       "openRatePct": 48.6,
       "campaignsSent": 2
     },
-    "archivedAt": "2026-09-02T00:00:16.298Z"
+    "archivedAt": "2026-10-02T12:53:06.695Z"
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNum": 12,
+    "monatName": "Dezember",
+    "events": {
+      "total": 64,
+      "kinder": 57,
+      "sprachpraxis": 3,
+      "kultur": 3,
+      "locations": {
+        "pankow": 0,
+        "schoeneberg": 0,
+        "koepenick": 0,
+        "online": 0
+      }
+    },
+    "headcountEst": {
+      "totalAttendees": 1101,
+      "childrenAttendees": 578,
+      "avgPerEvent": 17.2
+    },
+    "web": {
+      "pageViews": 18080,
+      "uniqueVisitors": 3843
+    },
+    "newsletter": {
+      "subscribers": 880,
+      "openRatePct": 48.6,
+      "campaignsSent": 2
+    },
+    "archivedAt": "2026-10-02T12:53:06.695Z"
   }
 ]

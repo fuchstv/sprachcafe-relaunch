@@ -1,0 +1,153 @@
+---
+export const prerender = false;
+
+import Layout from '../layouts/Layout.astro';
+import DynamicPageRenderer from '../components/DynamicPageRenderer.astro';
+import { getPageBySlug, getPostBySlug } from '../lib/cms-api';
+
+const { slug } = Astro.params;
+
+// Don't intercept root or special paths
+if (!slug || slug === '/' || slug === 'favicon.ico' || slug.startsWith('_')) {
+  return new Response(null, { status: 404 });
+}
+
+// Clean up slug (strip trailing slashes)
+const cleanSlug = slug.replace(/^\/+|\/+$/g, '');
+
+// Intercept legal pages to guarantee static Astro pages (never overwritten by WP)
+if (cleanSlug === 'datenschutzerklaerung' || cleanSlug === 'datenschutz') {
+  return Astro.redirect('/datenschutz/', 301);
+}
+if (cleanSlug === 'impressum') {
+  return Astro.redirect('/impressum/', 301);
+}
+if (cleanSlug === 'barrierefreiheit' || cleanSlug === 'erklaerung-zur-barrierefreiheit') {
+  return Astro.redirect('/barrierefreiheit/', 301);
+}
+if (cleanSlug === 'veranstaltungen') {
+  return Astro.redirect('/events/', 301);
+}
+if (cleanSlug === 'hausbibliothek' || cleanSlug === 'biblioteka') {
+  return Astro.redirect('/hausbibliothek/', 301);
+}
+if (cleanSlug.startsWith('kategorie/') || cleanSlug.startsWith('category/')) {
+  return Astro.redirect('/posts/', 301);
+}
+if (cleanSlug === 'news' || cleanSlug === 'blog') {
+  return Astro.redirect('/posts/', 301);
+}
+
+// Check if the path matches WordPress date-based post permalink: YYYY/MM/post-name
+const datePostMatch = cleanSlug.match(/^\d{4}\/\d{2}\/([a-z0-9_-]+)$/i);
+const postSlug = datePostMatch ? datePostMatch[1] : cleanSlug;
+
+let page = await getPageBySlug(cleanSlug, 'de');
+
+if (!page) {
+  // Check if it's a WordPress post
+  const post = await getPostBySlug(postSlug, 'de');
+  if (post) {
+    return Astro.redirect(`/posts/${post.slug}/`, 301);
+  }
+  return new Response(null, {
+    status: 404,
+    statusText: 'Seite nicht gefunden'
+  });
+}
+---
+
+<DynamicPageRenderer slug={cleanSlug} lang="de" defaultTitle={page.title} badge="SprachCafé Polnisch">
+  <Layout
+    title={`${page.title} — SprachCafé Polnisch`}
+    description={page.blocks?.[0]?.body?.replace(/<[^>]+>/g, '').slice(0, 160).trim()}
+  >
+    <main class="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <header class="mb-10 text-center sm:text-left">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] font-bold uppercase text-xs tracking-wider mb-3">
+          SprachCafé Polnisch
+        </span>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-4">
+          {page.title}
+        </h1>
+        <div class="h-1 w-20 bg-[#8B1E2D] rounded-full"></div>
+      </header>
+
+      <div class="bg-[#FDFBF7] dark:bg-[#22201e] border border-[#e2d8cc] dark:border-[#363230] rounded-3xl p-6 sm:p-12 shadow-[0_4px_24px_rgba(51,49,48,0.06)]">
+        <div class="wp-gutenberg-content prose prose-lg prose-warm max-w-none text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed font-sans" set:html={page.blocks?.[0]?.body || ''} />
+      </div>
+    </main>
+  </Layout>
+</DynamicPageRenderer>
+
+<style is:global>
+  /* Gutenberg Block Typography & Polish Poster Styling */
+  .wp-gutenberg-content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+  .wp-gutenberg-content h2 {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #8B1E2D;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .wp-gutenberg-content h3 {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1d1b1a;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .wp-gutenberg-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .wp-gutenberg-content li {
+    margin-bottom: 0.5rem;
+  }
+  .wp-gutenberg-content a {
+    color: #8B1E2D;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .wp-gutenberg-content figure.wp-block-image {
+    margin: 2rem auto;
+    max-width: 100%;
+  }
+  .wp-gutenberg-content figure.wp-block-image img {
+    border-radius: 1rem;
+    border: 1px solid #e2d8cc;
+    box-shadow: 0 4px 14px rgba(51, 49, 48, 0.08);
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .wp-gutenberg-content figcaption {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #5b403d;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .wp-gutenberg-content blockquote {
+    border-left: 4px solid #8B1E2D;
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-family: 'Literata', Georgia, serif;
+    font-style: italic;
+    color: #5b403d;
+  }
+  .wp-gutenberg-content .wp-block-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+</style>

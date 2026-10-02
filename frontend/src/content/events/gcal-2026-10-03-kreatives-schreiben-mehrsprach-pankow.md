@@ -23,5 +23,5 @@ image:
     de: "Kreatives Schreiben - mehrsprachige SchreibWerkstatt"
     pl: "Kreatives Schreiben - mehrsprachige SchreibWerkstatt"
     en: "Kreatives Schreiben - mehrsprachige SchreibWerkstatt"
-isFeatured: false
+isFeatured: true
 ---

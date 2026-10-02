@@ -1,8 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../../components/DynamicPageRenderer.astro';
 
 const lang = 'pl';
 ---
+
+<DynamicPageRenderer slug="misja" lang={lang} defaultTitle="Misja i wartości" badge="Misja i Leitbild">
 
 <Layout
   title="Misja i wartości — SprachCafé Polnisch e.V."
@@ -389,3 +392,4 @@ const lang = 'pl';
   </section>
 
 </Layout>
+</DynamicPageRenderer>

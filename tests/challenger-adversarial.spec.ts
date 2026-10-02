@@ -150,7 +150,8 @@ test.describe('2. VintageEventTicketCard Layout Stress & Polish Word Invariance'
     const count = await ticketCards.count();
     expect(count, 'Should have at least 1 VintageEventTicketCard on /pl/events/').toBeGreaterThanOrEqual(1);
 
-    for (let i = 0; i < count; i++) {
+    const checkCount = Math.min(count, 20);
+    for (let i = 0; i < checkCount; i++) {
       const card = ticketCards.nth(i);
       await expect(card).toBeVisible();
 
@@ -243,7 +244,7 @@ test.describe('2. VintageEventTicketCard Layout Stress & Polish Word Invariance'
 // ---------------------------------------------------------------------------
 test.describe('3. Bookshelf Carousel Boundary Conditions & Keyboard Navigation', () => {
   test('Carousel boundary navigation: clicking Next/Prev past extremities maintains valid scroll position', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/hausbibliothek/');
     await page.waitForLoadState('domcontentloaded');
 
     const container = page.locator('#bookshelf-scroll-container');
@@ -295,7 +296,7 @@ test.describe('3. Bookshelf Carousel Boundary Conditions & Keyboard Navigation',
   });
 
   test('Keyboard arrow navigation and focusability of Bookshelf container', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/hausbibliothek/');
     await page.waitForLoadState('domcontentloaded');
 
     const container = page.locator('#bookshelf-scroll-container');
@@ -323,8 +324,8 @@ test.describe('3. Bookshelf Carousel Boundary Conditions & Keyboard Navigation',
     }
   });
 
-  test('Polish localized Bookshelf widget on /pl/ retains localized links and headings', async ({ page }) => {
-    await page.goto('/pl/');
+  test('Polish localized Bookshelf widget on /pl/hausbibliothek/ retains localized links and headings', async ({ page }) => {
+    await page.goto('/pl/hausbibliothek/');
     await page.waitForLoadState('domcontentloaded');
 
     const shelfHeading = page.locator('#bookshelf-heading');

@@ -1,18 +1,5 @@
 [
   {
-    "jahrMonat": "2026-08",
-    "jahr": 2026,
-    "monatNummer": 8,
-    "monatName": "August",
-    "standortCode": "pankow",
-    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
-    "sprache": "Polnisch / Deutsch",
-    "zielgruppe": "Erwachsene & Familien",
-    "kategorie": "Kunst, Kultur & Literatur",
-    "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 1
-  },
-  {
     "jahrMonat": "2026-09",
     "jahr": 2026,
     "monatNummer": 9,
@@ -23,33 +10,7 @@
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 17
-  },
-  {
-    "jahrMonat": "2026-09",
-    "jahr": 2026,
-    "monatNummer": 9,
-    "monatName": "September",
-    "standortCode": "online",
-    "standortName": "Online / Digital",
-    "sprache": "Polnisch / Deutsch",
-    "zielgruppe": "Alle Interessierten",
-    "kategorie": "Kunst, Kultur & Literatur",
-    "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 1
-  },
-  {
-    "jahrMonat": "2026-09",
-    "jahr": 2026,
-    "monatNummer": 9,
-    "monatName": "September",
-    "standortCode": "pankow",
-    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
-    "sprache": "Polnisch / Deutsch",
-    "zielgruppe": "Erwachsene & Familien",
-    "kategorie": "Kunst, Kultur & Literatur",
-    "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 6
+    "anzahlVeranstaltungen": 3
   },
   {
     "jahrMonat": "2026-09",
@@ -61,47 +22,21 @@
     "sprache": "Polnisch / Deutsch",
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
-    "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 12
-  },
-  {
-    "jahrMonat": "2026-09",
-    "jahr": 2026,
-    "monatNummer": 9,
-    "monatName": "September",
-    "standortCode": "pankow",
-    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
-    "sprache": "Polnisch / Deutsch",
-    "zielgruppe": "Erwachsene & Familien",
-    "kategorie": "Sprachpraxis & Tandem",
-    "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 4
-  },
-  {
-    "jahrMonat": "2026-09",
-    "jahr": 2026,
-    "monatNummer": 9,
-    "monatName": "September",
-    "standortCode": "schoeneberg",
-    "standortName": "Schöneberg",
-    "sprache": "Polnisch / Deutsch",
-    "zielgruppe": "Kinder & Eltern",
-    "kategorie": "Kinder & Familie",
-    "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 15
-  },
-  {
-    "jahrMonat": "2026-09",
-    "jahr": 2026,
-    "monatNummer": 9,
-    "monatName": "September",
-    "standortCode": "schoeneberg",
-    "standortName": "Schöneberg",
-    "sprache": "Polnisch / Deutsch",
-    "zielgruppe": "Erwachsene & Familien",
-    "kategorie": "Kunst, Kultur & Literatur",
     "projekt": "Regulärer Vereinsbetrieb",
     "anzahlVeranstaltungen": 2
+  },
+  {
+    "jahrMonat": "2026-09",
+    "jahr": 2026,
+    "monatNummer": 9,
+    "monatName": "September",
+    "standortCode": "schoeneberg",
+    "standortName": "Schöneberg",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Kinder & Eltern",
+    "kategorie": "Kinder & Familie",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 1
   },
   {
     "jahrMonat": "2026-10",
@@ -114,7 +49,7 @@
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 22
+    "anzahlVeranstaltungen": 23
   },
   {
     "jahrMonat": "2026-10",
@@ -140,7 +75,7 @@
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 16
+    "anzahlVeranstaltungen": 17
   },
   {
     "jahrMonat": "2026-10",
@@ -153,7 +88,20 @@
     "zielgruppe": "Erwachsene & Familien",
     "kategorie": "Kunst, Kultur & Literatur",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 6
+    "anzahlVeranstaltungen": 9
+  },
+  {
+    "jahrMonat": "2026-10",
+    "jahr": 2026,
+    "monatNummer": 10,
+    "monatName": "Oktober",
+    "standortCode": "partnerorte",
+    "standortName": "Partnerorte / Bibliotheken",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Alle Interessierten",
+    "kategorie": "Kunst, Kultur & Literatur",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 1
   },
   {
     "jahrMonat": "2026-10",
@@ -166,7 +114,7 @@
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 19
+    "anzahlVeranstaltungen": 21
   },
   {
     "jahrMonat": "2026-10",
@@ -205,7 +153,7 @@
     "zielgruppe": "Erwachsene & Familien",
     "kategorie": "Kunst, Kultur & Literatur",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 6
+    "anzahlVeranstaltungen": 5
   },
   {
     "jahrMonat": "2026-11",
@@ -218,7 +166,7 @@
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
     "projekt": "Regulärer Vereinsbetrieb",
-    "anzahlVeranstaltungen": 13
+    "anzahlVeranstaltungen": 14
   },
   {
     "jahrMonat": "2026-11",
@@ -270,6 +218,58 @@
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
     "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 25
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "pankow",
+    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Erwachsene & Familien",
+    "kategorie": "Kunst, Kultur & Literatur",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 2
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "pankow",
+    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Kinder & Eltern",
+    "kategorie": "Kinder & Familie",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 15
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "pankow",
+    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Erwachsene & Familien",
+    "kategorie": "Sprachpraxis & Tandem",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 3
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "pankow",
+    "standortName": "Pankow (Schulzestraße / Stadtteilzentrum)",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Erwachsene & Familien",
+    "kategorie": "Ehrenamt & Vereinsleben",
+    "projekt": "Regulärer Vereinsbetrieb",
     "anzahlVeranstaltungen": 1
   },
   {
@@ -282,6 +282,19 @@
     "sprache": "Polnisch / Deutsch",
     "zielgruppe": "Kinder & Eltern",
     "kategorie": "Kinder & Familie",
+    "projekt": "Regulärer Vereinsbetrieb",
+    "anzahlVeranstaltungen": 19
+  },
+  {
+    "jahrMonat": "2026-12",
+    "jahr": 2026,
+    "monatNummer": 12,
+    "monatName": "Dezember",
+    "standortCode": "schoeneberg",
+    "standortName": "Schöneberg",
+    "sprache": "Polnisch / Deutsch",
+    "zielgruppe": "Erwachsene & Familien",
+    "kategorie": "Kunst, Kultur & Literatur",
     "projekt": "Regulärer Vereinsbetrieb",
     "anzahlVeranstaltungen": 1
   }

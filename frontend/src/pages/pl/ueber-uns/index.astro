@@ -1,9 +1,12 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../../components/DynamicPageRenderer.astro';
 import { getCollection } from 'astro:content';
 
 const lang = 'pl';
 ---
+
+<DynamicPageRenderer slug="o-nas" lang={lang} defaultTitle="O nas — Nasze miejsca w Berlinie" badge="O nas">
 
 <Layout
   title="O nas — Nasze miejsca w Berlinie — SprachCafé Polnisch e.V."
@@ -363,3 +366,4 @@ const lang = 'pl';
 
   </div>
 </Layout>
+</DynamicPageRenderer>

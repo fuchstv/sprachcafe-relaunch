@@ -1,11 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DynamicPageRenderer from '../components/DynamicPageRenderer.astro';
 import { getEntry } from 'astro:content';
 
 const lang = 'de';
 const pageData = await getEntry('pages', 'mehrsprachigkeit');
 const title = pageData?.data.title[lang] || "Mehrsprachigkeit — SprachCafé Polnisch e.V.";
 ---
+
+<DynamicPageRenderer slug="mehrsprachigkeit" lang={lang} defaultTitle="Mehrsprachigkeit & Sprachberatung" badge="Vielfalt & Zweisprachigkeit">
 
 <Layout
   title={title}
@@ -74,3 +77,4 @@ const title = pageData?.data.title[lang] || "Mehrsprachigkeit — SprachCafé Po
     </div>
   </section>
 </Layout>
+</DynamicPageRenderer>

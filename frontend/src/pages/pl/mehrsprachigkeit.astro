@@ -1,9 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../components/DynamicPageRenderer.astro';
 import { getEntry } from 'astro:content';
 
 const lang = 'pl';
 ---
+
+<DynamicPageRenderer slug="wielojezycznosc" lang={lang} defaultTitle="Wielojęzyczność i Poradnictwo Językowe" badge="Różnorodność & Dwujęzyczność">
 
 <Layout
   title="Wielojęzyczność i Poradnictwo Językowe — SprachCafé Polnisch e.V."
@@ -105,3 +108,4 @@ const lang = 'pl';
     </div>
   </section>
 </Layout>
+</DynamicPageRenderer>

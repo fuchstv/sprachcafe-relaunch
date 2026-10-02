@@ -1,24 +1,19 @@
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
-import keystatic from '@keystatic/astro';
 import node from '@astrojs/node';
 
-// Astro 5 Configuration with Native i18n SSG Routing, Tailwind CSS & Keystatic CMS
+// Astro 5 Configuration with Hybrid Routing, Tailwind CSS & WordPress Headless CMS
 export default defineConfig({
-  env: {
-    schema: {
-      KEYSTATIC_GITHUB_CLIENT_ID: envField.string({ context: 'server', access: 'secret', optional: true }),
-      KEYSTATIC_GITHUB_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret', optional: true }),
-      KEYSTATIC_SECRET: envField.string({ context: 'server', access: 'secret', optional: true }),
-    }
-  },
-  site: process.env.PUBLIC_ASTRO_SITE_URL || 'https://xn--sprachcaf-j4a.org',
+  site: process.env.PUBLIC_ASTRO_SITE_URL || 'https://beta.sprachcafe-polnisch.org',
   output: 'static',
   adapter: node({
     mode: 'standalone'
   }),
-  integrations: [tailwind(), react(), keystatic()],
+  security: {
+    checkOrigin: false
+  },
+  integrations: [tailwind(), react()],
   i18n: {
     defaultLocale: 'de',
     locales: ['de', 'pl', 'en'],

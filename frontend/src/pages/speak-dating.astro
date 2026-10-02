@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import VintageEventTicketCard from '../components/VintageEventTicketCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
+import DynamicPageRenderer from '../components/DynamicPageRenderer.astro';
 import { getCollection } from 'astro:content';
 
 const lang = 'de';
@@ -140,6 +141,8 @@ const faqItems = [
   }
 ];
 ---
+
+<DynamicPageRenderer slug="speak-dating" lang={lang} defaultTitle="SPEAK-DATING — Sprachaustausch & Tandem" badge="🗣️ Sprachtandem & Dialog">
 
 <Layout
   title="SPEAK-DATING — Sprachaustausch & Tandem | SprachCafé Polnisch e.V."
@@ -459,3 +462,4 @@ const faqItems = [
     <FaqAccordion items={faqItems} lang={lang} />
   </section>
 </Layout>
+</DynamicPageRenderer>

@@ -1,8 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../components/DynamicPageRenderer.astro';
 
 const lang = 'de';
 ---
+
+<DynamicPageRenderer slug="ueber-uns" lang={lang} defaultTitle="Über uns — Unsere Orte in Berlin" badge="Über uns">
 
 <Layout
   title="Über uns — Unsere Orte in Berlin — SprachCafé Polnisch e.V."
@@ -487,3 +490,4 @@ const lang = 'de';
 
   </div>
 </Layout>
+</DynamicPageRenderer>

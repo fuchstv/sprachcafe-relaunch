@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../components/DynamicPageRenderer.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 const lang = 'de';
@@ -74,6 +75,8 @@ function getInitials(fullName: string): string {
   return (words[0][0] + words[words.length - 1][0]).toUpperCase();
 }
 ---
+
+<DynamicPageRenderer slug="team" lang={lang} defaultTitle="Team & Vorstand" badge="Gemeinschaft & Engagement">
 
 <Layout
   title="Team & Vorstand — SprachCafé Polnisch e.V."
@@ -211,3 +214,4 @@ function getInitials(fullName: string): string {
     </div>
   </section>
 </Layout>
+</DynamicPageRenderer>

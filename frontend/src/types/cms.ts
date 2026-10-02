@@ -4,7 +4,7 @@ export type LocationTag = 'Pankow' | 'Schöneberg' | 'Köpenick' | 'Global';
 export type EventLanguage = 'DE' | 'PL' | 'EN' | 'Bilingual';
 export type BookLanguage = 'DE' | 'PL' | 'EN' | 'UKR';
 export type LoanStatus = 'verfuegbar' | 'ausgeliehen' | 'reserviert';
-export type PostCategory = 'Neuigkeiten' | 'Kultur' | 'SprachCafé' | 'Verein';
+export type PostCategory = 'Neuigkeiten' | 'Kultur' | 'SprachCafé' | 'Verein' | string;
 
 export interface I18nText {
   de: string;
@@ -34,10 +34,13 @@ export interface PostItem {
   slug: string;
   date: string;
   category: PostCategory;
-  location_tag?: LocationTag;
+  categories?: string[];
+  location_tag?: LocationTag | string;
   content: string;
+  excerpt?: string;
   featured_image?: string;
   author?: string;
+  lang?: 'de' | 'pl' | 'en';
 }
 
 // 3. Books Model (Hausbibliothek)

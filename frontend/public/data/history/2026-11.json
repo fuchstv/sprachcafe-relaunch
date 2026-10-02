@@ -5,9 +5,9 @@
   "monatName": "November",
   "events": {
     "total": 59,
-    "kinder": 49,
+    "kinder": 50,
     "sprachpraxis": 3,
-    "kultur": 7,
+    "kultur": 6,
     "locations": {
       "pankow": 0,
       "schoeneberg": 0,
@@ -16,8 +16,8 @@
     }
   },
   "headcountEst": {
-    "totalAttendees": 1013,
-    "childrenAttendees": 508,
+    "totalAttendees": 1017,
+    "childrenAttendees": 515,
     "avgPerEvent": 17.2
   },
   "web": {
@@ -29,5 +29,5 @@
     "openRatePct": 48.6,
     "campaignsSent": 2
   },
-  "archivedAt": "2026-09-02T00:00:16.298Z"
+  "archivedAt": "2026-10-02T12:53:06.695Z"
 }

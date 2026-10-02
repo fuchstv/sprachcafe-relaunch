@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
+import DynamicPageRenderer from '../../../../components/DynamicPageRenderer.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 const lang = 'pl';
@@ -17,6 +18,8 @@ const sortedExhibitions = exhibitions
     endDateStr: exhibition.data.endDate.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' })
   }));
 ---
+
+<DynamicPageRenderer slug="wystawy" lang={lang} defaultTitle="Galeria na Schulze & Wystawy" badge="Galeria & Sztuka">
 
 <Layout
   title="Galeria na Schulze & Wystawy — SprachCafé Polnisch e.V."
@@ -80,3 +83,4 @@ const sortedExhibitions = exhibitions
     </div>
   </section>
 </Layout>
+</DynamicPageRenderer>

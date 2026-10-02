@@ -1,0 +1,363 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPageBySlug } from '../lib/cms-api';
+import { sanitizeWpHtml } from '../lib/sanitize-wp';
+
+interface Props {
+  slug: string;
+  lang: 'de' | 'pl' | 'en';
+  defaultTitle: string;
+  defaultDescription?: string;
+  badge?: string;
+}
+
+const { slug, lang, defaultTitle, defaultDescription = '', badge = 'SprachCafé Polnisch' } = Astro.props;
+
+const wpPage = await getPageBySlug(slug, lang);
+const hasWpContent = Boolean(wpPage && wpPage.blocks?.[0]?.body && wpPage.blocks[0].body.trim().length > 30);
+const pageTitle = hasWpContent ? wpPage!.title : defaultTitle;
+const rawContent = hasWpContent ? wpPage!.blocks[0].body : '';
+const pageContent = sanitizeWpHtml(rawContent, lang);
+---
+
+{hasWpContent ? (
+  <Layout title={`${pageTitle} — SprachCafé Polnisch`} description={defaultDescription} lang={lang}>
+    <main class="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <header class="mb-10 text-center sm:text-left">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] font-bold uppercase text-xs tracking-wider mb-3">
+          {badge}
+        </span>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight leading-tight mb-4">
+          {pageTitle}
+        </h1>
+        <div class="h-1 w-20 bg-[#8B1E2D] dark:bg-[#ff758f] rounded-full"></div>
+      </header>
+
+      <div class="bg-[#FDFBF7] dark:bg-[#22201e] border border-[#e2d8cc] dark:border-[#363230] rounded-3xl p-6 sm:p-12 shadow-[0_4px_24px_rgba(51,49,48,0.06)] space-y-8">
+        <div class="wp-gutenberg-content prose prose-lg prose-warm max-w-none text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed font-sans" set:html={pageContent} />
+        <slot name="after-content" />
+      </div>
+    </main>
+
+    <script is:inline>
+      (function() {
+        function initFluentForms() {
+          var forms = document.querySelectorAll('form.frm-fluent-form, form[id^="fluentform_"]');
+          forms.forEach(function(form) {
+            if (form.getAttribute('data-ff-initialized')) return;
+            form.setAttribute('data-ff-initialized', 'true');
+
+            form.addEventListener('submit', async function(e) {
+              e.preventDefault();
+
+              var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+              var originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Absenden';
+
+              // Remove previous errors
+              form.querySelectorAll('.ff-custom-error').forEach(function(el) { el.remove(); });
+              form.querySelectorAll('.ff-el-is-error').forEach(function(el) { el.classList.remove('ff-el-is-error'); });
+
+              if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="inline-flex items-center gap-2"><span>⏳</span> <span>Wird gesendet...</span></span>';
+              }
+
+              try {
+                var formData = new FormData(form);
+                var formId = form.getAttribute('data-form_id') || form.id.replace('fluentform_', '');
+
+                var formParams = new URLSearchParams();
+                formData.forEach(function(val, key) {
+                  formParams.append(key, val);
+                });
+
+                var payload = new URLSearchParams();
+                payload.append('action', 'fluentform_submit');
+                payload.append('form_id', formId);
+                payload.append('data', formParams.toString());
+
+                var resp = await fetch('/wp-admin/admin-ajax.php', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                  },
+                  body: payload.toString()
+                });
+
+                var data = await resp.json();
+
+                if (data && data.success && data.data && data.data.result) {
+                  var successMsg = data.data.result.message || 'Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt.';
+                  form.style.display = 'none';
+
+                  var successBox = document.createElement('div');
+                  successBox.className = 'ff-message-success p-6 sm:p-8 rounded-2xl bg-[#1b5e20]/10 border border-[#1b5e20]/30 text-[#1b5e20] dark:text-[#81c784] text-center my-6';
+                  successBox.innerHTML = '<h3 class="font-serif text-2xl font-bold mb-2">✓ Erfolgreich übermittelt!</h3><p class="text-base leading-relaxed">' + successMsg + '</p>';
+                  
+                  form.parentElement.appendChild(successBox);
+                  successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else if (data && (data.errors || (data.data && data.data.errors))) {
+                  var errors = data.errors || data.data.errors;
+                  for (var field in errors) {
+                    var err = errors[field];
+                    var errMsg = typeof err === 'string' ? err : (err.message || Object.values(err)[0] || 'Pflichtfeld');
+                    var inputEl = form.querySelector('[name="' + field + '"], [name="' + field + '[]"], [data-name="' + field + '"]');
+                    if (inputEl) {
+                      var group = inputEl.closest('.ff-el-group') || inputEl.parentElement;
+                      group.classList.add('ff-el-is-error');
+                      var errSpan = document.createElement('div');
+                      errSpan.className = 'ff-custom-error text-xs font-semibold text-[#8B1E2D] dark:text-[#ff758f] mt-1';
+                      errSpan.textContent = errMsg;
+                      group.appendChild(errSpan);
+                    }
+                  }
+                  if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                  }
+                } else {
+                  throw new Error('Server returned unexpected format');
+                }
+              } catch (err) {
+                alert('Beim Absenden ist ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingaben oder kontaktieren Sie uns direkt.');
+                if (submitBtn) {
+                  submitBtn.disabled = false;
+                  submitBtn.innerHTML = originalBtnHtml;
+                }
+              }
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initFluentForms);
+        } else {
+          initFluentForms();
+        }
+        document.addEventListener('astro:page-load', initFluentForms);
+      })();
+    </script>
+  </Layout>
+) : (
+  <slot />
+)}
+
+<style is:global>
+  /* Universal Gutenberg Block Typography & Polish Poster Styling */
+  .wp-gutenberg-content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+  .wp-gutenberg-content h2 {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #8B1E2D;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  :global(.dark) .wp-gutenberg-content h2 {
+    color: #ff758f;
+  }
+  .wp-gutenberg-content h3 {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1d1b1a;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  :global(.dark) .wp-gutenberg-content h3 {
+    color: #f5f0ee;
+  }
+  .wp-gutenberg-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .wp-gutenberg-content li {
+    margin-bottom: 0.5rem;
+  }
+  .wp-gutenberg-content a {
+    color: #8B1E2D;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  :global(.dark) .wp-gutenberg-content a {
+    color: #ff758f;
+  }
+  .wp-gutenberg-content figure.wp-block-image {
+    margin: 2rem auto;
+    max-width: 100%;
+  }
+  .wp-gutenberg-content figure.wp-block-image img {
+    border-radius: 1rem;
+    border: 1px solid #e2d8cc;
+    box-shadow: 0 4px 14px rgba(51, 49, 48, 0.08);
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  :global(.dark) .wp-gutenberg-content figure.wp-block-image img {
+    border-color: #363230;
+  }
+  .wp-gutenberg-content figcaption {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #5b403d;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  :global(.dark) .wp-gutenberg-content figcaption {
+    color: #d4c5c2;
+  }
+  .wp-gutenberg-content blockquote {
+    border-left: 4px solid #8B1E2D;
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-family: 'Literata', Georgia, serif;
+    font-style: italic;
+    color: #5b403d;
+  }
+  :global(.dark) .wp-gutenberg-content blockquote {
+    border-color: #ff758f;
+    color: #d4c5c2;
+  }
+  .wp-gutenberg-content .wp-block-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  /* Fluent Forms Polish Poster Styling */
+  .wp-gutenberg-content .fluentform {
+    margin: 2rem 0;
+    width: 100%;
+  }
+  .wp-gutenberg-content .ff-el-group {
+    margin-bottom: 1.5rem;
+  }
+  .wp-gutenberg-content .ff-el-input--label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1d1b1a;
+    margin-bottom: 0.5rem;
+  }
+  :global(.dark) .wp-gutenberg-content .ff-el-input--label {
+    color: #f5f0ee;
+  }
+  .wp-gutenberg-content .ff-el-is-required .ff-el-input--label label::after,
+  .wp-gutenberg-content .asterisk-right label::after {
+    content: ' *';
+    color: #8B1E2D;
+    font-weight: 700;
+  }
+  :global(.dark) .wp-gutenberg-content .ff-el-is-required .ff-el-input--label label::after,
+  :global(.dark) .wp-gutenberg-content .asterisk-right label::after {
+    color: #ff758f;
+  }
+  .wp-gutenberg-content .ff-el-form-control,
+  .wp-gutenberg-content input[type="text"],
+  .wp-gutenberg-content input[type="email"],
+  .wp-gutenberg-content input[type="tel"],
+  .wp-gutenberg-content input[type="number"],
+  .wp-gutenberg-content select,
+  .wp-gutenberg-content textarea {
+    width: 100%;
+    padding: 0.75rem 1.125rem;
+    border-radius: 1rem;
+    border: 1px solid #e2d8cc;
+    background-color: #FAF6EE;
+    color: #1d1b1a;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  :global(.dark) .wp-gutenberg-content .ff-el-form-control,
+  :global(.dark) .wp-gutenberg-content input[type="text"],
+  :global(.dark) .wp-gutenberg-content input[type="email"],
+  :global(.dark) .wp-gutenberg-content input[type="tel"],
+  :global(.dark) .wp-gutenberg-content input[type="number"],
+  :global(.dark) .wp-gutenberg-content select,
+  :global(.dark) .wp-gutenberg-content textarea {
+    border-color: #363230;
+    background-color: #2a2725;
+    color: #f5f0ee;
+  }
+  .wp-gutenberg-content .ff-el-form-control:focus,
+  .wp-gutenberg-content input:focus,
+  .wp-gutenberg-content select:focus,
+  .wp-gutenberg-content textarea:focus {
+    outline: none;
+    border-color: #8B1E2D;
+    box-shadow: 0 0 0 3px rgba(139, 30, 45, 0.15);
+  }
+  :global(.dark) .wp-gutenberg-content .ff-el-form-control:focus,
+  :global(.dark) .wp-gutenberg-content input:focus,
+  :global(.dark) .wp-gutenberg-content select:focus,
+  :global(.dark) .wp-gutenberg-content textarea:focus {
+    border-color: #ff758f;
+    box-shadow: 0 0 0 3px rgba(255, 117, 143, 0.2);
+  }
+  .wp-gutenberg-content .ff-btn-submit,
+  .wp-gutenberg-content button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #8B1E2D;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(139, 30, 45, 0.25);
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+  }
+  .wp-gutenberg-content .ff-btn-submit:hover,
+  .wp-gutenberg-content button[type="submit"]:hover {
+    background-color: #701824;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(139, 30, 45, 0.35);
+  }
+  .wp-gutenberg-content .ff-btn-submit:active,
+  .wp-gutenberg-content button[type="submit"]:active {
+    transform: translateY(0);
+  }
+  .wp-gutenberg-content .ff-el-is-error .ff-el-form-control,
+  .wp-gutenberg-content .ff-el-is-error input,
+  .wp-gutenberg-content .ff-el-is-error select,
+  .wp-gutenberg-content .ff-el-is-error textarea {
+    border-color: #8B1E2D !important;
+    background-color: rgba(139, 30, 45, 0.05);
+  }
+  .wp-gutenberg-content .ff-custom-error {
+    color: #8B1E2D;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.35rem;
+  }
+  :global(.dark) .wp-gutenberg-content .ff-custom-error {
+    color: #ff758f;
+  }
+  .wp-gutenberg-content .ff-el-form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+  }
+  .wp-gutenberg-content .ff-el-form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: #8B1E2D;
+    margin-top: 0.25rem;
+    cursor: pointer;
+  }
+</style>

@@ -1,29 +1,32 @@
 ---
+export const prerender = false;
+
 import Layout from '../../../layouts/Layout.astro';
-import { getPosts } from '../../../lib/cms-api';
-import type { PostItem } from '../../../types/cms';
+import { getPostBySlug } from '../../../lib/cms-api';
 
-export async function getStaticPaths() {
-  const posts = await getPosts();
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/pl/posts/');
 }
 
-interface Props {
-  post: PostItem;
+const post = await getPostBySlug(slug, 'pl');
+
+if (!post) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Nie znaleziono wpisu'
+  });
 }
 
-const { post } = Astro.props;
-const lang = 'pl';
+const plainExcerpt = post.excerpt || post.content.replace(/<[^>]+>/g, '').slice(0, 160).trim();
 
 // Schema.org BlogPosting / Article JSON-LD
 const postJsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": post.title,
-  "description": post.content.slice(0, 160),
+  "description": plainExcerpt,
   "datePublished": post.date,
   "dateModified": post.date,
   "author": {
@@ -46,30 +49,30 @@ const postJsonLd = {
 
 <Layout
   title={`${post.title} — Blog — SprachCafé Polnisch`}
-  description={post.content.slice(0, 160)}
+  description={plainExcerpt}
   image={post.featured_image}
   type="article"
-  lang={lang}
+  lang="pl"
   jsonLd={postJsonLd}
 >
   <article
-    class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+    class="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
     data-pagefind-body
     data-pagefind-filter={`type:Post, category:${post.category}, location:${post.location_tag || 'Global'}`}
   >
     <nav class="mb-8">
-      <a href="/pl/posts/" class="inline-flex items-center gap-2 text-sm font-bold text-[#8B263E] dark:text-[#ff758f] hover:underline">
-        &larr; Powrót do wpisów na blogu
+      <a href="/pl/posts/" class="inline-flex items-center gap-2 text-sm font-bold text-[#8B1E2D] dark:text-[#ff758f] hover:underline">
+        &larr; Powrót do wpisów
       </a>
     </nav>
 
-    <header class="mb-8">
+    <header class="mb-10">
       <div class="flex items-center gap-3 mb-4 text-sm flex-wrap">
-        <span class="px-3 py-1 rounded-full bg-[#8B263E]/10 border border-[#8B263E]/20 text-[#8B263E] dark:text-[#ff758f] font-bold uppercase text-xs">
+        <span class="px-3.5 py-1 rounded-full bg-[#8B1E2D]/10 border border-[#8B1E2D]/20 text-[#8B1E2D] dark:text-[#ff758f] font-bold uppercase text-xs tracking-wider">
           {post.category}
         </span>
         {post.location_tag && (
-          <span class="px-3 py-1 rounded-full bg-[#f8f2f0] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e7e1df] dark:border-[#363230] text-xs font-semibold">
+          <span class="px-3 py-1 rounded-full bg-[#FAF6EE] dark:bg-[#2a2725] text-[#5b403d] dark:text-[#d4c5c2] border border-[#e2d8cc] dark:border-[#363230] text-xs font-semibold">
             📍 {post.location_tag}
           </span>
         )}
@@ -82,21 +85,100 @@ const postJsonLd = {
         {post.title}
       </h1>
 
-      <p class="font-sans text-sm text-[#5b403d] dark:text-[#d4c5c2]">
-        Autor: <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">{post.author || 'Redakcja SprachCafé'}</span>
-      </p>
+      <div class="flex items-center justify-between py-3 border-y border-[#e2d8cc]/60 dark:border-[#363230]">
+        <p class="font-sans text-xs text-[#5b403d] dark:text-[#d4c5c2]">
+          Opublikowano przez <span class="text-[#1d1b1a] dark:text-[#f5f0ee] font-semibold">{post.author || 'Redakcja SprachCafé'}</span>
+        </p>
+        <a href={`/posts/${post.slug}/`} class="text-xs font-bold text-[#8B1E2D] hover:underline flex items-center gap-1">
+          🇩🇪 Deutsche Version
+        </a>
+      </div>
     </header>
 
     {post.featured_image && (
-      <div class="w-full h-80 sm:h-96 rounded-3xl overflow-hidden bg-[#f8f2f0] dark:bg-[#2a2725] mb-10 border border-[#e7e1df] dark:border-[#363230] shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
+      <div class="w-full h-80 sm:h-96 rounded-3xl overflow-hidden bg-[#FAF6EE] dark:bg-[#2a2725] mb-10 border border-[#e2d8cc] dark:border-[#363230] shadow-[0_4px_20px_rgba(51,49,48,0.06)]">
         <img src={post.featured_image} alt={post.title} class="w-full h-full object-cover" />
       </div>
     )}
 
-    <div class="bg-white dark:bg-[#22201e] border border-[#e7e1df] dark:border-[#363230] rounded-3xl p-6 sm:p-10 shadow-[0_4px_20px_rgba(51,49,48,0.05)]">
-      <div class="font-sans text-[#1d1b1a] dark:text-[#f5f0ee] text-lg leading-relaxed space-y-6">
-        <p>{post.content}</p>
-      </div>
+    <div class="bg-[#FDFBF7] dark:bg-[#22201e] border border-[#e2d8cc] dark:border-[#363230] rounded-3xl p-6 sm:p-12 shadow-[0_4px_24px_rgba(51,49,48,0.06)]">
+      <div class="wp-gutenberg-content prose prose-lg prose-warm max-w-none text-[#1d1b1a] dark:text-[#f5f0ee] leading-relaxed font-sans" set:html={post.content} />
+    </div>
+
+    <!-- Redaktions-Hinweis & Zurück -->
+    <div class="mt-10 flex items-center justify-between text-sm text-[#5b403d] dark:text-[#d4c5c2] pt-6 border-t border-[#e2d8cc]">
+      <a href="/pl/posts/" class="font-bold text-[#8B1E2D] hover:underline">&larr; Wszystkie wpisy</a>
+      <span class="text-xs italic">Redakcja SprachCafé Polnisch e.V.</span>
     </div>
   </article>
 </Layout>
+
+<style is:global>
+  /* Gutenberg Block Typography & Polish Poster Styling */
+  .wp-gutenberg-content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+  .wp-gutenberg-content h2 {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #8B1E2D;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .wp-gutenberg-content h3 {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1d1b1a;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .wp-gutenberg-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .wp-gutenberg-content li {
+    margin-bottom: 0.5rem;
+  }
+  .wp-gutenberg-content a {
+    color: #8B1E2D;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .wp-gutenberg-content strong {
+    font-weight: 700;
+    color: #1d1b1a;
+  }
+  .wp-gutenberg-content figure.wp-block-image {
+    margin: 2rem auto;
+    max-width: 100%;
+  }
+  .wp-gutenberg-content figure.wp-block-image img {
+    border-radius: 1rem;
+    border: 1px solid #e2d8cc;
+    box-shadow: 0 4px 14px rgba(51, 49, 48, 0.08);
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .wp-gutenberg-content figcaption {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #5b403d;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .wp-gutenberg-content blockquote {
+    border-left: 4px solid #8B1E2D;
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-family: 'Literata', Georgia, serif;
+    font-style: italic;
+    color: #5b403d;
+  }
+</style>

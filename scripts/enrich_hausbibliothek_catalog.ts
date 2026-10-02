@@ -11,8 +11,46 @@
 
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { execSync } from 'child_process';
 import { generateSvgCover, type RawBook } from './cover_generator.js';
+
+// Lightweight, zero-dependency concurrency limiter
+function pLimit(concurrency: number) {
+  const queue: Array<() => void> = [];
+  let activeCount = 0;
+
+  const next = () => {
+    activeCount--;
+    if (queue.length > 0) {
+      queue.shift()!();
+    }
+  };
+
+  return <T>(fn: () => Promise<T>): Promise<T> => {
+    return new Promise<T>((resolve, reject) => {
+      const run = () => {
+        activeCount++;
+        fn().then(
+          (val) => {
+            resolve(val);
+            next();
+          },
+          (err) => {
+            reject(err);
+            next();
+          }
+        );
+      };
+
+      if (activeCount < concurrency) {
+        run();
+      } else {
+        queue.push(run);
+      }
+    });
+  };
+}
 
 const UPLOADS_COVERS_DIR = '/home/ubuntu/minimalist_home_library/backend/uploads/covers';
 const FRONTEND_COVERS_DIR = '/home/ubuntu/sprachcafe-relaunch/frontend/public/images/covers';
@@ -20,31 +58,45 @@ const FRONTEND_COVERS_DIR = '/home/ubuntu/sprachcafe-relaunch/frontend/public/im
 fs.mkdirSync(UPLOADS_COVERS_DIR, { recursive: true });
 fs.mkdirSync(FRONTEND_COVERS_DIR, { recursive: true });
 
-function getMysqlBooks(): RawBook[] {
-  console.log('📖 Fetching raw books from MySQL (library_db)...');
-  try {
-    const rawOutput = execSync(
-      `docker exec -e MYSQL_PWD='AljO2D1aBnyb4sQ0' library_db mysql -u root --default-character-set=utf8mb4 library_db -e "SELECT id, category, author, title, publication_year, publisher, isbn, signature, location, availability_status FROM books ORDER BY id ASC;"`,
-      { encoding: 'utf-8' }
-    );
-    const lines = rawOutput.trim().split('\n');
-    const header = lines[0].split('\t');
-    const books: RawBook[] = [];
-    for (let i = 1; i < lines.length; i++) {
-      const cols = lines[i].split('\t');
-      const item: any = {};
-      header.forEach((h, idx) => {
-        item[h] = cols[idx] || '';
-      });
-      books.push(item as RawBook);
+function getBooks(options: { missingOnly?: boolean; fromId?: number } = {}): RawBook[] {
+  const sqlitePath = '/home/ubuntu/minimalist_home_library/backend/data/database.sqlite';
+  if (fs.existsSync(sqlitePath)) {
+    console.log('📖 Querying SQLite database (database.sqlite)...');
+    try {
+      const conditions: string[] = [];
+      if (options.missingOnly) {
+        conditions.push("(cover_image IS NULL OR cover_image = '' OR description IS NULL OR description = '')");
+      }
+      if (options.fromId) {
+        conditions.push(`id >= ${options.fromId}`);
+      }
+      const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+      const rawOutput = execSync(
+        `sqlite3 -header -separator '\t' "${sqlitePath}" "SELECT id, category, author, title, publication_year, publisher, isbn, signature, location, availability_status FROM books ${whereClause} ORDER BY id ASC;"`,
+        { encoding: 'utf-8' }
+      );
+      const lines = rawOutput.trim().split('\n');
+      if (lines.length <= 1 && (!lines[0] || lines[0] === '')) return [];
+      const header = lines[0].split('\t');
+      const books: RawBook[] = [];
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const cols = lines[i].split('\t');
+        const item: any = {};
+        header.forEach((h, idx) => {
+          item[h] = cols[idx] || '';
+        });
+        books.push(item as RawBook);
+      }
+      console.log(`✓ Fetched ${books.length} books from SQLite database.`);
+      return books;
+    } catch (sqliteErr: any) {
+      console.error('⚠️ Could not query SQLite database:', sqliteErr.message);
     }
-    console.log(`✓ Fetched ${books.length} books from MySQL database.`);
-    return books;
-  } catch (err: any) {
-    console.error('⚠️ Could not query MySQL directly:', err.message);
-    return [];
   }
+  return [];
 }
+
 
 async function fetchBnMetadata(cleanIsbn: string, title: string, author: string): Promise<any> {
   if (cleanIsbn && cleanIsbn.length >= 9) {
@@ -170,93 +222,123 @@ function generateDescription(book: RawBook, bnData: any): string {
   return `${plDesc}\n\n${deSummary}`;
 }
 
-async function main() {
-  console.log('🚀 Starting Hausbibliothek Catalog Enrichment Process...');
-  const books = getMysqlBooks();
-  if (books.length === 0) {
-    console.error('❌ No books found to enrich.');
-    process.exit(1);
+
+interface ProcessedBookResult {
+  sql: string;
+  isDownloadedCover: boolean;
+  isSvgCover: boolean;
+}
+
+async function processBook(book: RawBook, index: number, total: number): Promise<ProcessedBookResult> {
+  const cleanIsbn = (book.isbn || '').replace(/[^0-9X]/gi, '').toUpperCase();
+  console.log(`[${index + 1}/${total}] Processing Book #${book.id}: "${book.title}" by ${book.author}`);
+
+  // 1 & 2. Intra-book concurrency: fetch Biblioteka Narodowa metadata & OpenLibrary cover URL in parallel
+  const [bnData, coverUrl] = await Promise.all([
+    fetchBnMetadata(cleanIsbn, book.title, book.author),
+    fetchOpenLibraryCoverUrl(cleanIsbn, book.title, book.author)
+  ]);
+
+  // Cover image discovery
+  let coverRelPath = '';
+  const jpgFileName = `book-${book.id}.jpg`;
+  const svgFileName = `book-${book.id}.svg`;
+  const localJpgUpload = path.join(UPLOADS_COVERS_DIR, jpgFileName);
+  const localJpgFrontend = path.join(FRONTEND_COVERS_DIR, jpgFileName);
+  const localSvgUpload = path.join(UPLOADS_COVERS_DIR, svgFileName);
+  const localSvgFrontend = path.join(FRONTEND_COVERS_DIR, svgFileName);
+
+  let downloaded = false;
+  if (coverUrl) {
+    downloaded = await downloadImage(coverUrl, localJpgUpload);
+    if (downloaded) {
+      fs.copyFileSync(localJpgUpload, localJpgFrontend);
+      coverRelPath = `uploads/covers/${jpgFileName}`;
+      console.log(`  ✓ [Book #${book.id}] Downloaded real cover from ${coverUrl}`);
+    }
   }
 
-  let enrichedCount = 0;
-  let downloadedCoverCount = 0;
-  let svgCoverCount = 0;
+  if (!downloaded) {
+    // Generate artistic SVG cover
+    const svgContent = generateSvgCover(book);
+    fs.writeFileSync(localSvgUpload, svgContent, 'utf-8');
+    fs.copyFileSync(localSvgUpload, localSvgFrontend);
+    coverRelPath = `uploads/covers/${svgFileName}`;
+    console.log(`  🎨 [Book #${book.id}] Generated Warm Vintage SVG cover.`);
+  }
 
-  const sqlStatements: string[] = [];
+  // 3. Generate Polish/German Description
+  const description = generateDescription(book, bnData);
 
-  for (let i = 0; i < books.length; i++) {
-    const book = books[i];
-    const cleanIsbn = (book.isbn || '').replace(/[^0-9X]/gi, '').toUpperCase();
-    console.log(`[${i + 1}/${books.length}] Processing Book #${book.id}: "${book.title}" by ${book.author}`);
+  // 4. Build SQL Update
+  const escapedDesc = description.replace(/'/g, "''").replace(/\\/g, "\\\\");
+  const escapedCover = coverRelPath.replace(/'/g, "''");
+  const sql = `UPDATE books SET cover_image = '${escapedCover}', description = '${escapedDesc}' WHERE id = ${book.id};`;
 
-    // 1. Biblioteka Narodowa Data
-    const bnData = await fetchBnMetadata(cleanIsbn, book.title, book.author);
+  return {
+    sql,
+    isDownloadedCover: downloaded,
+    isSvgCover: !downloaded
+  };
+}
 
-    // 2. Cover image discovery
-    let coverRelPath = '';
-    const jpgFileName = `book-${book.id}.jpg`;
-    const svgFileName = `book-${book.id}.svg`;
-    const localJpgUpload = path.join(UPLOADS_COVERS_DIR, jpgFileName);
-    const localJpgFrontend = path.join(FRONTEND_COVERS_DIR, jpgFileName);
-    const localSvgUpload = path.join(UPLOADS_COVERS_DIR, svgFileName);
-    const localSvgFrontend = path.join(FRONTEND_COVERS_DIR, svgFileName);
+async function main() {
+  console.log('🚀 Starting Hausbibliothek Catalog Enrichment Process...');
+  
+  const isAll = process.argv.includes('--all');
+  const fromIdArgIdx = process.argv.indexOf('--from-id');
+  const fromId = fromIdArgIdx !== -1 && process.argv[fromIdArgIdx + 1] ? parseInt(process.argv[fromIdArgIdx + 1], 10) : undefined;
+  
+  const allBooks = getBooks({ missingOnly: !isAll, fromId });
+  if (allBooks.length === 0) {
+    console.log('ℹ️ No books need enrichment. All targets already have covers and descriptions.');
+    process.exit(0);
+  }
 
-    let downloaded = false;
-    const coverUrl = await fetchOpenLibraryCoverUrl(cleanIsbn, book.title, book.author);
-    if (coverUrl) {
-      downloaded = await downloadImage(coverUrl, localJpgUpload);
-      if (downloaded) {
-        fs.copyFileSync(localJpgUpload, localJpgFrontend);
-        coverRelPath = `uploads/covers/${jpgFileName}`;
-        downloadedCoverCount++;
-        console.log(`  ✓ Downloaded real cover from ${coverUrl}`);
+  const limitArgIdx = process.argv.indexOf('--limit');
+  const maxBooks = limitArgIdx !== -1 && process.argv[limitArgIdx + 1] ? parseInt(process.argv[limitArgIdx + 1], 10) : undefined;
+  const books = maxBooks ? allBooks.slice(0, maxBooks) : allBooks;
+  const isDryRun = process.argv.includes('--dry-run');
+
+  const CONCURRENCY = parseInt(process.env.ENRICH_CONCURRENCY || '6', 10);
+  console.log(`⚡ Enriching ${books.length} books with concurrency limit = ${CONCURRENCY}${isDryRun ? ' [DRY-RUN]' : ''}...`);
+
+  const limit = pLimit(CONCURRENCY);
+  const results = await Promise.all(
+    books.map((book, i) => limit(() => processBook(book, i, books.length)))
+  );
+
+  const sqlStatements = results.map(r => r.sql);
+  const downloadedCoverCount = results.filter(r => r.isDownloadedCover).length;
+  const svgCoverCount = results.filter(r => r.isSvgCover).length;
+  const enrichedCount = results.length;
+
+  if (isDryRun) {
+    console.log('\n[DRY-RUN] Skipping database updates and container sync.');
+    console.log('Sample SQL Statement:', sqlStatements[0]);
+  } else {
+    // Execute Batch SQL Updates
+    console.log('\n💾 Executing SQL updates on library database...');
+    const tempSqlFile = path.join(os.tmpdir(), 'enrichment_updates.sql');
+    fs.writeFileSync(tempSqlFile, sqlStatements.join('\n') + '\n', 'utf-8');
+
+    const sqlitePath = '/home/ubuntu/minimalist_home_library/backend/data/database.sqlite';
+    if (fs.existsSync(sqlitePath)) {
+      try {
+        execSync(`sqlite3 "${sqlitePath}" < "${tempSqlFile}"`);
+        console.log('✅ Successfully updated SQLite database (database.sqlite)!');
+      } catch (sqliteErr: any) {
+        console.error('❌ Failed to update SQLite:', sqliteErr.message);
       }
     }
 
-    if (!downloaded) {
-      // Generate artistic SVG cover
-      const svgContent = generateSvgCover(book);
-      fs.writeFileSync(localSvgUpload, svgContent, 'utf-8');
-      fs.copyFileSync(localSvgUpload, localSvgFrontend);
-      coverRelPath = `uploads/covers/${svgFileName}`;
-      svgCoverCount++;
-      console.log(`  🎨 Generated Warm Vintage SVG cover.`);
+    // Copy images to library_backend container uploads volume
+    try {
+      execSync(`docker exec library_backend mkdir -p /var/www/html/uploads/covers && docker cp "${UPLOADS_COVERS_DIR}/." library_backend:/var/www/html/uploads/covers/ && docker exec library_backend chown -R www-data:www-data /var/www/html/uploads`);
+      console.log('✅ Successfully synced cover images to library_backend container.');
+    } catch (err: any) {
+      console.warn('⚠️ Notice: Could not sync covers to docker container:', err.message);
     }
-
-    // 3. Generate Polish/German Description
-    const description = generateDescription(book, bnData);
-
-    // 4. Build SQL Update
-    const escapedDesc = description.replace(/'/g, "''").replace(/\\/g, "\\\\");
-    const escapedCover = coverRelPath.replace(/'/g, "''");
-    sqlStatements.push(`UPDATE books SET cover_image = '${escapedCover}', description = '${escapedDesc}' WHERE id = ${book.id};`);
-
-    enrichedCount++;
-
-    // Small breathing pause every 10 books to avoid rate limiting
-    if (i % 10 === 0 && i > 0) {
-      await new Promise(r => setTimeout(r, 400));
-    }
-  }
-
-  // Execute Batch SQL Updates in MySQL
-  console.log('\n💾 Executing SQL updates on library_db...');
-  const tempSqlFile = '/home/ubuntu/.gemini/antigravity-cli/brain/3ce5282c-efd2-4f2e-9a99-db9f7f03a433/scratch/enrichment_updates.sql';
-  fs.writeFileSync(tempSqlFile, `SET NAMES 'utf8mb4';\n` + sqlStatements.join('\n') + `\n`, 'utf-8');
-
-  try {
-    execSync(`cat "${tempSqlFile}" | docker exec -i -e MYSQL_PWD='AljO2D1aBnyb4sQ0' library_db mysql -u root --default-character-set=utf8mb4 library_db`);
-    console.log('✅ Successfully updated MySQL database for all 401 books!');
-  } catch (err: any) {
-    console.error('❌ Failed to update MySQL:', err.message);
-  }
-
-  // Copy images to library_backend container uploads volume
-  try {
-    execSync(`docker exec library_backend mkdir -p /var/www/html/uploads/covers && docker cp "${UPLOADS_COVERS_DIR}/." library_backend:/var/www/html/uploads/covers/ && docker exec library_backend chown -R www-data:www-data /var/www/html/uploads`);
-    console.log('✅ Successfully synced cover images to library_backend container.');
-  } catch (err: any) {
-    console.warn('⚠️ Notice: Could not sync covers to docker container:', err.message);
   }
 
   console.log('\n======================================================');
@@ -266,6 +348,7 @@ async function main() {
   console.log(`Generated SVG Vintage Covers: ${svgCoverCount}`);
   console.log('======================================================\n');
 }
+
 
 main().catch(err => {
   console.error('Fatal Error during enrichment:', err);

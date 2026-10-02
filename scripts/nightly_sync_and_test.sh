@@ -38,6 +38,7 @@ cd /home/ubuntu/sprachcafe-team && npx tsx src/scripts/sync_gcal.ts >> "${LOG_FI
 cd "${PROJECT_DIR}"
 npx tsx scripts/fetch_cloudflare_analytics.ts >> "${LOG_FILE}" 2>&1 || true
 npx tsx scripts/fetch_mailchimp_metrics.ts >> "${LOG_FILE}" 2>&1 || true
+npx tsx scripts/fetch_jetpack_stats.ts >> "${LOG_FILE}" 2>&1 || true
 npx tsx scripts/archive_kpi_snapshots.ts >> "${LOG_FILE}" 2>&1
 npx tsx scripts/generate_powerbi_previews.ts >> "${LOG_FILE}" 2>&1
 

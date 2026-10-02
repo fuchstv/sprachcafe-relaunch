@@ -68,23 +68,28 @@ const lang = 'pl';
         </div>
       </section>
 
-      <!-- 3. Serwery & Logi -->
+      <!-- 3. Serwery, Cloudflare Edge & Logi -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          3. Hosting &amp; Pliki dziennika serwera (Logi)
+          3. Hosting, ochrona Cloudflare Edge &amp; Pliki dziennika serwera (Logi)
         </h2>
         
-        <h3 class="font-bold text-base">Hosting w AWS (Region Frankfurt nad Menem / Niemcy)</h3>
+        <h3 class="font-bold text-base">Hosting w Amazon Web Services (AWS EC2 Frankfurt nad Menem)</h3>
         <p>
-          Nasz serwer www i reverse proxy (Caddy v2) działają na wirtualnym serwerze w infrastrukturze Amazon Web Services EMEA SARL. Lokalizacja serwera to <strong>Frankfurt nad Menem (`eu-central-1`), Niemcy</strong>. Wszelkie operacje przetwarzania danych odbywają się w granicach Unii Europejskiej.
+          Nasz serwer www, bazy danych oraz powiązane usługi działają na dedykowanych instancjach chmurowych (Amazon EC2) w infrastrukturze <strong>Amazon Web Services EMEA SARL</strong> (38 Avenue John F. Kennedy, L-1855 Luksemburg). Fizyczna lokalizacja serwera to <strong>Frankfurt nad Menem (`eu-central-1`), Niemcy</strong>. Wszelkie operacje przetwarzania danych odbywają się w granicach Unii Europejskiej na podstawie wiążącej umowy powierzenia przetwarzania danych (DPA, art. 28 RODO).
         </p>
 
-        <h3 class="font-bold text-base pt-2">Pliki dziennika serwera (Server Logs)</h3>
+        <h3 class="font-bold text-base pt-2">Cloudflare Anycast-DNS &amp; Ochrona sieciowa (DDoS)</h3>
+        <p class="text-sm">
+          W celu szybkiego rozwiązywania zapytań DNS, ochrony przed atakami sieciowymi (DDoS) oraz zapewnienia niezawodności korzystamy z sieci <strong>Cloudflare</strong> (Cloudflare Inc., 101 Townsend St, San Francisco, CA 94107, USA / Cloudflare Germany GmbH). Serwery DNS naszych domen działają w oparciu o Anycast-DNS firmy Cloudflare. Zapytania sieciowe są kierowane przez węzły brzegowe Cloudflare w Unii Europejskiej na podstawie standardowych klauzul umownych UE (art. 46 ust. 2 lit. c RODO) oraz umowy DPA (art. 28 RODO).
+        </p>
+
+        <h3 class="font-bold text-base pt-2">Pliki dziennika serwera (Caddy Reverse Proxy)</h3>
         <p>
           Przy każdym wejściu na stronę nasz serwer rejestruje wyłącznie niezbędne technicznie dane połączenia przesyłane przez Twoją przeglądarkę (adres IP, data i godzina, żądany URL, kod odpowiedzi HTTP, przesyłany wolumen danych, przeglądarka i system operacyjny).
         </p>
         <p class="text-sm pt-1">
-          <strong>Cel i podstawa prawna:</strong> Zapewnienie stabilności technicznej i bezpieczeństwa sieci (obrona przed atakami DDoS). Podstawa prawna: prawnie uzasadniony interes zgodnie z <strong>art. 6 ust. 1 lit. f RODO</strong>. Logi są przechowywane rotacyjnie przez <strong>maksymalnie 7–14 dni</strong>.
+          <strong>Cel i podstawa prawna:</strong> Zapewnienie stabilności technicznej i bezpieczeństwa sieci (obrona przed atakami DDoS). Podstawa prawna: prawnie uzasadniony interes zgodnie z <strong>art. 6 ust. 1 lit. f RODO</strong> oraz § 25 ust. 2 pkt 2 TDDDG. Logi są przechowywane rotacyjnie przez <strong>maksymalnie 7–14 dni</strong> i nie są łączone z innymi danymi.
         </p>
       </section>
 
@@ -105,10 +110,25 @@ const lang = 'pl';
         </p>
       </section>
 
-      <!-- 5. Aplikacja Członkowska i Karta Cyfrowa -->
+      <!-- 5. Subskrypcja Newslettera & Double-Opt-In -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          5. Aplikacja Członkowska, Karta Cyfrowa i Google Wallet
+          5. Biuletyn informacyjny (Newsletter) &amp; Double-Opt-In
+        </h2>
+        <p class="text-sm">
+          Na naszej stronie internetowej umożliwiamy bezpłatne zapisanie się do newslettera tematycznego Stowarzyszenia (m.in. wydarzenia ogólne, SprachCafé dla dzieci i rodziców, wielojęzyczność).
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-sm pl-2">
+          <li><strong>Procedura Double-Opt-In:</strong> Zapis odbywa się zgodnie z procedurą podwójnego potwierdzenia (Double-Opt-In). Po wysłaniu zgłoszenia otrzymasz e-mail z linkiem aktywacyjnym. Dopiero po jego kliknięciu rejestracja jest ważna (art. 6 ust. 1 lit. a RODO).</li>
+          <li><strong>Infrastruktura wysyłkowa:</strong> Wysyłka biuletynu odbywa się za pośrednictwem naszej <strong>własnej platformy Listmonk</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">newsletter.sprachcafe-polnisch.org</code>) działającej na serwerze AWS we Frankfurcie oraz pomocniczo poprzez serwis <strong>Mailchimp</strong> (Intuit Inc., USA; Standardowe Klauzule Umowne UE).</li>
+          <li><strong>Możliwość rezygnacji w każdej chwili:</strong> Zgodę na otrzymywanie biuletynu można w dowolnym momencie wycofać ze skutkiem na przyszłość, klikając w link „Wypisz się” na dole każdego e-maila lub pisząc na adres <a href="mailto:kontakt@sprachcafe-polnisch.org" class="text-[#8B263E] dark:text-[#ff758f] font-semibold underline">kontakt@sprachcafe-polnisch.org</a>.</li>
+        </ul>
+      </section>
+
+      <!-- 6. Aplikacja Członkowska i Karta Cyfrowa -->
+      <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
+        <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
+          6. Aplikacja Członkowska, Karta Cyfrowa i Google Wallet
         </h2>
         <p class="text-sm">
           W celu realizacji praw członkowskich, weryfikacji legitymacji członkowskiej oraz rozliczania statutowych korzyści (takich jak bezpłatne kawy rocznie, rabaty na wydarzenia i bezpłatne korzystanie z biblioteki domowej) Stowarzyszenie udostępnia członkom platformę cyfrową (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">team.sprachcafe-polnisch.org/member/activate</code>) oraz dedykowaną aplikację na system Android <strong>„SprachCafé Mitglied”</strong> (<code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">org.sprachcafe.member</code>).
@@ -121,10 +141,10 @@ const lang = 'pl';
         </ul>
       </section>
 
-      <!-- 6. Portal Zarządu i Microsoft Entra ID -->
+      <!-- 7. Portal Zarządu i Microsoft Entra ID -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          6. System Zarządzania i Kasy (`team.sprachcafe-polnisch.org`)
+          7. System Zarządzania i Kasy (`team.sprachcafe-polnisch.org`)
         </h2>
         <p class="text-sm">
           Dostęp do wewnętrznego systemu administracyjnego, ewidencji członków i kasy jest zabezpieczony logowaniem przez <strong>Microsoft Entra ID (Single Sign-On)</strong> i zastrzeżony wyłącznie dla uprawnionych członków Zarządu stowarzyszenia.
@@ -134,20 +154,20 @@ const lang = 'pl';
         </ul>
       </section>
 
-      <!-- 7. Biblioteka Domowa -->
+      <!-- 8. Biblioteka Domowa -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          7. Biblioteka Domowa (`hausbibliothek.org`)
+          8. Biblioteka Domowa (`hausbibliothek.org`)
         </h2>
         <p>
           Aplikacja Biblioteki Domowej pod adresem <code class="bg-[#f8f2f0] dark:bg-[#2a2725] px-2 py-0.5 rounded text-xs">hausbibliothek.org</code> zarządza wypożyczeniami książek i kontami czytelników. Konta nieaktywne przez ponad 24 miesiące są automatycznie usuwane zgodnie z procedurą czyszczenia danych (art. 17 RODO).
         </p>
       </section>
 
-      <!-- 8. Prawa osoby, której dane dotyczą -->
+      <!-- 9. Prawa osoby, której dane dotyczą -->
       <section class="space-y-4 border-b border-[#e7e1df] dark:border-[#363230] pb-8">
         <h2 class="font-serif text-2xl font-bold text-[#8B263E] dark:text-[#ff758f]">
-          8. Twoje prawa zgodnie z RODO
+          9. Twoje prawa zgodnie z RODO
         </h2>
         <p>Przysługuje Ci prawo dostępu do swoich danych (art. 15 RODO), prawo do ich sprostowania (art. 16 RODO), usunięcia (art. 17 RODO), ograniczenia przetwarzania (art. 18 RODO), przenoszenia danych (art. 20 RODO) oraz prawo do sprzeciwu (art. 21 RODO).</p>
         <p class="text-sm pt-2">
@@ -155,11 +175,11 @@ const lang = 'pl';
         </p>
       </section>
 
-      <!-- 9. Organ nadzorczy -->
+      <!-- 10. Organ nadzorczy -->
       <section class="space-y-2 text-xs text-[#5b403d] dark:text-[#d4c5c2]">
         <p><strong>Właściwy organ nadzorczy ds. ochrony danych:</strong></p>
         <p>Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin, E-Mail: mailbox@datenschutz-berlin.de</p>
-        <p class="pt-2"><strong>Stan na:</strong> Wrzesień 2026 r.</p>
+        <p class="pt-2"><strong>Stan na:</strong> Październik 2026 r.</p>
       </section>
 
     </div>

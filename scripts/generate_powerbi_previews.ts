@@ -16,6 +16,7 @@ const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 const REPORTS_OUTPUT_DIR = path.resolve(scriptDir, '../frontend/public/reports');
 const KPI_CSV_PATH = path.resolve(scriptDir, 'kpi_exports/Veranstaltungs_Kennzahlen.csv');
 const CLOUDFLARE_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/cloudflare-analytics.json');
+const JETPACK_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/jetpack-stats.json');
 const MAILCHIMP_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/mailchimp-metrics.json');
 const HISTORY_JSON_PATH = path.resolve(scriptDir, '../frontend/public/data/history/all-months.json');
 
@@ -95,6 +96,15 @@ let historyData: any = [];
 if (fs.existsSync(HISTORY_JSON_PATH)) {
   try { historyData = JSON.parse(fs.readFileSync(HISTORY_JSON_PATH, 'utf-8')); } catch (e) {}
 }
+
+// 5. Read Jetpack Statistics JSON
+let jpData: any = null;
+if (fs.existsSync(JETPACK_JSON_PATH)) {
+  try { jpData = JSON.parse(fs.readFileSync(JETPACK_JSON_PATH, 'utf-8')); } catch (e) {}
+}
+const jpViewsTotal = jpData?.metadata?.totalAllTimeViews || 59190;
+const jpViews2026 = jpData?.metadata?.yearlyTotals?.['2026'] || 14546;
+const jpViews2025 = jpData?.metadata?.yearlyTotals?.['2025'] || 18127;
 
 // ==============================================================================
 // 🌟 UNIFIED EXECUTIVE DASHBOARD (MULTI-YEAR & REAL-TIME INTERACTIVE FILTERING)
@@ -292,9 +302,9 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
       </div>
 
       <div class="bg-gradient-to-br from-[#E76F51]/10 to-[#E76F51]/5 border border-[#E76F51]/20 p-5 rounded-2xl">
-        <p class="text-[11px] font-bold uppercase tracking-wider text-[#E76F51]">🌐 Webportal (Cloudflare)</p>
-        <p class="text-3xl font-black text-[#E76F51] mt-1">${cfData.metrics.pageViews.toLocaleString('de-DE')}</p>
-        <p class="text-[11px] text-[#5b403d] mt-1">${cfData.metrics.uniqueVisitors.toLocaleString('de-DE')} Unique Visitors</p>
+        <p class="text-[11px] font-bold uppercase tracking-wider text-[#E76F51]">🌐 Web-Traffic (Jetpack)</p>
+        <p class="text-3xl font-black text-[#E76F51] mt-1" id="kpi-web-views">${jpViews2026.toLocaleString('de-DE')}</p>
+        <p class="text-[11px] text-[#5b403d] mt-1" id="kpi-web-sub">Aufrufe 2026 (Ø ~1.455 / Mon.)</p>
       </div>
     </div>
 
@@ -393,6 +403,107 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
     </div>
 
     <!-- ========================================================================= -->
+    <!-- 🌐 WORDPRESS & JETPACK TRAFFIC & REACH ANALYTICS -->
+    <!-- ========================================================================= -->
+    <div class="rounded-2xl border border-[#e7e1df] overflow-hidden bg-white shadow-sm space-y-6 p-6">
+      <div class="flex flex-wrap justify-between items-center gap-3 border-b border-[#e7e1df] pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🌐</span>
+            <h3 class="font-serif font-bold text-xl text-[#1d1b1a]">WordPress Webportal & Jetpack Traffic-Analyse (2024–2026)</h3>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-[#E76F51]/10 text-[#E76F51] font-bold">Blog-ID: 226858808</span>
+          </div>
+          <p class="text-xs text-[#5b403d] mt-1">
+            Verifizierte historische Besucherstatistiken direkt über die Automattic Jetpack API (1.025 Tage kontinuierliche Messung seit 2023).
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="px-3 py-1.5 rounded-xl bg-[#8B263E]/5 border border-[#8B263E]/20 text-[#8B263E] font-bold">
+            All-Time: <strong>${jpViewsTotal.toLocaleString('de-DE')}</strong> Aufrufe
+          </span>
+          <span class="px-3 py-1.5 rounded-xl bg-[#2B7A78]/5 border border-[#2B7A78]/20 text-[#2B7A78] font-bold">
+            2026: <strong>${jpViews2026.toLocaleString('de-DE')}</strong>
+          </span>
+          <span class="px-3 py-1.5 rounded-xl bg-[#D4A373]/15 border border-[#D4A373]/30 text-[#9c6b3b] font-bold">
+            2025: <strong>${jpViews2025.toLocaleString('de-DE')}</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Panel 1: Top Pages & Offerings -->
+        <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] space-y-3 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-serif font-bold text-sm text-[#1d1b1a] flex items-center gap-1.5">
+                <span>📄</span> Meistbesuchte Seiten & Angebote
+              </h4>
+              <span class="text-[10px] text-[#8B263E] font-bold uppercase" id="jp-pages-year-label">Auswahl: 2026</span>
+            </div>
+            <p class="text-[11px] text-[#5b403d] mb-3">Reichweitenstärkste Unterseiten, Kurse und Beitragsseiten.</p>
+          </div>
+          <div class="overflow-y-auto max-h-[380px] divide-y divide-[#e7e1df] text-xs space-y-1" id="jp-top-pages-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Panel 2: Traffic Channels & Referrers -->
+        <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] space-y-4">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <h4 class="font-serif font-bold text-sm text-[#1d1b1a] flex items-center gap-1.5">
+                <span>🚀</span> Besucher-Quellen (Channels)
+              </h4>
+              <span class="text-[10px] text-[#2B7A78] font-bold uppercase">Herkunft</span>
+            </div>
+            <p class="text-[11px] text-[#5b403d]">Verteilung nach organischen Akquisekanälen.</p>
+          </div>
+          
+          <div class="space-y-2.5" id="jp-channels-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+
+          <div class="pt-3 border-t border-[#e7e1df]">
+            <h5 class="text-[11px] font-bold uppercase tracking-wider text-[#5b403d] mb-2 flex items-center gap-1">
+              <span>🔗</span> Top Referrer Domains
+            </h5>
+            <div class="space-y-1.5 overflow-y-auto max-h-40 text-xs" id="jp-top-domains-list">
+              <!-- Populated dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Outbound Clicks & Conversions -->
+        <div class="p-5 rounded-2xl bg-[#fdfaf9] border border-[#e7e1df] space-y-4">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <h4 class="font-serif font-bold text-sm text-[#1d1b1a] flex items-center gap-1.5">
+                <span>🎯</span> Klicks & Nutzer-Aktionen
+              </h4>
+              <span class="text-[10px] text-[#E76F51] font-bold uppercase">Interaktion</span>
+            </div>
+            <p class="text-[11px] text-[#5b403d]">Wichtigste externe Absprünge, Dokumente & Buchungen.</p>
+          </div>
+
+          <div class="space-y-2.5" id="jp-click-categories-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+
+          <div class="pt-3 border-t border-[#e7e1df]">
+            <h5 class="text-[11px] font-bold uppercase tracking-wider text-[#5b403d] mb-2 flex items-center gap-1">
+              <span>📌</span> Häufigste Link-Ziele
+            </h5>
+            <div class="space-y-1.5 overflow-y-auto max-h-40 text-xs" id="jp-top-clicks-list">
+              <!-- Populated dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
     <!-- ⚙️ GOVERNANCE, AUDIT & AUTOMATION PROCESSES (PHILIPP FUCHS) -->
     <!-- ========================================================================= -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-4 border-t border-[#e7e1df]">
@@ -435,9 +546,14 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
   <script>
     window.RAW_DATA = ${JSON.stringify(rows)};
     window.HISTORY_DATA = ${JSON.stringify(historyData)};
+    window.JETPACK_DATA = ${JSON.stringify(jpData)};
 
-    // Extract all distinct years from dataset
-    const allYears = Array.from(new Set(window.RAW_DATA.map(r => r.jahr).filter(Boolean))).sort((a, b) => b - a);
+    // Extract all distinct years from dataset & Jetpack
+    const dataYears = window.RAW_DATA.map(r => r.jahr).filter(Boolean);
+    if (window.JETPACK_DATA?.metadata?.yearlyTotals) {
+      Object.keys(window.JETPACK_DATA.metadata.yearlyTotals).forEach(y => dataYears.push(parseInt(y, 10)));
+    }
+    const allYears = Array.from(new Set(dataYears)).filter(y => y >= 2024).sort((a, b) => b - a);
     if (allYears.length === 0) allYears.push(2026);
 
     let currentYear = allYears[0] || 2026; // Default to latest available year
@@ -623,6 +739,151 @@ const unifiedDashboardHtml = `<!DOCTYPE html>
 
       // Render Table Rows
       renderTable(filtered);
+
+      // Render WordPress & Jetpack Analytics
+      renderJetpackSection();
+    }
+
+    function renderJetpackSection() {
+      if (!window.JETPACK_DATA) return;
+      const jp = window.JETPACK_DATA;
+
+      // 1. Calculate Web Views for current filter
+      let totalWebViews = 0;
+      let webSubText = '';
+
+      if (currentYear === 'all') {
+        totalWebViews = jp.metadata?.totalAllTimeViews || 0;
+        webSubText = 'All-Time (' + (jp.metadata?.daysRecorded || 0) + ' Tage lückenlos)';
+      } else if (currentPeriod !== 'all' && currentPeriod.length === 7) {
+        // Single month YYYY-MM
+        const mObj = (jp.monthlyViews || []).find(m => m.jahrMonat === currentPeriod);
+        totalWebViews = mObj ? mObj.views : 0;
+        webSubText = 'Monat ' + currentPeriod + ' (' + (mObj?.days || 0) + ' Tage erfasst)';
+      } else {
+        // Single year (2026, 2025, 2024...)
+        const yStr = String(currentYear);
+        totalWebViews = jp.metadata?.yearlyTotals?.[yStr] || 0;
+        const avgM = Math.round(totalWebViews / 12);
+        webSubText = 'Aufrufe ' + currentYear + ' (Ø ~' + avgM.toLocaleString('de-DE') + ' / Mon.)';
+      }
+
+      const webEl = document.getElementById('kpi-web-views');
+      const webSubEl = document.getElementById('kpi-web-sub');
+      if (webEl) webEl.innerText = totalWebViews.toLocaleString('de-DE');
+      if (webSubEl) webSubEl.innerText = webSubText;
+
+      // Update Pages Label
+      const pLabel = document.getElementById('jp-pages-year-label');
+      if (pLabel) pLabel.innerText = currentYear === 'all' ? 'All-Time Ranking' : 'Ranking ' + currentYear;
+
+      // 2. Render Top Pages
+      const pagesList = document.getElementById('jp-top-pages-list');
+      if (pagesList && jp.topPosts) {
+        pagesList.innerHTML = jp.topPosts.slice(0, 12).map((p, idx) => {
+          let views = p.viewsTotal;
+          if (currentYear === 2026) views = p.views2026;
+          else if (currentYear === 2025) views = p.views2025;
+          else if (currentYear === 2024) views = p.views2024;
+          else if (currentPeriod !== 'all' && currentPeriod.length === 7) {
+            views = p.viewsByMonth?.[currentPeriod] || 0;
+          }
+
+          const cleanUrl = (p.url || '').replace(/^https?:\\/\\/(www\\.)?/, '');
+
+          return \`
+            <div class="py-2 flex items-center justify-between gap-3 hover:bg-[#8B263E]/5 px-2 rounded-xl transition-colors">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-5 h-5 rounded-full bg-[#8B263E]/10 text-[#8B263E] font-bold flex items-center justify-center text-[10px] shrink-0">\${idx + 1}</span>
+                <div class="truncate">
+                  <a href="\${p.url}" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#1d1b1a] hover:text-[#8B263E] hover:underline truncate block">
+                    \${p.title}
+                  </a>
+                  <span class="text-[10px] text-[#5b403d] truncate block">\${cleanUrl}</span>
+                </div>
+              </div>
+              <div class="text-right shrink-0">
+                <span class="px-2 py-0.5 rounded-md bg-[#8B263E]/10 text-[#8B263E] font-bold text-xs">\${views.toLocaleString('de-DE')}</span>
+                <span class="text-[9px] text-[#5b403d] block mt-0.5">Aufrufe</span>
+              </div>
+            </div>
+          \`;
+        }).join('');
+      }
+
+      // 3. Render Channels
+      const channelsList = document.getElementById('jp-channels-list');
+      if (channelsList && jp.trafficChannels) {
+        const totalCh = Object.values(jp.trafficChannels).reduce((s, v) => s + v, 0) || 1;
+        channelsList.innerHTML = Object.entries(jp.trafficChannels).map(([ch, cnt]) => {
+          const pct = Math.round((cnt / totalCh) * 100);
+          return \`
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1">
+                <span class="text-[#1d1b1a]">\${ch}</span>
+                <span class="text-[#2B7A78] font-bold">\${cnt.toLocaleString('de-DE')} <span class="text-[10px] text-[#5b403d]">(\${pct}%)</span></span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
+                <div class="h-full bg-[#2B7A78] rounded-full transition-all duration-500" style="width: \${pct}%"></div>
+              </div>
+            </div>
+          \`;
+        }).join('');
+      }
+
+      // 4. Render Top Referrer Domains
+      const domainsList = document.getElementById('jp-top-domains-list');
+      if (domainsList && jp.topReferrers) {
+        domainsList.innerHTML = jp.topReferrers.slice(0, 8).map((d) => {
+          let views = d.viewsTotal;
+          if (currentYear === 2026) views = d.views2026;
+          else if (currentYear === 2025) views = d.views2025;
+          return \`
+            <div class="flex justify-between items-center py-1 border-b border-[#e7e1df]/50 text-xs">
+              <span class="text-[#1d1b1a] truncate font-medium max-w-[180px]">\${d.domain}</span>
+              <span class="font-bold text-[#2B7A78]">\${views.toLocaleString('de-DE')} <span class="text-[10px] text-[#5b403d] font-normal">Visits</span></span>
+            </div>
+          \`;
+        }).join('');
+      }
+
+      // 5. Render Click Categories
+      const clickCatList = document.getElementById('jp-click-categories-list');
+      if (clickCatList && jp.clickCategories) {
+        const totalClicks = Object.values(jp.clickCategories).reduce((s, v) => s + v, 0) || 1;
+        clickCatList.innerHTML = Object.entries(jp.clickCategories).map(([cat, cnt]) => {
+          const pct = Math.round((cnt / totalClicks) * 100);
+          return \`
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1">
+                <span class="text-[#1d1b1a]">\${cat}</span>
+                <span class="text-[#E76F51] font-bold">\${cnt.toLocaleString('de-DE')} <span class="text-[10px] text-[#5b403d]">(\${pct}%)</span></span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-[#f0e8e6] overflow-hidden">
+                <div class="h-full bg-[#E76F51] rounded-full transition-all duration-500" style="width: \${pct}%"></div>
+              </div>
+            </div>
+          \`;
+        }).join('');
+      }
+
+      // 6. Render Top Clicks
+      const topClicksList = document.getElementById('jp-top-clicks-list');
+      if (topClicksList && jp.topClicks) {
+        topClicksList.innerHTML = jp.topClicks.slice(0, 8).map((c) => {
+          let cnt = c.clicksTotal;
+          if (currentYear === 2026) cnt = c.clicks2026;
+          else if (currentYear === 2025) cnt = c.clicks2025;
+          return \`
+            <div class="flex justify-between items-center py-1 border-b border-[#e7e1df]/50 text-xs">
+              <a href="\${c.url}" target="_blank" rel="noopener noreferrer" class="text-[#1d1b1a] hover:text-[#E76F51] hover:underline truncate max-w-[190px]" title="\${c.url}">
+                \${c.label}
+              </a>
+              <span class="font-bold text-[#E76F51] shrink-0">\${cnt} <span class="text-[10px] text-[#5b403d] font-normal">Klicks</span></span>
+            </div>
+          \`;
+        }).join('');
+      }
     }
 
     function renderTrendBars(filtered) {
@@ -856,8 +1117,8 @@ const sponsorHtml = `<!DOCTYPE html>
       </div>
       <div class="p-5 rounded-2xl bg-[#E76F51]/5 border border-[#E76F51]/20 text-center">
         <p class="text-xs font-bold uppercase text-[#E76F51]">Digitale Web-Reichweite</p>
-        <p class="text-4xl font-black text-[#E76F51] mt-2">${cfData.metrics.pageViews.toLocaleString('de-DE')}</p>
-        <p class="text-xs text-[#5b403d] mt-1">Cloudflare Analytics (PageViews)</p>
+        <p class="text-4xl font-black text-[#E76F51] mt-2">${jpViews2026.toLocaleString('de-DE')}</p>
+        <p class="text-xs text-[#5b403d] mt-1">Verifizierte Jetpack-Aufrufe 2026 (${jpViewsTotal.toLocaleString('de-DE')} Gesamt)</p>
       </div>
     </div>
 
@@ -936,3 +1197,35 @@ fs.writeFileSync(path.join(REPORTS_OUTPUT_DIR, 'internes-monitoring.html'), inte
 console.log('✅ Interaktives Mehrjahres-Gesamtdashboard generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'dashboard.html'));
 console.log('✅ Sponsoren-Wirkungsbericht generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'sponsoren-wirkungsbericht.html'));
 console.log('✅ Internes Monitoring generiert: ' + path.join(REPORTS_OUTPUT_DIR, 'internes-monitoring.html'));
+
+// Synchronize to Staging (/var/www/beta)
+const BETA_REPORTS_DIR = '/var/www/beta/reports';
+const BETA_DATA_DIR = '/var/www/beta/data';
+
+if (fs.existsSync(BETA_REPORTS_DIR)) {
+  fs.copyFileSync(path.join(REPORTS_OUTPUT_DIR, 'dashboard.html'), path.join(BETA_REPORTS_DIR, 'dashboard.html'));
+  fs.copyFileSync(path.join(REPORTS_OUTPUT_DIR, 'sponsoren-wirkungsbericht.html'), path.join(BETA_REPORTS_DIR, 'sponsoren-wirkungsbericht.html'));
+  fs.copyFileSync(path.join(REPORTS_OUTPUT_DIR, 'internes-monitoring.html'), path.join(BETA_REPORTS_DIR, 'internes-monitoring.html'));
+  console.log('🚀 Synchronisiert nach Staging: ' + BETA_REPORTS_DIR);
+}
+
+if (fs.existsSync(BETA_DATA_DIR) && fs.existsSync(JETPACK_JSON_PATH)) {
+  fs.copyFileSync(JETPACK_JSON_PATH, path.join(BETA_DATA_DIR, 'jetpack-stats.json'));
+  console.log('🚀 Jetpack-Daten synchronisiert nach: ' + BETA_DATA_DIR);
+}
+
+// Synchronize to Astro Dist (/frontend/dist/client)
+const DIST_CLIENT_REPORTS_DIR = path.resolve(scriptDir, '../frontend/dist/client/reports');
+const DIST_CLIENT_DATA_DIR = path.resolve(scriptDir, '../frontend/dist/client/data');
+
+if (fs.existsSync(DIST_CLIENT_REPORTS_DIR)) {
+  fs.copyFileSync(path.join(REPORTS_OUTPUT_DIR, 'dashboard.html'), path.join(DIST_CLIENT_REPORTS_DIR, 'dashboard.html'));
+  fs.copyFileSync(path.join(REPORTS_OUTPUT_DIR, 'sponsoren-wirkungsbericht.html'), path.join(DIST_CLIENT_REPORTS_DIR, 'sponsoren-wirkungsbericht.html'));
+  fs.copyFileSync(path.join(REPORTS_OUTPUT_DIR, 'internes-monitoring.html'), path.join(DIST_CLIENT_REPORTS_DIR, 'internes-monitoring.html'));
+  console.log('🚀 Synchronisiert nach Astro dist/client: ' + DIST_CLIENT_REPORTS_DIR);
+}
+
+if (fs.existsSync(DIST_CLIENT_DATA_DIR) && fs.existsSync(JETPACK_JSON_PATH)) {
+  fs.copyFileSync(JETPACK_JSON_PATH, path.join(DIST_CLIENT_DATA_DIR, 'jetpack-stats.json'));
+  console.log('🚀 Jetpack-Daten synchronisiert nach Astro dist/client: ' + DIST_CLIENT_DATA_DIR);
+}

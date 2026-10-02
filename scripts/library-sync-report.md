@@ -1,7 +1,7 @@
 # Hausbibliothek Read-Only Catalog Sync Report
 
 - **Mode**: LIVE BUILD SYNC
-- **Timestamp**: 2026-09-02T16:12:49.094Z
+- **Timestamp**: 2026-10-02T19:30:34.333Z
 - **Source Export API**: `https://hausbibliothek.org/api/books?limit=500`
 - **Target File**: `/home/ubuntu/sprachcafe-relaunch/frontend/src/data/books.json`
 
@@ -9,22 +9,23 @@
 
 | Metric | Count |
 |---|---|
-| Total Books Processed | 401 |
-| Valid ISBN-10 / ISBN-13 | 302 |
+| Total Books Processed | 433 |
+| Valid ISBN-10 / ISBN-13 | 334 |
 | Missing ISBNs | 56 |
 | Unplausible / Invalid ISBNs | 43 |
 
 ## Category & Status Distribution
 
 ### Statuses (Availability)
-- **verfuegbar**: 401
+- **verfuegbar**: 425
+- **ausgeliehen**: 8
 
 ### Categories
-- **Deutschsprachige Literatur**: 1
-- **Polnische Belletristik**: 76
+- **Deutschsprachige Literatur**: 7
+- **Polnische Belletristik**: 84
 - **belytrystyka_zagraniczna**: 52
 - **biografie**: 21
-- **dzieciece**: 55
+- **dzieciece**: 73
 - **fantasy_scifi**: 7
 - **historyczne**: 61
 - **kryminal_thriller**: 34
