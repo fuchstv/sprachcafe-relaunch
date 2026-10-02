@@ -13,7 +13,7 @@
 |---|---|
 | **Offizieller Konformitätsgrad** | **Vollständig konform** |
 | **Geprüfte Kernseiten & E-Formulare** | **24 Seiten** |
-| **Erfolgreich bestandene Prüfregeln** | **607 Checks** |
+| **Erfolgreich bestandene Prüfregeln** | **609 Checks** |
 | **Gesamtzahl gefundener Regelverstöße** | **0** |
 | **Kritische Barrieren (Critical / Serious)** | **0** |
 
@@ -128,7 +128,7 @@ Diese Website ist **vollständig konform** mit den Anforderungen der BITV 2.0 (B
 ### ✅ Kontakt & Anfahrt (`/kontakt/`)
 
 - **Bereich:** Kernseite
-- **Bestandene Kriterien:** 28
+- **Bestandene Kriterien:** 30
 - **Status:** Vollständig barrierefrei (0 Verstöße)
 
 ### ✅ Veranstaltungen: Kinder & Eltern (DE) (`/events/kinder-und-eltern/`)

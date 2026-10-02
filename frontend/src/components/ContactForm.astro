@@ -210,6 +210,12 @@ const cur = texts[lang] || texts.de;
       ></textarea>
     </div>
 
+    <!-- Anti-Spam Honeypot Field (invisible to humans, trapped by bots) -->
+    <div style="display: none !important; position: absolute !important; left: -9999px !important;" aria-hidden="true">
+      <label for="contact-website-url">Website</label>
+      <input type="text" id="contact-website-url" name="website_url" tabindex="-1" autocomplete="off" />
+    </div>
+
     <!-- Data Privacy Checkbox -->
     <div class="flex items-start gap-3">
       <input
@@ -238,7 +244,7 @@ const cur = texts[lang] || texts.de;
   </div>
 </div>
 
-<!-- Client-Side Power Automate Fetch Script (Zero DB Storage) -->
+<!-- Client-Side Form Submission & Anti-Spam Triage Script -->
 <script is:inline define:vars={{ webhookUrl }}>
   document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('contact-submit-btn');
@@ -252,6 +258,15 @@ const cur = texts[lang] || texts.de;
     if (!submitBtn) return;
 
     submitBtn.addEventListener('click', async () => {
+      // 0. Anti-Spam Honeypot Verification
+      const honeypot = (document.getElementById('contact-website-url')?.value || '').trim();
+      if (honeypot) {
+        // Silently swallow spam bots with fake success
+        formContainer.classList.add('hidden');
+        successBanner.classList.remove('hidden');
+        return;
+      }
+
       // 1. Client-Side Input Extraction
       const senderName = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
@@ -282,37 +297,46 @@ const cur = texts[lang] || texts.de;
       btnText.textContent = 'Wird gesendet...';
       btnSpinner.classList.remove('hidden');
 
-      // 3. Prepare Power Automate JSON Payload (Direct to M365 Exchange Relay)
+      // 3. Prepare Triaged Payload (Delivered to kontakt@sprachcafe-polnisch.org)
       const payload = {
-        sender_name: senderName,
+        name: senderName,
         email: email,
         topic: topic,
         subject: subject,
         message: message,
+        website_url: honeypot,
         submitted_at: new Date().toISOString(),
         recipient: "kontakt@sprachcafe-polnisch.org"
       };
 
       try {
-        // 4. Send JSON Payload via fetch() to Power Automate Webhook
-        const response = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
-
-        if (response.ok || response.status === 202 || response.status === 200) {
-          formContainer.classList.add('hidden');
-          successBanner.classList.remove('hidden');
-        } else {
-          // Staged graceful success feedback
-          formContainer.classList.add('hidden');
-          successBanner.classList.remove('hidden');
+        // 4. Primary: Send through Astro /api/contact triage endpoint
+        let response = null;
+        try {
+          response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+        } catch (e) {
+          // If local /api/contact is unavailable (static export), fallback to webhook
+          if (webhookUrl && webhookUrl.startsWith('http')) {
+            response = await fetch(webhookUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(payload)
+            });
+          }
         }
+
+        formContainer.classList.add('hidden');
+        successBanner.classList.remove('hidden');
       } catch (err) {
-        console.log('Power Automate Contact Webhook dispatch (client fetch):', err);
+        console.log('Contact Form Dispatch Error:', err);
         // Staged graceful success feedback
         formContainer.classList.add('hidden');
         successBanner.classList.remove('hidden');
