@@ -2,7 +2,7 @@ import { ui, defaultLang, languages, type LanguageCode } from './ui';
 
 export function getLangFromUrl(url: URL): LanguageCode {
   const [, lang] = url.pathname.split('/');
-  if (lang in ui) return lang as LanguageCode;
+  if (lang && Object.prototype.hasOwnProperty.call(ui, lang)) return lang as LanguageCode;
   return defaultLang;
 }
 
