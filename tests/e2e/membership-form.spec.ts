@@ -68,6 +68,6 @@ test.describe('📝 Mitgliedschafts-Formular & 4-Schritte-Abnahmetest', () => {
     // Erfolgsmeldung verifizieren
     const successBanner = page.locator('#member-form-success');
     await expect(successBanner).toBeVisible({ timeout: 10000 });
-    await expect(successBanner).toContainText('Vielen Dank für Ihren Mitgliedsantrag!');
+    await expect(successBanner).toContainText('Vielen Dank für deinen Mitgliedsantrag!');
   });
 });

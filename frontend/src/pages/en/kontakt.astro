@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import KiezHubSelector from '../../components/KiezHubSelector.astro';
 
 const lang = 'en';
 ---
@@ -54,6 +55,9 @@ const lang = 'en';
         </p>
       </div>
     </div>
+
+    <!-- Kiez-Hub Selector with 3 location cards -->
+    <KiezHubSelector lang={lang} />
 
     <!-- Contact Form Component -->
     <ContactForm lang={lang} />
