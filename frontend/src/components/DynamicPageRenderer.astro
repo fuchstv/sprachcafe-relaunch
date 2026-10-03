@@ -87,7 +87,7 @@ const pageContent = sanitizeWpHtml(rawContent, lang);
                 var data = await resp.json();
 
                 if (data && data.success && data.data && data.data.result) {
-                  var successMsg = data.data.result.message || 'Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt.';
+                  var successMsg = data.data.result.message || 'Vielen Dank! Deine Angaben wurden erfolgreich übermittelt.';
                   form.style.display = 'none';
 
                   var successBox = document.createElement('div');
@@ -119,7 +119,7 @@ const pageContent = sanitizeWpHtml(rawContent, lang);
                   throw new Error('Server returned unexpected format');
                 }
               } catch (err) {
-                alert('Beim Absenden ist ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingaben oder kontaktieren Sie uns direkt.');
+                alert('Beim Absenden ist ein Fehler aufgetreten. Bitte prüfe deine Eingaben oder kontaktiere uns direkt.');
                 if (submitBtn) {
                   submitBtn.disabled = false;
                   submitBtn.innerHTML = originalBtnHtml;

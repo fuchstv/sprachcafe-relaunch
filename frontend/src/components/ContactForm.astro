@@ -12,13 +12,13 @@ const {
 const texts = {
   de: {
     badge: 'DSGVO-Konformes Kontaktformular',
-    title: 'Schreiben Sie uns eine Nachricht',
-    subtitle: 'Ihre Daten werden direkt an unser M365 E-Mail-Postfach übermittelt und nicht in der Website-Datenbank gespeichert (DSGVO-by-Design).',
-    successTitle: 'Vielen Dank für Ihre Nachricht!',
-    successDesc: 'Ihre E-Mail wurde erfolgreich an unser Team weitergeleitet. Wir antworten Ihnen so schnell wie möglich.',
+    title: 'Schreib uns eine Nachricht',
+    subtitle: 'Deine Daten werden direkt an unser M365 E-Mail-Postfach übermittelt und nicht in der Website-Datenbank gespeichert (DSGVO-by-Design).',
+    successTitle: 'Vielen Dank für deine Nachricht!',
+    successDesc: 'Deine E-Mail wurde erfolgreich an unser Team weitergeleitet. Wir antworten dir so schnell wie möglich.',
     errorTitle: 'Übermittlungsfehler',
-    errorDesc: 'Bitte prüfen Sie Ihre Eingaben und versuchen Sie es erneut.',
-    nameLabel: 'Ihr Name',
+    errorDesc: 'Bitte prüfe deine Eingaben und versuche es erneut.',
+    nameLabel: 'Dein Name',
     namePlaceholder: 'z. B. Jan Nowak',
     emailLabel: 'E-Mail-Adresse',
     emailPlaceholder: 'jan@example.com',
@@ -33,8 +33,8 @@ const texts = {
     ],
     subjectLabel: 'Betreff',
     subjectPlaceholder: 'Anfrage zu Sprachkursen / Raumnutzung',
-    messageLabel: 'Ihre Nachricht',
-    messagePlaceholder: 'Schreiben Sie hier Ihre Nachricht an uns...',
+    messageLabel: 'Deine Nachricht',
+    messagePlaceholder: 'Schreib hier deine Nachricht an uns...',
     privacy: 'Ich willige ein, dass meine Daten zur Beantwortung der Anfrage an das Postfach des Vereins übermittelt werden. Es erfolgt keine Speicherung auf der Website (DSGVO-by-Design).',
     btnText: 'Nachricht direkt senden →',
     btnSending: 'Wird gesendet...'
@@ -277,17 +277,17 @@ const cur = texts[lang] || texts.de;
 
       // 2. Client-Side Input Validation
       if (!senderName || !email || !subject || !message) {
-        showError('Bitte füllen Sie alle Pflichtfelder (*) aus.');
+        showError('Bitte fülle alle Pflichtfelder (*) aus.');
         return;
       }
 
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+        showError('Bitte gib eine gültige E-Mail-Adresse ein.');
         return;
       }
 
       if (!privacyConsent) {
-        showError('Bitte stimmen Sie der Datenschutzerklärung zu.');
+        showError('Bitte stimme der Datenschutzerklärung zu.');
         return;
       }
 

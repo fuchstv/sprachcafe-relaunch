@@ -15,7 +15,7 @@ const {
     </span>
     <h2 class="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b1a] dark:text-[#f5f0ee] tracking-tight">Mitgliedsantrag & Bewerbung</h2>
     <p class="mt-2 text-sm text-[#5b403d] dark:text-[#d4c5c2]">
-      Werden Sie Mitglied im SprachCafé Polnisch e.V. oder engagieren Sie sich ehrenamtlich / im Praktikum.
+      Werde Mitglied im SprachCafé Polnisch e.V. oder engagiere dich ehrenamtlich / im Praktikum.
     </p>
   </div>
 
@@ -24,8 +24,8 @@ const {
     <div class="flex items-center gap-3">
       <span class="text-2xl">🎉</span>
       <div>
-        <h3 class="font-bold text-emerald-900 dark:text-emerald-200 text-base">Vielen Dank für Ihren Antrag!</h3>
-        <p class="mt-1">Ihre Daten wurden erfolgreich übermittelt. Unser Vorstand meldet sich in Kürze bei Ihnen.</p>
+        <h3 class="font-bold text-emerald-900 dark:text-emerald-200 text-base">Vielen Dank für deinen Antrag!</h3>
+        <p class="mt-1">Deine Daten wurden erfolgreich übermittelt. Unser Vorstand meldet sich in Kürze bei dir.</p>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ const {
       <span class="text-2xl">⚠️</span>
       <div>
         <h3 class="font-bold text-rose-900 dark:text-rose-200 text-base">Übermittlungsfehler</h3>
-        <p id="error-message" class="mt-1">Bitte prüfen Sie Ihre Eingaben und versuchen Sie es erneut.</p>
+        <p id="error-message" class="mt-1">Bitte prüfe deine Eingaben und versuche es erneut.</p>
       </div>
     </div>
   </div>
@@ -142,7 +142,7 @@ const {
         id="motivation"
         required
         rows="4"
-        placeholder="Stellen Sie sich kurz vor und beschreiben Sie Ihr Interesse..."
+        placeholder="Stelle dich kurz vor und beschreibe dein Interesse..."
         class="w-full px-4 py-3 bg-[#FAF5EB] dark:bg-[#2a2725] border border-[#E2D8CC] dark:border-[#363230] rounded-xl text-[#1d1b1a] dark:text-[#f5f0ee] text-sm focus:outline-none focus:ring-2 focus:ring-[#8B1E2D] leading-relaxed"
       ></textarea>
     </div>
@@ -201,17 +201,17 @@ const {
 
       // 2. Client-Side Input Validation
       if (!firstName || !lastName || !email || !motivation) {
-        showError('Bitte füllen Sie alle erforderlichen Pflichtfelder (*) aus.');
+        showError('Bitte fülle alle erforderlichen Pflichtfelder (*) aus.');
         return;
       }
 
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+        showError('Bitte gib eine gültige E-Mail-Adresse ein.');
         return;
       }
 
       if (!privacyConsent) {
-        showError('Bitte stimmen Sie der Datenschutzerklärung zu.');
+        showError('Bitte stimme der Datenschutzerklärung zu.');
         return;
       }
 
