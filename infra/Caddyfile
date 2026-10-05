@@ -26,16 +26,12 @@ sprachcafe-polnisch.org, www.sprachcafe-polnisch.org, xn--sprachcaf-j4a.org, www
     redir /2026/02/speak-dating-3 /speak-dating/ 301
     redir /2024/12/speak-dating-2/ /speak-dating/ 301
     redir /2024/12/speak-dating-2 /speak-dating/ 301
-
-    # Mailchimp Webhook Endpoint (GET Handshake & POST Events)
-    handle /api/webhooks/mailchimp* {
-        header Content-Type "application/json; charset=utf-8"
-        respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
-    }
-    handle /api/mailchimp-webhook* {
-        header Content-Type "application/json; charset=utf-8"
-        respond "{\"status\":\"ok\",\"service\":\"Mailchimp Webhook SprachCafe\",\"message\":\"Handshake verified\"}" 200
-    }
+    redir /news/* /posts/ 301
+    redir /news/ /posts/ 301
+    redir /news /posts/ 301
+    redir /pl/news/* /pl/posts/ 301
+    redir /pl/news/ /pl/posts/ 301
+    redir /pl/news /pl/posts/ 301
 
     # Basic Auth Protection for /reports/*
     basic_auth /reports/* {
