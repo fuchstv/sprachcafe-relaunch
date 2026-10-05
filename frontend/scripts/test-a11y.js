@@ -3,7 +3,6 @@ import path from 'path';
 import axe from 'axe-core';
 
 // Accessibility Linter Script for SprachCafé Relaunch Layout
-console.log('♿ Running Accessibility & WCAG 2.1 AA Verification Audit...');
 
 const distDir = path.resolve('dist');
 
