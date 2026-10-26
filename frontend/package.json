@@ -16,8 +16,8 @@
     "test:search-benchmark": "node scripts/benchmark-search.js",
     "test:jsonld": "node ../scripts/validate-jsonld.js",
     "test:pagespeed": "node ../scripts/test-pagespeed.js",
-    "test": "npx tsx --test src/**/*.test.ts",
-    "test:unit": "npx tsx --test src/**/*.test.ts"
+    "test": "npx tsx --test \"src/**/*.test.ts\"",
+    "test:unit": "npx tsx --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
