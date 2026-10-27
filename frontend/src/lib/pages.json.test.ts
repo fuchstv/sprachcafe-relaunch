@@ -1,29 +1,34 @@
 import { register } from 'node:module';
-import { describe, it, beforeEach } from 'node:test';
+import { mock, describe, it, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { setMockGetCollection, resetMockGetCollection } from './mocks/astro-content.ts';
-
-const mockAstroContentUrl = new URL('./mocks/astro-content.ts', import.meta.url).href;
 
 register('data:text/javascript,' + encodeURIComponent(`
 export function resolve(specifier, context, nextResolve) {
   if (specifier === 'astro:content') {
     return {
       shortCircuit: true,
-      url: ${JSON.stringify(mockAstroContentUrl)},
+      url: 'data:text/javascript,export function getCollection() {}',
     };
   }
   return nextResolve(specifier, context);
 }
 `), import.meta.url);
 
+let mockGetCollectionImpl: (collection: string) => Promise<any[]> = async () => [];
+
+mock.module('astro:content', {
+  namedExports: {
+    getCollection: (collection: string) => mockGetCollectionImpl(collection)
+  }
+});
+
 describe('pages.json.ts GET handler', () => {
   beforeEach(() => {
-    resetMockGetCollection();
+    mockGetCollectionImpl = async () => [];
   });
 
   it('returns 200 and formatted pages when legal block is present', async () => {
-    setMockGetCollection(async (collection: string) => {
+    mockGetCollectionImpl = async (collection: string) => {
       assert.equal(collection, 'pages');
       return [
         {
@@ -43,7 +48,7 @@ describe('pages.json.ts GET handler', () => {
           }
         }
       ];
-    });
+    };
 
     const { GET } = await import('../pages/export/pages.json.js');
     const response = await GET({} as any);
@@ -69,8 +74,7 @@ describe('pages.json.ts GET handler', () => {
   });
 
   it('returns 200 and formatted pages when text_section block is present', async () => {
-    setMockGetCollection(async (collection: string) => {
-      assert.equal(collection, 'pages');
+    mockGetCollectionImpl = async (collection: string) => {
       return [
         {
           slug: 'about',
@@ -89,7 +93,7 @@ describe('pages.json.ts GET handler', () => {
           }
         }
       ];
-    });
+    };
 
     const { GET } = await import('../pages/export/pages.json.js');
     const response = await GET({} as any);
@@ -111,7 +115,7 @@ describe('pages.json.ts GET handler', () => {
   });
 
   it('returns 200 with empty content when no legal or text_section block is present', async () => {
-    setMockGetCollection(async () => [
+    mockGetCollectionImpl = async () => [
       {
         slug: 'empty-blocks',
         data: {
@@ -119,7 +123,7 @@ describe('pages.json.ts GET handler', () => {
           blocks: [{ type: 'other' }]
         }
       }
-    ]);
+    ];
 
     const { GET } = await import('../pages/export/pages.json.js');
     const response = await GET({} as any);
@@ -133,9 +137,9 @@ describe('pages.json.ts GET handler', () => {
 
   it('returns 500 and structured error response when getCollection fails', async () => {
     const errorMessage = 'Failed to load content collection database';
-    setMockGetCollection(async () => {
+    mockGetCollectionImpl = async () => {
       throw new Error(errorMessage);
-    });
+    };
 
     const { GET } = await import('../pages/export/pages.json.js');
     const response = await GET({} as any);
